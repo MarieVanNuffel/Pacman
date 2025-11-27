@@ -3,6 +3,7 @@ add_executable(pacman
         src/Game.cpp
         src/StateManager.cpp
         src/LevelState.cpp
+        src/EntityView.cpp
 )
 
 target_include_directories(pacman PUBLIC include)
