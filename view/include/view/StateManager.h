@@ -11,25 +11,18 @@
 #include <SFML/Graphics.hpp>
 #include "view/State.h"
 
-namespace view {
 
-    class StateManager {
-    public:
-        StateManager(sf::RenderWindow& window);
+class State;
 
-        void update();
-        void draw();
+class StateManager {
+public:
+    void changeState(std::shared_ptr<State> newState);
+    void update(float dt);
+    void render();
 
-        template<typename T, typename... Args>
-        void push(Args&&... args) {
-            states_.push_back(std::make_unique<T>(*this, window_, std::forward<Args>(args)...));
-        }
+private:
+    std::shared_ptr<State> current;
+};
 
-    private:
-        sf::RenderWindow& window_;
-        std::vector<std::unique_ptr<State>> states_;
-    };
-
-}
 
 #endif //PACMAN_STATEMANAGER_H

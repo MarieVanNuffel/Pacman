@@ -11,17 +11,22 @@
 
 namespace logic {
 
+#pragma once
+
+
+#include <random>
+
+
     class Random {
     public:
         static Random& instance();
-
-        int uniformInt(int a, int b);
-        double uniformReal(double a, double b);
-
+        int nextInt(int a, int b);
+        double nextDouble(double a, double b);
     private:
         Random();
-        std::mt19937 engine_;
+        std::mt19937 rng;
     };
+
 
 }
 

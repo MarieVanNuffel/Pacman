@@ -5,28 +5,36 @@
 #ifndef PACMAN_LEVELSTATE_H
 #define PACMAN_LEVELSTATE_H
 
-
 #pragma once
-#include "view/State.h"
+
+#include <SFML/Graphics.hpp>
+#include <memory>
+#include "State.h"
 #include "logic/World.h"
+#include "ConcreteEntityFactory.h"
+#include "view/MazeView.h"  // nieuwe MazeView
 
-namespace view {
+class LevelState : public State {
+public:
+    LevelState(sf::RenderWindow& window);
 
-    class StateManager;
+    void update(float dt) override;
+    void render() override;
 
-    class LevelState : public State {
-    public:
-        LevelState(StateManager&, sf::RenderWindow&);
+private:
+    sf::RenderWindow& window;
+    std::shared_ptr<World> world;
+    std::shared_ptr<ConcreteEntityFactory> factory;
+    Camera camera;
 
-        void update() override;
-        void draw(sf::RenderWindow&) override;
+    // MazeView voor sprite-based muren
+    std::unique_ptr<MazeView> mazeView;
 
-    private:
-        logic::World world_;
-    };
+    float tileW;
+    float tileH;
 
-}
-
-
+    void drawMaze();
+    void drawEntities();
+};
 
 #endif //PACMAN_LEVELSTATE_H

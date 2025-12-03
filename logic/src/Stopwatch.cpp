@@ -6,24 +6,21 @@
 
 namespace logic {
 
-Stopwatch::Stopwatch() {
-    last_ = std::chrono::steady_clock::now();
-    dt_ = 0;
-}
+    Stopwatch::Stopwatch() : last(std::chrono::steady_clock::now()) {}
 
-Stopwatch& Stopwatch::instance() {
-    static Stopwatch inst;
-    return inst;
-}
 
-void Stopwatch::tick() {
-    auto now = std::chrono::steady_clock::now();
-    dt_ = std::chrono::duration<double>(now - last_).count();
-    last_ = now;
-}
+    Stopwatch& Stopwatch::instance() {
+        static Stopwatch inst;
+        return inst;
+    }
 
-double Stopwatch::deltaTime() const {
-    return dt_;
-}
+
+    double Stopwatch::tick() {
+        using namespace std::chrono;
+        auto now = steady_clock::now();
+        duration<double> diff = now - last;
+        last = now;
+        return diff.count();
+    }
 
 }

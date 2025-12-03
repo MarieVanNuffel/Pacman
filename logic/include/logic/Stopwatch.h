@@ -11,17 +11,23 @@
 
 namespace logic {
 
+#pragma once
+
+
+#include <chrono>
+
+
     class Stopwatch {
     public:
         static Stopwatch& instance();
-        void tick(); // update intern tijdsverschil
-        double deltaTime() const; // in seconden
+        double tick(); // returns delta time in seconds since last tick
+
 
     private:
         Stopwatch();
-        std::chrono::steady_clock::time_point last_; // last time
-        double dt_; // delta time
+        std::chrono::steady_clock::time_point last;
     };
+
 
 }
 

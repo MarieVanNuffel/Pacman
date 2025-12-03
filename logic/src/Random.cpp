@@ -3,27 +3,28 @@
 //
 
 #include "logic/Random.h"
+#include <chrono>
 
-namespace logic {
 
-Random::Random() {
-    std::random_device rd;
-    engine_ = std::mt19937(rd());
+logic::Random::Random() {
+    rng.seed(static_cast<unsigned>(std::chrono::steady_clock::now().time_since_epoch().count()));
 }
 
-Random& Random::instance() {
-    static Random inst;
-    return inst;
+
+logic::Random&logic::Random::instance() {
+    static Random r;
+    return r;
 }
 
-int Random::uniformInt(int a, int b) {
+
+int logic::Random::nextInt(int a, int b) {
     std::uniform_int_distribution<int> dist(a, b);
-    return dist(engine_);
+    return dist(rng);
 }
 
-double Random::uniformReal(double a, double b) {
+
+double logic::Random::nextDouble(double a, double b) {
     std::uniform_real_distribution<double> dist(a, b);
-    return dist(engine_);
+    return dist(rng);
 }
 
-}

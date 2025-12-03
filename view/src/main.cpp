@@ -10,16 +10,15 @@
 //}
 
 #include <SFML/Graphics.hpp>
+#include "view/Game.h"  // als Game alles beheert
+// OF: direct LevelState gebruiken
+// #include "LevelState.h"
 
 int main() {
-    sf::RenderWindow win(sf::VideoMode(600, 600), "Test");
-    while (win.isOpen()) {
-        sf::Event e;
-        while (win.pollEvent(e))
-            if (e.type == sf::Event::Closed)
-                win.close();
-
-        win.clear();
-        win.display();
-    }
+    Game g;
+    g.run();
+    return 0;
 }
+
+
+

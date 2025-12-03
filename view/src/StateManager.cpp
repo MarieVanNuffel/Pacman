@@ -3,20 +3,17 @@
 //
 
 #include "view/StateManager.h"
+#include "view/State.h"
 
-namespace view {
-
-    StateManager::StateManager(sf::RenderWindow& window)
-        : window_(window) {}
-
-    void StateManager::update() {
-        if (!states_.empty())
-            states_.back()->update();
-    }
-
-    void StateManager::draw() {
-        if (!states_.empty())
-            states_.back()->draw(window_);
-    }
-
+void StateManager::changeState(std::shared_ptr<State> newState) {
+    current = newState;
 }
+
+void StateManager::update(float dt) {
+    if (current) current->update(dt);
+}
+
+void StateManager::render() {
+    if (current) current->render();
+}
+

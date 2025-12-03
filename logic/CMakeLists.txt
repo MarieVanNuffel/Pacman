@@ -5,10 +5,12 @@ add_library(logic
         src/Entity.cpp
         src/PacManModel.cpp
         src/GhostModel.cpp
-        src/Coin.cpp
-        src/Fruit.cpp
+        src/CoinModel.cpp
+        src/FruitModel.cpp
         src/IEntityFactory.cpp
         src/Score.cpp
+        src/Direction.cpp
+        src/Rect.cpp
 )
 
 target_include_directories(logic PUBLIC include)
