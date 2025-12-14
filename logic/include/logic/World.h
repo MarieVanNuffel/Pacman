@@ -26,6 +26,11 @@ private:
     std::vector<std::shared_ptr<FruitModel>> fruits;
     std::shared_ptr<Score> score;
 
+    std::shared_ptr<EntityView> pacmanView;
+    std::vector<std::shared_ptr<EntityView>> ghostViews;
+    std::vector<std::shared_ptr<EntityView>> coinViews;
+    std::vector<std::shared_ptr<EntityView>> fruitViews;
+
 
     std::vector<std::vector<int>> maze; // 2D grid, 0 = empty, 1 = wall, 2 = coin, 3 = fruit, 4 = pacman, 5 = ghost
     int mazeHeight;
@@ -44,6 +49,11 @@ public:
     const std::vector<std::vector<int>>& getMaze() const { return maze; };
     std::vector<std::shared_ptr<CoinModel>> getCoins() const { return coins; }
     std::vector<std::shared_ptr<FruitModel>> getFruits() const { return fruits; }
+
+    std::shared_ptr<EntityView> getPacmanView() const { return pacmanView; }
+    const std::vector<std::shared_ptr<EntityView>>& getGhostViews() const { return ghostViews; }
+    const std::vector<std::shared_ptr<EntityView>>& getCoinViews() const { return coinViews; }
+    const std::vector<std::shared_ptr<EntityView>>& getFruitViews() const { return fruitViews; }
 
     std::vector<Direction> getFreeDirections(double worldX, double worldY) const;
     std::pair<double,double> predictStep(double worldX, double worldY, Direction dir) const;

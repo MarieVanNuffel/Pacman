@@ -11,6 +11,10 @@ add_library(logic
         src/Score.cpp
         src/Direction.cpp
         src/Rect.cpp
+        src/Observer.cpp
+        src/Subject.cpp
+        include/logic/Observer.h
+
 )
 
 target_include_directories(logic PUBLIC include)

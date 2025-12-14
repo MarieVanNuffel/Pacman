@@ -8,12 +8,22 @@
 #pragma once
 
 #include "Entity.h"
+#include "Subject.h"
 
-class CoinModel : public Entity {
+class CoinModel : public Entity, public Subject {
 public:
     bool collected = false;
+
+    void collect() {
+        if(!collected) {
+            collected = true;
+            notify(1); // 1 = coin collected, kan enum later
+        }
+    }
+
     void update(double dt) override {}
 };
+
 
 
 

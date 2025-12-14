@@ -16,18 +16,16 @@
 
 class LevelState : public State {
 public:
-    LevelState(sf::RenderWindow& window);
+    LevelState(sf::RenderWindow& window, StateManager& sm);
 
+    void handleInput(sf::Event& ev) override;
     void update(float dt) override;
     void render() override;
 
 private:
-    sf::RenderWindow& window;
     std::shared_ptr<World> world;
     std::shared_ptr<ConcreteEntityFactory> factory;
     Camera camera;
-
-    // MazeView voor sprite-based muren
     std::unique_ptr<MazeView> mazeView;
 
     float tileW;

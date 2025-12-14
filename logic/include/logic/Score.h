@@ -12,8 +12,10 @@
 #include <vector>
 #include <string>
 
+#include "Observer.h"
 
-class Score {
+
+class Score : public Observer {
 public:
     Score();
     void coinCollected();
@@ -22,11 +24,17 @@ public:
     void ghostEaten();
 
 
-    int getScore() const { return score; }
+    int getScore() const { return currentScore; }
     void loadHighScores();
     void saveHighScores();
+
+    void onNotify(int event) override {
+        if(event == 1) currentScore += 10; // coin collected
+        else if(event == 2) currentScore += 50; // fruit collected
+        // voeg meer events toe
+    }
 private:
-    int score = 0;
+    int currentScore = 0;
     std::vector<int> highScores;
     double lastCoinTime = 0.0;
 };

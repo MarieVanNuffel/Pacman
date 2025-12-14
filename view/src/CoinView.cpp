@@ -21,7 +21,7 @@ void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
                                            model->getY() - sizeH/2.0,
                                            sizeW, sizeH);
 
-    float radius = std::min(rect.width, rect.height) / 2.f;
+    float radius = std::min(rect.width, rect.height) / 3.f;
 
     sf::CircleShape coin(radius);
     coin.setFillColor(sf::Color::Yellow);
@@ -35,6 +35,13 @@ void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
 }
 
 
+void CoinView::updateSprite(double dt) {
+    // hier kan animatiecode voor coin komen, bv draaien of knipperen
+}
 
-
-void CoinView::updateSprite(double dt) {}
+void CoinView::onNotify(int event)
+{
+    if (event == 1) { // 1 = coin collected event
+        visible = false;
+    }
+}

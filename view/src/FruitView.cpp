@@ -49,4 +49,9 @@ void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
     win.draw(sprite);
 }
 
-
+void FruitView::onNotify(int event)
+{
+    if (event == 1) { // 1 = coin collected event
+        visible = false;
+    }
+}

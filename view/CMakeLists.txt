@@ -9,8 +9,9 @@ add_executable(pacman
         src/FruitView.cpp
         src/GhostView.cpp
         src/PacmanView.cpp
-        include/view/State.h
         src/MazeView.cpp
+        src/MenuState.cpp
+        src/ConcreteEntityFactory.cpp
 )
 
 target_include_directories(pacman PUBLIC include)

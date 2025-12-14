@@ -9,26 +9,25 @@
 #include "view/FruitView.h"
 #include "view/MazeView.h"  // nieuwe MazeView met sprites
 
-LevelState::LevelState(sf::RenderWindow& win)
-    : window(win), camera(0,0,0,0)
+LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
+    : State(win, sm), camera(0,0,0,0)
 {
     factory = std::make_shared<ConcreteEntityFactory>();
     auto score = std::make_shared<Score>();
-
     world = std::make_shared<World>(factory, score);
 
-    // Maak een MazeView aan voor sprite-based muren
     mazeView = std::make_unique<MazeView>(world.get());
 
     const auto& maze = world->getMaze();
-    int W = maze[0].size();
-    int H = maze.size();
-
-    camera = Camera(window.getSize().x,
-                    window.getSize().y,
-                    W, H);
-
+    camera = Camera(
+        window.getSize().x,
+        window.getSize().y,
+        maze[0].size(),
+        maze.size()
+    );
 }
+
+
 
 void LevelState::update(float dt) {
     world->update(dt);
@@ -69,5 +68,21 @@ void LevelState::drawEntities() {
             auto fv = factory->createFruitView(f.get());
             fv->draw(window, camera);
         }
+    }
+}
+
+void LevelState::handleInput(sf::Event& ev)
+{
+    if (ev.type == sf::Event::KeyPressed) {
+        auto pacman = world->getPacman();
+
+        if (ev.key.code == sf::Keyboard::Up)
+            pacman->setDirection(Direction::UP);
+        else if (ev.key.code == sf::Keyboard::Down)
+            pacman->setDirection(Direction::DOWN);
+        else if (ev.key.code == sf::Keyboard::Left)
+            pacman->setDirection(Direction::LEFT);
+        else if (ev.key.code == sf::Keyboard::Right)
+            pacman->setDirection(Direction::RIGHT);
     }
 }

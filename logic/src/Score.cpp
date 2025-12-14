@@ -12,11 +12,11 @@ Score::Score() {
 
 
 void Score::coinCollected() {
-    score += 10;
+    currentScore += 10;
 }
-void Score::fruitCollected() { score += 100; }
-void Score::pacmanDied() { score -= 50; }
-void Score::ghostEaten() { score += 200; }
+void Score::fruitCollected() { currentScore += 100; }
+void Score::pacmanDied() { currentScore -= 50; }
+void Score::ghostEaten() { currentScore += 200; }
 
 
 void Score::loadHighScores() {

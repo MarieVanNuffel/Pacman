@@ -11,15 +11,24 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
     : factory(factory_), score(score_)
 {
     maze = {
-        {1,1,1,1,1,1,1,1,1},
-    {1,3,2,2,2,2,2,2,1},
-    {1,2,1,1,1,1,1,2,1},
-    {1,2,1,5,5,5,1,2,1},
-    {1,2,1,0,5,0,1,2,1},
-    {1,2,1,1,1,1,1,2,1},
-    {1,2,2,2,4,2,2,3,1},
-    {1,1,1,1,1,1,1,1,1}
+        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,3,2,2,2,1,2,2,2,2,2,1,2,3,1},
+    {1,2,1,1,2,1,2,1,1,1,2,1,2,2,1},
+    {1,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+    {1,2,1,1,2,1,1,1,1,1,2,1,1,2,1},
+    {1,2,2,2,2,2,2,5,5,2,2,2,2,2,1},
+    {1,1,1,1,2,1,1,5,5,1,1,2,1,1,1},
+    {1,2,2,2,2,2,2,5,5,2,2,2,2,2,1},
+    {1,2,1,1,2,1,1,1,1,1,2,1,1,2,1},
+    {1,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+    {1,2,1,1,2,1,2,1,1,1,2,1,2,2,1},
+    {1,2,2,2,2,1,2,2,2,2,2,1,2,2,1},
+    {1,2,1,1,2,1,1,1,1,1,2,1,1,2,1},
+    {1,4,2,2,2,2,2,2,2,2,2,2,2,2,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
     };
+
+
     mazeHeight = maze.size();
     mazeWidth = maze[0].size();
 
@@ -32,45 +41,60 @@ void World::spawnEntitiesForLevel(int levelIndex) {
     pacman = std::make_shared<PacManModel>();
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 4) { // startcel Pac-Man
-                pacman->setPosition(x + 0.5, y + 0.5);
-            }
+            if (maze[y][x] == 4) pacman->setPosition(x + 0.5, y + 0.5);
         }
     }
-
+    pacmanView = factory->createPacmanView(pacman.get());
 
     // --- GHOSTS ---
     ghosts.clear();
+    ghostViews.clear();
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
             if (maze[y][x] == 5) {
                 auto g = std::make_shared<GhostModel>();
                 g->setStartPosition(x + 0.5, y + 0.5);
                 ghosts.push_back(g);
+                ghostViews.push_back(factory->createGhostView(g.get()));
             }
         }
     }
 
-
-    // --- COINS & FRUITS ---
+    // --- COINS ---
     coins.clear();
-    fruits.clear();
+    coinViews.clear();
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
             if (maze[y][x] == 2) {
                 auto c = std::make_shared<CoinModel>();
                 c->setPosition(x + 0.5, y + 0.5);
                 coins.push_back(c);
-            } else if (maze[y][x] == 3) {
-                auto f = std::make_shared<FruitModel>();
-                f->setPosition(x + 0.5, y + 0.5);
-                f->collected = false;
-                fruits.push_back(f);
+                coinViews.push_back(factory->createCoinView(c.get()));
+
+                // Score observer koppelen
+                c->addObserver(score.get());
             }
         }
     }
 
+    // --- FRUITS ---
+    fruits.clear();
+    fruitViews.clear();
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 3) {
+                auto f = std::make_shared<FruitModel>();
+                f->setPosition(x + 0.5, y + 0.5);
+                fruits.push_back(f);
+                fruitViews.push_back(factory->createFruitView(f.get()));
+
+                // Score observer koppelen
+                f->addObserver(score.get());
+            }
+        }
+    }
 }
+
 
 
 void World::loadLevel(int levelIndex) {

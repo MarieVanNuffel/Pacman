@@ -25,13 +25,15 @@ public:
     }
 
     std::shared_ptr<EntityView> createCoinView(CoinModel* m) override {
-        return std::make_shared<CoinView>(m);
+        auto view = std::make_shared<CoinView>(m);
+        return view;
     }
 
     std::shared_ptr<EntityView> createFruitView(FruitModel* m) override {
         return std::make_shared<FruitView>(m);
     }
 };
+
 
 
 

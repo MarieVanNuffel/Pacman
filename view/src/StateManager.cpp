@@ -5,15 +5,31 @@
 #include "view/StateManager.h"
 #include "view/State.h"
 
-void StateManager::changeState(std::shared_ptr<State> newState) {
-    current = newState;
+void StateManager::pushState(std::shared_ptr<State> state) {
+    states.push_back(std::move(state));
 }
 
-void StateManager::update(float dt) {
-    if (current) current->update(dt);
+void StateManager::popState() {
+    if (!states.empty())
+        states.pop_back();
+}
+
+void StateManager::changeState(std::shared_ptr<State> state) {
+    states.clear();
+    pushState(std::move(state));
+}
+
+void StateManager::handleInput(sf::Event& ev) {
+    if (!states.empty())
+        states.back()->handleInput(ev);
+}
+
+void StateManager::update(double dt) {
+    if (!states.empty())
+        states.back()->update(dt);
 }
 
 void StateManager::render() {
-    if (current) current->render();
+    if (!states.empty())
+        states.back()->render();
 }
-
