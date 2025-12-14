@@ -11,11 +11,14 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
     : factory(factory_), score(score_)
 {
     maze = {
-        {1,1,1,1,1,1,1},
-        {1,2,2,2,2,2,1},
-        {1,2,1,1,1,2,1},
-        {1,2,2,2,2,2,1},
-        {1,1,1,1,1,1,1}
+        {1,1,1,1,1,1,1,1,1},
+    {1,3,2,2,2,2,2,2,1},
+    {1,2,1,1,1,1,1,2,1},
+    {1,2,1,5,5,5,1,2,1},
+    {1,2,1,0,5,0,1,2,1},
+    {1,2,1,1,1,1,1,2,1},
+    {1,2,2,2,4,2,2,3,1},
+    {1,1,1,1,1,1,1,1,1}
     };
     mazeHeight = maze.size();
     mazeWidth = maze[0].size();
@@ -25,32 +28,50 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
 
 
 void World::spawnEntitiesForLevel(int levelIndex) {
+    // --- PAC-MAN ---
     pacman = std::make_shared<PacManModel>();
-    // place pacman at center-ish
-    pacman->setPosition(0.0, 0.6);
-    ghosts.clear();
-    for(int i=0;i<4;++i) {
-        auto g = std::make_shared<GhostModel>();
-        g->setStartPosition(0.0, 0.0);
-        ghosts.push_back(g);
-    }
-    coins.clear(); fruits.clear();
-    // spawn coins for every cell with 2
-    for(size_t y=0;y<maze.size();++y) {
-        for(size_t x=0;x<maze[y].size();++x) {
-            if(maze[y][x]==2) {
-                auto c = std::make_shared<CoinModel>();
-                // convert cell to normalized coords
-                double nx = (double)x / (double)maze[y].size() * 2.0 - 1.0 +
-                1.0/maze[y].size();
-                double ny = (double)y / (double)maze.size() * 2.0 - 1.0 +
-                1.0/maze.size();
-                c->setPosition(nx, ny);
-                coins.push_back(c);
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 4) { // startcel Pac-Man
+                pacman->setPosition(x + 0.5, y + 0.5);
             }
         }
     }
+
+
+    // --- GHOSTS ---
+    ghosts.clear();
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 5) {
+                auto g = std::make_shared<GhostModel>();
+                g->setStartPosition(x + 0.5, y + 0.5);
+                ghosts.push_back(g);
+            }
+        }
+    }
+
+
+    // --- COINS & FRUITS ---
+    coins.clear();
+    fruits.clear();
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 2) {
+                auto c = std::make_shared<CoinModel>();
+                c->setPosition(x + 0.5, y + 0.5);
+                coins.push_back(c);
+            } else if (maze[y][x] == 3) {
+                auto f = std::make_shared<FruitModel>();
+                f->setPosition(x + 0.5, y + 0.5);
+                f->collected = false;
+                fruits.push_back(f);
+            }
+        }
+    }
+
 }
+
 
 void World::loadLevel(int levelIndex) {
     // TODO: change maze per level or randomize

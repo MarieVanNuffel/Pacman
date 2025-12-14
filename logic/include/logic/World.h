@@ -27,7 +27,7 @@ private:
     std::shared_ptr<Score> score;
 
 
-    std::vector<std::vector<int>> maze; // 2D grid, 0 = empty, 1 = wall, 2 = coin, 3 = fruit
+    std::vector<std::vector<int>> maze; // 2D grid, 0 = empty, 1 = wall, 2 = coin, 3 = fruit, 4 = pacman, 5 = ghost
     int mazeHeight;
     int mazeWidth;
 

@@ -10,7 +10,7 @@
 #include "view/MazeView.h"  // nieuwe MazeView met sprites
 
 LevelState::LevelState(sf::RenderWindow& win)
-    : window(win), camera(window.getSize().x, window.getSize().y)
+    : window(win), camera(0,0,0,0)
 {
     factory = std::make_shared<ConcreteEntityFactory>();
     auto score = std::make_shared<Score>();
@@ -21,8 +21,13 @@ LevelState::LevelState(sf::RenderWindow& win)
     mazeView = std::make_unique<MazeView>(world.get());
 
     const auto& maze = world->getMaze();
-    tileW = window.getSize().x / float(maze[0].size());
-    tileH = window.getSize().y / float(maze.size());
+    int W = maze[0].size();
+    int H = maze.size();
+
+    camera = Camera(window.getSize().x,
+                    window.getSize().y,
+                    W, H);
+
 }
 
 void LevelState::update(float dt) {

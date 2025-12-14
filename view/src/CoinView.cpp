@@ -1,52 +1,40 @@
 //
-// Created by Marie Van Nuffel on 28/11/2025.
+// Created by Marie Van Nuffel on 27/11/2025.
 //
-
 #include "../include/view/CoinView.h"
 #include "../include/view/Camera.h"
-#include <iostream>
+#include "logic/World.h"
 
 CoinView::CoinView(CoinModel* m)
     : EntityView(m), model(m)
-{
-    if (!texture.loadFromFile("view/assets/Coin.png"))
-    {
-        std::cerr << "Kan Coin.png niet laden!" << std::endl;
-    }
-
-    sprite.setTexture(texture);
-
-    // Sprite centreren
-    sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-}
-
-void CoinView::updateSprite(double dt)
-{
-    animTime += dt;
-
-    // Placeholder animatie (kan later uitgebreider)
-    if (animTime > 0.25)
-        animTime = 0.0;
-}
+{}
 
 void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
 {
-    if (!model)
-        return;
+    if (!model) return;
 
-    double x = model->getX();
-    double y = model->getY();
+    double sizeW = 0.5; // halve cel
+    double sizeH = 0.5;
 
-    // Zet wereldcoördinaten om naar pixels
-    sf::FloatRect rect = cam.worldToPixels(x, y, 0.1, 0.1);
+    // verschuif middelpunt naar linker-bovenhoek van de coin
+    sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
+                                           model->getY() - sizeH/2.0,
+                                           sizeW, sizeH);
 
-    sprite.setPosition(rect.left + rect.width / 2.f,
-                       rect.top  + rect.height / 2.f);
+    float radius = std::min(rect.width, rect.height) / 2.f;
 
-    // Schaal sprite zodat hij in één tegel past
-    sprite.setScale(rect.width / sprite.getTexture()->getSize().x,
-                    rect.height / sprite.getTexture()->getSize().y);
+    sf::CircleShape coin(radius);
+    coin.setFillColor(sf::Color::Yellow);
 
-    win.draw(sprite);
+    // centreer coin in rect
+    coin.setOrigin(radius, radius);  // zet origin in het midden van de cirkel
+    coin.setPosition(rect.left + rect.width / 2.f,
+                     rect.top  + rect.height / 2.f);
+
+    win.draw(coin);
 }
+
+
+
+
+void CoinView::updateSprite(double dt) {}

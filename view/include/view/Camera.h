@@ -12,13 +12,18 @@
 
 class Camera {
 public:
-    Camera(int pixelWidth, int pixelHeight);
-    sf::FloatRect worldToPixels(double x, double y, double w, double h)
-    const;
+    Camera(int pixelWidth, int pixelHeight, int mazeW, int mazeH);
+
+    sf::FloatRect worldToPixels(double x, double y, double w, double h) const;
+
+    int mazeWidth;
+    int mazeHeight;
+
 private:
     int wPixels;
     int hPixels;
 };
+
 
 
 #endif //PACMANGAME_CAMERA_H

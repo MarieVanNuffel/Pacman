@@ -23,19 +23,22 @@ PacmanView::PacmanView(PacManModel* m)
 
 void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
 {
-    // Wereld → pixels conversie
-    auto r = cam.worldToPixels(
-        model->getX(),
-        model->getY(),
-        model->getW(),
-        model->getH()
-    );
+    double sizeW = 0.9;
+    double sizeH = 0.9;
 
-    sprite.setPosition(r.left + r.width / 2.0f,
-                       r.top  + r.height / 2.0f);
+    sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
+                                       model->getY() - sizeH/2.0,
+                                       sizeW, sizeH);
+    sprite.setPosition(rect.left + rect.width/2.f,
+                       rect.top  + rect.height/2.f);
+    sprite.setScale(rect.width / sprite.getLocalBounds().width,
+                    rect.height / sprite.getLocalBounds().height);
+
 
     win.draw(sprite);
 }
+
+
 
 void PacmanView::updateSprite(double dt)
 {

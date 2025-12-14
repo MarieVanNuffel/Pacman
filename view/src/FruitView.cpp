@@ -32,21 +32,21 @@ void FruitView::updateSprite(double dt)
 
 void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
 {
-    if (!model)
-        return;
+    if (!model) return;
 
-    double x = model->getX();
-    double y = model->getY();
+    double sizeW = 0.5; // halve cel
+    double sizeH = 0.5;
 
-    // Zet wereldcoördinaten om naar pixels
-    sf::FloatRect rect = cam.worldToPixels(x, y, 0.1, 0.1);
+    sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
+                                       model->getY() - sizeH/2.0,
+                                       sizeW, sizeH);
+    sprite.setPosition(rect.left + rect.width/2.f,
+                       rect.top  + rect.height/2.f);
+    sprite.setScale(rect.width / sprite.getLocalBounds().width,
+                    rect.height / sprite.getLocalBounds().height);
 
-    sprite.setPosition(rect.left + rect.width / 2.f,
-                       rect.top  + rect.height / 2.f);
-
-    // Schaal sprite zodat hij in één tegel past
-    sprite.setScale(rect.width / sprite.getTexture()->getSize().x,
-                    rect.height / sprite.getTexture()->getSize().y);
 
     win.draw(sprite);
 }
+
+

@@ -9,13 +9,6 @@
 #include <SFML/Graphics/Texture.hpp>
 
 
-//
-// Created by Marie Van Nuffel on 28/11/2025.
-//
-
-#include "../include/view/GhostView.h"
-#include <iostream>
-
 GhostView::GhostView(GhostModel* m)
     : EntityView(m), model(m)
 {
@@ -42,22 +35,22 @@ void GhostView::updateSprite(double dt)
 
 void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
 {
-    if (!model)
-        return;
+    if (!model) return;
 
-    double x = model->getX();
-    double y = model->getY();
+    double sizeW = 0.9; // 0.9 van een cel
+    double sizeH = 0.9;
 
-    // PacMan gebruikt wereldcoördinaten [-1, 1], dus camera moet ze omzetten
-    sf::FloatRect rect = cam.worldToPixels(x, y, 0.1, 0.1);
+    sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
+                                       model->getY() - sizeH/2.0,
+                                       sizeW, sizeH);
+    sprite.setPosition(rect.left + rect.width/2.f,
+                       rect.top  + rect.height/2.f);
+    sprite.setScale(rect.width / sprite.getLocalBounds().width,
+                    rect.height / sprite.getLocalBounds().height);
 
-    sprite.setPosition(rect.left + rect.width / 2.f,
-                       rect.top  + rect.height / 2.f);
-
-    // Schaal sprite naar tegelgrootte
-    sprite.setScale(rect.width / sprite.getTexture()->getSize().x,
-                    rect.height / sprite.getTexture()->getSize().y);
 
     win.draw(sprite);
 }
+
+
 
