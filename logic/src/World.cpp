@@ -102,18 +102,42 @@ void World::loadLevel(int levelIndex) {
     spawnEntitiesForLevel(levelIndex);
 }
 
+
 void World::update(double dt) {
-    // update pacman and ghosts
-    pacman->update(dt);
-    for(auto &g: ghosts) g->update(dt);
-    // collision checks: pacman with coins / fruits / ghosts
+    tryMoveEntity(pacman, pacman->getDirection(), dt);
+
+    // for (auto& g : ghosts)
+    //     tryMoveEntity(g, g->getDirection(), dt);
+
+    // TODO: collisions with coins, ghosts, fruits
 }
 
 
-void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double
-dt) {
-    // minimal sample: change entity position according to dir, ignoring walls.
+
+void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
+    if (!e || dir == Direction::NONE) return;
+
+    double step = e->getSpeed() * dt;
+
+    double nx = e->getX();
+    double ny = e->getY();
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+    // wall collision
+    if (!isWallAt(nx, ny)) {
+        e->setPosition(nx, ny);
+    }
 }
+
+
+
+
 
 // Return a list of possible directions the entity can move without hitting a wall
 std::vector<Direction> World::getFreeDirections(double x, double y) const {
@@ -142,7 +166,11 @@ std::pair<double, double> World::predictStep(double x, double y, Direction d) co
 
 // Helper for getFreeDirections to check collision at float position
 bool World::isWallAt(double x, double y) const {
-    int cx = static_cast<int>((x + 1.0) / 2.0 * mazeWidth);
-    int cy = static_cast<int>((y + 1.0) / 2.0 * mazeHeight);
-    return isWallAt(cx, cy);
+    int cx = static_cast<int>(x);
+    int cy = static_cast<int>(y);
+
+    if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight)
+        return true; // buiten de map = muur
+
+    return maze[cy][cx] == 1;
 }

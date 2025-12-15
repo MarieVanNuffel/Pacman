@@ -35,3 +35,10 @@ view/           # SFML rendering & states
 | **Singleton**        | Stopwatch                                                                  | Voor consistent bijhouden van delta-time                                 |
 
 
+| Klasse         | Doet                              |
+| -------------- | --------------------------------- |
+| **World**      | game logic (movement, collisions) |
+| **Model**      | positie, richting, snelheid       |
+| **View**       | tekenen + sprite-animatie         |
+| **LevelState** | orkestratie (update & render)     |
+

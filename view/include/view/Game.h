@@ -18,7 +18,6 @@ public:
     void run();
 private:
     sf::RenderWindow window;
-    /*Camera camera;*/
     StateManager stateManager;
 };
 

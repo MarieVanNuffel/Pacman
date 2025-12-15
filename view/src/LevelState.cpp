@@ -31,7 +31,12 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 
 void LevelState::update(float dt) {
     world->update(dt);
+
+    world->getPacmanView()->updateSprite(dt); // update de animatie van pacman
+    for (auto& gv : world->getGhostViews()) // update de animatie van de ghosts
+        gv->updateSprite(dt);
 }
+
 
 void LevelState::render() {
     drawMaze();

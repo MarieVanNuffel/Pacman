@@ -19,6 +19,7 @@ protected:
     double x = 0.0, y = 0.0; // normalized coordinates [-1,1]
     double w = 0.1, h = 0.1; // size in normalized units
     Direction direction = Direction::NONE;
+    double speed = 0; // normalized units per second
 
 public:
     virtual ~Entity() = default;
@@ -31,8 +32,9 @@ public:
     double getY() const { return y; }
     double getW() const { return w; }
     double getH() const { return h; }
-    Direction getDir() const { return direction; }
+    Direction getDirection() const { return direction; }
     Rect getBounds() const { return Rect{x, y, w, h}; }
+    double getSpeed() const { return speed; };
 
 
     void setPosition(double nx, double ny) { x = nx; y = ny; }

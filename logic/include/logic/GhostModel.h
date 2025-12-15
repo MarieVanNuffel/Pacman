@@ -20,6 +20,7 @@ class GhostModel : public Entity {
 public:
     enum class Mode { Waiting, Chase, Fear, Eaten };
 private:
+    // TODO aanpassen voor verschillende ghosts: speed, direction
     Mode mode = Mode::Waiting;
     Direction locked = Direction::LEFT;
     double speed = 0.8;

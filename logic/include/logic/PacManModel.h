@@ -16,8 +16,6 @@
 
 class PacManModel : public Entity {
 private:
-    Direction dir = Direction::NONE; // None, Up, Down, Left, Right
-    double speed = 1.0; // normalized units per second
     int lives = 3;
 
 public:

@@ -9,17 +9,15 @@
 PacmanView::PacmanView(PacManModel* m)
     : EntityView(m), model(m)
 {
-    // Texture laden
     if (!texture.loadFromFile("view/assets/pacman.png")) {
         throw std::runtime_error("Failed to load pacman texture!");
     }
 
     sprite.setTexture(texture);
-    sprite.setOrigin(
-        texture.getSize().x / 2.0f,
-        texture.getSize().y / 2.0f
-    );
+    sprite.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
+    sprite.setOrigin(FRAME_SIZE / 2.f, FRAME_SIZE / 2.f);
 }
+
 
 void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
 {
@@ -42,17 +40,26 @@ void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
 
 void PacmanView::updateSprite(double dt)
 {
-    animTime += dt;
+    animTimer += dt;
 
-    // Kleine animatie: Pac-Man draait naar bewegingsrichting
-    switch (model->getDir()) {
-        case Direction::UP:    sprite.setRotation(270); break;
-        case Direction::DOWN:  sprite.setRotation(90);  break;
-        case Direction::LEFT:  sprite.setRotation(180); break;
-        case Direction::RIGHT: sprite.setRotation(0);   break;
-        default: break;
+    if (animTimer >= frameTime) {
+        animTimer = 0.0;
+        mouthOpen = !mouthOpen;
     }
 
-    // Hier kun je eventueel sprite-sheet animatie toevoegen
+    int frameX = mouthOpen ? 0 : FRAME_SIZE;
+    int frameY = 0;
+
+    switch (model->getDirection()) {
+        case Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
+        case Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
+        case Direction::UP:    frameY = 2 * FRAME_SIZE; break;
+        case Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
+        default: return; // geen richting → animatie niet veranderen
+    }
+
+    sprite.setTextureRect(sf::IntRect(frameX, frameY, FRAME_SIZE, FRAME_SIZE));
 }
+
+
 

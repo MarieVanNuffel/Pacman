@@ -58,7 +58,6 @@ public:
     std::vector<Direction> getFreeDirections(double worldX, double worldY) const;
     std::pair<double,double> predictStep(double worldX, double worldY, Direction dir) const;
 
-
     bool isWallAt(double x, double y) const;
     void tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt);
 

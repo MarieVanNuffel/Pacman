@@ -9,6 +9,7 @@
 
 #include "EntityView.h"
 #include "Camera.h"
+#include "logic/Direction.h"
 
 class PacManModel;
 
@@ -21,7 +22,15 @@ private:
     PacManModel* model;
     sf::Sprite sprite;
     sf::Texture texture;
-    double animTime = 0.0;
+
+    // pacman grootte sprite sheet
+    static constexpr int FRAME_SIZE = 15;
+    static constexpr int FRAMES_PER_DIR = 2;
+
+    // animatie
+    double animTimer = 0.0;
+    double frameTime = 0.15;
+    bool mouthOpen = true;
 };
 
 
