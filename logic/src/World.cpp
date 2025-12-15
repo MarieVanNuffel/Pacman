@@ -104,13 +104,29 @@ void World::loadLevel(int levelIndex) {
 
 
 void World::update(double dt) {
-    tryMoveEntity(pacman, pacman->getDirection(), dt);
+    auto pm = pacman;
 
-    // for (auto& g : ghosts)
-    //     tryMoveEntity(g, g->getDirection(), dt);
+    // 1) Alleen in het midden van een tile mag je draaien
+    if (isAlignedWithGrid(pm->getX(), pm->getY())) {
 
-    // TODO: collisions with coins, ghosts, fruits
+        // Probeer gewenste richting
+        if (canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
+            pm->setDirection(pm->getDesiredDirection());
+        }
+    }
+
+    // 2) Als huidige richting niet meer kan → stoppen
+    if (!canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
+        pm->setDirection(Direction::NONE);
+    }
+
+    // 3) Beweeg in huidige richting
+    tryMoveEntity(pm, pm->getDirection(), dt);
 }
+
+
+
+
 
 
 
@@ -118,10 +134,10 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
     if (!e || dir == Direction::NONE) return;
 
     double step = e->getSpeed() * dt;
-
     double nx = e->getX();
     double ny = e->getY();
 
+    // Probeer nieuwe positie
     switch (dir) {
         case Direction::UP:    ny -= step; break;
         case Direction::DOWN:  ny += step; break;
@@ -129,14 +145,23 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
         case Direction::RIGHT: nx += step; break;
         default: break;
     }
-    // wall collision
-    if (!isWallAt(nx, ny)) {
+
+    // radius van Pac-Man (half van sprite in grid units)
+    double radius = 0.45; // iets kleiner dan 0.5 zodat hij niet vastzit
+    bool canMove = true;
+
+    // check alle vier de hoeken
+    if (isWallAt(nx - radius, ny - radius) ||
+        isWallAt(nx - radius, ny + radius) ||
+        isWallAt(nx + radius, ny - radius) ||
+        isWallAt(nx + radius, ny + radius)) {
+        canMove = false;
+        }
+
+    if (canMove) {
         e->setPosition(nx, ny);
     }
 }
-
-
-
 
 
 // Return a list of possible directions the entity can move without hitting a wall
@@ -173,4 +198,35 @@ bool World::isWallAt(double x, double y) const {
         return true; // buiten de map = muur
 
     return maze[cy][cx] == 1;
+}
+
+bool World::canMoveIn(Direction dir, double x, double y) const {
+    if (dir == Direction::NONE) return false;
+
+    double step = 0.01; // kleine stap voor check
+    double nx = x, ny = y;
+
+    switch(dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    double radius = 0.45;
+    return !(isWallAt(nx - radius, ny - radius) ||
+             isWallAt(nx - radius, ny + radius) ||
+             isWallAt(nx + radius, ny - radius) ||
+             isWallAt(nx + radius, ny + radius));
+}
+
+bool World::isAlignedWithGrid(double x, double y) const {
+    int gridX = static_cast<int>(x);
+    int gridY = static_cast<int>(y);
+
+    // epsilon bepaalt hoeveel afwijking toegestaan is
+    const double epsilon = 0.01;
+    return std::abs(x - (gridX + 0.5)) < epsilon &&
+           std::abs(y - (gridY + 0.5)) < epsilon;
 }

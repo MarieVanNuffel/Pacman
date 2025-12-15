@@ -19,6 +19,7 @@ protected:
     double x = 0.0, y = 0.0; // normalized coordinates [-1,1]
     double w = 0.1, h = 0.1; // size in normalized units
     Direction direction = Direction::NONE;
+    Direction desiredDirection = Direction::NONE;
     double speed = 0; // normalized units per second
 
 public:
@@ -33,6 +34,7 @@ public:
     double getW() const { return w; }
     double getH() const { return h; }
     Direction getDirection() const { return direction; }
+    Direction getDesiredDirection() const { return desiredDirection; }
     Rect getBounds() const { return Rect{x, y, w, h}; }
     double getSpeed() const { return speed; };
 

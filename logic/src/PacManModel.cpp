@@ -11,14 +11,11 @@
 
 PacManModel::PacManModel() {
     // place start position and set speed
-    x = 0.0; y = 0.6, speed = 3.0, direction = Direction::LEFT;
+    x = 0.0; y = 0.6, speed = 3.0, direction = Direction::LEFT, desiredDirection = direction;
 }
 
 
 void PacManModel::setDirection(Direction d) { direction = d; }
-
-Direction PacManModel::getDirection() const { return direction; }
-
 
 
 void PacManModel::update(double dt) {

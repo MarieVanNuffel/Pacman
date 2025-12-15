@@ -60,6 +60,8 @@ public:
 
     bool isWallAt(double x, double y) const;
     void tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt);
+    bool canMoveIn(Direction dir, double x, double y) const;
+    bool isAlignedWithGrid(double x, double y) const;
 
 };
 

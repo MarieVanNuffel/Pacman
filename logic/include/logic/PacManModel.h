@@ -21,7 +21,7 @@ private:
 public:
     PacManModel();
     void setDirection(Direction d);
-    Direction getDirection() const;
+    void setDesiredDirection(Direction d) { desiredDirection = d; }
     void update(double dt) override;
 
 

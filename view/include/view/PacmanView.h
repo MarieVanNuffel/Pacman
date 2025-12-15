@@ -19,18 +19,23 @@ public:
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 private:
+    // animatie
+    double animTimer = 0.0;
+    double frameTime = 0.15;
+
+    // sprite sheet frames
+    static constexpr int FRAME_SIZE = 15;
+    static constexpr int NUM_FRAMES = 3;
+    int frameIndex = 0;
+    int frames[NUM_FRAMES] = {0, 15, 30}; // kolommen voor open, half-open, bijna dicht
+
+    // richting van Pac-Man
     PacManModel* model;
     sf::Sprite sprite;
     sf::Texture texture;
 
-    // pacman grootte sprite sheet
-    static constexpr int FRAME_SIZE = 15;
-    static constexpr int FRAMES_PER_DIR = 2;
+    Direction lastDirection = Direction::RIGHT;
 
-    // animatie
-    double animTimer = 0.0;
-    double frameTime = 0.15;
-    bool mouthOpen = true;
 };
 
 

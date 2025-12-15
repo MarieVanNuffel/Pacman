@@ -3,6 +3,9 @@
 //
 
 #include "../include/view/PacmanView.h"
+
+#include <iostream>
+
 #include "logic/PacManModel.h"        // model class
 #include <SFML/Graphics.hpp>
 
@@ -29,37 +32,59 @@ void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
                                        sizeW, sizeH);
     sprite.setPosition(rect.left + rect.width/2.f,
                        rect.top  + rect.height/2.f);
-    sprite.setScale(rect.width / sprite.getLocalBounds().width,
-                    rect.height / sprite.getLocalBounds().height);
 
+    auto texRect = sprite.getTextureRect();
+    sprite.setScale(
+        rect.width / texRect.width,
+        rect.height / texRect.height
+    );
 
     win.draw(sprite);
 }
-
 
 
 void PacmanView::updateSprite(double dt)
 {
     animTimer += dt;
 
+    // Ga naar volgende frame
     if (animTimer >= frameTime) {
         animTimer = 0.0;
-        mouthOpen = !mouthOpen;
+        frameIndex = (frameIndex + 1) % NUM_FRAMES;
     }
 
-    int frameX = mouthOpen ? 0 : FRAME_SIZE;
-    int frameY = 0;
+    // als pacman tegen een muur loopt, dan moet de huidige direction behouden worden
+    if (model->getDirection() != Direction::NONE) {
+        lastDirection = model->getDirection();
+    } else {
+        model->setDirection(lastDirection);
+    }
 
-    switch (model->getDirection()) {
-        case Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
-        case Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
-        case Direction::UP:    frameY = 2 * FRAME_SIZE; break;
-        case Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
-        default: return; // geen richting → animatie niet veranderen
+    int frameX;
+    int frameY;
+
+    if (frameIndex < 2) {
+        frameX = frames[frameIndex];
+        switch (model->getDirection()) {
+            case Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
+            case Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
+            case Direction::UP:    frameY = 2 * FRAME_SIZE; break;
+            case Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
+            default:               frameY = 0; break;
+        }
+    } else {
+        // volle Pac-Man uit eerste rij, derde kolom bij frame index 2
+        frameX = frames[2];
+        frameY = 0;
     }
 
     sprite.setTextureRect(sf::IntRect(frameX, frameY, FRAME_SIZE, FRAME_SIZE));
 }
+
+
+
+
+
 
 
 

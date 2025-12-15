@@ -3,6 +3,9 @@
 //
 
 #include "view/LevelState.h"
+
+#include <iostream>
+
 #include "view/PacManView.h"
 #include "view/GhostView.h"
 #include "view/CoinView.h"
@@ -50,31 +53,24 @@ void LevelState::drawMaze() {
 
 void LevelState::drawEntities() {
     // PACMAN
-    auto pmView = factory->createPacmanView(world->getPacman().get());
-    pmView->draw(window, camera);
+    world->getPacmanView()->draw(window, camera);
 
     // GHOSTS
-    for (auto& g : world->getGhosts()) {
-        auto gv = factory->createGhostView(g.get());
+    for (auto& gv : world->getGhostViews()) {
         gv->draw(window, camera);
     }
 
     // COINS
-    for (auto& c : world->getCoins()) {
-        if (!c->collected) {
-            auto cv = factory->createCoinView(c.get());
-            cv->draw(window, camera);
-        }
+    for (auto& cv : world->getCoinViews()) {
+        cv->draw(window, camera);
     }
 
     // FRUITS
-    for (auto& f : world->getFruits()) {
-        if (!f->collected) {
-            auto fv = factory->createFruitView(f.get());
-            fv->draw(window, camera);
-        }
+    for (auto& fv : world->getFruitViews()) {
+        fv->draw(window, camera);
     }
 }
+
 
 void LevelState::handleInput(sf::Event& ev)
 {
