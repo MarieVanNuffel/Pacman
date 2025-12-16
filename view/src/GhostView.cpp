@@ -12,26 +12,49 @@
 GhostView::GhostView(GhostModel* m)
     : EntityView(m), model(m)
 {
-    if (!texture.loadFromFile("view/assets/ghost.png"))
+    if (!texture.loadFromFile("view/assets/pacman.png"))
     {
         std::cerr << "Kan ghost.png niet laden!" << std::endl;
     }
 
     sprite.setTexture(texture);
 
-    // Optioneel (centreren voor betere uitlijning)
-    sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    int rectTop;
+    switch (model->getGhostType()) {
+        case GhostModel::GhostType::LockedRandom:    rectTop = 64; break;  // rood
+        case GhostModel::GhostType::AheadOfPacman1:  rectTop = 80; break; // roze
+        case GhostModel::GhostType::AheadOfPacman2:  rectTop = 96; break; // lichtblauw
+        case GhostModel::GhostType::DirectChase:     rectTop = 112; break; // oranje
+        default: rectTop = 0; break;
+    }
+    sprite.setTextureRect(sf::IntRect(0, rectTop, FRAME_SIZE, FRAME_SIZE));
+    sprite.setOrigin(FRAME_SIZE / 2.f, FRAME_SIZE / 2.f);
 }
 
 void GhostView::updateSprite(double dt)
 {
-    animTime += dt;
+     // animTimer += dt;
+     //
+     // // Placeholder animatie (later kan je frames toevoegen)
+     // if (animTimer > frameTime)
+     //     animTimer = 0.0;
+     //     frameIndex = (frameIndex + 1) % NUM_FRAMES;
+     //
+     // int rectLeft = 0;
+     // int rectTop = 0;
+     //
+     // switch (lastDirection) {
+     //     case Direction::RIGHT && model->getGhostType() == GhostModel::GhostType::LockedRandom: rectLeft = frameIndex * FRAME_SIZE; break;
+     //     case Direction::LEFT:  rectLeft = 2*FRAME_SIZE + frameIndex*FRAME_SIZE; break;
+     //     case Direction::UP:    rectLeft = 4*FRAME_SIZE + frameIndex*FRAME_SIZE; break;
+     //     case Direction::DOWN:  rectLeft = 6*FRAME_SIZE + frameIndex*FRAME_SIZE; break;
+     //     default: rectLeft = 0; break;
+     // }
+     //
+     // sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
 
-    // Placeholder animatie (later kan je frames toevoegen)
-    if (animTime > 0.2)
-        animTime = 0.0;
 }
+
 
 void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
 {

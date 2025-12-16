@@ -17,10 +17,22 @@ public:
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 private:
+    // animatie
+    double animTimer = 0.0;
+    double frameTime = 0.15;
+
+    // sprite sheet frames
+    static constexpr int FRAME_SIZE = 16;
+    static constexpr int NUM_FRAMES = 2;
+    int frameIndex = 0;
+    int frames[NUM_FRAMES] = {0, 16}; // kolommen voor bewegingen
+
+    // richting van Ghosts
     GhostModel* model;
     sf::Sprite sprite;
     sf::Texture texture;
-    double animTime = 0.0;
+
+    Direction lastDirection = Direction::RIGHT;
 };
 
 

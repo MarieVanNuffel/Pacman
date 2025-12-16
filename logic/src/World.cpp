@@ -41,7 +41,9 @@ void World::spawnEntitiesForLevel(int levelIndex) {
     pacman = std::make_shared<PacManModel>();
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 4) pacman->setPosition(x + 0.5, y + 0.5);
+            if (maze[y][x] == 4) {
+                pacman->setPosition(x + 0.5, y + 0.5);
+            }
         }
     }
     pacmanView = factory->createPacmanView(pacman.get());
@@ -49,13 +51,29 @@ void World::spawnEntitiesForLevel(int levelIndex) {
     // --- GHOSTS ---
     ghosts.clear();
     ghostViews.clear();
+
+    int ghostIndex = 0;
+
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
             if (maze[y][x] == 5) {
-                auto g = std::make_shared<GhostModel>();
-                g->setStartPosition(x + 0.5, y + 0.5);
-                ghosts.push_back(g);
-                ghostViews.push_back(factory->createGhostView(g.get()));
+                // Bepaal type ghost op basis van spawn volgorde
+                GhostModel::GhostType type;
+                switch (ghostIndex) {
+                    case 0: type = GhostModel::GhostType::LockedRandom; break;
+                    case 1: type = GhostModel::GhostType::AheadOfPacman1; break;
+                    case 2: type = GhostModel::GhostType::AheadOfPacman2; break;
+                    case 3: type = GhostModel::GhostType::DirectChase; break;
+                }
+
+                auto ghost = std::make_shared<GhostModel>(type);
+                ghost->setStartPosition(x + 0.5, y + 0.5);
+                ghost->setWorld(this);  // super belangrijk voor AI
+
+                ghosts.push_back(ghost);
+                ghostViews.push_back(factory->createGhostView(ghost.get()));
+
+                ghostIndex++;
             }
         }
     }
@@ -70,8 +88,6 @@ void World::spawnEntitiesForLevel(int levelIndex) {
                 c->setPosition(x + 0.5, y + 0.5);
                 coins.push_back(c);
                 coinViews.push_back(factory->createCoinView(c.get()));
-
-                // Score observer koppelen
                 c->addObserver(score.get());
             }
         }
@@ -87,13 +103,13 @@ void World::spawnEntitiesForLevel(int levelIndex) {
                 f->setPosition(x + 0.5, y + 0.5);
                 fruits.push_back(f);
                 fruitViews.push_back(factory->createFruitView(f.get()));
-
-                // Score observer koppelen
                 f->addObserver(score.get());
             }
         }
     }
 }
+
+
 
 
 

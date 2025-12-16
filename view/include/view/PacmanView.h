@@ -25,9 +25,9 @@ private:
 
     // sprite sheet frames
     static constexpr int FRAME_SIZE = 15;
-    static constexpr int NUM_FRAMES = 3;
+    static constexpr int NUM_FRAMES = 2;
     int frameIndex = 0;
-    int frames[NUM_FRAMES] = {0, 15, 30}; // kolommen voor open, half-open, bijna dicht
+    int frames[NUM_FRAMES] = {0, 15}; // kolommen voor open, half-open, bijna dicht
 
     // richting van Pac-Man
     PacManModel* model;

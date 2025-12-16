@@ -9,9 +9,8 @@ static double manhattan(double x1, double y1, double x2, double y2) {
 }
 
 
-GhostModel::GhostModel() {
-    // default spawn is 0,0 maar World roept setStartPosition aan
-}
+GhostModel::GhostModel(GhostType t) : type(t) {}
+
 
 void GhostModel::setMode(Mode m) {
     mode = m;
@@ -88,71 +87,95 @@ Direction GhostModel::decideDirection() {
 
 
 
-void GhostModel::update(double dt) {
+void GhostModel::update(double dt)
+{
+    if (!worldRef) return;
 
-    // MODE: WAITING
+    releaseTimer += dt;
+
+    // ---------------------------------
+    // 1) WAITING → CHASE (release timing)
+    // ---------------------------------
     if (mode == Mode::Waiting) {
-        // do nothing (LevelState will switch to chase mode after N seconds)
-        return;
+        if (type == GhostType::LockedRandom ||
+            type == GhostType::AheadOfPacman1) {
+            mode = Mode::Chase;
+        }
+        else if (type == GhostType::AheadOfPacman2 && releaseTimer > 5.0) {
+            mode = Mode::Chase;
+        }
+        else if (type == GhostType::DirectChase && releaseTimer > 10.0) {
+            mode = Mode::Chase;
+        }
+        else {
+            return; // blijf in spawn
+        }
     }
 
-    // MODE: EATEN → return to spawn point
+    // ---------------------------------
+    // 2) EATEN → terug naar spawn
+    // ---------------------------------
     if (mode == Mode::Eaten) {
-        // Move directly toward startX,startY
-        double dx = 0, dy = 0;
-        if (std::abs(x - startX) > 0.01) {
-            dx = (x < startX ? 1 : -1);
-            locked = (dx > 0 ? Direction::RIGHT : Direction::LEFT);
-        }
-        if (std::abs(y - startY) > 0.01) {
-            dy = (y < startY ? 1 : -1);
-            locked = (dy > 0 ? Direction::DOWN : Direction::UP);
-        }
+        double dx = startX - x;
+        double dy = startY - y;
 
-        // normalize
         double len = std::abs(dx) + std::abs(dy);
-        if (len > 0) {
+        if (len > 0.01) {
             x += (dx / len) * speed * dt;
             y += (dy / len) * speed * dt;
         }
 
-        // Arrived at spawn
-        if (manhattan(x,y,startX,startY) < 0.05) {
-            x = startX; y = startY;
-            setMode(Mode::Chase);
+        if (std::abs(x - startX) < 0.05 &&
+            std::abs(y - startY) < 0.05) {
+            x = startX;
+            y = startY;
+            mode = Mode::Chase;
         }
         return;
     }
 
-
-    // ------------------------------------------
-    // FOR CHASE / FEAR modes:
-    // Movement depends on AI and World collisions.
-    // World will restrict movement so we first ask World.
-    // ------------------------------------------
-
-    // Gather valid directions:
-    // e.g. not opposite of current direction (optional)
-    //      not going into wall
-    std::vector<Direction> dirs =
-        worldRef->getFreeDirections(x, y);     // <-- je moet worldRef toevoegen!
-
-    if (dirs.empty()) {
-        return; // trapped
+    // ---------------------------------
+    // 3) Bepaal mogelijke richtingen
+    // ---------------------------------
+    if (!worldRef->isAlignedWithGrid(x, y)) {
+        // blijf in huidige richting bewegen
+        worldRef->tryMoveEntity(
+            std::shared_ptr<Entity>(this, [](Entity*){}),
+            locked,
+            dt
+        );
+        return;
     }
 
-    Direction chosen = Direction::NONE;
+    auto dirs = worldRef->getFreeDirections(x, y);
+    if (dirs.empty()) return;
 
-    // MODE: CHASE
-    if (mode == Mode::Chase) {
-        // which ghost type? decided in LevelState, but here we just do standard chase
-        // find direction that MINIMIZES Manhattan distance to Pac-Man
+    Direction chosen = locked;
 
-        double best = 99999.0;
+    auto pm = worldRef->getPacman();
+
+    // ---------------------------------
+    // 4) AI per ghost type
+    // ---------------------------------
+
+    // Ghost 1: locked / random
+    if (type == GhostType::LockedRandom) {
+        chosen = computeLockedDir(*worldRef);
+    }
+
+    // Ghost 2 & 3: vóór Pac-Man
+    else if (type == GhostType::AheadOfPacman1 ||
+             type == GhostType::AheadOfPacman2) {
+
+        auto [tx, ty] = worldRef->predictStep(
+            pm->getX(), pm->getY(), pm->getDirection()
+        );
+
+        double best = 1e9;
         for (Direction d : dirs) {
-            auto [nx, ny] = worldRef->predictStep(x, y, d); // world helper needed
-            double dist = manhattan(nx, ny, worldRef->getPacman()->getX(),
-                                            worldRef->getPacman()->getY());
+            auto [nx, ny] = worldRef->predictStep(x, y, d);
+            double dist = std::abs(nx - tx) + std::abs(ny - ty);
+
             if (dist < best) {
                 best = dist;
                 chosen = d;
@@ -160,30 +183,27 @@ void GhostModel::update(double dt) {
         }
     }
 
-    // MODE: FEAR
-    if (mode == Mode::Fear) {
-        // choose direction that MAXIMIZES distance to Pac-Man
-        double best = -99999.0;
+    // Ghost 4: direct chase
+    else if (type == GhostType::DirectChase) {
+
+        double best = 1e9;
         for (Direction d : dirs) {
             auto [nx, ny] = worldRef->predictStep(x, y, d);
-            double dist = manhattan(nx, ny, worldRef->getPacman()->getX(),
-                                            worldRef->getPacman()->getY());
-            if (dist > best) {
+            double dist = std::abs(nx - pm->getX()) +
+                          std::abs(ny - pm->getY());
+
+            if (dist < best) {
                 best = dist;
                 chosen = d;
             }
         }
     }
 
-    // If somehow none chosen:
-    if (chosen == Direction::NONE) {
-        // fallback to random
-        chosen = dirs[logic::Random::instance().nextInt(0, dirs.size()-1)];
-    }
-
     locked = chosen;
 
-    // Move in locked direction
+    // ---------------------------------
+    // 5) Beweeg ghost
+    // ---------------------------------
     double dx = 0, dy = 0;
     switch (locked) {
         case Direction::UP:    dy = -1; break;

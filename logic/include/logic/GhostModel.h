@@ -10,33 +10,43 @@
 
 #include "Entity.h"
 #include "Direction.h"
-#include <chrono>
 
+class World;
 
-class World; // forward
 
 
 class GhostModel : public Entity {
 public:
     enum class Mode { Waiting, Chase, Fear, Eaten };
+    enum class GhostType {
+        LockedRandom,     // vast in richting, soms random
+        AheadOfPacman1,   // kijkt vóór Pac-Man
+        AheadOfPacman2,   // hetzelfde, maar ander startmoment
+        DirectChase       // jaagt rechtstreeks
+    };
 private:
     // TODO aanpassen voor verschillende ghosts: speed, direction
+    GhostType type;
     Mode mode = Mode::Waiting;
+
     Direction locked = Direction::LEFT;
     double speed = 0.8;
-    double startX = 0, startY = 0;
 
-    const World* worldRef = nullptr;
+    double startX = 0, startY = 0;
+    double releaseTimer = 0.0;
+
+    World *worldRef = nullptr;
 
     Direction decideDirection();
 
 public:
-    GhostModel();
+    GhostModel(GhostType t);
     void update(double dt) override;
 
-    void setWorld(const World* w) { worldRef = w; };
+    void setWorld(World* w) { worldRef = w; };
     void setMode(Mode m);
     Mode getMode() const;
+    GhostType getGhostType() const {return type;};
 
 
     void setStartPosition(double sx, double sy) { x = sx; y = sy; startX = sx; startY = sy; }

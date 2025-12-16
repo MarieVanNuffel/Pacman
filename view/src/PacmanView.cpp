@@ -60,26 +60,20 @@ void PacmanView::updateSprite(double dt)
         model->setDirection(lastDirection);
     }
 
-    int frameX;
-    int frameY;
+    int frameX = frames[frameIndex];  // pak de juiste kolom
+    int frameY = 0;
 
-    if (frameIndex < 2) {
-        frameX = frames[frameIndex];
-        switch (model->getDirection()) {
-            case Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
-            case Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
-            case Direction::UP:    frameY = 2 * FRAME_SIZE; break;
-            case Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
-            default:               frameY = 0; break;
-        }
-    } else {
-        // volle Pac-Man uit eerste rij, derde kolom bij frame index 2
-        frameX = frames[2];
-        frameY = 0;
+    switch (model->getDirection()) {
+        case Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
+        case Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
+        case Direction::UP:    frameY = 2 * FRAME_SIZE; break;
+        case Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
+        default: return; // geen beweging -> animatie niet updaten
     }
 
     sprite.setTextureRect(sf::IntRect(frameX, frameY, FRAME_SIZE, FRAME_SIZE));
 }
+
 
 
 
