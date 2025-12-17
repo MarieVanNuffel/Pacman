@@ -73,12 +73,3 @@ void PacmanView::updateSprite(double dt)
 
     sprite.setTextureRect(sf::IntRect(frameX, frameY, FRAME_SIZE, FRAME_SIZE));
 }
-
-
-
-
-
-
-
-
-

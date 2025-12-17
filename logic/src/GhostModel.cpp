@@ -212,8 +212,4 @@ void GhostModel::update(double dt)
     std::shared_ptr<Entity>(this, [](Entity*){}),
     locked, dt);
 
-    std::cout << "Dirs: ";
-    for (auto d : dirs) std::cout << (int)d << " ";
-    std::cout << std::endl;
-
 }

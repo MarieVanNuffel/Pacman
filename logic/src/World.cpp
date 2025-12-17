@@ -122,34 +122,45 @@ void World::loadLevel(int levelIndex) {
 }
 
 
+#include "logic/World.h"
+#include <cmath>
+
 void World::update(double dt) {
     auto pm = pacman;
+    if (!pm) return;
 
-    // --- PAC-MAN ---
-    if (isAlignedWithGrid(pm->getX(), pm->getY())) {
-        if (canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
-            pm->setDirection(pm->getDesiredDirection());
-        }
+    double gridCenterX = std::floor(pm->getX()) + 0.5;
+    double gridCenterY = std::floor(pm->getY()) + 0.5;
+    double snapEpsilon = 0.1;
+
+    // --- 1) Buffered input: probeer DesiredDirection ---
+    if (pm->getDesiredDirection() != Direction::NONE &&
+        canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
+        pm->setDirection(pm->getDesiredDirection());
     }
 
-    if (!canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
+    // --- 2) Corner snapping (alleen bij tile center) ---
+    if (pm->getDirection() == Direction::UP || pm->getDirection() == Direction::DOWN) {
+        if (std::abs(pm->getX() - gridCenterX) < snapEpsilon)
+            pm->setPosition(gridCenterX, pm->getY());
+    } else if (pm->getDirection() == Direction::LEFT || pm->getDirection() == Direction::RIGHT) {
+        if (std::abs(pm->getY() - gridCenterY) < snapEpsilon)
+            pm->setPosition(pm->getX(), gridCenterY);
+    }
+
+    // --- 3) Probeer huidige richting te bewegen ---
+    if (canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
+        tryMoveEntity(pm, pm->getDirection(), dt);
+    } else {
+        // Als huidige richting blokkeert, Pac-Man stopt, maar desiredDirection blijft onthouden
         pm->setDirection(Direction::NONE);
     }
 
-    tryMoveEntity(pm, pm->getDirection(), dt);
-
-    // --- GHOSTS ---
+    // --- 4) Update ghosts ---
     for (auto& ghost : ghosts) {
         ghost->update(dt);
     }
 }
-
-
-
-
-
-
-
 
 void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
     if (!e || dir == Direction::NONE) return;
@@ -158,7 +169,6 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
     double nx = e->getX();
     double ny = e->getY();
 
-    // Probeer nieuwe positie
     switch (dir) {
         case Direction::UP:    ny -= step; break;
         case Direction::DOWN:  ny += step; break;
@@ -167,22 +177,43 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
         default: break;
     }
 
-    // radius van Pac-Man (half van sprite in grid units)
-    double radius = 0.45; // iets kleiner dan 0.5 zodat hij niet vastzit
-    bool canMove = true;
+    double radius = 0.45; // iets kleiner dan 0.5 zodat Pac-Man niet vastzit
 
-    // check alle vier de hoeken
+    // check collision alle vier hoeken
     if (isWallAt(nx - radius, ny - radius) ||
         isWallAt(nx - radius, ny + radius) ||
         isWallAt(nx + radius, ny - radius) ||
         isWallAt(nx + radius, ny + radius)) {
-        canMove = false;
-        }
-
-    if (canMove) {
-        e->setPosition(nx, ny);
+        return;
     }
+
+    e->setPosition(nx, ny);
 }
+
+bool World::canMoveIn(Direction dir, double x, double y) const {
+    if (dir == Direction::NONE) return false;
+
+    double checkStep = 0.05; // kleine check-step
+    double nx = x;
+    double ny = y;
+
+    switch(dir) {
+        case Direction::UP:    ny -= checkStep; break;
+        case Direction::DOWN:  ny += checkStep; break;
+        case Direction::LEFT:  nx -= checkStep; break;
+        case Direction::RIGHT: nx += checkStep; break;
+        default: break;
+    }
+
+    double radius = 0.45;
+
+    return !(isWallAt(nx - radius, ny - radius) ||
+             isWallAt(nx - radius, ny + radius) ||
+             isWallAt(nx + radius, ny - radius) ||
+             isWallAt(nx + radius, ny + radius));
+}
+
+
 
 
 std::vector<Direction> World::getFreeDirections(double x, double y) const {
@@ -222,33 +253,13 @@ bool World::isWallAt(double x, double y) const {
     return maze[cy][cx] == 1;
 }
 
-bool World::canMoveIn(Direction dir, double x, double y) const {
-    if (dir == Direction::NONE) return false;
-
-    double step = 0.01; // kleine stap voor check
-    double nx = x, ny = y;
-
-    switch(dir) {
-        case Direction::UP:    ny -= step; break;
-        case Direction::DOWN:  ny += step; break;
-        case Direction::LEFT:  nx -= step; break;
-        case Direction::RIGHT: nx += step; break;
-        default: break;
-    }
-
-    double radius = 0.45;
-    return !(isWallAt(nx - radius, ny - radius) ||
-             isWallAt(nx - radius, ny + radius) ||
-             isWallAt(nx + radius, ny - radius) ||
-             isWallAt(nx + radius, ny + radius));
-}
 
 bool World::isAlignedWithGrid(double x, double y) const {
     int gridX = static_cast<int>(x);
     int gridY = static_cast<int>(y);
 
     // epsilon bepaalt hoeveel afwijking toegestaan is
-    const double epsilon = 0.01;
+    const double epsilon = 0.05;
     return std::abs(x - (gridX + 0.5)) < epsilon &&
            std::abs(y - (gridY + 0.5)) < epsilon;
 }

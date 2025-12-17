@@ -77,13 +77,23 @@ void LevelState::handleInput(sf::Event& ev)
     if (ev.type == sf::Event::KeyPressed) {
         auto pacman = world->getPacman();
 
-        if (ev.key.code == sf::Keyboard::Up)
-            pacman->setDirection(Direction::UP);
-        else if (ev.key.code == sf::Keyboard::Down)
+        if (ev.key.code == sf::Keyboard::Up) {
+        pacman->setDirection(Direction::UP);
+        pacman->setDesiredDirection(Direction::UP);
+        }
+
+        else if (ev.key.code == sf::Keyboard::Down) {
             pacman->setDirection(Direction::DOWN);
-        else if (ev.key.code == sf::Keyboard::Left)
+            pacman->setDesiredDirection(Direction::DOWN);
+        }
+
+        else if (ev.key.code == sf::Keyboard::Left) {
             pacman->setDirection(Direction::LEFT);
-        else if (ev.key.code == sf::Keyboard::Right)
+            pacman->setDesiredDirection(Direction::LEFT);
+        }
+        else if (ev.key.code == sf::Keyboard::Right) {
             pacman->setDirection(Direction::RIGHT);
+            pacman->setDesiredDirection(Direction::RIGHT);
+        }
     }
 }
