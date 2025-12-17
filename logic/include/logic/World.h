@@ -63,6 +63,10 @@ public:
     bool canMoveIn(Direction dir, double x, double y) const;
     bool isAlignedWithGrid(double x, double y) const;
 
+    // helper voor ghosts
+    bool isIntersection(double x, double y) const;
+
+
 };
 
 

@@ -262,3 +262,9 @@ bool World::isAlignedWithGrid(double x, double y) const {
     return std::abs(x - (gridX + 0.5)) < epsilon &&
            std::abs(y - (gridY + 0.5)) < epsilon;
 }
+
+
+bool World::isIntersection(double x, double y) const {
+    if (!isAlignedWithGrid(x, y)) return false;
+    return getFreeDirections(x, y).size() >= 3;
+}

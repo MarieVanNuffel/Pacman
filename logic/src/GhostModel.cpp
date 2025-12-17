@@ -13,7 +13,11 @@ static double manhattan(double x1, double y1, double x2, double y2) {
 
 GhostModel::GhostModel(GhostType t) : type(t) {
     speed = 2.8;
+    locked = Direction::UP;     // 🔥 ALTIJD start omhoog
+    direction = Direction::UP;  // voor animatie
+    mode = Mode::Waiting;
 }
+
 
 
 void GhostModel::setMode(Mode m) {
@@ -48,32 +52,30 @@ GhostModel::Mode GhostModel::getMode() const {
 }
 
 
-Direction GhostModel::computeLockedDir(const World& world) {
-    // possible directions (no walls)
-    std::vector<Direction> dirs = world.getFreeDirections(x, y);
+Direction GhostModel::computeLockedDir(const World& world)
+{
+    auto dirs = world.getFreeDirections(x, y);
+    if (dirs.empty()) return locked;
 
-    if (dirs.empty()) {
-        return locked; // trapped (should never happen)
+    // 50% kans om random te switchen
+    if (logic::Random::instance().nextDouble(0.0, 1.0) < 0.5) {
+        return dirs[
+            logic::Random::instance().nextInt(0, dirs.size() - 1)
+        ];
     }
 
-    // p = 0.5 random switch
-    double r = logic::Random::instance().nextDouble(0.0, 1.0);
-    if (r < 0.5) {
-        // pick random viable direction
-        int idx = logic::Random::instance().nextInt(0, dirs.size()-1);
-        return dirs[idx];
-    }
-
-    // otherwise continue locked direction IF that direction is possible
+    // anders: behoud locked als mogelijk
     for (Direction d : dirs) {
         if (d == locked)
             return locked;
     }
 
-    // locked is not viable, must pick a new random direction
-    int idx = logic::Random::instance().nextInt(0, dirs.size()-1);
-    return dirs[idx];
+    // locked niet mogelijk → random
+    return dirs[
+        logic::Random::instance().nextInt(0, dirs.size() - 1)
+    ];
 }
+
 
 
 /// DECIDE DIRECTION (generic fallback)
@@ -97,34 +99,45 @@ void GhostModel::update(double dt)
 
     releaseTimer += dt;
 
-    // ---------------------------------
+    // ------------------------------------------------
     // 1) WAITING → CHASE (release timing)
+    // ------------------------------------------------
+    // ---------------------------------
+    // WAITING: simpel naar boven bewegen
     // ---------------------------------
     if (mode == Mode::Waiting) {
+
+        // release timing
         if (type == GhostType::LockedRandom ||
-            type == GhostType::AheadOfPacman1) {
+            type == GhostType::AheadOfPacman1 ||
+            (type == GhostType::AheadOfPacman2 && releaseTimer >= 5.0) ||
+            (type == GhostType::DirectChase && releaseTimer >= 10.0)) {
+
             mode = Mode::Chase;
-        }
-        else if (type == GhostType::AheadOfPacman2 && releaseTimer > 5.0) {
-            mode = Mode::Chase;
-        }
-        else if (type == GhostType::DirectChase && releaseTimer > 10.0) {
-            mode = Mode::Chase;
-        }
-        else {
-            return; // blijf in spawn
-        }
+            }
+
+        // beweeg altijd omhoog uit de box
+        locked = Direction::UP;
+        direction = Direction::UP;
+
+        worldRef->tryMoveEntity(
+            std::shared_ptr<Entity>(this, [](Entity*){}),
+            Direction::UP,
+            dt
+        );
+        return;
     }
 
-    // ---------------------------------
+
+    // ------------------------------------------------
     // 2) EATEN → terug naar spawn
-    // ---------------------------------
+    // ------------------------------------------------
     if (mode == Mode::Eaten) {
         double dx = startX - x;
         double dy = startY - y;
-
         double len = std::abs(dx) + std::abs(dy);
-        if (len > 0.01) {
+
+        if (len > 0.001) {
             x += (dx / len) * speed * dt;
             y += (dy / len) * speed * dt;
         }
@@ -138,11 +151,11 @@ void GhostModel::update(double dt)
         return;
     }
 
-    // ---------------------------------
-    // 3) Bepaal mogelijke richtingen
-    // ---------------------------------
-    if (!worldRef->isAlignedWithGrid(x, y)) {
-        // blijf in huidige richting bewegen
+    // ------------------------------------------------
+    // 3) Als niet op kruispunt → blijf rechtdoor
+    // ------------------------------------------------
+    if (!worldRef->isIntersection(x, y)) {
+        direction = locked;
         worldRef->tryMoveEntity(
             std::shared_ptr<Entity>(this, [](Entity*){}),
             locked,
@@ -151,23 +164,25 @@ void GhostModel::update(double dt)
         return;
     }
 
+    // ------------------------------------------------
+    // 4) Richting kiezen op kruispunt
+    // ------------------------------------------------
     auto dirs = worldRef->getFreeDirections(x, y);
     if (dirs.empty()) return;
 
     Direction chosen = locked;
-
     auto pm = worldRef->getPacman();
 
-    // ---------------------------------
-    // 4) AI per ghost type
-    // ---------------------------------
-
+    // ------------------------------------------------
     // Ghost 1: locked / random
+    // ------------------------------------------------
     if (type == GhostType::LockedRandom) {
         chosen = computeLockedDir(*worldRef);
     }
 
+    // ------------------------------------------------
     // Ghost 2 & 3: vóór Pac-Man
+    // ------------------------------------------------
     else if (type == GhostType::AheadOfPacman1 ||
              type == GhostType::AheadOfPacman2) {
 
@@ -176,40 +191,64 @@ void GhostModel::update(double dt)
         );
 
         double best = 1e9;
+        std::vector<Direction> bestDirs;
+
         for (Direction d : dirs) {
             auto [nx, ny] = worldRef->predictStep(x, y, d);
             double dist = std::abs(nx - tx) + std::abs(ny - ty);
 
-            if (dist < best) {
+            if (dist < best - 0.0001) {
                 best = dist;
-                chosen = d;
+                bestDirs.clear();
+                bestDirs.push_back(d);
+            }
+            else if (std::abs(dist - best) < 0.0001) {
+                bestDirs.push_back(d);
             }
         }
+
+        chosen = bestDirs[
+            logic::Random::instance().nextInt(0, bestDirs.size() - 1)
+        ];
     }
 
-    // Ghost 4: direct chase
+    // ------------------------------------------------
+    // Ghost 4: directe chase
+    // ------------------------------------------------
     else if (type == GhostType::DirectChase) {
 
         double best = 1e9;
+        std::vector<Direction> bestDirs;
+
         for (Direction d : dirs) {
             auto [nx, ny] = worldRef->predictStep(x, y, d);
             double dist = std::abs(nx - pm->getX()) +
                           std::abs(ny - pm->getY());
 
-            if (dist < best) {
+            if (dist < best - 0.0001) {
                 best = dist;
-                chosen = d;
+                bestDirs.clear();
+                bestDirs.push_back(d);
+            }
+            else if (std::abs(dist - best) < 0.0001) {
+                bestDirs.push_back(d);
             }
         }
+
+        chosen = bestDirs[
+            logic::Random::instance().nextInt(0, bestDirs.size() - 1)
+        ];
     }
 
+    // ------------------------------------------------
+    // 5) Bewegen
+    // ------------------------------------------------
     locked = chosen;
-
-    // ---------------------------------
-    // 5) Beweeg ghost
-    // ---------------------------------
+    direction = locked;
     worldRef->tryMoveEntity(
-    std::shared_ptr<Entity>(this, [](Entity*){}),
-    locked, dt);
-
+        std::shared_ptr<Entity>(this, [](Entity*){}),
+        locked,
+        dt
+    );
 }
+
