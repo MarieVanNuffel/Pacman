@@ -148,11 +148,10 @@ void World::update(double dt) {
             pm->setPosition(pm->getX(), gridCenterY);
     }
 
-    // --- 3) Probeer huidige richting te bewegen ---
+    // --- 3) Probeer huidige richting te bewegen, anders gewenste richting ---
     if (canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
         tryMoveEntity(pm, pm->getDirection(), dt);
     } else {
-        // Als huidige richting blokkeert, Pac-Man stopt, maar desiredDirection blijft onthouden
         pm->setDirection(Direction::NONE);
     }
 
@@ -205,7 +204,7 @@ bool World::canMoveIn(Direction dir, double x, double y) const {
         default: break;
     }
 
-    double radius = 0.45;
+    double radius = 0.49;
 
     return !(isWallAt(nx - radius, ny - radius) ||
              isWallAt(nx - radius, ny + radius) ||
