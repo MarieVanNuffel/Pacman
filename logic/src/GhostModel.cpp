@@ -2,6 +2,8 @@
 #include "logic/World.h"
 #include "logic/Random.h"
 #include <cmath>
+#include <iostream>
+#include <ostream>
 
 // Manhattan afstand helper
 static double manhattan(double x1, double y1, double x2, double y2) {
@@ -9,7 +11,9 @@ static double manhattan(double x1, double y1, double x2, double y2) {
 }
 
 
-GhostModel::GhostModel(GhostType t) : type(t) {}
+GhostModel::GhostModel(GhostType t) : type(t) {
+    speed = 2.8;
+}
 
 
 void GhostModel::setMode(Mode m) {
@@ -17,7 +21,7 @@ void GhostModel::setMode(Mode m) {
 
     // Special behaviour when entering FEAR mode
     if (m == Mode::Fear) {
-        speed = 0.5;               // ghosts are slower in fear mode
+        speed = 1.5;               // ghosts are slower in fear mode
         // reverse direction
         switch (locked) {
             case Direction::UP:    locked = Direction::DOWN; break;
@@ -30,12 +34,12 @@ void GhostModel::setMode(Mode m) {
 
     // When eaten, slow down even more (optional)
     if (m == Mode::Eaten) {
-        speed = 1.2; // often ghosts move faster back to base
+        speed = 3.0; // often ghosts move faster back to base
     }
 
     // When returning to chase mode, reset speed
     if (m == Mode::Chase) {
-        speed = 0.8;
+        speed = 2.8;
     }
 }
 
@@ -204,18 +208,12 @@ void GhostModel::update(double dt)
     // ---------------------------------
     // 5) Beweeg ghost
     // ---------------------------------
-    double dx = 0, dy = 0;
-    switch (locked) {
-        case Direction::UP:    dy = -1; break;
-        case Direction::DOWN:  dy = 1; break;
-        case Direction::LEFT:  dx = -1; break;
-        case Direction::RIGHT: dx = 1; break;
-        default: break;
-    }
+    worldRef->tryMoveEntity(
+    std::shared_ptr<Entity>(this, [](Entity*){}),
+    locked, dt);
 
-    double len = std::abs(dx) + std::abs(dy);
-    if (len > 0) {
-        x += (dx / len) * speed * dt;
-        y += (dy / len) * speed * dt;
-    }
+    std::cout << "Dirs: ";
+    for (auto d : dirs) std::cout << (int)d << " ";
+    std::cout << std::endl;
+
 }

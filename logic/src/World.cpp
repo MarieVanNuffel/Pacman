@@ -3,6 +3,9 @@
 //
 
 #include "logic/World.h"
+
+#include <iostream>
+
 #include "logic/Random.h"
 #include <stdexcept>
 
@@ -122,23 +125,25 @@ void World::loadLevel(int levelIndex) {
 void World::update(double dt) {
     auto pm = pacman;
 
-    // 1) Alleen in het midden van een tile mag je draaien
+    // --- PAC-MAN ---
     if (isAlignedWithGrid(pm->getX(), pm->getY())) {
-
-        // Probeer gewenste richting
         if (canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
             pm->setDirection(pm->getDesiredDirection());
         }
     }
 
-    // 2) Als huidige richting niet meer kan → stoppen
     if (!canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
         pm->setDirection(Direction::NONE);
     }
 
-    // 3) Beweeg in huidige richting
     tryMoveEntity(pm, pm->getDirection(), dt);
+
+    // --- GHOSTS ---
+    for (auto& ghost : ghosts) {
+        ghost->update(dt);
+    }
 }
+
 
 
 
@@ -180,17 +185,18 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
 }
 
 
-// Return a list of possible directions the entity can move without hitting a wall
 std::vector<Direction> World::getFreeDirections(double x, double y) const {
     std::vector<Direction> dirs;
 
-    if (!isWallAt(x, y + 0.01)) dirs.push_back(Direction::UP);
-    if (!isWallAt(x, y - 0.01)) dirs.push_back(Direction::DOWN);
+    if (!isWallAt(x, y - 0.01)) dirs.push_back(Direction::UP);
+    if (!isWallAt(x, y + 0.01)) dirs.push_back(Direction::DOWN);
     if (!isWallAt(x - 0.01, y)) dirs.push_back(Direction::LEFT);
     if (!isWallAt(x + 0.01, y)) dirs.push_back(Direction::RIGHT);
 
     return dirs;
 }
+
+
 
 // Predict next position after moving one step in direction d
 std::pair<double, double> World::predictStep(double x, double y, Direction d) const {

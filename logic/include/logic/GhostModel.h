@@ -30,7 +30,6 @@ private:
     Mode mode = Mode::Waiting;
 
     Direction locked = Direction::LEFT;
-    double speed = 0.8;
 
     double startX = 0, startY = 0;
     double releaseTimer = 0.0;
