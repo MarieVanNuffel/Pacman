@@ -31,29 +31,60 @@ GhostView::GhostView(GhostModel* m)
     sprite.setOrigin(FRAME_SIZE / 2.f, FRAME_SIZE / 2.f);
 }
 
+
 void GhostView::updateSprite(double dt)
 {
-     // animTimer += dt;
-     //
-     // // Placeholder animatie (later kan je frames toevoegen)
-     // if (animTimer > frameTime)
-     //     animTimer = 0.0;
-     //     frameIndex = (frameIndex + 1) % NUM_FRAMES;
-     //
-     // int rectLeft = 0;
-     // int rectTop = 0;
-     //
-     // switch (lastDirection) {
-     //     case Direction::RIGHT && model->getGhostType() == GhostModel::GhostType::LockedRandom: rectLeft = frameIndex * FRAME_SIZE; break;
-     //     case Direction::LEFT:  rectLeft = 2*FRAME_SIZE + frameIndex*FRAME_SIZE; break;
-     //     case Direction::UP:    rectLeft = 4*FRAME_SIZE + frameIndex*FRAME_SIZE; break;
-     //     case Direction::DOWN:  rectLeft = 6*FRAME_SIZE + frameIndex*FRAME_SIZE; break;
-     //     default: rectLeft = 0; break;
-     // }
-     //
-     // sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
+    animTimer += dt;
 
+    if (animTimer >= frameTime) {
+        animTimer = 0.0;
+        frameIndex = (frameIndex + 1) % 2; // 2 frames: dicht/open
+    }
+
+    // richting onthouden zoals bij Pac-Man
+    if (model->getDirection() != Direction::NONE) {
+        lastDirection = model->getDirection();
+    }
+
+    constexpr int FRAME = 16;
+    constexpr int GHOST_BASE_Y = 64; // eerste ghostrij (rood)
+
+    int rectLeft = 0;
+    int rectTop  = 0;
+
+    // --- KLEUR → RIJ ---
+    int colorIndex = 0;
+    switch (model->getGhostType()) {
+        case GhostModel::GhostType::LockedRandom:   colorIndex = 0; break; // rood
+        case GhostModel::GhostType::AheadOfPacman1: colorIndex = 1; break; // roze
+        case GhostModel::GhostType::AheadOfPacman2: colorIndex = 2; break; // lichtblauw
+        case GhostModel::GhostType::DirectChase:    colorIndex = 3; break; // oranje
+    }
+
+    rectTop = GHOST_BASE_Y + colorIndex * FRAME;
+
+    // --- RICHTING → KOLOM ---
+    switch (lastDirection) {
+        case Direction::RIGHT:
+            rectLeft = 0 + frameIndex * FRAME;
+            break;
+        case Direction::LEFT:
+            rectLeft = 32 + frameIndex * FRAME;
+            break;
+        case Direction::UP:
+            rectLeft = 64 + frameIndex * FRAME;
+            break;
+        case Direction::DOWN:
+            rectLeft = 96 + frameIndex * FRAME;
+            break;
+        default:
+            return;
+    }
+
+    sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
 }
+
+
 
 
 void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
