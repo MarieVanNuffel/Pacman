@@ -99,9 +99,12 @@ void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
                                        sizeW, sizeH);
     sprite.setPosition(rect.left + rect.width/2.f,
                        rect.top  + rect.height/2.f);
-    sprite.setScale(rect.width / sprite.getLocalBounds().width,
-                    rect.height / sprite.getLocalBounds().height);
 
+    // uniform scaling to preserve aspect ratio
+    float sx = rect.width / sprite.getLocalBounds().width;
+    float sy = rect.height / sprite.getLocalBounds().height;
+    float s = std::min(sx, sy);
+    sprite.setScale(s, s);
 
     win.draw(sprite);
 }

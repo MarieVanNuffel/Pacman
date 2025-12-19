@@ -16,9 +16,13 @@ class Game {
 public:
     Game();
     void run();
+
+    void toggleFullscreen();
 private:
     sf::RenderWindow window;
     StateManager stateManager;
+
+    bool isFullscreen;
 };
 
 

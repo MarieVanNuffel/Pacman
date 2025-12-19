@@ -46,12 +46,10 @@ void LevelState::update(float dt) {
 
 void LevelState::render() {
     const auto& maze = world->getMaze();
-    camera = Camera(
-        window.getSize().x,
-        window.getSize().y,
-        maze[0].size(),
-        maze.size()
-    );
+    camera = Camera(window.getSize().x, window.getSize().y, maze[0].size(), maze.size());
+
+    // reset SFML view to default so we draw in window pixels
+    window.setView(window.getDefaultView());
 
     drawMaze();
     drawEntities();

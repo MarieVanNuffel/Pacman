@@ -34,11 +34,11 @@ void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
                        rect.top  + rect.height/2.f);
 
     auto texRect = sprite.getTextureRect();
-    sprite.setScale(
-        rect.width / texRect.width,
-        rect.height / texRect.height
-    );
-
+    // uniform scale: gebruik de kleinst passende factor zodat sprite niet vervormt
+    float sx = rect.width / texRect.width;
+    float sy = rect.height / texRect.height;
+    float s = std::min(sx, sy);
+    sprite.setScale(s, s);
     win.draw(sprite);
 }
 

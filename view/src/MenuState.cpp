@@ -57,6 +57,26 @@ void MenuState::update(float dt)
 
 void MenuState::render()
 {
+    // Zorg dat we tekenen in standaard window-pixelruimte (geen oude SFML view)
+    window.setView(window.getDefaultView());
+
+    // positioneer tekst en knop relatief aan windowgrootte (centraal)
+    sf::Vector2u ws = window.getSize();
+    float centerX = static_cast<float>(ws.x) * 0.5f;
+
+    // TITEL: centreer horizontaal; positie verticaal op 15% van hoogte
+    auto titleBounds = title.getLocalBounds();
+    float titleX = centerX - (titleBounds.left + titleBounds.width) / 2.f;
+    float titleY = static_cast<float>(ws.y) * 0.15f;
+    title.setPosition(titleX, titleY);
+
+    // PLAY BUTTON: centreer horizontaal; positie verticaal op 50% van hoogte
+    auto btnBounds = playButton.getLocalBounds();
+    float btnX = centerX - (btnBounds.left + btnBounds.width) / 2.f;
+    float btnY = static_cast<float>(ws.y) * 0.50f;
+    playButton.setPosition(btnX, btnY);
+
+    // Teken
     window.draw(title);
     window.draw(playButton);
 }
