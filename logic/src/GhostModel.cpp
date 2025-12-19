@@ -13,7 +13,7 @@ static double manhattan(double x1, double y1, double x2, double y2) {
 
 GhostModel::GhostModel(GhostType t) : type(t) {
     speed = 2.8;
-    locked = Direction::UP;     // 🔥 ALTIJD start omhoog
+    locked = Direction::NONE;     // 🔥 ALTIJD start omhoog
     direction = Direction::UP;  // voor animatie
     mode = Mode::Waiting;
 }
