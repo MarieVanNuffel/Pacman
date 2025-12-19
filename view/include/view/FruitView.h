@@ -10,7 +10,7 @@
 
 class FruitView : public EntityView, public Observer {
 public:
-    FruitView(FruitModel* m);
+    explicit FruitView(FruitModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 
@@ -20,7 +20,7 @@ private:
     sf::Sprite sprite;
     sf::Texture texture;
     double animTime = 0.0;
-    bool visible;
+    bool visible = true;
 };
 
 

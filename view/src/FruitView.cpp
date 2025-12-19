@@ -33,6 +33,7 @@ void FruitView::updateSprite(double dt)
 void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
 {
     if (!model) return;
+    if (!visible) return; // belangrijke check: als fruit verzameld is, niet tekenen
 
     double sizeW = 0.5; // halve cel
     double sizeH = 0.5;
@@ -42,9 +43,12 @@ void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
                                        sizeW, sizeH);
     sprite.setPosition(rect.left + rect.width/2.f,
                        rect.top  + rect.height/2.f);
-    sprite.setScale(rect.width / sprite.getLocalBounds().width,
-                    rect.height / sprite.getLocalBounds().height);
 
+    // uniform scaling om vervorming te voorkomen
+    float sx = rect.width / sprite.getLocalBounds().width;
+    float sy = rect.height / sprite.getLocalBounds().height;
+    float s = std::min(sx, sy);
+    sprite.setScale(s, s);
 
     win.draw(sprite);
 }
