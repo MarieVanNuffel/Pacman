@@ -7,7 +7,7 @@
 #include <iostream>
 
 FruitView::FruitView(FruitModel* m)
-    : EntityView(m), model(m)
+    : EntityView(m), model(m), visible(true)
 {
     if (!texture.loadFromFile("view/assets/fruit.png"))
     {
@@ -51,7 +51,7 @@ void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
 
 void FruitView::onNotify(int event)
 {
-    if (event == 1) { // 1 = coin collected event
+    if (event == 2) { // 2 = fruit collected event
         visible = false;
     }
 }

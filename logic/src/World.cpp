@@ -183,9 +183,21 @@ void World::update(double dt) {
     double snapEpsilon = 0.1;
 
     // --- 1) Buffered input: probeer DesiredDirection ---
-    if (pm->getDesiredDirection() != Direction::NONE &&
-        canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
-        pm->setDirection(pm->getDesiredDirection());
+    // Eerst: probeer direct als het mogelijk is vanaf huidige positie
+    if (pm->getDesiredDirection() != Direction::NONE) {
+        if (canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
+            pm->setDirection(pm->getDesiredDirection());
+        } else {
+            // Als we dicht genoeg bij het grid center zitten, kijk of de gewenste richting mogelijk is
+            // vanaf het exacte tile-center. Als dat zo is, snap naar center en draai direct.
+            bool nearCenter = (std::abs(pm->getX() - gridCenterX) < snapEpsilon &&
+                               std::abs(pm->getY() - gridCenterY) < snapEpsilon);
+            if (nearCenter && canMoveIn(pm->getDesiredDirection(), gridCenterX, gridCenterY)) {
+                // snap naar center en zet direction
+                pm->setPosition(gridCenterX, gridCenterY);
+                pm->setDirection(pm->getDesiredDirection());
+            }
+        }
     }
 
     // --- 2) Corner snapping (alleen bij tile center) ---
@@ -201,9 +213,21 @@ void World::update(double dt) {
     if (canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
         tryMoveEntity(pm, pm->getDirection(), dt);
     } else {
+        // Huidige richting is geblokkeerd: stop en probeer direct te draaien naar desiredDirection
         pm->setDirection(Direction::NONE);
+
+        // Als we dicht bij center zijn, probeer desiredDirection vanaf center (voorkomt vastzitten bij corners)
+        if (pm->getDesiredDirection() != Direction::NONE) {
+            bool nearCenter = (std::abs(pm->getX() - gridCenterX) < snapEpsilon &&
+                               std::abs(pm->getY() - gridCenterY) < snapEpsilon);
+            if (nearCenter && canMoveIn(pm->getDesiredDirection(), gridCenterX, gridCenterY)) {
+                pm->setPosition(gridCenterX, gridCenterY);
+                pm->setDirection(pm->getDesiredDirection());
+            }
+        }
     }
 
+    // --- COINS ---
     for (auto& coin : coins) {
         if (coin->collected) continue;
 
