@@ -16,24 +16,18 @@
 
 class ConcreteEntityFactory : public IEntityFactory {
 public:
-    std::shared_ptr<EntityView> createPacmanView(PacManModel* m) override {
-        return std::make_shared<PacmanView>(m);
-    }
+    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createPacmanView(PacManModel* m) override;
 
-    std::shared_ptr<EntityView> createGhostView(GhostModel* m) override {
-        return std::make_shared<GhostView>(m);
-    }
+    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createGhostView(GhostModel* m) override;
 
-    std::shared_ptr<EntityView> createCoinView(CoinModel* m) override {
-        auto view = std::make_shared<CoinView>(m);
-        return view;
-    }
+    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createCoinView(CoinModel* m) override;
 
-    std::shared_ptr<EntityView> createFruitView(FruitModel* m) override {
-        return std::make_shared<FruitView>(m);
-    }
+    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createFruitView(FruitModel* m) override;
 };
-
 
 
 

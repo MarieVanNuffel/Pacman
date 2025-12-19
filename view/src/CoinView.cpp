@@ -2,16 +2,19 @@
 // Created by Marie Van Nuffel on 27/11/2025.
 //
 #include "../include/view/CoinView.h"
+
+#include <cmath>
+
 #include "../include/view/Camera.h"
 #include "logic/World.h"
 
 CoinView::CoinView(CoinModel* m)
-    : EntityView(m), model(m)
+    : EntityView(m), model(m), visible(true)
 {}
 
 void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
 {
-    if (!model) return;
+    if (!model || !visible) return;
 
     double sizeW = 0.5; // halve cel
     double sizeH = 0.5;
@@ -36,8 +39,8 @@ void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
 
 
 void CoinView::updateSprite(double dt) {
-    // hier kan animatiecode voor coin komen, bv draaien of knipperen
 }
+
 
 void CoinView::onNotify(int event)
 {

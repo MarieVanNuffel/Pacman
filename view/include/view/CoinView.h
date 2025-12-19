@@ -13,7 +13,7 @@
 
 class CoinView : public EntityView, public Observer {
 public:
-    CoinView(CoinModel* m);
+    explicit CoinView(CoinModel* m);
 
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
@@ -22,7 +22,7 @@ public:
 
 private:
     CoinModel* model;
-    bool visible;
+    bool visible = true;
 };
 
 

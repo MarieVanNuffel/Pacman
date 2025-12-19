@@ -8,23 +8,23 @@
 
 #pragma once
 #include <algorithm>
+#include <memory>
 #include <vector>
 #include "Observer.h"
 
 class Subject {
 public:
-    void addObserver(Observer* o) { observers.push_back(o); }
-    void removeObserver(Observer* o) {
-        observers.erase(std::remove(observers.begin(), observers.end(), o), observers.end());
-    }
-    void notify(int event) {
-        for (auto* o : observers) {
-            if(o) o->onNotify(event);
-        }
-    }
+    // Voeg een observer toe (geef een shared_ptr<Observer> door).
+    void addObserver(std::shared_ptr<Observer> o);
+
+    // Verwijder een observer (geef dezelfde shared_ptr door).
+    void removeObserver(std::shared_ptr<Observer> o);
+
+    // Notificeer alle levende observers en verwijder verlopen weak_ptrs
+    void notify(int event);
 
 private:
-    std::vector<Observer*> observers;
+    std::vector<std::weak_ptr<Observer>> observers;
 };
 
 

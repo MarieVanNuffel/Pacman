@@ -18,26 +18,29 @@
 class Score : public Observer {
 public:
     Score();
-    void coinCollected();
+
+    // score mutators
+    void coinCollected(double dt);
     void fruitCollected();
-    void pacmanDied();
     void ghostEaten();
+    void pacmanDied();
 
+    // Observer interface
+    void onNotify(int event) override;
 
-    int getScore() const { return currentScore; }
+    // highscore persistence (simple in-memory API)
     void loadHighScores();
     void saveHighScores();
 
-    void onNotify(int event) override {
-        if(event == 1) currentScore += 10; // coin collected
-        else if(event == 2) currentScore += 50; // fruit collected
-        // voeg meer events toe
-    }
+    // getters
+    int getCurrentScore() const { return currentScore; }
+    const std::vector<int>& getHighScores() const { return highScores; }
+
 private:
     int currentScore = 0;
     std::vector<int> highScores;
-    double lastCoinTime = 0.0;
 };
+
 
 
 

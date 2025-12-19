@@ -38,10 +38,21 @@ void LevelState::update(float dt) {
     world->getPacmanView()->updateSprite(dt); // update de animatie van pacman
     for (auto& gv : world->getGhostViews()) // update de animatie van de ghosts
         gv->updateSprite(dt);
+
+    for (auto& cv : world->getCoinViews())
+        cv->updateSprite(dt);
 }
 
 
 void LevelState::render() {
+    const auto& maze = world->getMaze();
+    camera = Camera(
+        window.getSize().x,
+        window.getSize().y,
+        maze[0].size(),
+        maze.size()
+    );
+
     drawMaze();
     drawEntities();
 }

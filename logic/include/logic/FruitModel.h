@@ -12,16 +12,16 @@
 
 class FruitModel : public Entity, public Subject {
 public:
+    FruitModel() = default;
+    ~FruitModel() override = default;
+
+    // mark collected and notify observers (event == 2 for fruit)
+    void collect();
+
+    // fruit is static by default; implement update as no-op so class is not abstract
+    void update(double dt) override;
+
     bool collected = false;
-
-    void collect() {
-        if(!collected) {
-            collected = true;
-            notify(1); // 1 = coin collected, kan enum later
-        }
-    }
-
-    void update(double dt) override {}
 };
 
 #endif //PACMANGAME_FRUIT_H

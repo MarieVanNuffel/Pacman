@@ -12,9 +12,10 @@
 
 #include "Entity.h"
 #include "Direction.h"
+#include "Subject.h"
 
 
-class PacManModel : public Entity {
+class PacManModel : public Entity, public Subject {
 private:
     int lives = 3;
 

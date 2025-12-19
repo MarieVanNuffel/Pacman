@@ -36,6 +36,9 @@ private:
     int mazeHeight;
     int mazeWidth;
 
+    double timeSinceLastCoin = 0.0;
+    int currentLevel = 1;
+
     void spawnEntitiesForLevel(int levelIndex);
 
 public:

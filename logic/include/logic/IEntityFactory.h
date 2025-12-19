@@ -17,15 +17,23 @@ class GhostModel;
 class CoinModel;
 class FruitModel;
 class EntityView;
+class Observer;
 
 class IEntityFactory {
 public:
     virtual ~IEntityFactory() = default;
 
-    virtual std::shared_ptr<EntityView> createPacmanView(PacManModel* model) = 0;
-    virtual std::shared_ptr<EntityView> createGhostView(GhostModel* model) = 0;
-    virtual std::shared_ptr<EntityView> createCoinView(CoinModel* model) = 0;
-    virtual std::shared_ptr<EntityView> createFruitView(FruitModel* model) = 0;
+    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createPacmanView(PacManModel* model) = 0;
+
+    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createGhostView(GhostModel* model) = 0;
+
+    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createCoinView(CoinModel* model) = 0;
+
+    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createFruitView(FruitModel* model) = 0;
 };
 
 

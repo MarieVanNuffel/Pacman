@@ -10,12 +10,13 @@
 
 #include "Entity.h"
 #include "Direction.h"
+#include "Subject.h"
 
 class World;
 
 
 
-class GhostModel : public Entity {
+class GhostModel : public Entity, public Subject {
 public:
     enum class Mode { Waiting, Chase, Fear, Eaten };
     enum class GhostType {

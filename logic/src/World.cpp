@@ -49,7 +49,16 @@ void World::spawnEntitiesForLevel(int levelIndex) {
             }
         }
     }
-    pacmanView = factory->createPacmanView(pacman.get());
+    {
+        // factory returns {view, optional observer}
+        auto pv = factory->createPacmanView(pacman.get());
+        pacmanView = pv.first;
+        auto pacmanObs = pv.second;
+        // register observer on pacman model if view provided an observer
+        if (pacmanObs) {
+            pacman->addObserver(pacmanObs); // only if PacManModel inherits Subject
+        }
+    }
 
     // --- GHOSTS ---
     ghosts.clear();
@@ -67,6 +76,7 @@ void World::spawnEntitiesForLevel(int levelIndex) {
                     case 1: type = GhostModel::GhostType::AheadOfPacman1; break;
                     case 2: type = GhostModel::GhostType::AheadOfPacman2; break;
                     case 3: type = GhostModel::GhostType::DirectChase; break;
+                    default: type = GhostModel::GhostType::LockedRandom; break;
                 }
 
                 auto ghost = std::make_shared<GhostModel>(type);
@@ -74,7 +84,13 @@ void World::spawnEntitiesForLevel(int levelIndex) {
                 ghost->setWorld(this);  // super belangrijk voor AI
 
                 ghosts.push_back(ghost);
-                ghostViews.push_back(factory->createGhostView(ghost.get()));
+
+                // factory returns pair: {view, optional observer}
+                auto gv = factory->createGhostView(ghost.get());
+                ghostViews.push_back(gv.first);
+                if (gv.second) {
+                    ghost->addObserver(gv.second);
+                }
 
                 ghostIndex++;
             }
@@ -84,14 +100,29 @@ void World::spawnEntitiesForLevel(int levelIndex) {
     // --- COINS ---
     coins.clear();
     coinViews.clear();
+
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
             if (maze[y][x] == 2) {
                 auto c = std::make_shared<CoinModel>();
                 c->setPosition(x + 0.5, y + 0.5);
                 coins.push_back(c);
-                coinViews.push_back(factory->createCoinView(c.get()));
-                c->addObserver(score.get());
+
+                // De factory retourneert: {shared_ptr<EntityView>, shared_ptr<Observer>}
+                auto viewPair = factory->createCoinView(c.get());
+                auto cv = viewPair.first;
+                auto cvObs = viewPair.second;
+
+                // Bewaar de view zodat het object in leven blijft
+                coinViews.push_back(cv);
+
+                // Registreer Score als observer (Score : public Observer)
+                c->addObserver(std::static_pointer_cast<Observer>(score));
+
+                // Als de concrete view zelf een Observer was, registreer die ook
+                if (cvObs) {
+                    c->addObserver(cvObs);
+                }
             }
         }
     }
@@ -99,14 +130,29 @@ void World::spawnEntitiesForLevel(int levelIndex) {
     // --- FRUITS ---
     fruits.clear();
     fruitViews.clear();
+
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
             if (maze[y][x] == 3) {
                 auto f = std::make_shared<FruitModel>();
                 f->setPosition(x + 0.5, y + 0.5);
                 fruits.push_back(f);
-                fruitViews.push_back(factory->createFruitView(f.get()));
-                f->addObserver(score.get());
+
+                // factory returns pair: {shared_ptr<EntityView>, shared_ptr<Observer>}
+                auto viewPair = factory->createFruitView(f.get());
+                auto fv = viewPair.first;
+                auto fvObs = viewPair.second;
+
+                // bewaar view zodat deze in leven blijft
+                fruitViews.push_back(fv);
+
+                // registreer Score als observer
+                f->addObserver(std::static_pointer_cast<Observer>(score));
+
+                // registreer view als observer indien concrete view dat aanbiedt
+                if (fvObs) {
+                    f->addObserver(fvObs);
+                }
             }
         }
     }
@@ -128,6 +174,9 @@ void World::loadLevel(int levelIndex) {
 void World::update(double dt) {
     auto pm = pacman;
     if (!pm) return;
+
+    // update timer voor coin timing
+    timeSinceLastCoin += dt;
 
     double gridCenterX = std::floor(pm->getX()) + 0.5;
     double gridCenterY = std::floor(pm->getY()) + 0.5;
@@ -155,10 +204,69 @@ void World::update(double dt) {
         pm->setDirection(Direction::NONE);
     }
 
-    // --- 4) Update ghosts ---
+    for (auto& coin : coins) {
+        if (coin->collected) continue;
+
+        double dx = pm->getX() - coin->getX();
+        double dy = pm->getY() - coin->getY();
+        double distSq = dx*dx + dy*dy;
+
+        bool collidedByRadius = (distSq < 0.25); // ~ radius 0.5
+        bool collidedByAABB = (std::abs(coin->getX() - pm->getX()) < 0.4 &&
+                               std::abs(coin->getY() - pm->getY()) < 0.4);
+
+        if (collidedByRadius || collidedByAABB) {
+            // Model verandert state en notificeert observers (CoinView zal onzichtbaar worden)
+            coin->collect();
+
+            // Score-update wordt expliciet door World gedaan (Score::onNotify kan event==1 negeren)
+            score->coinCollected(timeSinceLastCoin);
+            timeSinceLastCoin = 0.0;
+        }
+    }
+
+    // --- LEVEL CLEAR ---
+    bool allCollected = true;
+    for (auto& coin : coins) {
+        if (!coin->collected) {
+            allCollected = false;
+            break;
+        }
+    }
+
+    if (allCollected) {
+        score->coinCollected(0.5); // bonus
+        currentLevel++;
+        loadLevel(currentLevel);
+        return;
+    }
+
+    // --- FRUITS ---
+    for (auto& fruit : fruits) {
+        if (fruit->collected) continue;
+
+        double dx = pm->getX() - fruit->getX();
+        double dy = pm->getY() - fruit->getY();
+        double distSq = dx*dx + dy*dy;
+
+        bool collidedByRadius = (distSq < 0.25); // ~ radius 0.5
+        bool collidedByAABB = (std::abs(fruit->getX() - pm->getX()) < 0.4 &&
+                               std::abs(fruit->getY() - pm->getY()) < 0.4);
+
+        if (collidedByRadius || collidedByAABB) {
+            // model verandert state en notificeert observers (FruitView zal onzichtbaar worden)
+            fruit->collect();
+
+            // Score-update door World (Score::onNotify kan event==2 negeren of gebruiken)
+            score->fruitCollected();
+        }
+    }
+
+    // --- GHOSTS ---
     for (auto& ghost : ghosts) {
         ghost->update(dt);
     }
+
 }
 
 void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {

@@ -3,3 +3,14 @@
 //
 
 #include "../include/logic/FruitModel.h"
+
+void FruitModel::collect() {
+    if (!collected) {
+        collected = true;
+        notify(2); // 2 = fruit collected
+    }
+}
+
+void FruitModel::update(double /*dt*/) {
+    // Fruits are static by default; no per-frame logic here.
+}

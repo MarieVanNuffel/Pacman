@@ -12,17 +12,18 @@
 
 class CoinModel : public Entity, public Subject {
 public:
+    CoinModel() = default;
+    ~CoinModel() override = default;
+
+    // mark collected and notify observers
+    void collect();
+
+    // coin is static; implement update as no-op so class is not abstract
+    void update(double dt) override;
+
     bool collected = false;
-
-    void collect() {
-        if(!collected) {
-            collected = true;
-            notify(1); // 1 = coin collected, kan enum later
-        }
-    }
-
-    void update(double dt) override {}
 };
+
 
 
 
