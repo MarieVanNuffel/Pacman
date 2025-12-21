@@ -13,8 +13,6 @@ static double manhattan(double x1, double y1, double x2, double y2) {
 
 GhostModel::GhostModel(GhostType t) : type(t) {
     speed = 2.8;
-    locked = Direction::NONE;     // 🔥 ALTIJD start omhoog
-    direction = Direction::UP;  // voor animatie
     mode = Mode::Waiting;
 }
 
@@ -27,11 +25,11 @@ void GhostModel::setMode(Mode m) {
     if (m == Mode::Fear) {
         speed = 1.5;               // ghosts are slower in fear mode
         // reverse direction
-        switch (locked) {
-            case Direction::UP:    locked = Direction::DOWN; break;
-            case Direction::DOWN:  locked = Direction::UP; break;
-            case Direction::LEFT:  locked = Direction::RIGHT; break;
-            case Direction::RIGHT: locked = Direction::LEFT; break;
+        switch (desiredDirection) {
+            case Direction::UP:    desiredDirection = Direction::DOWN; break;
+            case Direction::DOWN:  desiredDirection = Direction::UP; break;
+            case Direction::LEFT:  desiredDirection = Direction::RIGHT; break;
+            case Direction::RIGHT: desiredDirection = Direction::LEFT; break;
             default: break;
         }
     }
@@ -55,7 +53,7 @@ GhostModel::Mode GhostModel::getMode() const {
 Direction GhostModel::computeLockedDir(const World& world)
 {
     auto dirs = world.getFreeDirections(x, y);
-    if (dirs.empty()) return locked;
+    if (dirs.empty()) return desiredDirection;
 
     // 50% kans om random te switchen
     if (logic::Random::instance().nextDouble(0.0, 1.0) < 0.5) {
@@ -64,13 +62,13 @@ Direction GhostModel::computeLockedDir(const World& world)
         ];
     }
 
-    // anders: behoud locked als mogelijk
+    // anders: behoud desiredDirection als mogelijk
     for (Direction d : dirs) {
-        if (d == locked)
-            return locked;
+        if (d == desiredDirection)
+            return desiredDirection;
     }
 
-    // locked niet mogelijk → random
+    // desiredDirection niet mogelijk → random
     return dirs[
         logic::Random::instance().nextInt(0, dirs.size() - 1)
     ];
@@ -80,7 +78,7 @@ Direction GhostModel::computeLockedDir(const World& world)
 
 /// DECIDE DIRECTION (generic fallback)
 // Will never be directly called by the game logic.
-// Specific behaviors (locked, chasing, fear) are handled separately.
+// Specific behaviors (desiredDirection, chasing, fear) are handled separately.
 Direction GhostModel::decideDirection() {
     int r = logic::Random::instance().nextInt(0, 3);
     switch (r) {
@@ -117,7 +115,7 @@ void GhostModel::update(double dt)
             }
 
         // beweeg altijd omhoog uit de box
-        locked = Direction::UP;
+        desiredDirection = Direction::UP;
         direction = Direction::UP;
 
         worldRef->tryMoveEntity(
@@ -155,10 +153,10 @@ void GhostModel::update(double dt)
     // 3) Als niet op kruispunt → blijf rechtdoor
     // ------------------------------------------------
     if (!worldRef->isIntersection(x, y)) {
-        direction = locked;
+        direction = desiredDirection;
         worldRef->tryMoveEntity(
             std::shared_ptr<Entity>(this, [](Entity*){}),
-            locked,
+            desiredDirection,
             dt
         );
         return;
@@ -170,11 +168,11 @@ void GhostModel::update(double dt)
     auto dirs = worldRef->getFreeDirections(x, y);
     if (dirs.empty()) return;
 
-    Direction chosen = locked;
+    Direction chosen = desiredDirection;
     auto pm = worldRef->getPacman();
 
     // ------------------------------------------------
-    // Ghost 1: locked / random
+    // Ghost 1: desiredDirection / random
     // ------------------------------------------------
     if (type == GhostType::LockedRandom) {
         chosen = computeLockedDir(*worldRef);
@@ -243,11 +241,11 @@ void GhostModel::update(double dt)
     // ------------------------------------------------
     // 5) Bewegen
     // ------------------------------------------------
-    locked = chosen;
-    direction = locked;
+    desiredDirection = chosen;
+    direction = desiredDirection;
     worldRef->tryMoveEntity(
         std::shared_ptr<Entity>(this, [](Entity*){}),
-        locked,
+        desiredDirection,
         dt
     );
 }

@@ -11,8 +11,6 @@ PacManModel::PacManModel() {
     x = 0.0;
     y = 0.6;
     speed = 3.0;
-    direction = Direction::NONE;
-    desiredDirection = direction;
 }
 
 void PacManModel::setDirection(Direction d) {

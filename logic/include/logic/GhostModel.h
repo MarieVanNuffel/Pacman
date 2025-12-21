@@ -30,8 +30,6 @@ private:
     GhostType type;
     Mode mode = Mode::Waiting;
 
-    Direction locked = Direction::LEFT;
-
     double startX = 0, startY = 0;
     double releaseTimer = 0.0;
 
