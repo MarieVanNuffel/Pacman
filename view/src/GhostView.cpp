@@ -100,9 +100,10 @@ void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
     sprite.setPosition(rect.left + rect.width/2.f,
                        rect.top  + rect.height/2.f);
 
+    auto texRect = sprite.getTextureRect();
     // uniform scaling to preserve aspect ratio
-    float sx = rect.width / sprite.getLocalBounds().width;
-    float sy = rect.height / sprite.getLocalBounds().height;
+    float sx = rect.width / texRect.width;
+    float sy = rect.height / texRect.height;
     float s = std::min(sx, sy);
     sprite.setScale(s, s);
 
