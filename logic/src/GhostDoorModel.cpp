@@ -15,13 +15,16 @@ bool GhostDoorModel::canGhostPass(double ghostX, double ghostY) const {
 }
 
 bool GhostDoorModel::isGhostInDoorZone(double ghostX, double ghostY) const {
-    // Ghost is in de deur zone als hij:
-    // - Onder of BIJ de deur is (y >= doorY - 0.5)
-    // - Horizontaal binnen 1 tile van de deur
+    int ghostTileX = static_cast<int>(std::floor(ghostX));
+    int ghostTileY = static_cast<int>(std::floor(ghostY));
 
-    bool sameColumn = (ghostX == getX());
-    bool inDoorTile = (ghostY == getY());
-    bool underDoorTile = (ghostY == getY() + 1);
+    int doorTileX = static_cast<int>(std::floor(getX()));
+    int doorTileY = static_cast<int>(std::floor(getY()));
+
+    bool sameColumn = (ghostTileX == doorTileX);
+    bool inDoorTile = (ghostTileY == doorTileY);
+    bool underDoorTile = (ghostTileY == doorTileY + 1);
 
     return sameColumn && (inDoorTile || underDoorTile);
 }
+

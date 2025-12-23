@@ -10,15 +10,15 @@ static double manhattan(double x1, double y1, double x2, double y2) {
 }
 
 GhostModel::GhostModel(GhostType t) : type(t) {
-    speed = 2.8;
+    speed = 2.0;
     mode = Mode::Waiting;
 
     if (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase) {
-        desiredDirection = Direction::NONE;
-        direction = Direction::NONE;
+        desiredDirection = Direction::LEFT;
+        direction = Direction::LEFT;
     } else {
-        desiredDirection = Direction::UP;
-        direction = Direction::UP;
+        desiredDirection = Direction::RIGHT;
+        direction = Direction::RIGHT;
     }
 }
 
@@ -61,6 +61,8 @@ Direction GhostModel::decideDirection() {
     }
 }
 
+
+
 void GhostModel::update(double dt) {
     if (!worldRef) return;
 
@@ -87,8 +89,6 @@ void GhostModel::update(double dt) {
 
         if (shouldRelease) {
             mode = Mode::Chase;
-            desiredDirection = Direction::UP;
-            direction = Direction::UP;
         } else {
             return;
         }
@@ -133,6 +133,7 @@ void GhostModel::update(double dt) {
     Direction chosen;
     double snapX = std::floor(x) + 0.5;
     double snapY = std::floor(y) + 0.5;
+    bool exactlyOnCenter = (std::abs(x - snapX) < 0.01 && std::abs(y - snapY) < 0.01);
 
     // ✅ CHECK: Zijn we in de ghostdoor zone?
     bool nearDoor = false;
@@ -144,7 +145,7 @@ void GhostModel::update(double dt) {
     }
 
     // ✅ In deur zone: forceer UP
-    if (nearDoor) {
+    if (nearDoor && exactlyOnCenter) {
         direction = Direction::UP;
         desiredDirection = Direction::UP;
 
@@ -156,41 +157,40 @@ void GhostModel::update(double dt) {
         return;
     }
 
+    bool canMove = worldRef->canGhostMove(direction, x, y);
+
+    bool atIntersection = false;
+    if (exactlyOnCenter) {
+        atIntersection = worldRef->isIntersection(x, y);
+    }
+
+    if (canMove && !atIntersection) {
+        worldRef->tryMoveGhost(
+            std::shared_ptr<Entity>(this, [](Entity*){}),
+            direction,
+            dt
+        );
+        return;
+    }
+
+    if (!canMove) {
+        if (direction == Direction::UP || direction == Direction::DOWN) {
+            y = snapY;
+        } else if (direction == Direction::LEFT || direction == Direction::RIGHT) {
+            x = snapX;
+        }
+        setPosition(x, y);
+    }
+
+    std::vector<Direction> viableDirs = worldRef->getFreeDirections(x, y);
+
+    if (viableDirs.empty()) {
+        return;
+    }
+
+
     if (type == GhostType::LockedRandom) {
         // ✅ Normale LockedRandom logica (buiten deur zone)
-        bool canMove = worldRef->canGhostMove(direction, x, y);
-        bool exactlyOnCenter = (std::abs(x - snapX) < 0.01 && std::abs(y - snapY) < 0.01);
-
-        bool atIntersection = false;
-        if (exactlyOnCenter) {
-            atIntersection = worldRef->isIntersection(x, y);
-        }
-
-        if (canMove && !atIntersection) {
-            worldRef->tryMoveGhost(
-                std::shared_ptr<Entity>(this, [](Entity*){}),
-                direction,
-                dt
-            );
-            return;
-        }
-
-        if (!canMove) {
-            if (direction == Direction::UP || direction == Direction::DOWN) {
-                y = snapY;
-            } else if (direction == Direction::LEFT || direction == Direction::RIGHT) {
-                x = snapX;
-            }
-            setPosition(x, y);
-        }
-
-        std::vector<Direction> viableDirs = worldRef->getFreeDirections(x, y);
-
-        if (viableDirs.empty()) {
-            return;
-        }
-
-        Direction chosen;
 
         if (logic::Random::instance().nextDouble(0.0, 1.0) < 0.5) {
             chosen = viableDirs[
@@ -228,7 +228,7 @@ void GhostModel::update(double dt) {
     // ------------------------------------------------
 
     auto pm = worldRef->getPacman();
-    std::vector<Direction> finalDirs = worldRef->getFreeDirections(snapX,snapY);
+    std::vector<Direction> finalDirs = worldRef->getFreeDirections(x,y);
 
     // ------------------------------------------------
     // AheadOfPacman: minimaliseer afstand naar vóór Pac-Man
@@ -244,7 +244,7 @@ void GhostModel::update(double dt) {
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(snapX, snapY, d);
+            auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
             double dist = manhattan(ghostNextX, ghostNextY, targetX, targetY);
 
             if (dist < bestDist - 0.0001) {
@@ -273,7 +273,7 @@ void GhostModel::update(double dt) {
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(snapX, snapY, d);
+            auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
             double dist = manhattan(ghostNextX, ghostNextY, pm->getX(), pm->getY());
 
             if (dist < bestDist - 0.0001) {
@@ -305,189 +305,3 @@ void GhostModel::update(double dt) {
         dt
     );
 }
-
-// void GhostModel::update(double dt) {
-//     if (!worldRef) return;
-//
-//     releaseTimer += dt;
-//
-//     // -------------------------------
-//     // 1) WAITING MODE
-//     // -------------------------------
-//     if (mode == Mode::Waiting) {
-//         bool shouldRelease = false;
-//
-//         switch (type) {
-//             case GhostType::LockedRandom:
-//             case GhostType::AheadOfPacman1:
-//                 shouldRelease = true;
-//                 break;
-//             case GhostType::AheadOfPacman2:
-//                 shouldRelease = (releaseTimer >= 5.0);
-//                 break;
-//             case GhostType::DirectChase:
-//                 shouldRelease = (releaseTimer >= 10.0);
-//                 break;
-//         }
-//
-//         if (!shouldRelease) return;
-//
-//         mode = Mode::Chase;
-//         direction = desiredDirection = Direction::UP;
-//     }
-//
-//     // -------------------------------
-//     // 2) EATEN → terug naar spawn
-//     // -------------------------------
-//     if (mode == Mode::Eaten) {
-//         double dx = startX - x;
-//         double dy = startY - y;
-//         double len = std::abs(dx) + std::abs(dy);
-//
-//         if (len > 0.001) {
-//             x += (dx / len) * speed * dt;
-//             y += (dy / len) * speed * dt;
-//             setPosition(x, y);
-//         }
-//
-//         if (std::abs(x - startX) < 0.05 && std::abs(y - startY) < 0.05) {
-//             setPosition(startX, startY);
-//             mode = Mode::Waiting;
-//             releaseTimer = 0.0;
-//
-//             direction = desiredDirection =
-//                 (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase)
-//                 ? Direction::LEFT
-//                 : Direction::UP;
-//         }
-//         return;
-//     }
-//
-//     // -------------------------------
-//     // 3) UNDER DOOR LOGIC
-//     // -------------------------------
-//     bool underDoor = false;
-//     double snapX = std::floor(x) + 0.5;
-//     double snapY = std::floor(y) + 0.5;
-//
-//     for (auto& door : worldRef->getGhostDoors()) {
-//         if (y > door->getY() && std::abs(x - door->getX()) < 0.49) {
-//             underDoor = true;
-//             direction = desiredDirection = Direction::UP;
-//
-//             // Snap naar center van tile voor correcte movement
-//             setPosition(snapX, snapY);
-//
-//             worldRef->tryMoveGhost(
-//                 std::shared_ptr<Entity>(this, [](Entity*){}),
-//                 Direction::UP,
-//                 dt
-//             );
-//             return;
-//         }
-//     }
-//
-//     // -------------------------------
-//     // 4) LOCKED RANDOM
-//     // -------------------------------
-//     if (type == GhostType::LockedRandom) {
-//         // Snap naar center als dichtbij
-//         if (std::abs(x - snapX) < 0.15 && std::abs(y - snapY) < 0.15) {
-//             x = snapX; y = snapY;
-//             setPosition(x, y);
-//         }
-//
-//         bool canMove = worldRef->canGhostMove(direction, x, y);
-//
-//         bool onCenter = (std::abs(x - snapX) < 0.01 && std::abs(y - snapY) < 0.01);
-//
-//         if (canMove && !onCenter) {
-//             worldRef->tryMoveGhost(
-//                 std::shared_ptr<Entity>(this, [](Entity*){}),
-//                 direction,
-//                 dt
-//             );
-//             return;
-//         }
-//
-//         if (!canMove && onCenter) {
-//             setPosition(snapX, snapY);
-//         }
-//
-//         auto dirs = worldRef->getFreeDirections(x, y);
-//         if (dirs.empty()) return;
-//
-//         Direction chosen;
-//         if (logic::Random::instance().nextDouble(0.0, 1.0) < 0.5) {
-//             chosen = dirs[logic::Random::instance().nextInt(0, dirs.size()-1)];
-//         } else {
-//             chosen = (std::find(dirs.begin(), dirs.end(), direction) != dirs.end())
-//                      ? direction
-//                      : dirs[logic::Random::instance().nextInt(0, dirs.size()-1)];
-//         }
-//
-//         direction = desiredDirection = chosen;
-//         worldRef->tryMoveGhost(
-//             std::shared_ptr<Entity>(this, [](Entity*){}),
-//             direction,
-//             dt
-//         );
-//         return;
-//     }
-//
-//     // -------------------------------
-//     // 5) AHEAD / DIRECT CHASE
-//     // -------------------------------
-//     auto pm = worldRef->getPacman();
-//
-//     double cx = x, cy = y;
-//     if (std::abs(x - snapX) < 0.15 && std::abs(y - snapY) < 0.15) {
-//         cx = snapX; cy = snapY; // snap naar tile center
-//     }
-//
-//     auto dirs = worldRef->getFreeDirections(cx, cy);
-//     if (dirs.empty()) return;
-//
-//     Direction chosen = direction;
-//     double bestDist = 1e9;
-//     std::vector<Direction> bestDirs;
-//
-//     for (Direction d : dirs) {
-//         auto [nx, ny] = worldRef->predictStep(cx, cy, d);
-//         double targetX, targetY;
-//
-//         if (type == GhostType::DirectChase) {
-//             targetX = pm->getX();
-//             targetY = pm->getY();
-//         } else { // AheadOfPacman
-//             std::tie(targetX, targetY) = worldRef->predictStep(pm->getX(), pm->getY(), pm->getDirection());
-//         }
-//
-//         double dist = std::abs(nx - targetX) + std::abs(ny - targetY);
-//
-//         if (dist < bestDist - 0.001) {
-//             bestDist = dist;
-//             bestDirs = {d};
-//         } else if (std::abs(dist - bestDist) < 0.001) {
-//             bestDirs.push_back(d);
-//         }
-//     }
-//
-//     if (!bestDirs.empty()) {
-//         chosen = bestDirs[logic::Random::instance().nextInt(0, bestDirs.size()-1)];
-//     }
-//
-//     // Snap naar center voordat we bewegen
-//     if (std::abs(x - snapX) < 0.15 && std::abs(y - snapY) < 0.15) {
-//         setPosition(snapX, snapY);
-//     }
-//
-//     direction = desiredDirection = chosen;
-//     worldRef->tryMoveGhost(
-//         std::shared_ptr<Entity>(this, [](Entity*){}),
-//         direction,
-//         dt
-//     );
-// }
-//
-//
