@@ -35,3 +35,9 @@ ConcreteEntityFactory::createFruitView(FruitModel* m) {
     return { std::static_pointer_cast<EntityView>(concrete),
              std::static_pointer_cast<Observer>(concrete) };
 }
+
+std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+ConcreteEntityFactory::createGhostDoorView(GhostDoorModel* m) {
+    auto concrete = std::make_shared<GhostDoorView>(m);
+    return { std::static_pointer_cast<EntityView>(concrete), nullptr };
+}

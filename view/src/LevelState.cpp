@@ -10,7 +10,9 @@
 #include "view/GhostView.h"
 #include "view/CoinView.h"
 #include "view/FruitView.h"
+#include "view/GhostDoorView.h"
 #include "view/MazeView.h"  // nieuwe MazeView met sprites
+
 
 LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     : State(win, sm), camera(0,0,0,0)

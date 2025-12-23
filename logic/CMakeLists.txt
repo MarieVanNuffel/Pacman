@@ -14,6 +14,7 @@ add_library(logic
         src/Observer.cpp
         src/Subject.cpp
         include/logic/Observer.h
+        src/GhostDoorModel.cpp
 
 )
 

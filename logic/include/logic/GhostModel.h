@@ -36,6 +36,7 @@ private:
     World *worldRef = nullptr;
 
     Direction decideDirection();
+    bool decidedOnThisTile = false;
 
 public:
     GhostModel(GhostType t);

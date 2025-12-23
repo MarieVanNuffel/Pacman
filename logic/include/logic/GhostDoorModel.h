@@ -1,0 +1,28 @@
+//
+// Created by Marie Van Nuffel on 22/12/2025.
+//
+
+#ifndef PACMANGAME_GHOSTDOORMODEL_H
+#define PACMANGAME_GHOSTDOORMODEL_H
+
+#pragma once
+#include "Entity.h"
+
+
+class GhostDoorModel : public Entity {
+public:
+    GhostDoorModel() = default;
+
+    // Ghosts mogen enkel UIT spawn door de deur
+    bool canGhostPass(double fromX, double fromY) const;
+
+    // ✅ NIEUW: Check of ghost in de "deur zone" is (onder/bij deur)
+    bool isGhostInDoorZone(double ghostX, double ghostY) const;
+
+    void update(double) override {}
+};
+
+
+
+
+#endif //PACMANGAME_GHOSTDOORMODEL_H

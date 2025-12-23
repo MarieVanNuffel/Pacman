@@ -14,6 +14,7 @@
 #include "GhostModel.h"
 #include "CoinModel.h"
 #include "FruitModel.h"
+#include "GhostDoorModel.h"
 #include "IEntityFactory.h"
 #include "Score.h"
 
@@ -24,12 +25,14 @@ private:
     std::vector<std::shared_ptr<GhostModel>> ghosts;
     std::vector<std::shared_ptr<CoinModel>> coins;
     std::vector<std::shared_ptr<FruitModel>> fruits;
+    std::vector<std::shared_ptr<GhostDoorModel>> ghostDoors;
     std::shared_ptr<Score> score;
 
     std::shared_ptr<EntityView> pacmanView;
     std::vector<std::shared_ptr<EntityView>> ghostViews;
     std::vector<std::shared_ptr<EntityView>> coinViews;
     std::vector<std::shared_ptr<EntityView>> fruitViews;
+    std::vector<std::shared_ptr<EntityView>> ghostDoorViews;
 
 
     std::vector<std::vector<int>> maze; // 2D grid, 0 = empty, 1 = wall, 2 = coin, 3 = fruit, 4 = pacman, 5 = ghost
@@ -52,6 +55,7 @@ public:
     const std::vector<std::vector<int>>& getMaze() const { return maze; };
     std::vector<std::shared_ptr<CoinModel>> getCoins() const { return coins; }
     std::vector<std::shared_ptr<FruitModel>> getFruits() const { return fruits; }
+    std::vector<std::shared_ptr<GhostDoorModel>> getGhostDoors() const { return ghostDoors; }
 
     std::shared_ptr<EntityView> getPacmanView() const { return pacmanView; }
     const std::vector<std::shared_ptr<EntityView>>& getGhostViews() const { return ghostViews; }
@@ -68,7 +72,11 @@ public:
 
     // helper voor ghosts
     bool isIntersection(double x, double y) const;
-
+    void tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt);
+    bool canGhostMove(Direction dir, double x, double y) const;
+    bool isGhostDoorTile(int x, int y) const;
+    bool isSpawnTile(int x, int y) const;
+    bool canGhostPassDoor(double fromX, double fromY, double toX, double toY) const;
 
 };
 

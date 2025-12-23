@@ -12,6 +12,7 @@ add_executable(pacman
         src/MazeView.cpp
         src/MenuState.cpp
         src/ConcreteEntityFactory.cpp
+        src/GhostDoorView.cpp
 )
 
 target_include_directories(pacman PUBLIC include)

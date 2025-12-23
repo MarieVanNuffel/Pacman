@@ -19,7 +19,7 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
             {1,3,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,3,1},
             {1,2,1,1,2,1,2,1,1,1,1,1,1,2,1,2,1,1,2,1},
             {1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1},
-            {1,2,1,2,1,1,2,1,1,2,2,1,1,2,1,1,2,1,2,1},
+            {1,2,1,2,1,1,2,1,1,6,6,1,1,2,1,1,2,1,2,1},
             {1,2,2,2,2,2,2,1,5,5,5,5,1,2,2,2,2,2,2,1},
             {1,2,1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1,2,1},
             {1,2,1,2,2,2,2,2,2,4,2,2,2,2,2,2,2,1,2,1},
@@ -72,8 +72,8 @@ void World::spawnEntitiesForLevel(int levelIndex) {
                 // Bepaal type ghost op basis van spawn volgorde
                 GhostModel::GhostType type;
                 switch (ghostIndex) {
-                    case 0: type = GhostModel::GhostType::LockedRandom; break;
-                    case 1: type = GhostModel::GhostType::AheadOfPacman1; break;
+                    case 0: type = GhostModel::GhostType::AheadOfPacman1; break;
+                    case 1: type = GhostModel::GhostType::LockedRandom; break;
                     case 2: type = GhostModel::GhostType::AheadOfPacman2; break;
                     case 3: type = GhostModel::GhostType::DirectChase; break;
                     default: type = GhostModel::GhostType::LockedRandom; break;
@@ -156,6 +156,24 @@ void World::spawnEntitiesForLevel(int levelIndex) {
             }
         }
     }
+
+    // --- GHOSTDOOR ---
+    ghostDoors.clear();
+    ghostDoorViews.clear();
+
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 6) {
+                auto door = std::make_shared<GhostDoorModel>();
+                door->setPosition(x + 0.5, y + 0.5);
+                ghostDoors.push_back(door);
+
+                auto dv = factory->createGhostDoorView(door.get());
+                ghostDoorViews.push_back(dv.first);
+            }
+        }
+    }
+
 }
 
 
@@ -308,7 +326,7 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
         default: break;
     }
 
-    double radius = 0.45; // iets kleiner dan 0.5 zodat Pac-Man niet vastzit
+    double radius = 0.49; // iets kleiner dan 0.5 zodat Pac-Man niet vastzit
 
     // check collision alle vier hoeken
     if (isWallAt(nx - radius, ny - radius) ||
@@ -345,15 +363,25 @@ bool World::canMoveIn(Direction dir, double x, double y) const {
 }
 
 
-
-
 std::vector<Direction> World::getFreeDirections(double x, double y) const {
     std::vector<Direction> dirs;
 
-    if (!isWallAt(x, y - 0.01)) dirs.push_back(Direction::UP);
-    if (!isWallAt(x, y + 0.01)) dirs.push_back(Direction::DOWN);
-    if (!isWallAt(x - 0.01, y)) dirs.push_back(Direction::LEFT);
-    if (!isWallAt(x + 0.01, y)) dirs.push_back(Direction::RIGHT);
+    // ✅ Check gewoon de aangrenzende TILES, niet de beweging zelf
+    int gridX = static_cast<int>(std::floor(x));
+    int gridY = static_cast<int>(std::floor(y));
+
+    // Check of de aangrenzende tile vrij is
+    if (gridY > 0 && maze[gridY - 1][gridX] != 1 && maze[gridY - 1][gridX] != 6)
+        dirs.push_back(Direction::UP);
+
+    if (gridY < mazeHeight - 1 && maze[gridY + 1][gridX] != 1 && maze[gridY + 1][gridX] != 6)
+        dirs.push_back(Direction::DOWN);
+
+    if (gridX > 0 && maze[gridY][gridX - 1] != 1 && maze[gridY][gridX - 1] != 6)
+        dirs.push_back(Direction::LEFT);
+
+    if (gridX < mazeWidth - 1 && maze[gridY][gridX + 1] != 1 && maze[gridY][gridX + 1] != 6)
+        dirs.push_back(Direction::RIGHT);
 
     return dirs;
 }
@@ -363,40 +391,109 @@ std::vector<Direction> World::getFreeDirections(double x, double y) const {
 // Predict next position after moving one step in direction d
 std::pair<double, double> World::predictStep(double x, double y, Direction d) const {
     double nx = x, ny = y;
+    const double STEP = 0.5;
+
     switch (d) {
-        case Direction::UP:    ny -= 0.05; break;
-        case Direction::DOWN:  ny += 0.05; break;
-        case Direction::LEFT:  nx -= 0.05; break;
-        case Direction::RIGHT: nx += 0.05; break;
+        case Direction::UP:    ny -= STEP; break;
+        case Direction::DOWN:  ny += STEP; break;
+        case Direction::LEFT:  nx -= STEP; break;
+        case Direction::RIGHT: nx += STEP; break;
         default: break;
     }
     return {nx, ny};
 }
 
-// Helper for getFreeDirections to check collision at float position
+
 bool World::isWallAt(double x, double y) const {
     int cx = static_cast<int>(x);
     int cy = static_cast<int>(y);
 
     if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight)
-        return true; // buiten de map = muur
+        return true;
 
     return maze[cy][cx] == 1;
 }
 
 
-bool World::isAlignedWithGrid(double x, double y) const {
-    int gridX = static_cast<int>(x);
-    int gridY = static_cast<int>(y);
 
-    // epsilon bepaalt hoeveel afwijking toegestaan is
-    const double epsilon = 0.05;
-    return std::abs(x - (gridX + 0.5)) < epsilon &&
-           std::abs(y - (gridY + 0.5)) < epsilon;
+bool World::isAlignedWithGrid(double x, double y) const {
+    const double epsilon = 0.1; // ruimere marge
+
+    double fractX = x - std::floor(x);
+    double fractY = y - std::floor(y);
+
+    // Check of we dicht bij 0.5 zijn (center van tile)
+    return std::abs(fractX - 0.5) < epsilon &&
+           std::abs(fractY - 0.5) < epsilon;
 }
 
 
 bool World::isIntersection(double x, double y) const {
     if (!isAlignedWithGrid(x, y)) return false;
     return getFreeDirections(x, y).size() >= 3;
+}
+
+void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
+    if (!e || dir == Direction::NONE) return;
+
+    double step = e->getSpeed() * dt;
+    double nx = e->getX(), ny = e->getY();
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    double radius = 0.35;
+
+    // Check normale muren
+    if (isWallAt(nx - radius, ny - radius) ||
+        isWallAt(nx - radius, ny + radius) ||
+        isWallAt(nx + radius, ny - radius) ||
+        isWallAt(nx + radius, ny + radius)) {
+        return;
+        }
+
+    e->setPosition(nx, ny);
+}
+
+
+
+bool World::canGhostMove(Direction dir, double x, double y) const {
+    if (dir == Direction::NONE) return false;
+
+    double step = 0.05;
+    double nx = x, ny = y;
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    double radius = 0.35;
+
+
+    // Check normale muren
+    return !(isWallAt(nx - radius, ny - radius) ||
+             isWallAt(nx - radius, ny + radius) ||
+             isWallAt(nx + radius, ny - radius) ||
+             isWallAt(nx + radius, ny + radius));
+}
+
+
+
+bool World::isGhostDoorTile(int x, int y) const {
+    if (x < 0 || y < 0 || x >= mazeWidth || y >= mazeHeight)
+        return false;
+    return maze[y][x] == 6;
+}
+
+bool World::isSpawnTile(int x, int y) const {
+    return maze[y][x] == 5;
 }

@@ -13,6 +13,7 @@
 #include "GhostView.h"
 #include "CoinView.h"
 #include "FruitView.h"
+#include "GhostDoorView.h"
 
 class ConcreteEntityFactory : public IEntityFactory {
 public:
@@ -27,6 +28,9 @@ public:
 
     std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
     createFruitView(FruitModel* m) override;
+
+    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createGhostDoorView(GhostDoorModel* m) override;
 };
 
 

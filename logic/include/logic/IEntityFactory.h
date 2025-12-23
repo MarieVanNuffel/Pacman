@@ -10,6 +10,8 @@
 
 #include <memory>
 
+#include "GhostDoorModel.h"
+
 
 class Entity;
 class PacManModel;
@@ -34,6 +36,9 @@ public:
 
     virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
     createFruitView(FruitModel* model) = 0;
+
+    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+    createGhostDoorView(GhostDoorModel* model) = 0;
 };
 
 
