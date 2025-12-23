@@ -81,6 +81,29 @@ void GhostView::updateSprite(double dt)
             return;
     }
 
+    if (model->getMode() == GhostModel::Mode::Fear) {
+        rectTop = GHOST_BASE_Y;
+        rectLeft = 128 + frameIndex * FRAME;
+    } else if (model->getMode() == GhostModel::Mode::Eaten) {
+        rectTop = 80;
+        switch (lastDirection) {
+            case Direction::RIGHT:
+                rectLeft = 112;
+                break;
+            case Direction::LEFT:
+                rectLeft = 128;
+                break;
+            case Direction::UP:
+                rectLeft = 144;
+                break;
+            case Direction::DOWN:
+                rectLeft = 160;
+                break;
+            default:
+                return;
+        }
+    }
+
     sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
 }
 

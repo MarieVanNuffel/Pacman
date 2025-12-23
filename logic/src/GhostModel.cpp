@@ -146,7 +146,8 @@ void GhostModel::update(double dt) {
     Direction chosen;
     double snapX = std::floor(x) + 0.5;
     double snapY = std::floor(y) + 0.5;
-    bool exactlyOnCenter = (std::abs(x - snapX) < 0.01 && std::abs(y - snapY) < 0.01);
+    double snapEpsilon = 0.1;
+    bool nearCenter = (std::abs(x - snapX) < snapEpsilon && std::abs(y - snapY) < snapEpsilon);
 
     // ✅ CHECK: Zijn we in de ghostdoor zone?
     bool nearDoor = false;
@@ -158,7 +159,7 @@ void GhostModel::update(double dt) {
     }
 
     // ✅ In deur zone: forceer UP
-    if (nearDoor && exactlyOnCenter) {
+    if (nearDoor && nearCenter) {
         direction = Direction::UP;
         desiredDirection = Direction::UP;
 
@@ -172,10 +173,12 @@ void GhostModel::update(double dt) {
 
     bool canMove = worldRef->canGhostMove(direction, x, y);
 
+    // kijk of we in het midden van een tile zijn en een kruispunt
     bool atIntersection = false;
-    if (exactlyOnCenter) {
+    if (nearCenter) {
         atIntersection = worldRef->isIntersection(x, y);
     }
+
 
     if (canMove && !atIntersection) {
         worldRef->tryMoveGhost(
