@@ -131,33 +131,32 @@ void GhostModel::update(double dt) {
     // a) LockedRandom
     // ------------------------------------------------
     Direction chosen;
+    double snapX = std::floor(x) + 0.5;
+    double snapY = std::floor(y) + 0.5;
+
+    // ✅ CHECK: Zijn we in de ghostdoor zone?
+    bool nearDoor = false;
+    for (const auto& door : worldRef->getGhostDoors()) {
+        if (door->isGhostInDoorZone(x, y)) {
+            nearDoor = true;
+            break;
+        }
+    }
+
+    // ✅ In deur zone: forceer UP
+    if (nearDoor) {
+        direction = Direction::UP;
+        desiredDirection = Direction::UP;
+
+        worldRef->tryMoveGhost(
+            std::shared_ptr<Entity>(this, [](Entity*){}),
+            Direction::UP,
+            dt
+        );
+        return;
+    }
 
     if (type == GhostType::LockedRandom) {
-        double snapX = std::floor(x) + 0.5;
-        double snapY = std::floor(y) + 0.5;
-
-        // ✅ CHECK: Zijn we in de ghostdoor zone?
-        bool nearDoor = false;
-        for (const auto& door : worldRef->getGhostDoors()) {
-            if (door->isGhostInDoorZone(x, y)) {
-                nearDoor = true;
-                break;
-            }
-        }
-
-        // ✅ In deur zone: forceer UP
-        if (nearDoor) {
-            direction = Direction::UP;
-            desiredDirection = Direction::UP;
-
-            worldRef->tryMoveGhost(
-                std::shared_ptr<Entity>(this, [](Entity*){}),
-                Direction::UP,
-                dt
-            );
-            return;
-        }
-
         // ✅ Normale LockedRandom logica (buiten deur zone)
         bool canMove = worldRef->canGhostMove(direction, x, y);
         bool exactlyOnCenter = (std::abs(x - snapX) < 0.01 && std::abs(y - snapY) < 0.01);
