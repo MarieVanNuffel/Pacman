@@ -12,7 +12,7 @@ void GhostDoorView::draw(sf::RenderWindow& win, const Camera& cam) {
     // Deur = dun balkje in tile
     sf::FloatRect rect = cam.worldToPixels(
         model->getX() - 0.5,
-        model->getY() - 0.1,
+        model->getY() - 0.5,
         1.0,
         0.2
     );

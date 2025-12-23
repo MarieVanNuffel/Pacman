@@ -80,6 +80,10 @@ void LevelState::drawEntities() {
     for (auto& fv : world->getFruitViews()) {
         fv->draw(window, camera);
     }
+
+    for (auto& gdv: world->getGhostDoorViews()) {
+        gdv->draw(window, camera);
+    }
 }
 
 

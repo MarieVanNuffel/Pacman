@@ -61,6 +61,7 @@ public:
     const std::vector<std::shared_ptr<EntityView>>& getGhostViews() const { return ghostViews; }
     const std::vector<std::shared_ptr<EntityView>>& getCoinViews() const { return coinViews; }
     const std::vector<std::shared_ptr<EntityView>>& getFruitViews() const { return fruitViews; }
+    const std::vector<std::shared_ptr<EntityView>>& getGhostDoorViews() const { return ghostDoorViews; }
 
     std::vector<Direction> getFreeDirections(double worldX, double worldY) const;
     std::pair<double,double> predictStep(double worldX, double worldY, Direction dir) const;
