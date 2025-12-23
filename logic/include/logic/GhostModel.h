@@ -28,10 +28,14 @@ public:
 private:
     // TODO aanpassen voor verschillende ghosts: speed, direction
     GhostType type;
-    Mode mode = Mode::Waiting;
+    Mode mode;
 
     double startX = 0, startY = 0;
     double releaseTimer = 0.0;
+
+    // Fear mode
+    double fearTimer = 0.0;
+    static constexpr double FEAR_DURATION = 6.0;
 
     World *worldRef = nullptr;
 

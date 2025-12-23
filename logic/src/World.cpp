@@ -16,7 +16,7 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
     maze = {
         {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,3,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,3,1},
+            {1,3,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,2,1},
             {1,2,1,1,2,1,2,1,1,1,1,1,1,2,1,2,1,1,2,1},
             {1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1},
             {1,2,1,2,1,1,2,1,1,6,6,1,1,2,1,1,2,1,2,1},
@@ -24,7 +24,7 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
             {1,2,1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1,2,1},
             {1,2,1,2,2,2,2,2,2,4,2,2,2,2,2,2,2,1,2,1},
             {1,2,1,1,2,1,2,1,1,1,1,1,1,2,1,2,1,1,2,1},
-            {1,3,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,3,1},
+            {1,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,3,1},
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
         }
 
@@ -296,17 +296,35 @@ void World::update(double dt) {
                                std::abs(fruit->getY() - pm->getY()) < 0.4);
 
         if (collidedByRadius || collidedByAABB) {
-            // model verandert state en notificeert observers (FruitView zal onzichtbaar worden)
             fruit->collect();
-
-            // Score-update door World (Score::onNotify kan event==2 negeren of gebruiken)
             score->fruitCollected();
+
+            // 👻 Zet ALLE ghosts in fear mode
+            for (auto& ghost : ghosts) {
+                if (ghost->getMode() == GhostModel::Mode::Chase) {
+                    ghost->setMode(GhostModel::Mode::Fear);
+                }
+            }
         }
     }
 
     // --- GHOSTS ---
     for (auto& ghost : ghosts) {
         ghost->update(dt);
+
+        // opgegeten worden
+        double dx = pm->getX() - ghost->getX();
+        double dy = pm->getY() - ghost->getY();
+
+        if (dx*dx + dy*dy < 0.25) {
+            if (ghost->getMode() == GhostModel::Mode::Fear) {
+                ghost->setMode(GhostModel::Mode::Eaten);
+                score->ghostEaten();
+            }
+            else if (ghost->getMode() == GhostModel::Mode::Chase) {
+                // Pac-Man dies (later)
+            }
+        }
     }
 
 }

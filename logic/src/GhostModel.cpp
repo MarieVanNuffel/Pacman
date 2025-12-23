@@ -27,6 +27,8 @@ void GhostModel::setMode(Mode m) {
 
     if (m == Mode::Fear) {
         speed = 1.5;
+        fearTimer = 0.0;
+
         switch (desiredDirection) {
             case Direction::UP:    desiredDirection = Direction::DOWN; break;
             case Direction::DOWN:  desiredDirection = Direction::UP; break;
@@ -42,7 +44,7 @@ void GhostModel::setMode(Mode m) {
     }
 
     if (m == Mode::Chase) {
-        speed = 2.8;
+        speed = 2.0;
     }
 }
 
@@ -69,7 +71,7 @@ void GhostModel::update(double dt) {
     releaseTimer += dt;
 
     // ------------------------------------------------
-    // 1) WAITING MODE
+    // 1) WAITING mode
     // ------------------------------------------------
     if (mode == Mode::Waiting) {
         bool shouldRelease = false;
@@ -95,6 +97,17 @@ void GhostModel::update(double dt) {
     }
 
     // ------------------------------------------------
+    // 2) FEAR mode
+    // ------------------------------------------------
+    if (mode == Mode::Fear) {
+        fearTimer += dt;
+        if (fearTimer >= FEAR_DURATION) {
+            setMode(Mode::Chase);
+            return;
+        }
+    }
+
+    // ------------------------------------------------
     // 2) EATEN → terug naar spawn
     // ------------------------------------------------
     if (mode == Mode::Eaten) {
@@ -111,7 +124,7 @@ void GhostModel::update(double dt) {
             std::abs(y - startY) < 0.05) {
             x = startX;
             y = startY;
-            mode = Mode::Waiting;
+            setMode(Mode::Chase);
             releaseTimer = 0.0;
 
             if (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase) {
@@ -126,7 +139,7 @@ void GhostModel::update(double dt) {
     }
 
     // ------------------------------------------------
-    // 3) CHASE MODE
+    // 3) CHASE / FEAR mode
     // ------------------------------------------------
     // a) LockedRandom
     // ------------------------------------------------
@@ -240,21 +253,34 @@ void GhostModel::update(double dt) {
             pm->getX(), pm->getY(), pm->getDirection()
         );
 
-        double bestDist = 1e9;
+        double bestDist = (mode == Mode::Fear) ? -1e9 : 1e9;
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
             auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
             double dist = manhattan(ghostNextX, ghostNextY, targetX, targetY);
 
-            if (dist < bestDist - 0.0001) {
-                bestDist = dist;
-                bestDirs.clear();
-                bestDirs.push_back(d);
+            // In fear mode: maximaliseer afstand
+            if (mode == Mode::Fear) {
+                if (dist > bestDist + 0.0001) {
+                    bestDist = dist;
+                    bestDirs.clear();
+                    bestDirs.push_back(d);
+                } else if (std::abs(dist - bestDist) < 0.0001) {
+                    bestDirs.push_back(d);
+                }
             }
-            else if (std::abs(dist - bestDist) < 0.0001) {
-                bestDirs.push_back(d);
+            // In chase mode: minimaliseer afstand
+            else {
+                if (dist < bestDist - 0.0001) {
+                    bestDist = dist;
+                    bestDirs.clear();
+                    bestDirs.push_back(d);
+                } else if (std::abs(dist - bestDist) < 0.0001) {
+                    bestDirs.push_back(d);
+                }
             }
+
         }
 
         if (!bestDirs.empty()) {
@@ -276,13 +302,25 @@ void GhostModel::update(double dt) {
             auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
             double dist = manhattan(ghostNextX, ghostNextY, pm->getX(), pm->getY());
 
-            if (dist < bestDist - 0.0001) {
-                bestDist = dist;
-                bestDirs.clear();
-                bestDirs.push_back(d);
+            // In fear mode: maximaliseer afstand
+            if (mode == Mode::Fear) {
+                if (dist > bestDist + 0.0001) {
+                    bestDist = dist;
+                    bestDirs.clear();
+                    bestDirs.push_back(d);
+                } else if (std::abs(dist - bestDist) < 0.0001) {
+                    bestDirs.push_back(d);
+                }
             }
-            else if (std::abs(dist - bestDist) < 0.0001) {
-                bestDirs.push_back(d);
+            // In chase mode: minimaliseer afstand
+            else {
+                if (dist < bestDist - 0.0001) {
+                    bestDist = dist;
+                    bestDirs.clear();
+                    bestDirs.push_back(d);
+                } else if (std::abs(dist - bestDist) < 0.0001) {
+                    bestDirs.push_back(d);
+                }
             }
         }
 
