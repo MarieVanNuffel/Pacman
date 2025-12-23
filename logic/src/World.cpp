@@ -359,7 +359,11 @@ bool World::canMoveIn(Direction dir, double x, double y) const {
     return !(isWallAt(nx - radius, ny - radius) ||
              isWallAt(nx - radius, ny + radius) ||
              isWallAt(nx + radius, ny - radius) ||
-             isWallAt(nx + radius, ny + radius));
+             isWallAt(nx + radius, ny + radius) ||
+             isGhostDoor(nx - radius, ny - radius) ||
+             isGhostDoor(nx - radius, ny + radius) ||
+             isGhostDoor(nx + radius, ny - radius) ||
+             isGhostDoor(nx + radius, ny + radius));
 }
 
 
@@ -414,7 +418,15 @@ bool World::isWallAt(double x, double y) const {
     return maze[cy][cx] == 1;
 }
 
+bool World::isGhostDoor(double x, double y) const {
+    int cx = static_cast<int>(x);
+    int cy = static_cast<int>(y);
 
+    if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight)
+        return true;
+
+    return maze[cy][cx] == 6;
+}
 
 bool World::isAlignedWithGrid(double x, double y) const {
     const double epsilon = 0.1; // ruimere marge

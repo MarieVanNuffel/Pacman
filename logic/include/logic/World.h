@@ -66,6 +66,7 @@ public:
     std::pair<double,double> predictStep(double worldX, double worldY, Direction dir) const;
 
     bool isWallAt(double x, double y) const;
+    bool isGhostDoor(double x, double y) const;
     void tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt);
     bool canMoveIn(Direction dir, double x, double y) const;
     bool isAlignedWithGrid(double x, double y) const;

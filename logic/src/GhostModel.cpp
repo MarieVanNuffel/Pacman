@@ -14,8 +14,8 @@ GhostModel::GhostModel(GhostType t) : type(t) {
     mode = Mode::Waiting;
 
     if (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase) {
-        desiredDirection = Direction::LEFT;
-        direction = Direction::LEFT;
+        desiredDirection = Direction::NONE;
+        direction = Direction::NONE;
     } else {
         desiredDirection = Direction::UP;
         direction = Direction::UP;
@@ -228,7 +228,7 @@ void GhostModel::update(double dt) {
     // ------------------------------------------------
 
     auto pm = worldRef->getPacman();
-    std::vector<Direction> finalDirs = worldRef->getFreeDirections(x,y);
+    std::vector<Direction> finalDirs = worldRef->getFreeDirections(snapX,snapY);
 
     // ------------------------------------------------
     // AheadOfPacman: minimaliseer afstand naar vóór Pac-Man
@@ -244,7 +244,7 @@ void GhostModel::update(double dt) {
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
+            auto [ghostNextX, ghostNextY] = worldRef->predictStep(snapX, snapY, d);
             double dist = manhattan(ghostNextX, ghostNextY, targetX, targetY);
 
             if (dist < bestDist - 0.0001) {
@@ -273,7 +273,7 @@ void GhostModel::update(double dt) {
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
+            auto [ghostNextX, ghostNextY] = worldRef->predictStep(snapX, snapY, d);
             double dist = manhattan(ghostNextX, ghostNextY, pm->getX(), pm->getY());
 
             if (dist < bestDist - 0.0001) {
