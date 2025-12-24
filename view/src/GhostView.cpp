@@ -52,6 +52,41 @@ void GhostView::updateSprite(double dt)
     int rectLeft = 0;
     int rectTop  = 0;
 
+    if (model->getMode() == GhostModel::Mode::Fear) {
+        // Fear mode: blue ghost sprites
+        rectTop = GHOST_BASE_Y;
+        rectLeft = 128 + frameIndex * FRAME;
+
+        sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
+        return; // ✅ Klaar, geen verdere processing
+    }
+
+    if (model->getMode() == GhostModel::Mode::Eaten) {
+        // Eaten mode: eyes only
+        rectTop = 80; // ✅ Ook op row 128
+
+        switch (lastDirection) {
+            case Direction::RIGHT:
+                rectLeft = 112;
+                break;
+            case Direction::LEFT:
+                rectLeft = 128;
+                break;
+            case Direction::UP:
+                rectLeft = 144;
+                break;
+            case Direction::DOWN:
+                rectLeft = 160;
+                break;
+            default:
+                rectLeft = 112; // default naar rechts
+                break;
+        }
+
+        sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
+        return; // ✅ Klaar
+    }
+
     // --- KLEUR → RIJ ---
     int colorIndex = 0;
     switch (model->getGhostType()) {
@@ -79,29 +114,6 @@ void GhostView::updateSprite(double dt)
             break;
         default:
             return;
-    }
-
-    if (model->getMode() == GhostModel::Mode::Fear) {
-        rectTop = GHOST_BASE_Y;
-        rectLeft = 128 + frameIndex * FRAME;
-    } else if (model->getMode() == GhostModel::Mode::Eaten) {
-        rectTop = 80;
-        switch (lastDirection) {
-            case Direction::RIGHT:
-                rectLeft = 112;
-                break;
-            case Direction::LEFT:
-                rectLeft = 128;
-                break;
-            case Direction::UP:
-                rectLeft = 144;
-                break;
-            case Direction::DOWN:
-                rectLeft = 160;
-                break;
-            default:
-                return;
-        }
     }
 
     sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
