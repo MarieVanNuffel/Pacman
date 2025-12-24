@@ -29,14 +29,26 @@ void GhostModel::setMode(Mode m) {
         speed = 1.5;
         fearTimer = 0.0;
 
-        switch (desiredDirection) {
-            case Direction::UP:    desiredDirection = Direction::DOWN; break;
-            case Direction::DOWN:  desiredDirection = Direction::UP; break;
-            case Direction::LEFT:  desiredDirection = Direction::RIGHT; break;
-            case Direction::RIGHT: desiredDirection = Direction::LEFT; break;
+        // ✅ Reverse direction
+        switch (direction) {
+            case Direction::UP:    direction = Direction::DOWN; break;
+            case Direction::DOWN:  direction = Direction::UP; break;
+            case Direction::LEFT:  direction = Direction::RIGHT; break;
+            case Direction::RIGHT: direction = Direction::LEFT; break;
             default: break;
         }
-        direction = desiredDirection;
+        desiredDirection = direction;
+
+        // ✅ BELANGRIJK: Reset naar center van tile om stuck te voorkomen
+        if (worldRef) {
+            double snapX = std::floor(x) + 0.5;
+            double snapY = std::floor(y) + 0.5;
+
+            // Als we dichtbij center zijn, snap ernaar
+            if (std::abs(x - snapX) < 0.2 && std::abs(y - snapY) < 0.2) {
+                setPosition(snapX, snapY);
+            }
+        }
     }
 
     if (m == Mode::Eaten) {
@@ -244,6 +256,14 @@ void GhostModel::update(double dt) {
     // ------------------------------------------------
 
     auto pm = worldRef->getPacman();
+
+    double currentX = x;
+    double currentY = y;
+    if (std::abs(x - snapX) < 0.15 && std::abs(y - snapY) < 0.15) {
+        currentX = snapX;
+        currentY = snapY;
+    }
+
     std::vector<Direction> finalDirs = worldRef->getFreeDirections(x,y);
 
     // ------------------------------------------------
@@ -251,39 +271,25 @@ void GhostModel::update(double dt) {
     // ------------------------------------------------
     if (type == GhostType::AheadOfPacman1 ||
         type == GhostType::AheadOfPacman2) {
-
         auto [targetX, targetY] = worldRef->predictStep(
             pm->getX(), pm->getY(), pm->getDirection()
         );
 
-        double bestDist = (mode == Mode::Fear) ? -1e9 : 1e9;
+        double bestDist = 1e9;
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
+            auto [ghostNextX, ghostNextY] = worldRef->predictStep(currentX, currentY, d);
             double dist = manhattan(ghostNextX, ghostNextY, targetX, targetY);
 
-            // In fear mode: maximaliseer afstand
-            if (mode == Mode::Fear) {
-                if (dist > bestDist + 0.0001) {
-                    bestDist = dist;
-                    bestDirs.clear();
-                    bestDirs.push_back(d);
-                } else if (std::abs(dist - bestDist) < 0.0001) {
-                    bestDirs.push_back(d);
-                }
+            if (dist < bestDist - 0.0001) {
+                bestDist = dist;
+                bestDirs.clear();
+                bestDirs.push_back(d);
             }
-            // In chase mode: minimaliseer afstand
-            else {
-                if (dist < bestDist - 0.0001) {
-                    bestDist = dist;
-                    bestDirs.clear();
-                    bestDirs.push_back(d);
-                } else if (std::abs(dist - bestDist) < 0.0001) {
-                    bestDirs.push_back(d);
-                }
+            else if (std::abs(dist - bestDist) < 0.0001) {
+                bestDirs.push_back(d);
             }
-
         }
 
         if (!bestDirs.empty()) {
@@ -297,33 +303,20 @@ void GhostModel::update(double dt) {
     // DirectChase: minimaliseer afstand naar Pac-Man
     // ------------------------------------------------
     else if (type == GhostType::DirectChase) {
-
         double bestDist = 1e9;
         std::vector<Direction> bestDirs;
 
         for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(x, y, d);
+            auto [ghostNextX, ghostNextY] = worldRef->predictStep(currentX, currentY, d);
             double dist = manhattan(ghostNextX, ghostNextY, pm->getX(), pm->getY());
 
-            // In fear mode: maximaliseer afstand
-            if (mode == Mode::Fear) {
-                if (dist > bestDist + 0.0001) {
-                    bestDist = dist;
-                    bestDirs.clear();
-                    bestDirs.push_back(d);
-                } else if (std::abs(dist - bestDist) < 0.0001) {
-                    bestDirs.push_back(d);
-                }
+            if (dist < bestDist - 0.0001) {
+                bestDist = dist;
+                bestDirs.clear();
+                bestDirs.push_back(d);
             }
-            // In chase mode: minimaliseer afstand
-            else {
-                if (dist < bestDist - 0.0001) {
-                    bestDist = dist;
-                    bestDirs.clear();
-                    bestDirs.push_back(d);
-                } else if (std::abs(dist - bestDist) < 0.0001) {
-                    bestDirs.push_back(d);
-                }
+            else if (std::abs(dist - bestDist) < 0.0001) {
+                bestDirs.push_back(d);
             }
         }
 

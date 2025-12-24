@@ -23,11 +23,6 @@ FruitView::FruitView(FruitModel* m)
 
 void FruitView::updateSprite(double dt)
 {
-    animTime += dt;
-
-    // Placeholder animatie (kan later uitgebreider)
-    if (animTime > 0.25)
-        animTime = 0.0;
 }
 
 void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
