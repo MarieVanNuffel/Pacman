@@ -35,6 +35,7 @@ public:
     double getH() const { return h; }
     Direction getDirection() const { return direction; }
     Direction getDesiredDirection() const { return desiredDirection; }
+    void setDirection(Direction d) { direction = d; }
     Rect getBounds() const { return Rect{x, y, w, h}; }
     double getSpeed() const { return speed; };
 

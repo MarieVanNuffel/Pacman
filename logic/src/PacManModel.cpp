@@ -25,5 +25,5 @@ void PacManModel::reset() {
     x = 0.0; y = 0.6; direction = Direction::NONE; desiredDirection = direction;
 }
 
-void PacManModel::loseLife() { --lives; }
+
 

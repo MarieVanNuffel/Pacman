@@ -50,6 +50,9 @@ public:
     void setMode(Mode m);
     Mode getMode() const;
     GhostType getGhostType() const {return type;};
+    double getStartX() const {return startX;};
+    double getStartY() const {return startY;};
+    void setReleaseTimer(double dt) { releaseTimer = dt;};
 
 
     void setStartPosition(double sx, double sy) { x = sx; y = sy; startX = sx; startY = sy; }

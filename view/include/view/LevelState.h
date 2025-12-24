@@ -31,8 +31,22 @@ private:
     float tileW;
     float tileH;
 
+    // ✅ UI elements
+    sf::Font font;
+    sf::Text scoreText;
+    sf::Text livesText;
+    sf::Sprite lifeSprite;
+    sf::Texture lifeTexture;
+
+    const float BASE_WIDTH  = 800.f;
+    const float BASE_HEIGHT = 600.f;
+    float uiScale = 1.f;
+
+
     void drawMaze();
     void drawEntities();
+    void drawUI(); // ✅ Nieuwe functie
+    void updateUI(); // ✅ Update score/lives display
 };
 
 #endif //PACMAN_LEVELSTATE_H

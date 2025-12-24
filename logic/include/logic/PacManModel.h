@@ -28,7 +28,8 @@ public:
 
     void reset();
     int getLives() const { return lives; }
-    void loseLife();
+    void loseLife() { --lives; };
+    bool isGameOver() const { return lives <= 0; }
 
 
 };

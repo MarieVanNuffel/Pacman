@@ -5,12 +5,12 @@ Score::Score() {
     loadHighScores();
 }
 
-void Score::coinCollected(double dt) {
+void Score::coinCollected(double timeSinceLastCoin) {
     int points = 10;
 
-    if (dt < 1.0)      points = 30;
-    else if (dt < 2.5) points = 20;
-    else if (dt < 5.0) points = 15;
+    if (timeSinceLastCoin < 0.5)      points = 50;
+    else if (timeSinceLastCoin < 1.0) points = 30;
+    else if (timeSinceLastCoin < 2.0) points = 20;
 
     currentScore += points;
 }
@@ -25,6 +25,10 @@ void Score::ghostEaten() {
 
 void Score::pacmanDied() {
     currentScore -= 50;
+}
+
+void Score::levelCleared() {
+    currentScore += 500;
 }
 
 void Score::onNotify(int event) {

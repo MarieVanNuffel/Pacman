@@ -322,11 +322,16 @@ void World::update(double dt) {
                 score->ghostEaten();
             }
             else if (ghost->getMode() == GhostModel::Mode::Chase) {
-                // Pac-Man dies (later)
+                // ✅ Pac-Man verliest een leven
+                pacman->loseLife();
+
+                // ✅ Reset posities
+                resetPositions();
+
+                break; // Stop checking andere ghosts
             }
         }
     }
-
 }
 
 void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
@@ -526,4 +531,31 @@ bool World::isGhostDoorTile(int x, int y) const {
 
 bool World::isSpawnTile(int x, int y) const {
     return maze[y][x] == 5;
+}
+
+void World::resetPositions() {
+    // Reset Pac-Man
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 4) {
+                pacman->setPosition(x + 0.5, y + 0.5);
+                pacman->setDirection(Direction::NONE);
+                pacman->setDesiredDirection(Direction::NONE);
+            }
+        }
+    }
+
+    // Reset ghosts
+    for (auto& ghost : ghosts) {
+        ghost->setPosition(ghost->getStartX(), ghost->getStartY());
+        ghost->setMode(GhostModel::Mode::Waiting);
+        ghost->setReleaseTimer(0);
+
+        if (ghost->getGhostType() == GhostModel::GhostType::AheadOfPacman2 ||
+            ghost->getGhostType() == GhostModel::GhostType::DirectChase) {
+            ghost->setDirection(Direction::LEFT);
+            } else {
+                ghost->setDirection(Direction::UP);
+            }
+    }
 }

@@ -4,6 +4,7 @@
 
 #include "view/LevelState.h"
 
+#include <iomanip>
 #include <iostream>
 
 #include "view/PacManView.h"
@@ -30,6 +31,31 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
         maze[0].size(),
         maze.size()
     );
+
+    // ✅ Load font
+    if (!font.loadFromFile("view/assets/fonts/PressStart2P-Regular.ttf")) {
+        std::cerr << "Could not load font!" << std::endl;
+    }
+
+    // ✅ Setup score text
+    scoreText.setFont(font);
+    scoreText.setCharacterSize(static_cast<unsigned int>(30 * uiScale));
+    scoreText.setFillColor(sf::Color::White);
+    scoreText.setPosition(10 * uiScale, 30 * uiScale);
+
+    // ✅ Setup lives text
+    livesText.setFont(font);
+    livesText.setCharacterSize(static_cast<unsigned int>(30 * uiScale));
+    livesText.setFillColor(sf::Color::White);
+
+    // ✅ Load Pac-Man sprite for lives display
+    if (!lifeTexture.loadFromFile("view/assets/pacman.png")) {
+        std::cerr << "Could not load pacman.png for lives!" << std::endl;
+    }
+    lifeSprite.setTexture(lifeTexture);
+    lifeSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+    lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);   // 2x is klassiek arcade
+
 }
 
 
@@ -43,10 +69,35 @@ void LevelState::update(float dt) {
 
     for (auto& cv : world->getCoinViews())
         cv->updateSprite(dt);
+
+    // ✅ Update UI
+    updateUI();
+
+    // ✅ Check game over
+    if (world->getPacman()->isGameOver()) {
+        // TODO: Transition to game over state
+        std::cout << "GAME OVER! Final Score: " << world->getScore()->getCurrentScore() << std::endl;
+    }
+}
+
+void LevelState::updateUI() {
+    auto score = world->getScore();
+
+    // ✅ Format score with leading zeros
+    std::ostringstream oss;
+    oss << "SCORE:" << std::setw(6) << std::setfill('0') << score->getCurrentScore();
+    scoreText.setString(oss.str());
+
+    // ✅ Update lives text (optional, we'll draw sprites)
+    livesText.setString("LIVES:");
 }
 
 
 void LevelState::render() {
+    float scaleX = window.getSize().x / BASE_WIDTH;
+    float scaleY = window.getSize().y / BASE_HEIGHT;
+    float uiScale = std::min(scaleX, scaleY);
+
     const auto& maze = world->getMaze();
     camera = Camera(window.getSize().x, window.getSize().y, maze[0].size(), maze.size());
 
@@ -55,7 +106,34 @@ void LevelState::render() {
 
     drawMaze();
     drawEntities();
+    drawUI();
 }
+
+void LevelState::drawUI() {
+    // UI werkt in scherm-coördinaten
+    window.setView(window.getDefaultView());
+
+    // --- SCORE ---
+    scoreText.setPosition(20.f, 40.f);
+    window.draw(scoreText);
+
+    // --- LIVES LABEL ---
+    livesText.setPosition(20 * uiScale, window.getSize().y - 70 * uiScale);
+    window.draw(livesText);
+
+    // --- LIVES ICONS ---
+    int lives = world->getPacman()->getLives();
+
+    for (int i = 0; i < lives; i++) {
+        lifeSprite.setPosition(
+            200 * uiScale + i * 30 * uiScale,
+            window.getSize().y - 78 * uiScale
+        );
+        window.draw(lifeSprite);
+    }
+
+}
+
 
 void LevelState::drawMaze() {
     // Teken nu alleen de sprite-based maze

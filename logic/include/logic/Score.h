@@ -20,7 +20,8 @@ public:
     Score();
 
     // score mutators
-    void coinCollected(double dt);
+    void coinCollected(double timeSinceLastCoin);
+    void levelCleared();
     void fruitCollected();
     void ghostEaten();
     void pacmanDied();

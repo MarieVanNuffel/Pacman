@@ -56,6 +56,7 @@ public:
     std::vector<std::shared_ptr<CoinModel>> getCoins() const { return coins; }
     std::vector<std::shared_ptr<FruitModel>> getFruits() const { return fruits; }
     std::vector<std::shared_ptr<GhostDoorModel>> getGhostDoors() const { return ghostDoors; }
+    std::shared_ptr<Score> getScore() const { return score; }
 
     std::shared_ptr<EntityView> getPacmanView() const { return pacmanView; }
     const std::vector<std::shared_ptr<EntityView>>& getGhostViews() const { return ghostViews; }
@@ -80,6 +81,7 @@ public:
     bool isSpawnTile(int x, int y) const;
     bool canGhostPassDoor(double fromX, double fromY, double toX, double toY) const;
 
+    void resetPositions();
 };
 
 
