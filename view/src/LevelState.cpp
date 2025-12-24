@@ -57,31 +57,47 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     lifeSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
     lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);   // 2x is klassiek arcade
 
+    // PAUSE SYSTEM INIT
+    isPaused = false;
+
+    // Maak een wazige overlay
+    pauseOverlay.setSize(sf::Vector2f(window.getSize()));
+    pauseOverlay.setFillColor(sf::Color(0, 0, 0, 150)); // Semi-transparant zwart
+
+    // Pause tekst
+    pauseText.setFont(font); // Gebruik dezelfde font als scoreText
+    pauseText.setString("PAUSED");
+    pauseText.setCharacterSize(48);
+    pauseText.setFillColor(sf::Color::Yellow);
+    pauseText.setStyle(sf::Text::Bold);
+
+    // Maak een "blur" effect door een witte semi-transparante rechthoek
+    blurBackground.setFillColor(sf::Color(255, 255, 255, 30));
 }
 
 
 
 void LevelState::update(float dt) {
-    world->update(dt);
+    // Alleen updaten als niet gepauzeerd
+    if (!isPaused) {
+        world->update(dt);
 
-    world->getPacmanView()->updateSprite(dt); // update de animatie van pacman
-    for (auto& gv : world->getGhostViews()) // update de animatie van de ghosts
-        gv->updateSprite(dt);
+        world->getPacmanView()->updateSprite(dt);
+        for (auto& gv : world->getGhostViews())
+            gv->updateSprite(dt);
 
-    for (auto& cv : world->getCoinViews())
-        cv->updateSprite(dt);
+        for (auto& cv : world->getCoinViews())
+            cv->updateSprite(dt);
 
-    // ✅ Update UI
-    updateUI();
+        updateUI();
 
-    // ✅ Check game over
-    if (world->getPacman()->isGameOver()) {
-        stateManager.getScore()->saveHighScores();
-        stateManager.changeState(
-            std::make_shared<MenuState>(window, stateManager)
-        );
+        if (world->getPacman()->isGameOver()) {
+            stateManager.getScore()->saveHighScores();
+            stateManager.changeState(
+                std::make_shared<MenuState>(window, stateManager)
+            );
+        }
     }
-
 }
 
 void LevelState::updateUI() {
@@ -105,12 +121,16 @@ void LevelState::render() {
     const auto& maze = world->getMaze();
     camera = Camera(window.getSize().x, window.getSize().y, maze[0].size(), maze.size());
 
-    // reset SFML view to default so we draw in window pixels
     window.setView(window.getDefaultView());
 
     drawMaze();
     drawEntities();
     drawUI();
+
+    // Teken pause overlay als gepauzeerd
+    if (isPaused) {
+        drawPauseScreen();
+    }
 }
 
 void LevelState::drawUI() {
@@ -184,25 +204,82 @@ void LevelState::drawEntities() {
 void LevelState::handleInput(sf::Event& ev)
 {
     if (ev.type == sf::Event::KeyPressed) {
-        auto pacman = world->getPacman();
-
-        if (ev.key.code == sf::Keyboard::Up) {
-        pacman->setDirection(Direction::UP);
-        pacman->setDesiredDirection(Direction::UP);
+        // ESC toggles pause
+        if (ev.key.code == sf::Keyboard::Escape) {
+            isPaused = !isPaused;
         }
 
-        else if (ev.key.code == sf::Keyboard::Down) {
-            pacman->setDirection(Direction::DOWN);
-            pacman->setDesiredDirection(Direction::DOWN);
-        }
+        // Als niet gepauzeerd, behandel Pac-Man input
+        if (!isPaused) {
+            auto pacman = world->getPacman();
 
-        else if (ev.key.code == sf::Keyboard::Left) {
-            pacman->setDirection(Direction::LEFT);
-            pacman->setDesiredDirection(Direction::LEFT);
-        }
-        else if (ev.key.code == sf::Keyboard::Right) {
-            pacman->setDirection(Direction::RIGHT);
-            pacman->setDesiredDirection(Direction::RIGHT);
+            if (ev.key.code == sf::Keyboard::Up) {
+                pacman->setDirection(Direction::UP);
+                pacman->setDesiredDirection(Direction::UP);
+            }
+            else if (ev.key.code == sf::Keyboard::Down) {
+                pacman->setDirection(Direction::DOWN);
+                pacman->setDesiredDirection(Direction::DOWN);
+            }
+            else if (ev.key.code == sf::Keyboard::Left) {
+                pacman->setDirection(Direction::LEFT);
+                pacman->setDesiredDirection(Direction::LEFT);
+            }
+            else if (ev.key.code == sf::Keyboard::Right) {
+                pacman->setDirection(Direction::RIGHT);
+                pacman->setDesiredDirection(Direction::RIGHT);
+            }
         }
     }
+}
+
+void LevelState::drawPauseScreen()
+{
+    // Sla de huidige view op
+    sf::View originalView = window.getView();
+
+    // Schakel over naar default view voor UI
+    window.setView(window.getDefaultView());
+
+    // Update overlay grootte naar huidige window grootte
+    pauseOverlay.setSize(sf::Vector2f(window.getSize()));
+
+    // Teken semi-transparante overlay
+    window.draw(pauseOverlay);
+
+    // Teken "blur" effect over het hele scherm
+    blurBackground.setSize(sf::Vector2f(window.getSize()));
+    window.draw(blurBackground);
+
+    // Centreer de pause tekst
+    sf::FloatRect textBounds = pauseText.getLocalBounds();
+    pauseText.setOrigin(textBounds.left + textBounds.width / 2.0f,
+                       textBounds.top + textBounds.height / 2.0f);
+    pauseText.setPosition(window.getSize().x / 2.0f,
+                         window.getSize().y / 2.0f);
+
+    // Maak de tekst groter voor pause scherm
+    pauseText.setCharacterSize(static_cast<unsigned>(64 * uiScale));
+    pauseText.setOutlineColor(sf::Color::Black);
+    pauseText.setOutlineThickness(4.0f * uiScale);
+
+    window.draw(pauseText);
+
+    // Optioneel: voeg instructie tekst toe
+    sf::Text instructionText;
+    instructionText.setFont(font);
+    instructionText.setString("Press ESC to resume");
+    instructionText.setCharacterSize(static_cast<unsigned>(20 * uiScale));
+    instructionText.setFillColor(sf::Color::White);
+
+    sf::FloatRect instrBounds = instructionText.getLocalBounds();
+    instructionText.setOrigin(instrBounds.left + instrBounds.width / 2.0f,
+                             instrBounds.top + instrBounds.height / 2.0f);
+    instructionText.setPosition(window.getSize().x / 2.0f,
+                               window.getSize().y / 2.0f + 80.f * uiScale);
+
+    window.draw(instructionText);
+
+    // Herstel de originele view
+    window.setView(originalView);
 }

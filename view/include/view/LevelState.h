@@ -38,6 +38,12 @@ private:
     sf::Sprite lifeSprite;
     sf::Texture lifeTexture;
 
+    bool isPaused;
+    sf::Text pauseText;
+    sf::RectangleShape pauseOverlay;
+    sf::RectangleShape blurBackground;
+    void drawPauseScreen();
+
     const float BASE_WIDTH  = 800.f;
     const float BASE_HEIGHT = 600.f;
     float uiScale = 1.f;
