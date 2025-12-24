@@ -315,7 +315,7 @@ void World::update(double dt) {
         double dx = pm->getX() - ghost->getX();
         double dy = pm->getY() - ghost->getY();
 
-        if (dx*dx + dy*dy < 0.25) {
+        if (dx*dx + dy*dy < 0.50) {
             if (ghost->getMode() == GhostModel::Mode::Fear) {
                 ghost->setMode(GhostModel::Mode::Eaten);
                 score->ghostEaten();
