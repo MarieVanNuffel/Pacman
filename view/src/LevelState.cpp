@@ -13,6 +13,8 @@
 #include "view/FruitView.h"
 #include "view/GhostDoorView.h"
 #include "view/MazeView.h"  // nieuwe MazeView met sprites
+#include "view/MenuState.h"
+#include "view/StateManager.h"
 
 
 LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
@@ -75,8 +77,8 @@ void LevelState::update(float dt) {
 
     // ✅ Check game over
     if (world->getPacman()->isGameOver()) {
-        // TODO: Transition to game over state
-        std::cout << "GAME OVER! Final Score: " << world->getScore()->getCurrentScore() << std::endl;
+        stateManager.changeState(
+                std::make_shared<MenuState>(window, stateManager));
     }
 }
 
