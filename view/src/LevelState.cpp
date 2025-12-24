@@ -118,17 +118,16 @@ void LevelState::drawUI() {
     window.draw(scoreText);
 
     // --- LIVES LABEL ---
-    livesText.setPosition(20 * uiScale, window.getSize().y - 70 * uiScale);
+    livesText.setPosition(20.f * uiScale, window.getSize().y - 70.f * uiScale);
     window.draw(livesText);
 
     // --- LIVES ICONS ---
     int lives = world->getPacman()->getLives();
 
     for (int i = 0; i < lives; i++) {
-        lifeSprite.setPosition(
-            200 * uiScale + i * 30 * uiScale,
-            window.getSize().y - 78 * uiScale
-        );
+        lifeSprite.setPosition((
+        200.f + i * 40.f) * uiScale,
+    window.getSize().y - 78.f * uiScale);
         window.draw(lifeSprite);
     }
 
