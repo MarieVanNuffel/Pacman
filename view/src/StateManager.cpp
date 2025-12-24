@@ -5,6 +5,12 @@
 #include "view/StateManager.h"
 #include "view/State.h"
 
+StateManager::StateManager(sf::RenderWindow& win)
+    : window(win)
+{
+    score = std::make_shared<Score>();   // 👈 één score voor hele game
+}
+
 void StateManager::pushState(std::shared_ptr<State> state) {
     states.push_back(std::move(state));
 }

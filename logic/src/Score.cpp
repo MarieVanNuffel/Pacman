@@ -1,5 +1,6 @@
 #include "logic/Score.h"
 #include <algorithm>
+#include <fstream>
 
 Score::Score() {
     loadHighScores();
@@ -37,13 +38,33 @@ void Score::onNotify(int event) {
     else if (event == 3) ghostEaten();
 }
 
+#include <fstream>
+
 void Score::loadHighScores() {
-    highScores = {0,0,0,0,0};
+    highScores.clear();
+    std::ifstream file("highscores.txt");
+
+    int score;
+    while (file >> score) {
+        highScores.push_back(score);
+    }
+
+    while (highScores.size() < 5)
+        highScores.push_back(0);
 }
 
 void Score::saveHighScores() {
     highScores.push_back(currentScore);
     std::sort(highScores.rbegin(), highScores.rend());
+
     if (highScores.size() > 5)
         highScores.resize(5);
+
+    std::ofstream file("highscores.txt", std::ios::trunc);
+    for (int s : highScores)
+        file << s << "\n";
+
+    currentScore = 0; // reset voor nieuw spel
 }
+
+

@@ -5,6 +5,7 @@
 #include "view/MenuState.h"
 #include "view/LevelState.h"
 #include <iostream>
+#include <sstream>
 
 #include "view/StateManager.h"
 
@@ -29,6 +30,13 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
     playButton.setCharacterSize(36);
     playButton.setFillColor(sf::Color::White);
     playButton.setPosition(350, 300);
+
+    // HIGHSCORES
+    highScoreText.setFont(font);
+    highScoreText.setCharacterSize(24);
+    highScoreText.setFillColor(sf::Color::White);
+    highScoreText.setPosition(450, 500);
+
 
     // ANIMATIE
     fadeRect.setSize(sf::Vector2f(window.getSize()));
@@ -90,13 +98,30 @@ void MenuState::render()
     // PLAY BUTTON: centreer horizontaal; positie verticaal op 50% van hoogte
     auto btnBounds = playButton.getLocalBounds();
     float btnX = centerX - (btnBounds.left + btnBounds.width) / 2.f;
-    float btnY = static_cast<float>(ws.y) * 0.50f;
+    float btnY = static_cast<float>(ws.y) * 0.45f;
     playButton.setPosition(btnX, btnY);
     playButton.setCharacterSize(static_cast<unsigned>(36 * uiScale));
+
+    // HIGHSCORES: centreer horizontaal; positie verticaal op 65% van hoogte
+    auto hscBounds = highScoreText.getLocalBounds();
+    float hscX = centerX - (hscBounds.left + hscBounds.width) / 2.f;
+    float hscY = static_cast<float>(ws.y) * 0.65f;
+    auto scores = stateManager.getScore()->getHighScores();
+
+    std::ostringstream oss;
+    oss << "HIGHSCORES\n";
+    for (int i = 0; i < scores.size(); i++) {
+        oss << i + 1 << ". " << scores[i] << "\n";
+    }
+
+    highScoreText.setString(oss.str());
+    highScoreText.setPosition(hscX, hscY);
+    highScoreText.setCharacterSize(static_cast<unsigned>(24 * uiScale));
 
     // Teken
     window.draw(title);
     window.draw(playButton);
+    window.draw(highScoreText);
 
     if (fadeAlpha > 0.f)
         window.draw(fadeRect);

@@ -8,11 +8,14 @@
 #include <memory>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "logic/Score.h"
 
 class State;
 
 class StateManager {
 public:
+    StateManager(sf::RenderWindow& win);
+
     void pushState(std::shared_ptr<State> state);
     void popState();
     void changeState(std::shared_ptr<State> state);
@@ -21,8 +24,12 @@ public:
     void update(double dt);
     void render();
 
+    std::shared_ptr<Score> getScore() const { return score; }
+
 private:
+    sf::RenderWindow& window;
     std::vector<std::shared_ptr<State>> states;
+    std::shared_ptr<Score> score;;
 };
 
 #endif

@@ -5,7 +5,7 @@
 #include "logic/Stopwatch.h"
 
 Game::Game()
-    : window(sf::VideoMode(800, 800), "Pac-Man")
+    : window(sf::VideoMode(800, 800), "Pac-Man"), stateManager(window)
 {
     stateManager.pushState(
         std::make_shared<MenuState>(window, stateManager)

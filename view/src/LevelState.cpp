@@ -21,8 +21,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     : State(win, sm), camera(0,0,0,0)
 {
     factory = std::make_shared<ConcreteEntityFactory>();
-    auto score = std::make_shared<Score>();
-    world = std::make_shared<World>(factory, score);
+    world = std::make_shared<World>(factory, stateManager.getScore());
 
     mazeView = std::make_unique<MazeView>(world.get());
 
@@ -77,9 +76,12 @@ void LevelState::update(float dt) {
 
     // ✅ Check game over
     if (world->getPacman()->isGameOver()) {
+        stateManager.getScore()->saveHighScores();
         stateManager.changeState(
-                std::make_shared<MenuState>(window, stateManager));
+            std::make_shared<MenuState>(window, stateManager)
+        );
     }
+
 }
 
 void LevelState::updateUI() {
