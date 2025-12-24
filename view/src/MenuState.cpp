@@ -4,6 +4,7 @@
 
 #include "view/MenuState.h"
 
+#include <cmath>
 #include <iomanip>
 
 #include "view/LevelState.h"
@@ -45,9 +46,52 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
     highScoreText.setOutlineThickness(1.5);
 
 
-    // ANIMATIE
+    // FADE
     fadeRect.setSize(sf::Vector2f(window.getSize()));
     fadeRect.setFillColor(sf::Color(0, 0, 0, 255));
+
+    // ANIMATIE INITIALISATIE
+    if (!pacmanTexture.loadFromFile("view/assets/pacman.png")) {
+        std::cerr << "Failed to load pacman texture for menu animation!\n";
+    }
+
+    // Gebruik dezelfde texture voor ghosts
+    ghostTexture = pacmanTexture;
+
+    // Pac-Man sprite instellen
+    pacmanSprite.setTexture(pacmanTexture);
+    pacmanSprite.setTextureRect(sf::IntRect(0, 0, 15, 15)); // Eerste frame
+    pacmanSprite.setOrigin(8, 8);
+    pacmanSprite.setScale(2.5f, 2.5f); // Groter voor menu
+
+    // Maak 4 ghost sprites
+    for (int i = 0; i < 4; i++) {
+        sf::Sprite ghost;
+        ghost.setTexture(ghostTexture);
+
+        // Stel de juiste kleur in (zelfde als in GhostView)
+        int rectTop = 0;
+        switch (i) {
+            case 0: rectTop = 64; break;  // rood (Blinky)
+            case 1: rectTop = 80; break;  // roze (Pinky)
+            case 2: rectTop = 96; break;  // lichtblauw (Inky)
+            case 3: rectTop = 112; break; // oranje (Clyde)
+        }
+
+        ghost.setTextureRect(sf::IntRect(0, rectTop, 16, 16));
+        ghost.setOrigin(8, 8);
+        ghost.setScale(2.5f, 2.5f);
+        ghostSprites.push_back(ghost);
+    }
+
+    // Animatie variabelen
+    animationTimer = 0.0f;
+    animationSpeed = 100.0f; // Pixels per seconde
+    pacmanPositionX = -100.0f; // Start off-screen links
+    ghostSpacing = 50.0f; // Afstand tussen ghosts
+    isAnimating = true;
+    currentFrame = 0;
+    ghostColorOffset = 0.0f;
 
 }
 
@@ -83,7 +127,46 @@ void MenuState::update(float dt)
         fadeRect.setFillColor(sf::Color(0, 0, 0, static_cast<sf::Uint8>(fadeAlpha)));
     }
 
+    // ANIMATIE UPDATE
+    if (isAnimating) {
+        // Update timer voor frame animatie
+        static float frameTimer = 0.0f;
+        frameTimer += dt;
 
+        // Pac-Man mond animatie (elke 0.15 seconden)
+        if (frameTimer >= 0.15f) {
+            frameTimer = 0.0f;
+            currentFrame = (currentFrame + 1) % 2;
+
+            // Update Pac-Man frame
+            int frameX = currentFrame * 16;
+            pacmanSprite.setTextureRect(sf::IntRect(frameX, 0, 15, 15));
+
+            // Update ghost frames (dicht/open mond)
+            for (auto& ghost : ghostSprites) {
+                auto rect = ghost.getTextureRect();
+                int frameX = currentFrame * 16;
+                ghost.setTextureRect(sf::IntRect(frameX, rect.top, 16, 16));
+            }
+        }
+
+        // Beweging van rechts naar links
+        pacmanPositionX += animationSpeed * dt;
+
+        // Bereken positie van de laatste ghost
+        int lastGhostIndex = ghostSprites.size() - 1;
+        float lastGhostX = pacmanPositionX - (lastGhostIndex + 1) * ghostSpacing * uiScale - 30.f;
+
+        // Als de LAATSTE ghost helemaal voorbij is, reset naar rechts
+        float windowWidth = window.getSize().x;
+        if (lastGhostX > windowWidth + 200.0f) {
+            // Reset alle posities naar links (off-screen)
+            pacmanPositionX = -200.0f;
+        }
+
+        // Ghosts volgen Pac-Man met een delay
+        ghostColorOffset += dt * 10.0f;
+    }
 }
 
 void MenuState::render()
@@ -99,7 +182,6 @@ void MenuState::render()
     sf::Vector2u ws = window.getSize();
     sf::RectangleShape bg(sf::Vector2f(ws.x, ws.y));
     bg.setFillColor(sf::Color(10, 10, 50));
-    window.draw(bg);
 
     float centerX = static_cast<float>(ws.x) * 0.5f;
 
@@ -201,6 +283,31 @@ void MenuState::render()
     }
 
     // Teken alles in de juiste volgorde
+    window.draw(bg);
+
+    // Bereken Y-positie voor animatie (onder titel)
+    float titleBottomY = titleY + titleBounds.height + 20.f * uiScale;
+    float animationY = titleBottomY + 50.f * uiScale;
+
+    // Teken animatie
+    if (isAnimating) {
+        // Teken Pac-Man
+        pacmanSprite.setPosition(pacmanPositionX, animationY);
+        pacmanSprite.setScale(2.5f * uiScale, 2.5f * uiScale);
+        window.draw(pacmanSprite);
+
+        // Teken ghosts met offset (achter Pac-Man)
+        for (int i = 0; i < ghostSprites.size(); i++) {
+            // Bereken positie met sinus voor natuurlijke beweging
+            float offsetX = pacmanPositionX - (i + 1) * ghostSpacing * uiScale;
+            float offsetY = animationY + sin(ghostColorOffset + i) * 10.f * uiScale;
+
+            ghostSprites[i].setPosition(offsetX - 30.f, offsetY);
+            ghostSprites[i].setScale(2.5f * uiScale, 2.5f * uiScale);
+            window.draw(ghostSprites[i]);
+        }
+    }
+
     window.draw(titleOutline);      // Eerst donker oranje met zwarte rand
     window.draw(titleBackGround);   // Dan oranje achtergrond
     window.draw(title);            // Dan de tekst

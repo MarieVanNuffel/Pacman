@@ -22,9 +22,22 @@ private:
     sf::Font font;
     sf::Text title;
     sf::Text playButton;
-
     sf::Text highScoreText;
 
+    // Animatie sprites
+    sf::Texture pacmanTexture;
+    sf::Texture ghostTexture;
+    sf::Sprite pacmanSprite;
+    std::vector<sf::Sprite> ghostSprites;
+
+    // Animatie variabelen
+    float animationTimer;
+    float animationSpeed;
+    float pacmanPositionX;
+    float ghostSpacing;
+    bool isAnimating;
+    int currentFrame;
+    float ghostColorOffset;
 
     float uiScale = 1.f;
     static constexpr float BASE_WIDTH  = 800.f;
