@@ -39,13 +39,13 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 
     // ✅ Setup score text
     scoreText.setFont(font);
-    scoreText.setCharacterSize(static_cast<unsigned int>(30 * uiScale));
+    scoreText.setCharacterSize(24);
     scoreText.setFillColor(sf::Color::White);
     scoreText.setPosition(10 * uiScale, 30 * uiScale);
 
     // ✅ Setup lives text
     livesText.setFont(font);
-    livesText.setCharacterSize(static_cast<unsigned int>(30 * uiScale));
+    livesText.setCharacterSize(24);
     livesText.setFillColor(sf::Color::White);
 
     // ✅ Load Pac-Man sprite for lives display
@@ -96,7 +96,7 @@ void LevelState::updateUI() {
 void LevelState::render() {
     float scaleX = window.getSize().x / BASE_WIDTH;
     float scaleY = window.getSize().y / BASE_HEIGHT;
-    float uiScale = std::min(scaleX, scaleY);
+    uiScale = std::min(scaleX, scaleY);
 
     const auto& maze = world->getMaze();
     camera = Camera(window.getSize().x, window.getSize().y, maze[0].size(), maze.size());
@@ -114,25 +114,38 @@ void LevelState::drawUI() {
     window.setView(window.getDefaultView());
 
     // --- SCORE ---
+    scoreText.setCharacterSize(static_cast<unsigned>(24 * uiScale));
     scoreText.setPosition(20.f, 40.f);
     window.draw(scoreText);
 
-    // --- LIVES LABEL ---
-    livesText.setPosition(20.f * uiScale, window.getSize().y - 70.f * uiScale);
+    // --- LIVES ---
+    livesText.setCharacterSize(static_cast<unsigned>(24 * uiScale));
+
+    // Vaste positie: 20 pixels van links, 100 pixels van onder
+    float livesY = window.getSize().y - 45.f * uiScale;
+    livesText.setPosition(20.f, livesY);
     window.draw(livesText);
 
     // --- LIVES ICONS ---
+    lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);
     int lives = world->getPacman()->getLives();
 
+    float iconSize = 40.f * uiScale;
+    float baseX = 20.f + livesText.getGlobalBounds().width + 20.f * uiScale;
+
+    // Centreer de icons verticaal met de tekst
+    float textHeight = livesText.getLocalBounds().height;
+    float iconHeight = lifeSprite.getGlobalBounds().height;
+    float verticalOffset = (textHeight - iconHeight) / 2.0f;
+
     for (int i = 0; i < lives; i++) {
-        lifeSprite.setPosition((
-        200.f + i * 40.f) * uiScale,
-    window.getSize().y - 78.f * uiScale);
+        lifeSprite.setPosition(
+            baseX + i * (iconSize + 5.f * uiScale),
+            livesY + verticalOffset
+        );
         window.draw(lifeSprite);
     }
-
 }
-
 
 void LevelState::drawMaze() {
     // Teken nu alleen de sprite-based maze
