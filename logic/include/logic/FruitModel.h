@@ -21,6 +21,8 @@ public:
     // fruit is static by default; implement update as no-op so class is not abstract
     void update(double dt) override;
 
+    void reset();
+
     bool collected = false;
 };
 

@@ -113,7 +113,7 @@ void GhostModel::update(double dt) {
     // ------------------------------------------------
     if (mode == Mode::Fear) {
         fearTimer += dt;
-        if (fearTimer >= FEAR_DURATION) {
+        if (fearTimer >= fearDuration) {
             setMode(Mode::Chase);
             return;
         }

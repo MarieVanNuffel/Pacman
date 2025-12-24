@@ -57,5 +57,7 @@ void FruitView::onNotify(int event)
 {
     if (event == 2) { // 2 = fruit collected event
         visible = false;
+    } else {
+        visible = true;
     }
 }

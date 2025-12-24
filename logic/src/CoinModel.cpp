@@ -14,3 +14,8 @@ void CoinModel::collect() {
 void CoinModel::update(double /*dt*/) {
     // coins zijn statisch — geen update nodig
 }
+
+void CoinModel::reset() {
+    collected = false;
+    notify(0); // zodat view weer zichtbaar wordt
+}

@@ -82,6 +82,7 @@ public:
     bool canGhostPassDoor(double fromX, double fromY, double toX, double toY) const;
 
     void resetPositions();
+    void advanceLevel();
 };
 
 

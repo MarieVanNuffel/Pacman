@@ -14,3 +14,8 @@ void FruitModel::collect() {
 void FruitModel::update(double /*dt*/) {
     // Fruits are static by default; no per-frame logic here.
 }
+
+void FruitModel::reset() {
+    collected = false;
+    notify(0);
+}

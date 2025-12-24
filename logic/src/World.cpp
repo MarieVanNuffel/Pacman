@@ -269,17 +269,16 @@ void World::update(double dt) {
 
     // --- LEVEL CLEAR ---
     bool allCollected = true;
-    for (auto& coin : coins) {
-        if (!coin->collected) {
+    for (auto& coin : coins)
+        if (!coin->collected)
             allCollected = false;
-            break;
-        }
-    }
+    for (auto& fruit : fruits)
+        if (!fruit->collected)
+            allCollected = false;
 
     if (allCollected) {
-        score->coinCollected(0.5); // bonus
-        currentLevel++;
-        loadLevel(currentLevel);
+        score->levelCleared();  // bonuspunten voor level
+        advanceLevel();
         return;
     }
 
@@ -557,5 +556,25 @@ void World::resetPositions() {
             } else {
                 ghost->setDirection(Direction::UP);
             }
+    }
+}
+
+void World::advanceLevel() {
+    currentLevel++;
+
+    // Reset posities Pac-Man en ghosts
+    resetPositions();
+
+    // Respawn coins & fruits
+    for (auto& coin : coins) coin->reset();
+    for (auto& fruit : fruits) fruit->reset();
+
+    // Moeilijkheid aanpassen
+    double speedMultiplier = 1.0 + currentLevel * 0.1;   // +10% per level
+    double fearMultiplier = std::max(0.3, 1.0 - currentLevel * 0.1); // fear korter, min 0.3
+
+    for (auto& ghost : ghosts) {
+        ghost->setSpeed(ghost->getSpeed() * speedMultiplier);
+        ghost->setFearDuration(ghost->getFearDuration() * fearMultiplier);
     }
 }

@@ -46,5 +46,7 @@ void CoinView::onNotify(int event)
 {
     if (event == 1) { // 1 = coin collected event
         visible = false;
+    } else {
+        visible = true;
     }
 }

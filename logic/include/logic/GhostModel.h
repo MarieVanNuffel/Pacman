@@ -26,7 +26,6 @@ public:
         DirectChase       // jaagt rechtstreeks
     };
 private:
-    // TODO aanpassen voor verschillende ghosts: speed, direction
     GhostType type;
     Mode mode;
 
@@ -35,7 +34,7 @@ private:
 
     // Fear mode
     double fearTimer = 0.0;
-    static constexpr double FEAR_DURATION = 6.0;
+    double fearDuration = 6.0;
 
     World *worldRef = nullptr;
 
@@ -48,10 +47,13 @@ public:
 
     void setWorld(World* w) { worldRef = w; };
     void setMode(Mode m);
+    void setSpeed(double s) { speed = s;};
+    void setFearDuration(double d) { fearDuration = d; };
     Mode getMode() const;
     GhostType getGhostType() const {return type;};
     double getStartX() const {return startX;};
     double getStartY() const {return startY;};
+    double getFearDuration() const {return fearDuration;};
     void setReleaseTimer(double dt) { releaseTimer = dt;};
 
 
