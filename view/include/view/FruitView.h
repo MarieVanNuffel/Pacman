@@ -19,6 +19,7 @@ private:
     FruitModel* model;
     sf::Sprite sprite;
     sf::Texture texture;
+    static constexpr int FRAME_SIZE = 15;
     double animTime = 0.0;
     bool visible = true;
 };

@@ -7,14 +7,19 @@
 #include <iostream>
 
 FruitView::FruitView(FruitModel* m)
-    : EntityView(m), model(m), visible(true)
+    : EntityView(m), model(m)
 {
-    if (!texture.loadFromFile("view/assets/fruit.png"))
+    if (!texture.loadFromFile("view/assets/pacman.png"))
     {
         std::cerr << "Kan fruit.png niet laden!" << std::endl;
     }
 
     sprite.setTexture(texture);
+
+    int spriteX = 0;
+    int spriteY = 128;
+
+    sprite.setTextureRect(sf::IntRect(spriteX, spriteY, FRAME_SIZE, FRAME_SIZE));
 
     // Sprite centreren
     sf::FloatRect bounds = sprite.getLocalBounds();
@@ -43,7 +48,7 @@ void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
     float sx = rect.width / sprite.getLocalBounds().width;
     float sy = rect.height / sprite.getLocalBounds().height;
     float s = std::min(sx, sy);
-    sprite.setScale(s, s);
+    sprite.setScale(s * 1.4, s * 1.4);
 
     win.draw(sprite);
 }
