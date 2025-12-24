@@ -30,6 +30,10 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
     playButton.setFillColor(sf::Color::White);
     playButton.setPosition(350, 300);
 
+    // ANIMATIE
+    fadeRect.setSize(sf::Vector2f(window.getSize()));
+    fadeRect.setFillColor(sf::Color(0, 0, 0, 255));
+
 }
 
 void MenuState::handleInput(sf::Event& ev)
@@ -52,11 +56,23 @@ void MenuState::handleInput(sf::Event& ev)
 
 void MenuState::update(float dt)
 {
-    // eventueel animaties voor sprites of knoppen
+    if (fadingIn) {
+        fadeAlpha -= 300.f * dt;
+        if (fadeAlpha <= 0.f) {
+            fadeAlpha = 0.f;
+            fadingIn = false;
+        }
+        fadeRect.setFillColor(sf::Color(0, 0, 0, static_cast<sf::Uint8>(fadeAlpha)));
+    }
+
 }
 
 void MenuState::render()
 {
+    float scaleX = window.getSize().x / BASE_WIDTH;
+    float scaleY = window.getSize().y / BASE_HEIGHT;
+    uiScale = std::min(scaleX, scaleY);
+
     // Zorg dat we tekenen in standaard window-pixelruimte (geen oude SFML view)
     window.setView(window.getDefaultView());
 
@@ -69,14 +85,20 @@ void MenuState::render()
     float titleX = centerX - (titleBounds.left + titleBounds.width) / 2.f;
     float titleY = static_cast<float>(ws.y) * 0.15f;
     title.setPosition(titleX, titleY);
+    title.setCharacterSize(static_cast<unsigned>(64 * uiScale));
 
     // PLAY BUTTON: centreer horizontaal; positie verticaal op 50% van hoogte
     auto btnBounds = playButton.getLocalBounds();
     float btnX = centerX - (btnBounds.left + btnBounds.width) / 2.f;
     float btnY = static_cast<float>(ws.y) * 0.50f;
     playButton.setPosition(btnX, btnY);
+    playButton.setCharacterSize(static_cast<unsigned>(36 * uiScale));
 
     // Teken
     window.draw(title);
     window.draw(playButton);
+
+    if (fadeAlpha > 0.f)
+        window.draw(fadeRect);
+
 }
