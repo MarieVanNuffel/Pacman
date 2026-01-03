@@ -196,19 +196,18 @@ void World::update(double dt) {
     if (deathAnimation) {
         deathTimer += dt;
         if (deathTimer >= deathDuration) {
-            // complete sequence: decrement life + reset positions + notify revive + unfreeze ghosts
-            pacman->loseLife();
-            resetPositions();
+            pacman->loseLife(); // - leven pacman
+            resetPositions(); // terug naar startposities
 
-            // notify views that pacman revived (stops death animation)
-            pacman->revive();
+            pacman->revive(); // notify de observers
 
-            for (auto& g : ghosts) g->setFrozen(false);
+            for (auto& g : ghosts)
+                g->setFrozen(false); // zorg dat de ghosts terug bewegen
 
             deathAnimation = false;
             deathTimer = 0.0;
         }
-        // Skip the rest of normal update while death animation plays
+        // Skip de rest van de update functie
         return;
     }
 
@@ -219,25 +218,24 @@ void World::update(double dt) {
     double gridCenterY = std::floor(pm->getY()) + 0.5;
     double snapEpsilon = 0.1;
 
-    // --- 1) Buffered input: probeer DesiredDirection ---
-    // Eerst: probeer direct als het mogelijk is vanaf huidige positie
+    // --- PACMAN MOVEMENT ---
+    // 1) probeer DesiredDirection
+    // probeer direct als het mogelijk is vanaf huidige positie
     if (pm->getDesiredDirection() != Direction::NONE) {
         if (canMoveIn(pm->getDesiredDirection(), pm->getX(), pm->getY())) {
             pm->setDirection(pm->getDesiredDirection());
         } else {
-            // Als we dicht genoeg bij het grid center zitten, kijk of de gewenste richting mogelijk is
-            // vanaf het exacte tile-center. Als dat zo is, snap naar center en draai direct.
             bool nearCenter = (std::abs(pm->getX() - gridCenterX) < snapEpsilon &&
                                std::abs(pm->getY() - gridCenterY) < snapEpsilon);
-            if (nearCenter && canMoveIn(pm->getDesiredDirection(), gridCenterX, gridCenterY)) {
-                // snap naar center en zet direction
+            if (nearCenter && canMoveIn(pm->getDesiredDirection(), gridCenterX, gridCenterY)) { // is het mogelijk vanaf tile center
+                // snap naar center en zet direction naar DesiredDirection
                 pm->setPosition(gridCenterX, gridCenterY);
                 pm->setDirection(pm->getDesiredDirection());
             }
         }
     }
 
-    // --- 2) Corner snapping (alleen bij tile center) ---
+    // 2) Corner snapping bij tile centers
     if (pm->getDirection() == Direction::UP || pm->getDirection() == Direction::DOWN) {
         if (std::abs(pm->getX() - gridCenterX) < snapEpsilon)
             pm->setPosition(gridCenterX, pm->getY());
@@ -246,14 +244,14 @@ void World::update(double dt) {
             pm->setPosition(pm->getX(), gridCenterY);
     }
 
-    // --- 3) Probeer huidige richting te bewegen, anders gewenste richting ---
+    // 3) Probeer huidige richting te bewegen, anders DesiredDirection
     if (canMoveIn(pm->getDirection(), pm->getX(), pm->getY())) {
         tryMoveEntity(pm, pm->getDirection(), dt);
     } else {
-        // Huidige richting is geblokkeerd: stop en probeer direct te draaien naar desiredDirection
+        // Als de huidige richting is geblokkeerd, dan sta je stil
         pm->setDirection(Direction::NONE);
 
-        // Als we dicht bij center zijn, probeer desiredDirection vanaf center (voorkomt vastzitten bij corners)
+        // Als we dicht bij de tile center zijn, probeer desiredDirection
         if (pm->getDesiredDirection() != Direction::NONE) {
             bool nearCenter = (std::abs(pm->getX() - gridCenterX) < snapEpsilon &&
                                std::abs(pm->getY() - gridCenterY) < snapEpsilon);
@@ -272,22 +270,20 @@ void World::update(double dt) {
         double dy = pm->getY() - coin->getY();
         double distSq = dx*dx + dy*dy;
 
-        bool collidedByRadius = (distSq < 0.25); // ~ radius 0.5
+        bool collidedByRadius = (distSq < 0.25);
         bool collidedByAABB = (std::abs(coin->getX() - pm->getX()) < 0.4 &&
                                std::abs(coin->getY() - pm->getY()) < 0.4);
 
         if (collidedByRadius || collidedByAABB) {
-            // Model verandert state en notificeert observers (CoinView zal onzichtbaar worden)
-            coin->collect();
+            coin->collect(); // notify de observers
 
-            // Score-update wordt expliciet door World gedaan (Score::onNotify kan event==1 negeren)
-            score->coinCollected(timeSinceLastCoin);
+            score->coinCollected(timeSinceLastCoin); // score updaten
             timeSinceLastCoin = 0.0;
         }
     }
 
     // --- LEVEL CLEAR ---
-    bool allCollected = true;
+    bool allCollected = true; // kijken of alle coins collected zijn
     for (auto& coin : coins)
         if (!coin->collected)
             allCollected = false;
@@ -297,7 +293,7 @@ void World::update(double dt) {
 
     if (allCollected) {
         score->levelCleared();  // bonuspunten voor level
-        advanceLevel();
+        advanceLevel(); // volgend level
         return;
     }
 
@@ -315,9 +311,9 @@ void World::update(double dt) {
 
         if (collidedByRadius || collidedByAABB) {
             fruit->collect();
-            score->fruitCollected();
+            score->fruitCollected(); // update score
 
-            // 👻 Zet ALLE ghosts in fear mode
+            // Zet alle ghosts in fear mode
             for (auto& ghost : ghosts) {
                 if (ghost->getMode() == GhostModel::Mode::Chase) {
                     ghost->setMode(GhostModel::Mode::Fear);
@@ -330,7 +326,6 @@ void World::update(double dt) {
     for (auto& ghost : ghosts) {
         ghost->update(dt);
 
-        // opgegeten worden
         double dx = pm->getX() - ghost->getX();
         double dy = pm->getY() - ghost->getY();
 
@@ -339,8 +334,8 @@ void World::update(double dt) {
                 ghost->setMode(GhostModel::Mode::Eaten);
                 score->ghostEaten();
             }
-            else if (ghost->getMode() == GhostModel::Mode::Chase) {
-                // ✅ Pac-Man verliest een leven
+            else if (ghost->getMode() == GhostModel::Mode::Chase) { // opgegeten worden
+                // pacman begint met death animatie
                 startDeathAnimatie();
                 break; // Stop checking andere ghosts
             }
@@ -348,6 +343,29 @@ void World::update(double dt) {
     }
 }
 
+// --- helper: uniforme collision / door-check ------------------------------------------------
+bool World::isBlockedAt(double x, double y, double radius, bool disallowDoor) const {
+    // Controleer vier hoeken rond (x,y) met gegeven radius
+    if (isWallAt(x - radius, y - radius) ||
+        isWallAt(x - radius, y + radius) ||
+        isWallAt(x + radius, y - radius) ||
+        isWallAt(x + radius, y + radius)) {
+        return true;
+    }
+
+    if (disallowDoor) {
+        if (isGhostDoor(x - radius, y - radius) ||
+            isGhostDoor(x - radius, y + radius) ||
+            isGhostDoor(x + radius, y - radius) ||
+            isGhostDoor(x + radius, y + radius)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// --- vervang tryMoveEntity door deze kleine wrapper die helper gebruikt ---------------------
 void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
     if (!e || dir == Direction::NONE) return;
 
@@ -363,19 +381,17 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
         default: break;
     }
 
-    double radius = 0.49; // iets kleiner dan 0.5 zodat Pac-Man niet vastzit
+    // Pac-Man uses a larger collision radius and ghost-doors should block him.
+    const double radius = 0.49;
 
-    // check collision alle vier hoeken
-    if (isWallAt(nx - radius, ny - radius) ||
-        isWallAt(nx - radius, ny + radius) ||
-        isWallAt(nx + radius, ny - radius) ||
-        isWallAt(nx + radius, ny + radius)) {
+    if (isBlockedAt(nx, ny, radius, /*disallowDoor=*/true)) {
         return;
     }
 
     e->setPosition(nx, ny);
 }
 
+// --- vervang canMoveIn door deze wrapper -----------------------------------------------
 bool World::canMoveIn(Direction dir, double x, double y) const {
     if (dir == Direction::NONE) return false;
 
@@ -391,16 +407,54 @@ bool World::canMoveIn(Direction dir, double x, double y) const {
         default: break;
     }
 
-    double radius = 0.49;
+    // Pac-Man collision radius and ghostdoor should block him (disallowDoor = true)
+    const double radius = 0.49;
+    return !isBlockedAt(nx, ny, radius, /*disallowDoor=*/true);
+}
 
-    return !(isWallAt(nx - radius, ny - radius) ||
-             isWallAt(nx - radius, ny + radius) ||
-             isWallAt(nx + radius, ny - radius) ||
-             isWallAt(nx + radius, ny + radius) ||
-             isGhostDoor(nx - radius, ny - radius) ||
-             isGhostDoor(nx - radius, ny + radius) ||
-             isGhostDoor(nx + radius, ny - radius) ||
-             isGhostDoor(nx + radius, ny + radius));
+// --- vervang tryMoveGhost door gelijksoortige wrapper -----------------------------------
+void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
+    if (!e || dir == Direction::NONE) return;
+
+    double step = e->getSpeed() * dt;
+    double nx = e->getX(), ny = e->getY();
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    // Ghosts use a smaller radius and ghostdoors should NOT block them here (disallowDoor = false)
+    const double radius = 0.35;
+
+    if (isBlockedAt(nx, ny, radius, /*disallowDoor=*/false)) {
+        return;
+    }
+
+    e->setPosition(nx, ny);
+}
+
+// --- vervang canGhostMove door deze kleine wrapper --------------------------------------
+bool World::canGhostMove(Direction dir, double x, double y) const {
+    if (dir == Direction::NONE) return false;
+
+    double step = 0.05;
+    double nx = x, ny = y;
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    const double radius = 0.35;
+    // Ghosts ignore ghostdoor tiles for movement checks here (disallowDoor = false)
+    return !isBlockedAt(nx, ny, radius, /*disallowDoor=*/false);
 }
 
 
@@ -482,58 +536,6 @@ bool World::isIntersection(double x, double y) const {
     return getFreeDirections(x, y).size() >= 3;
 }
 
-void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
-    if (!e || dir == Direction::NONE) return;
-
-    double step = e->getSpeed() * dt;
-    double nx = e->getX(), ny = e->getY();
-
-    switch (dir) {
-        case Direction::UP:    ny -= step; break;
-        case Direction::DOWN:  ny += step; break;
-        case Direction::LEFT:  nx -= step; break;
-        case Direction::RIGHT: nx += step; break;
-        default: break;
-    }
-
-    double radius = 0.35;
-
-    // Check normale muren
-    if (isWallAt(nx - radius, ny - radius) ||
-        isWallAt(nx - radius, ny + radius) ||
-        isWallAt(nx + radius, ny - radius) ||
-        isWallAt(nx + radius, ny + radius)) {
-        return;
-        }
-
-    e->setPosition(nx, ny);
-}
-
-
-
-bool World::canGhostMove(Direction dir, double x, double y) const {
-    if (dir == Direction::NONE) return false;
-
-    double step = 0.05;
-    double nx = x, ny = y;
-
-    switch (dir) {
-        case Direction::UP:    ny -= step; break;
-        case Direction::DOWN:  ny += step; break;
-        case Direction::LEFT:  nx -= step; break;
-        case Direction::RIGHT: nx += step; break;
-        default: break;
-    }
-
-    double radius = 0.35;
-
-
-    // Check normale muren
-    return !(isWallAt(nx - radius, ny - radius) ||
-             isWallAt(nx - radius, ny + radius) ||
-             isWallAt(nx + radius, ny - radius) ||
-             isWallAt(nx + radius, ny + radius));
-}
 
 void World::resetPositions() {
     // Reset Pac-Man
