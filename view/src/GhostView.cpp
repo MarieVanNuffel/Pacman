@@ -62,23 +62,23 @@ void GhostView::updateSprite(double dt)
 
     if (model->getMode() == GhostModel::Mode::Eaten) {
         // Eaten mode: eyes only
-        rectTop = 80; // ✅ Ook op row 128
+        rectTop = 80;
 
         switch (lastDirection) {
             case Direction::RIGHT:
-                rectLeft = 112;
-                break;
-            case Direction::LEFT:
                 rectLeft = 128;
                 break;
-            case Direction::UP:
+            case Direction::LEFT:
                 rectLeft = 144;
                 break;
-            case Direction::DOWN:
+            case Direction::UP:
                 rectLeft = 160;
                 break;
+            case Direction::DOWN:
+                rectLeft = 176;
+                break;
             default:
-                rectLeft = 112; // default naar rechts
+                rectLeft = 128; // default naar rechts
                 break;
         }
 
