@@ -18,6 +18,7 @@
 class PacManModel : public Entity, public Subject {
 private:
     int lives = 3;
+    double deathAnimationDuration = 12 * 0.15; // 12 frames * 0.15s (houd consistent met PacmanView)
 
 public:
     PacManModel();
@@ -31,7 +32,9 @@ public:
     void loseLife() { --lives; };
     bool isGameOver() const { return lives <= 0; }
 
-
+    void die();              // notificeert observers dat Pac-Man doodgaat
+    void revive();           // notificeert observers dat Pac-Man weer leeft
+    double getDeathAnimationDuration() const { return deathAnimationDuration; }
 };
 
 

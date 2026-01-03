@@ -10,14 +10,21 @@
 #include "EntityView.h"
 #include "Camera.h"
 #include "logic/Direction.h"
+#include "logic/Observer.h"
 
 class PacManModel;
 
-class PacmanView : public EntityView {
+class PacmanView : public EntityView, public Observer {
 public:
     PacmanView(PacManModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
+
+    void startDeath(); // start de death animatie
+    void stopDeath(); // stop de death animatie
+    double getDeathDuration() const; // duur death animatie
+
+    void onNotify(int event) override;
 private:
     // animatie
     double animTimer = 0.0;
@@ -28,6 +35,11 @@ private:
     static constexpr int NUM_FRAMES = 2;
     int frameIndex = 0;
     int frames[NUM_FRAMES] = {0, 15}; // kolommen voor open, half-open, bijna dicht
+
+    // death animatie
+    bool deathPlaying = false;
+    int deathFrameIndex = 0;
+    static constexpr int NUM_DEATH_FRAMES = 12; // 12 frames voor de animatie
 
     // richting van Pac-Man
     PacManModel* model;

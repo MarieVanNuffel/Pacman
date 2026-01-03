@@ -30,6 +30,8 @@ private:
     Mode mode;
     double chaseSpeed;
 
+    bool frozen = false;
+
     double startX = 0, startY = 0;
     double releaseTimer = 0.0;
 
@@ -49,24 +51,24 @@ public:
     GhostModel(GhostType t);
     void update(double dt) override;
 
-    void setWorld(World* w) { worldRef = w; };
-    void setMode(Mode m);
-    void setSpeed(double s) { speed = s;};
-    void setFearDuration(double d) { fearDuration = d; };
-    void setChaseSpeed(double d) {chaseSpeed = d; }
+    // Getters
     Mode getMode() const;
     GhostType getGhostType() const {return type; };
     double getStartX() const {return startX; };
     double getStartY() const {return startY; };
     double getFearDuration() const {return fearDuration; };
     double getChaseSpeed() const {return chaseSpeed; }
-    void setReleaseTimer(double dt) { releaseTimer = dt; };
+    bool isFrozen() const { return frozen; }
 
-
+    // Setters
+    void setWorld(World* w) { worldRef = w; };
+    void setMode(Mode m);
+    void setSpeed(double s) { speed = s;};
+    void setFearDuration(double d) { fearDuration = d; };
+    void setChaseSpeed(double d) {chaseSpeed = d; }
     void setStartPosition(double sx, double sy) { x = sx; y = sy; startX = sx; startY = sy; }
-
-    Direction computeLockedDir(const World& world);
-
+    void setFrozen(bool f) { frozen = f; }
+    void setReleaseTimer(double dt) { releaseTimer = dt; };
 };
 
 

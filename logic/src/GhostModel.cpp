@@ -85,6 +85,10 @@ void GhostModel::update(double dt) {
     releaseTimer += dt;
     decisionTimer += dt; // update cooldown timer
 
+    if (frozen) {
+        return; // niets doen tijdens pacman death animatie
+    }
+
     // ------------------------------------------------
     // 1) WAITING mode
     // ------------------------------------------------

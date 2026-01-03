@@ -4,6 +4,8 @@
 
 #include "../include/logic/PacManModel.h"
 #include <cmath>
+#include <iostream>
+
 #include "../include/logic/Stopwatch.h"
 
 
@@ -25,5 +27,12 @@ void PacManModel::reset() {
     x = 0.0; y = 0.6; direction = Direction::NONE; desiredDirection = direction;
 }
 
+void PacManModel::die() {
+    // notify observers
+    notify(2); // 2 = Pac-Man died
+}
 
+void PacManModel::revive() {
+    notify(3); // 3 = Pac-Man revived
+}
 

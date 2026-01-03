@@ -193,6 +193,25 @@ void World::update(double dt) {
     auto pm = pacman;
     if (!pm) return;
 
+    if (deathAnimation) {
+        deathTimer += dt;
+        if (deathTimer >= deathDuration) {
+            // complete sequence: decrement life + reset positions + notify revive + unfreeze ghosts
+            pacman->loseLife();
+            resetPositions();
+
+            // notify views that pacman revived (stops death animation)
+            pacman->revive();
+
+            for (auto& g : ghosts) g->setFrozen(false);
+
+            deathAnimation = false;
+            deathTimer = 0.0;
+        }
+        // Skip the rest of normal update while death animation plays
+        return;
+    }
+
     // update timer voor coin timing
     timeSinceLastCoin += dt;
 
@@ -322,11 +341,7 @@ void World::update(double dt) {
             }
             else if (ghost->getMode() == GhostModel::Mode::Chase) {
                 // ✅ Pac-Man verliest een leven
-                pacman->loseLife();
-
-                // ✅ Reset posities
-                resetPositions();
-
+                startDeathAnimatie();
                 break; // Stop checking andere ghosts
             }
         }
@@ -641,4 +656,19 @@ std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty, bool allo
         }
     }
     return path;
+}
+
+void World::startDeathAnimatie() {
+    if (deathAnimation) return;
+    deathAnimation = true;
+    deathTimer = 0.0;
+
+    // ask PacManModel how long the animation should last
+    deathDuration = pacman->getDeathAnimationDuration();
+
+    // freeze all ghosts
+    for (auto& g : ghosts) g->setFrozen(true);
+
+    // notify views via model that pacman died (PacmanView will start its death animation via observer)
+    pacman->die();
 }

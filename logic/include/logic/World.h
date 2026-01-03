@@ -42,6 +42,12 @@ private:
     double timeSinceLastCoin = 0.0;
     int currentLevel = 1;
 
+    // pacman death animatie
+    bool deathAnimation = false;
+    double deathTimer = 0.0;
+    double deathDuration = 0.0;
+
+
     void spawnEntitiesForLevel(int levelIndex);
 
 public:
@@ -80,6 +86,7 @@ public:
     std::vector<Direction> findPath(int sx, int sy, int tx, int ty, bool allowDoor = false) const;
 
     void resetPositions();
+    void startDeathAnimatie();
     void advanceLevel();
 };
 

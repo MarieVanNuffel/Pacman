@@ -42,9 +42,51 @@ void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
     win.draw(sprite);
 }
 
+void PacmanView::startDeath() {
+    deathPlaying = true;
+    deathFrameIndex = 0;
+    animTimer = 0.0;
+}
 
-void PacmanView::updateSprite(double dt)
-{
+void PacmanView::stopDeath() {
+    deathPlaying = false;
+    deathFrameIndex = 0;
+    animTimer = 0.0;
+}
+
+double PacmanView::getDeathDuration() const {
+    return static_cast<double>(NUM_DEATH_FRAMES) * frameTime;
+}
+
+void PacmanView::onNotify(int event) {
+    if (event == 2) { // pacman dood
+        startDeath();
+    } else if (event == 3) { // pacman revived
+        stopDeath();
+    }
+}
+
+
+void PacmanView::updateSprite(double dt) {
+    if (deathPlaying) {
+        animTimer += dt;
+        if (animTimer >= frameTime) {
+            animTimer -= frameTime;
+            deathFrameIndex++;
+            if (deathFrameIndex >= NUM_DEATH_FRAMES) {
+                deathFrameIndex = NUM_DEATH_FRAMES - 1; // hold last frame until world resets model
+            }
+        }
+
+        // Death frames are on the first row after the normal frames
+        int deathStartX = NUM_FRAMES * FRAME_SIZE;
+        int frameX = deathStartX + deathFrameIndex * FRAME_SIZE;
+        int frameY = 0 * FRAME_SIZE;
+
+        sprite.setTextureRect(sf::IntRect(frameX, frameY, FRAME_SIZE, FRAME_SIZE));
+        return;
+    }
+
     animTimer += dt;
 
     // Ga naar volgende frame
