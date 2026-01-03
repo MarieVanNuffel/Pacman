@@ -3,10 +3,10 @@
 //
 
 #include "logic/World.h"
-
+#include "logic/Random.h"
 #include <iostream>
 #include <queue>
-#include "logic/Random.h"
+#include <cmath>
 #include <stdexcept>
 
 
@@ -30,34 +30,30 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
 
 
     };
-
-
     mazeHeight = maze.size();
     mazeWidth = maze[0].size();
 
-    loadLevel(1);
+    spawnEntitiesForLevel();
 }
 
 
-void World::spawnEntitiesForLevel(int levelIndex) {
-    // --- PAC-MAN ---
+void World::spawnEntitiesForLevel() {
+    // --- PACMAN ---
     pacman = std::make_shared<PacManModel>();
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 4) {
+            if (maze[y][x] == 4) { // 4 = pacman
                 pacman->setPosition(x + 0.5, y + 0.5);
             }
         }
     }
-    {
-        // factory returns {view, optional observer}
+
+        // view en observer
         auto pv = factory->createPacmanView(pacman.get());
         pacmanView = pv.first;
         auto pacmanObs = pv.second;
-        // register observer on pacman model if view provided an observer
         if (pacmanObs) {
-            pacman->addObserver(pacmanObs); // only if PacManModel inherits Subject
-        }
+            pacman->addObserver(pacmanObs);
     }
 
     // --- GHOSTS ---
@@ -68,7 +64,7 @@ void World::spawnEntitiesForLevel(int levelIndex) {
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 5) {
+            if (maze[y][x] == 5) { // 5 = ghost
                 // Bepaal type ghost op basis van spawn volgorde
                 GhostModel::GhostType type;
                 switch (ghostIndex) {
@@ -81,11 +77,11 @@ void World::spawnEntitiesForLevel(int levelIndex) {
 
                 auto ghost = std::make_shared<GhostModel>(type);
                 ghost->setStartPosition(x + 0.5, y + 0.5);
-                ghost->setWorld(this);  // super belangrijk voor AI
+                ghost->setWorld(this);  // belangrijk voor AI
 
                 ghosts.push_back(ghost);
 
-                // factory returns pair: {view, optional observer}
+                // view en observer
                 auto gv = factory->createGhostView(ghost.get());
                 ghostViews.push_back(gv.first);
                 if (gv.second) {
@@ -103,23 +99,23 @@ void World::spawnEntitiesForLevel(int levelIndex) {
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 2) {
+            if (maze[y][x] == 2) { // coin = 2
                 auto c = std::make_shared<CoinModel>();
                 c->setPosition(x + 0.5, y + 0.5);
                 coins.push_back(c);
 
-                // De factory retourneert: {shared_ptr<EntityView>, shared_ptr<Observer>}
+                // view en observer
                 auto viewPair = factory->createCoinView(c.get());
                 auto cv = viewPair.first;
                 auto cvObs = viewPair.second;
 
-                // Bewaar de view zodat het object in leven blijft
+                // bewaar de view
                 coinViews.push_back(cv);
 
-                // Registreer Score als observer (Score : public Observer)
+                // registreer Score als observer
                 c->addObserver(std::static_pointer_cast<Observer>(score));
 
-                // Als de concrete view zelf een Observer was, registreer die ook
+                // als de concrete view zelf een Observer was, registreer die ook
                 if (cvObs) {
                     c->addObserver(cvObs);
                 }
@@ -133,17 +129,17 @@ void World::spawnEntitiesForLevel(int levelIndex) {
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 3) {
+            if (maze[y][x] == 3) { // fruit = 3
                 auto f = std::make_shared<FruitModel>();
                 f->setPosition(x + 0.5, y + 0.5);
                 fruits.push_back(f);
 
-                // factory returns pair: {shared_ptr<EntityView>, shared_ptr<Observer>}
+                // view en observer
                 auto viewPair = factory->createFruitView(f.get());
                 auto fv = viewPair.first;
                 auto fvObs = viewPair.second;
 
-                // bewaar view zodat deze in leven blijft
+                // bewaar view
                 fruitViews.push_back(fv);
 
                 // registreer Score als observer
@@ -163,31 +159,82 @@ void World::spawnEntitiesForLevel(int levelIndex) {
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 6) {
+            if (maze[y][x] == 6) { // ghostdoor = 6
                 auto door = std::make_shared<GhostDoorModel>();
                 door->setPosition(x + 0.5, y + 0.5);
                 ghostDoors.push_back(door);
 
+                // view en observer
                 auto dv = factory->createGhostDoorView(door.get());
                 ghostDoorViews.push_back(dv.first);
             }
         }
     }
-
 }
 
 
+void World::advanceLevel() {
+    currentLevel++;
 
+    // Reset posities pacman en ghosts
+    resetPositions();
 
+    // Respawn coins & fruits
+    for (auto& coin : coins) coin->reset();
+    for (auto& fruit : fruits) fruit->reset();
 
-void World::loadLevel(int levelIndex) {
-    // TODO: change maze per level or randomize
-    spawnEntitiesForLevel(levelIndex);
+    // Moeilijkheid aanpassen
+    double speedMultiplier = 1.0 + currentLevel * 0.1;   // +10% sneller per level
+    double fearMultiplier = std::max(0.3, 1.0 - currentLevel * 0.1); // fear mode korter
+
+    for (auto& ghost : ghosts) {
+        ghost->setChaseSpeed(ghost->getChaseSpeed() * speedMultiplier);
+        ghost->setFearDuration(ghost->getFearDuration() * fearMultiplier);
+    }
+}
+
+void World::resetPositions() {
+    // Reset pacman
+    for (size_t y = 0; y < maze.size(); ++y) {
+        for (size_t x = 0; x < maze[y].size(); ++x) {
+            if (maze[y][x] == 4) {
+                pacman->setPosition(x + 0.5, y + 0.5);
+                pacman->setDirection(Direction::RIGHT); // naar rechts laten beginnen
+                pacman->setDesiredDirection(Direction::RIGHT);
+            }
+        }
+    }
+
+    // Reset ghosts
+    for (auto& ghost : ghosts) {
+        ghost->setPosition(ghost->getStartX(), ghost->getStartY());
+        ghost->setMode(GhostModel::Mode::Waiting);
+        ghost->setReleaseTimer(0);
+
+        if (ghost->getGhostType() == GhostModel::GhostType::AheadOfPacman2 ||
+            ghost->getGhostType() == GhostModel::GhostType::DirectChase) {
+            ghost->setDirection(Direction::LEFT);
+            } else {
+                ghost->setDirection(Direction::UP);
+            }
+    }
 }
 
 
-#include "logic/World.h"
-#include <cmath>
+void World::startDeathAnimatie() {
+    if (deathAnimation) return;
+    deathAnimation = true;
+    deathTimer = 0.0;
+
+    deathDuration = pacman->getDeathAnimationDuration();
+
+    // freeze alle ghosts
+    for (auto& g : ghosts) g->setFrozen(true);
+
+    // notify views via observer
+    pacman->die();
+}
+
 
 void World::update(double dt) {
     auto pm = pacman;
@@ -343,9 +390,20 @@ void World::update(double dt) {
     }
 }
 
-// --- helper: uniforme collision / door-check ------------------------------------------------
+// Collision helpers
+bool World::isWallAt(double x, double y) const {
+    int cx = static_cast<int>(x);
+    int cy = static_cast<int>(y);
+
+    if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight) // buiten de map
+        return true;
+
+    return maze[cy][cx] == 1;  // 1 = muur
+}
+
+
 bool World::isBlockedAt(double x, double y, double radius, bool disallowDoor) const {
-    // Controleer vier hoeken rond (x,y) met gegeven radius
+    // Controleer vier hoeken rond (x,y) met gegeven collision radius
     if (isWallAt(x - radius, y - radius) ||
         isWallAt(x - radius, y + radius) ||
         isWallAt(x + radius, y - radius) ||
@@ -353,7 +411,7 @@ bool World::isBlockedAt(double x, double y, double radius, bool disallowDoor) co
         return true;
     }
 
-    if (disallowDoor) {
+    if (disallowDoor) { // als er niet door de deur gegaan mag worden, wordt het gezien als muur
         if (isGhostDoor(x - radius, y - radius) ||
             isGhostDoor(x - radius, y + radius) ||
             isGhostDoor(x + radius, y - radius) ||
@@ -361,8 +419,18 @@ bool World::isBlockedAt(double x, double y, double radius, bool disallowDoor) co
             return true;
         }
     }
-
     return false;
+}
+
+
+bool World::isGhostDoor(double x, double y) const {
+    int cx = static_cast<int>(x);
+    int cy = static_cast<int>(y);
+
+    if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight)
+        return true;
+
+    return maze[cy][cx] == 6; // 6 = ghostdoor
 }
 
 // --- vervang tryMoveEntity door deze kleine wrapper die helper gebruikt ---------------------
@@ -499,26 +567,6 @@ std::pair<double, double> World::predictStep(double x, double y, Direction d) co
 }
 
 
-bool World::isWallAt(double x, double y) const {
-    int cx = static_cast<int>(x);
-    int cy = static_cast<int>(y);
-
-    if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight)
-        return true;
-
-    return maze[cy][cx] == 1;
-}
-
-bool World::isGhostDoor(double x, double y) const {
-    int cx = static_cast<int>(x);
-    int cy = static_cast<int>(y);
-
-    if (cx < 0 || cy < 0 || cx >= mazeWidth || cy >= mazeHeight)
-        return true;
-
-    return maze[cy][cx] == 6;
-}
-
 bool World::isAlignedWithGrid(double x, double y) const {
     const double epsilon = 0.1; // ruimere marge
 
@@ -536,53 +584,6 @@ bool World::isIntersection(double x, double y) const {
     return getFreeDirections(x, y).size() >= 3;
 }
 
-
-void World::resetPositions() {
-    // Reset Pac-Man
-    for (size_t y = 0; y < maze.size(); ++y) {
-        for (size_t x = 0; x < maze[y].size(); ++x) {
-            if (maze[y][x] == 4) {
-                pacman->setPosition(x + 0.5, y + 0.5);
-                pacman->setDirection(Direction::NONE);
-                pacman->setDesiredDirection(Direction::NONE);
-            }
-        }
-    }
-
-    // Reset ghosts
-    for (auto& ghost : ghosts) {
-        ghost->setPosition(ghost->getStartX(), ghost->getStartY());
-        ghost->setMode(GhostModel::Mode::Waiting);
-        ghost->setReleaseTimer(0);
-
-        if (ghost->getGhostType() == GhostModel::GhostType::AheadOfPacman2 ||
-            ghost->getGhostType() == GhostModel::GhostType::DirectChase) {
-            ghost->setDirection(Direction::LEFT);
-            } else {
-                ghost->setDirection(Direction::UP);
-            }
-    }
-}
-
-void World::advanceLevel() {
-    currentLevel++;
-
-    // Reset posities Pac-Man en ghosts
-    resetPositions();
-
-    // Respawn coins & fruits
-    for (auto& coin : coins) coin->reset();
-    for (auto& fruit : fruits) fruit->reset();
-
-    // Moeilijkheid aanpassen
-    double speedMultiplier = 1.0 + currentLevel * 0.1;   // +10% per level
-    double fearMultiplier = std::max(0.3, 1.0 - currentLevel * 0.1); // fear korter, min 0.3
-
-    for (auto& ghost : ghosts) {
-        ghost->setChaseSpeed(ghost->getChaseSpeed() * speedMultiplier);
-        ghost->setFearDuration(ghost->getFearDuration() * fearMultiplier);
-    }
-}
 
 std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty, bool allowDoor) const {
     std::vector<Direction> empty;
@@ -658,19 +659,4 @@ std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty, bool allo
         }
     }
     return path;
-}
-
-void World::startDeathAnimatie() {
-    if (deathAnimation) return;
-    deathAnimation = true;
-    deathTimer = 0.0;
-
-    // ask PacManModel how long the animation should last
-    deathDuration = pacman->getDeathAnimationDuration();
-
-    // freeze all ghosts
-    for (auto& g : ghosts) g->setFrozen(true);
-
-    // notify views via model that pacman died (PacmanView will start its death animation via observer)
-    pacman->die();
 }
