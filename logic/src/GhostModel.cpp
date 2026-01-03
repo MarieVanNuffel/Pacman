@@ -63,9 +63,9 @@ void GhostModel::setMode(Mode m) {
         speed = 3.0;
     }
 
-    if (m == Mode::Chase) {
-        speed = 2.0;
-    }
+    // if (m == Mode::Chase) {
+    //     speed = 2.0;
+    // }
 }
 
 GhostModel::Mode GhostModel::getMode() const {
@@ -129,21 +129,54 @@ void GhostModel::update(double dt) {
 
     // ------------------------------------------------
     // 3) EATEN → terug naar spawn
+    //    -> MINIMALE AANPASSING: gebruik exact dezelfde per-tile logica als chase, maar
+    //       doel = spawn tile, en bepaal beste richting via breadth-first (World::findPath)
+    //       met allowDoor = true, en verplaats ALTIJD via tryMoveGhost (geen directe x/y!)
     // ------------------------------------------------
-    if (mode == Mode::Eaten) {
-        double dx = startX - x;
-        double dy = startY - y;
-        double len = std::abs(dx) + std::abs(dy);
+     if (mode == Mode::Eaten) {
+        double snapX = std::floor(x) + 0.5;
+        double snapY = std::floor(y) + 0.5;
+        double snapEpsilon = 0.15;
+        bool nearCenter = (std::abs(x - snapX) < snapEpsilon && std::abs(y - snapY) < snapEpsilon);
 
-        if (len > 0.001) {
-            x += (dx / len) * speed * dt;
-            y += (dy / len) * speed * dt;
+        // ✅ Corridor centering: snap orthogonale richting
+        double centerForceEpsilon = 0.20;
+        if (direction == Direction::UP || direction == Direction::DOWN) {
+            if (std::abs(x - snapX) < centerForceEpsilon) { x = snapX; setPosition(x, y); }
+        } else if (direction == Direction::LEFT || direction == Direction::RIGHT) {
+            if (std::abs(y - snapY) < centerForceEpsilon) { y = snapY; setPosition(x, y); }
         }
 
-        if (std::abs(x - startX) < 0.05 &&
-            std::abs(y - startY) < 0.05) {
+        // gebruik gecentreerde coords voor BFS
+        double currentX = x, currentY = y;
+        if (nearCenter) {
+            currentX = snapX;
+            currentY = snapY;
+        }
+
+        // compute tile coords for BFS
+        int csx = static_cast<int>(std::floor(currentX));
+        int csy = static_cast<int>(std::floor(currentY));
+        int tx = static_cast<int>(std::floor(startX));
+        int ty = static_cast<int>(std::floor(startY));
+
+         // boven de ghostdoor moet je naar beneden (specifiek deze map)
+         if (direction != Direction::DOWN) {
+             for (const auto& door : worldRef->getGhostDoors()) {
+                 if (nearCenter && door->aboveGhostDoor(snapX, snapY)) {
+                     direction = Direction::DOWN;
+                     desiredDirection = Direction::DOWN;
+                     worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), Direction::DOWN, dt);
+                     return;
+                 }
+             }
+         }
+
+        // If we are already basically at spawn center, finish eaten
+        if (std::abs(x - startX) < 0.05 && std::abs(y - startY) < 0.05) {
             x = startX;
             y = startY;
+            setPosition(x, y);
             setMode(Mode::Chase);
             releaseTimer = 0.0;
 
@@ -154,12 +187,78 @@ void GhostModel::update(double dt) {
                 desiredDirection = Direction::UP;
                 direction = Direction::UP;
             }
+            return;
+        }
+
+        // ✅ Alleen nieuwe richting kiezen als we near center zijn (bij intersection)
+        // Check of we door kunnen bewegen (ghostdoor moet passeerbaar zijn in eaten mode)
+        bool canMove = worldRef->canGhostMove(direction, x, y);
+
+        // ✅ Als we geblokkeerd zijn door ghostdoor, kijk of we erin mogen
+        if (!canMove) {
+            double checkStep = 0.05;
+            double testX = x, testY = y;
+            switch (direction) {
+                case Direction::UP:    testY -= checkStep; break;
+                case Direction::DOWN:  testY += checkStep; break;
+                case Direction::LEFT:  testX -= checkStep; break;
+                case Direction::RIGHT: testX += checkStep; break;
+                default: break;
+            }
+
+            // Check of we richting ghostdoor gaan en of we erin mogen
+            // for (const auto& door : worldRef->getGhostDoors()) {
+            //     if (door->isGhostInDoorZone(testX, testY)) {
+            //         canMove = true; // ✅ Eaten ghosts mogen door ghostdoor
+            //         break;
+            //     }
+            // }
+        }
+
+        bool atIntersection = nearCenter && worldRef->isIntersection(snapX, snapY);
+
+        // Als we gewoon rechtdoor kunnen en niet bij een kruising zijn, ga door
+        if (canMove && !atIntersection) {
+            worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+            return;
+        }
+
+        // Als geblokkeerd, snap as naar center
+        if (!canMove) {
+            if (direction == Direction::UP || direction == Direction::DOWN) y = snapY;
+            else if (direction == Direction::LEFT || direction == Direction::RIGHT) x = snapX;
+            setPosition(x, y);
+        }
+
+        // Ask world for BFS path (allowing ghostdoor)
+        std::vector<Direction> path;
+        if (worldRef) path = worldRef->findPath(csx, csy, tx, ty, true);
+
+        if (!path.empty()) {
+            Direction cand = path.front();
+
+            // avoid immediate reverse unless that's the only option
+            if (isOpposite(cand, direction) && path.size() > 1) {
+                std::vector<Direction> viable = worldRef->getFreeDirections(currentX, currentY);
+                for (Direction alt : viable) {
+                    if (!isOpposite(alt, direction)) { cand = alt; break; }
+                }
+            }
+
+            desiredDirection = cand;
+            direction = cand;
+            worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+        } else {
+            // BFS failed: continue in current direction if possible
+            if (worldRef->canGhostMove(direction, x, y)) {
+                worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+            }
         }
         return;
     }
 
     // ------------------------------------------------
-    // 4) CHASE / FEAR mode core
+    // 4) CHASE / FEAR mode core (unchanged aside from minimal centering / cooldown)
     // ------------------------------------------------
     Direction chosen = Direction::NONE;
     double snapX = std::floor(x) + 0.5;
@@ -205,8 +304,11 @@ void GhostModel::update(double dt) {
 
     // If current direction is blocked, snap axis to center to avoid corner stuck and allow immediate decision
     if (!canMove) {
-        if (direction == Direction::UP || direction == Direction::DOWN) y = snapY;
-        else if (direction == Direction::LEFT || direction == Direction::RIGHT) x = snapX;
+        if (direction == Direction::UP || direction == Direction::DOWN) {
+            y = snapY;
+        } else if (direction == Direction::LEFT || direction == Direction::RIGHT) {
+            x = snapX;
+        }
         setPosition(x, y);
         // set decisionTimer high so we will evaluate options below even if cooldown not passed
         decisionTimer = decisionCooldown;

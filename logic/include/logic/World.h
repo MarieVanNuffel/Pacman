@@ -77,9 +77,7 @@ public:
     bool isIntersection(double x, double y) const;
     void tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt);
     bool canGhostMove(Direction dir, double x, double y) const;
-    bool isGhostDoorTile(int x, int y) const;
-    bool isSpawnTile(int x, int y) const;
-    bool canGhostPassDoor(double fromX, double fromY, double toX, double toY) const;
+    std::vector<Direction> findPath(int sx, int sy, int tx, int ty, bool allowDoor = false) const;
 
     void resetPositions();
     void advanceLevel();

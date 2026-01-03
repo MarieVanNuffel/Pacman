@@ -19,6 +19,9 @@ public:
     // ✅ NIEUW: Check of ghost in de "deur zone" is (onder/bij deur)
     bool isGhostInDoorZone(double ghostX, double ghostY) const;
 
+    // Check of ghost boven de deur zit
+    bool aboveGhostDoor(double ghostX, double ghostY) const;
+
     void update(double) override {}
 };
 

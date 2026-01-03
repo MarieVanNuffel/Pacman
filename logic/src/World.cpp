@@ -5,7 +5,7 @@
 #include "logic/World.h"
 
 #include <iostream>
-
+#include <queue>
 #include "logic/Random.h"
 #include <stdexcept>
 
@@ -520,18 +520,6 @@ bool World::canGhostMove(Direction dir, double x, double y) const {
              isWallAt(nx + radius, ny + radius));
 }
 
-
-
-bool World::isGhostDoorTile(int x, int y) const {
-    if (x < 0 || y < 0 || x >= mazeWidth || y >= mazeHeight)
-        return false;
-    return maze[y][x] == 6;
-}
-
-bool World::isSpawnTile(int x, int y) const {
-    return maze[y][x] == 5;
-}
-
 void World::resetPositions() {
     // Reset Pac-Man
     for (size_t y = 0; y < maze.size(); ++y) {
@@ -577,4 +565,80 @@ void World::advanceLevel() {
         ghost->setSpeed(ghost->getSpeed() * speedMultiplier);
         ghost->setFearDuration(ghost->getFearDuration() * fearMultiplier);
     }
+}
+
+std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty, bool allowDoor) const {
+    std::vector<Direction> empty;
+    if (sx == tx && sy == ty) return empty;
+
+    if (sx < 0 || sy < 0 || sx >= mazeWidth || sy >= mazeHeight) return empty;
+    if (tx < 0 || ty < 0 || tx >= mazeWidth || ty >= mazeHeight) return empty;
+
+    auto passable = [&](int x, int y) -> bool {
+        if (x < 0 || y < 0 || x >= mazeWidth || y >= mazeHeight) return false;
+        if (maze[y][x] == 1) return false; // muur
+        if (!allowDoor && maze[y][x] == 6) return false; // ghostdoor niet toegestaan tenzij expliciet
+        return true;
+    };
+
+    int W = mazeWidth;
+    int H = mazeHeight;
+    std::vector<int> parent(W * H, -1);
+    std::queue<std::pair<int,int>> q;
+    std::vector<std::vector<bool>> vis(H, std::vector<bool>(W,false));
+
+    q.push({sx, sy});
+    vis[sy][sx] = true;
+
+    const int dx[4] = {0, 0, -1, 1};
+    const int dy[4] = {-1, 1, 0, 0};
+    const Direction dirMap[4] = {Direction::UP, Direction::DOWN, Direction::LEFT, Direction::RIGHT};
+
+    bool found = false;
+    while (!q.empty()) {
+        auto [cx, cy] = q.front(); q.pop();
+        if (cx == tx && cy == ty) { found = true; break; }
+        for (int i = 0; i < 4; ++i) {
+            int nx = cx + dx[i];
+            int ny = cy + dy[i];
+            if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+            if (vis[ny][nx]) continue;
+            if (!passable(nx, ny)) continue;
+            vis[ny][nx] = true;
+            parent[ny * W + nx] = cy * W + cx; // index van parent
+            q.push({nx, ny});
+        }
+    }
+
+    if (!found) return empty;
+
+    // reconstruct path from target back to start as tiles, then convert to Directions
+    std::vector<std::pair<int,int>> revTiles;
+    int idx = ty * W + tx;
+    while (idx != -1) {
+        int px = idx % W;
+        int py = idx / W;
+        revTiles.push_back({px, py});
+        if (px == sx && py == sy) break;
+        idx = parent[idx];
+    }
+    if (revTiles.empty()) return empty;
+
+    std::reverse(revTiles.begin(), revTiles.end());
+    // convert neighbouring tile pairs into directions
+    std::vector<Direction> path;
+    for (size_t i = 1; i < revTiles.size(); ++i) {
+        int px = revTiles[i-1].first;
+        int py = revTiles[i-1].second;
+        int cx = revTiles[i].first;
+        int cy = revTiles[i].second;
+        if (cx == px + 1 && cy == py) path.push_back(Direction::RIGHT);
+        else if (cx == px - 1 && cy == py) path.push_back(Direction::LEFT);
+        else if (cx == px && cy == py + 1) path.push_back(Direction::DOWN);
+        else if (cx == px && cy == py - 1) path.push_back(Direction::UP);
+        else {
+            // unexpected; skip
+        }
+    }
+    return path;
 }

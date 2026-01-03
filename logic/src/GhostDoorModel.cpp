@@ -28,3 +28,15 @@ bool GhostDoorModel::isGhostInDoorZone(double ghostX, double ghostY) const {
     return sameColumn && (inDoorTile || underDoorTile);
 }
 
+bool GhostDoorModel::aboveGhostDoor(double ghostX, double ghostY) const {
+    int ghostTileX = static_cast<int>(std::floor(ghostX));
+    int ghostTileY = static_cast<int>(std::floor(ghostY));
+
+    int doorTileX = static_cast<int>(std::floor(getX()));
+    int doorTileY = static_cast<int>(std::floor(getY()));
+
+    bool sameColumn = (ghostTileX == doorTileX);
+    bool aboveDoorTile = (ghostTileY == doorTileY - 1);
+
+    return sameColumn && aboveDoorTile;
+}
