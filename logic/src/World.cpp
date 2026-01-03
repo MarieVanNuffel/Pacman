@@ -562,7 +562,7 @@ void World::advanceLevel() {
     double fearMultiplier = std::max(0.3, 1.0 - currentLevel * 0.1); // fear korter, min 0.3
 
     for (auto& ghost : ghosts) {
-        ghost->setSpeed(ghost->getSpeed() * speedMultiplier);
+        ghost->setChaseSpeed(ghost->getChaseSpeed() * speedMultiplier);
         ghost->setFearDuration(ghost->getFearDuration() * fearMultiplier);
     }
 }

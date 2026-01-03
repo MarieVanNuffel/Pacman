@@ -18,7 +18,8 @@ static bool isOpposite(Direction a, Direction b) {
 }
 
 GhostModel::GhostModel(GhostType t) : type(t) {
-    speed = 2.0;
+    chaseSpeed = 2.0;
+    speed = chaseSpeed;
     mode = Mode::Waiting;
     // decisionTimer en decisionCooldown kunnen ook hier worden geïnitialiseerd als je dat wilt:
     decisionTimer = decisionCooldown; // start met cooldown voldaan zodat eerste beslissing meteen mag
@@ -62,10 +63,6 @@ void GhostModel::setMode(Mode m) {
     if (m == Mode::Eaten) {
         speed = 3.0;
     }
-
-    // if (m == Mode::Chase) {
-    //     speed = 2.0;
-    // }
 }
 
 GhostModel::Mode GhostModel::getMode() const {
@@ -178,6 +175,7 @@ void GhostModel::update(double dt) {
             y = startY;
             setPosition(x, y);
             setMode(Mode::Chase);
+            setSpeed(chaseSpeed);
             releaseTimer = 0.0;
 
             if (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase) {
@@ -205,14 +203,6 @@ void GhostModel::update(double dt) {
                 case Direction::RIGHT: testX += checkStep; break;
                 default: break;
             }
-
-            // Check of we richting ghostdoor gaan en of we erin mogen
-            // for (const auto& door : worldRef->getGhostDoors()) {
-            //     if (door->isGhostInDoorZone(testX, testY)) {
-            //         canMove = true; // ✅ Eaten ghosts mogen door ghostdoor
-            //         break;
-            //     }
-            // }
         }
 
         bool atIntersection = nearCenter && worldRef->isIntersection(snapX, snapY);
