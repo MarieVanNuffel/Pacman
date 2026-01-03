@@ -22,6 +22,7 @@ private:
     double frameTime = 0.15;
 
     // sprite sheet frames
+    static constexpr int FRAME_SIZE = 16;
     static constexpr int NUM_FRAMES = 2;
     int frameIndex = 0;
     int frames[NUM_FRAMES] = {0, 16}; // kolommen voor bewegingen

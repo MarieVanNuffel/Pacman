@@ -46,7 +46,6 @@ void GhostView::updateSprite(double dt)
         lastDirection = model->getDirection();
     }
 
-    constexpr int FRAME = 16;
     constexpr int GHOST_BASE_Y = 64; // eerste ghostrij (rood)
 
     int rectLeft = 0;
@@ -55,9 +54,9 @@ void GhostView::updateSprite(double dt)
     if (model->getMode() == GhostModel::Mode::Fear) {
         // Fear mode: blue ghost sprites
         rectTop = GHOST_BASE_Y;
-        rectLeft = 128 + frameIndex * FRAME;
+        rectLeft = 128 + frameIndex * FRAME_SIZE;
 
-        sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
+        sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
         return; // ✅ Klaar, geen verdere processing
     }
 
@@ -83,7 +82,7 @@ void GhostView::updateSprite(double dt)
                 break;
         }
 
-        sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
+        sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
         return; // ✅ Klaar
     }
 
@@ -96,27 +95,27 @@ void GhostView::updateSprite(double dt)
         case GhostModel::GhostType::DirectChase:    colorIndex = 3; break; // oranje
     }
 
-    rectTop = GHOST_BASE_Y + colorIndex * FRAME;
+    rectTop = GHOST_BASE_Y + colorIndex * FRAME_SIZE;
 
     // --- RICHTING → KOLOM ---
     switch (lastDirection) {
         case Direction::RIGHT:
-            rectLeft = 0 + frameIndex * FRAME;
+            rectLeft = 0 + frameIndex * FRAME_SIZE;
             break;
         case Direction::LEFT:
-            rectLeft = 32 + frameIndex * FRAME;
+            rectLeft = 32 + frameIndex * FRAME_SIZE;
             break;
         case Direction::UP:
-            rectLeft = 64 + frameIndex * FRAME;
+            rectLeft = 64 + frameIndex * FRAME_SIZE;
             break;
         case Direction::DOWN:
-            rectLeft = 96 + frameIndex * FRAME;
+            rectLeft = 96 + frameIndex * FRAME_SIZE;
             break;
         default:
             return;
     }
 
-    sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME, FRAME));
+    sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
 }
 
 
