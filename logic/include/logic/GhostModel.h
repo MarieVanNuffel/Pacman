@@ -32,6 +32,9 @@ private:
     double startX = 0, startY = 0;
     double releaseTimer = 0.0;
 
+    double decisionTimer = 0.0;           // tijd sinds laatste richting-keuze
+    double decisionCooldown = 0.12;      // seconden om een keuze vast te houden
+
     // Fear mode
     double fearTimer = 0.0;
     double fearDuration = 6.0;
