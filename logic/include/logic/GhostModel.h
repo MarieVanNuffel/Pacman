@@ -91,7 +91,7 @@ public:
      *
      * @param w Pointer naar World.
      */
-    void setWorld(World* w) { worldRef = w; }
+    void setWorld(const std::shared_ptr<World>& w) { worldRef = w; };
     /**
      * @brief Zet de mode van de ghost.
      *
@@ -156,7 +156,7 @@ private:
     double fearTimer = 0.0;
     double fearDuration = 6.0;
 
-    World* worldRef = nullptr;
+    std::weak_ptr<World> worldRef;
 };
 
 

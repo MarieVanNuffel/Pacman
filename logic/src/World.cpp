@@ -68,7 +68,7 @@ void World::spawnEntitiesForLevel() {
 
                 auto ghost = std::make_shared<GhostModel>(type);
                 ghost->setStartPosition(x + 0.5, y + 0.5);
-                ghost->setWorld(this);  // belangrijk voor AI
+                ghost->setWorld(shared_from_this()); // belangrijk voor AI
 
                 ghosts.push_back(ghost);
                 ghostIndex++;

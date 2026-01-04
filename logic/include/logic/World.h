@@ -31,7 +31,7 @@
  *
  * @note World behoort tot de logic library en bevat geen SFML‑afhankelijkheden.
  */
-class World {
+class World : public std::enable_shared_from_this<World> {
 private:
     std::shared_ptr<IEntityFactory> factory;
     std::shared_ptr<PacManModel> pacman;
