@@ -7,24 +7,26 @@
 
 #pragma once
 #include "Entity.h"
+#include "Subject.h"
 
+namespace logic {
+    class GhostDoorModel : public Entity, public Subject {
+    public:
+        GhostDoorModel() = default;
+        ~GhostDoorModel() override = default;
 
-class GhostDoorModel : public Entity {
-public:
-    GhostDoorModel() = default;
+        // Ghosts mogen enkel UIT spawn door de deur
+        bool canGhostPass(double fromX, double fromY) const;
 
-    // Ghosts mogen enkel UIT spawn door de deur
-    bool canGhostPass(double fromX, double fromY) const;
+        // ✅ NIEUW: Check of ghost in de "deur zone" is (onder/bij deur)
+        bool isGhostInDoorZone(double ghostX, double ghostY) const;
 
-    // ✅ NIEUW: Check of ghost in de "deur zone" is (onder/bij deur)
-    bool isGhostInDoorZone(double ghostX, double ghostY) const;
+        // Check of ghost boven de deur zit
+        bool aboveGhostDoor(double ghostX, double ghostY) const;
 
-    // Check of ghost boven de deur zit
-    bool aboveGhostDoor(double ghostX, double ghostY) const;
-
-    void update(double) override {}
-};
-
+        void update(double) override {}
+    };
+}
 
 
 

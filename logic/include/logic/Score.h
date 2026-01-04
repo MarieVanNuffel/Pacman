@@ -14,34 +14,34 @@
 
 #include "Observer.h"
 
+namespace logic {
+    class Score : public Observer {
+    public:
+        Score();
 
-class Score : public Observer {
-public:
-    Score();
+        // score mutators
+        void coinCollected(double timeSinceLastCoin);
+        void levelCleared();
+        void fruitCollected();
+        void ghostEaten();
+        void pacmanDied();
 
-    // score mutators
-    void coinCollected(double timeSinceLastCoin);
-    void levelCleared();
-    void fruitCollected();
-    void ghostEaten();
-    void pacmanDied();
+        // Observer interface
+        void onNotify(int event) override;
 
-    // Observer interface
-    void onNotify(int event) override;
+        // highscore persistence (simple in-memory API)
+        void loadHighScores();
+        void saveHighScores();
 
-    // highscore persistence (simple in-memory API)
-    void loadHighScores();
-    void saveHighScores();
+        // getters
+        int getCurrentScore() const { return currentScore; }
+        const std::vector<int>& getHighScores() const { return highScores; }
 
-    // getters
-    int getCurrentScore() const { return currentScore; }
-    const std::vector<int>& getHighScores() const { return highScores; }
-
-private:
-    int currentScore = 0;
-    std::vector<int> highScores;
-};
-
+    private:
+        int currentScore = 0;
+        std::vector<int> highScores;
+    };
+}
 
 
 

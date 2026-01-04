@@ -4,18 +4,20 @@
 
 #include "logic/Stopwatch.h"
 
-Stopwatch& Stopwatch::instance() {
-    static Stopwatch inst;  // lokaal static object voor singleton
-    return inst;
-}
+namespace logic {
+    Stopwatch& Stopwatch::instance() {
+        static Stopwatch inst;  // lokaal static object voor singleton
+        return inst;
+    }
 
-Stopwatch::Stopwatch() {
-    last = std::chrono::steady_clock::now();
-}
+    Stopwatch::Stopwatch() {
+        last = std::chrono::steady_clock::now();
+    }
 
-double Stopwatch::tick() {
-    auto now = std::chrono::steady_clock::now();
-    std::chrono::duration<double> diff = now - last;
-    last = now;
-    return diff.count();
+    double Stopwatch::tick() {
+        auto now = std::chrono::steady_clock::now();
+        std::chrono::duration<double> diff = now - last;
+        last = now;
+        return diff.count();
+    }
 }

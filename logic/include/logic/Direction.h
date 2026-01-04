@@ -8,7 +8,8 @@
 
 #pragma once
 
-enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };
-
+namespace logic {
+    enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };
+}
 
 #endif //PACMANGAME_DIRECTION_H

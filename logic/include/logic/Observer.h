@@ -7,14 +7,14 @@
 
 
 #pragma once
-#include <vector>
 
-class Observer {
-public:
-    virtual ~Observer() = default;
-    virtual void onNotify(int event) = 0;
-};
-
+namespace logic {
+    class Observer {
+    public:
+        virtual ~Observer() = default;
+        virtual void onNotify(int event) = 0;
+    };
+}
 
 
 #endif //PACMANGAME_OBSERVER_H

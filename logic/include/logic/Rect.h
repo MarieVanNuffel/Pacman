@@ -7,18 +7,19 @@
 
 #pragma once
 
-struct Rect {
-    double x;
-    double y;
-    double w;
-    double h;
+namespace logic {
+    struct Rect {
+        double x;
+        double y;
+        double w;
+        double h;
 
 
-    bool intersects(const Rect& other) const {
-        return !(x + w/2 < other.x - other.w/2 || other.x + other.w/2 < x - w/2 ||
-        y + h/2 < other.y - other.h/2 || other.y + other.h/2 < y - h/2);
-    }
-};
-
+        bool intersects(const Rect& other) const {
+            return !(x + w/2 < other.x - other.w/2 || other.x + other.w/2 < x - w/2 ||
+            y + h/2 < other.y - other.h/2 || other.y + other.h/2 < y - h/2);
+        }
+    };
+}
 
 #endif //PACMANGAME_RECT_H

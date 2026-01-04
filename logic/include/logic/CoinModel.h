@@ -10,21 +10,24 @@
 #include "Entity.h"
 #include "Subject.h"
 
-class CoinModel : public Entity, public Subject {
-public:
-    CoinModel() = default;
-    ~CoinModel() override = default;
+namespace logic {
+    class CoinModel : public Entity, public Subject {
+    public:
+        CoinModel() = default;
+        ~CoinModel() override = default;
 
-    // mark collected and notify observers
-    void collect();
+        // mark collected and notify observers
+        void collect();
 
-    // coin is static; implement update as no-op so class is not abstract
-    void update(double dt) override;
+        // coin is static; implement update as no-op so class is not abstract
+        void update(double dt) override;
 
-    void reset();
+        void reset();
 
-    bool collected = false;
-};
+        bool collected = false;
+    };
+
+}
 
 
 

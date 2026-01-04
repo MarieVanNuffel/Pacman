@@ -18,29 +18,34 @@ class PacManModel;
 class GhostModel;
 class CoinModel;
 class FruitModel;
+
 class EntityView;
-class Observer;
 
-class IEntityFactory {
-public:
-    virtual ~IEntityFactory() = default;
+namespace logic {
+    class Observer; // forward
+}
 
-    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
-    createPacmanView(PacManModel* model) = 0;
+namespace logic {
+    class IEntityFactory {
+    public:
+        virtual ~IEntityFactory() = default;
 
-    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
-    createGhostView(GhostModel* model) = 0;
+        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        createPacmanView(PacManModel* model) = 0;
 
-    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
-    createCoinView(CoinModel* model) = 0;
+        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        createGhostView(GhostModel* model) = 0;
 
-    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
-    createFruitView(FruitModel* model) = 0;
+        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        createCoinView(CoinModel* model) = 0;
 
-    virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
-    createGhostDoorView(GhostDoorModel* model) = 0;
-};
+        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        createFruitView(FruitModel* model) = 0;
 
+        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        createGhostDoorView(GhostDoorModel* model) = 0;
+    };
+}
 
 
 

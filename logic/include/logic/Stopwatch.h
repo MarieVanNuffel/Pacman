@@ -8,17 +8,18 @@
 #pragma once
 #include <chrono>
 
-class Stopwatch {
-public:
-    static Stopwatch& instance();
+namespace logic {
+    class Stopwatch {
+    public:
+        static Stopwatch& instance();
 
-    double tick(); // returns deltaTime
+        double tick(); // returns deltaTime
 
-private:
-    Stopwatch();
-    std::chrono::steady_clock::time_point last;
-};
-
+    private:
+        Stopwatch();
+        std::chrono::steady_clock::time_point last;
+    };
+}
 
 
 #endif //PACMAN_STOPWATCH_H

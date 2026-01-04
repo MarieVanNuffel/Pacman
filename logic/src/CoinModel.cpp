@@ -3,21 +3,22 @@
 //
 
 #include "../include/logic/CoinModel.h"
-
 #include "logic/Events.h"
 
-void CoinModel::collect() {
-    if (!collected) {
-        collected = true;
-        notify(static_cast<int>(logic::Event::COIN_COLLECTED));
+namespace logic {
+    void CoinModel::collect() {
+        if (!collected) {
+            collected = true;
+            notify(static_cast<int>(logic::Event::COIN_COLLECTED));
+        }
     }
-}
 
-void CoinModel::reset() {
-    collected = false;
-    notify(static_cast<int>(logic::Event::COIN_RESPAWN));
-}
+    void CoinModel::reset() {
+        collected = false;
+        notify(static_cast<int>(logic::Event::COIN_RESPAWN));
+    }
 
-void CoinModel::update(double dt) {
-    // statisch, dus niet nodig
+    void CoinModel::update(double dt) {
+        // statisch, dus niet nodig
+    }
 }
