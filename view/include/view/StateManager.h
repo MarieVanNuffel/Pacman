@@ -29,7 +29,7 @@ public:
 private:
     sf::RenderWindow& window;
     std::vector<std::shared_ptr<State>> states;
-    std::shared_ptr<logic::Score> score;;
+    std::shared_ptr<logic::Score> score;
 };
 
 #endif

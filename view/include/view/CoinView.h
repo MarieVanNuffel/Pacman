@@ -7,9 +7,12 @@
 
 #pragma once
 #include "EntityView.h"
-#include "logic/CoinModel.h"
 #include "Camera.h"
 #include "logic/Observer.h"
+
+namespace logic {
+    class CoinModel;
+}
 
 class CoinView : public EntityView, public logic::Observer {
 public:

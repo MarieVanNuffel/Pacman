@@ -9,8 +9,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "view/StateManager.h"
-#include "view/Levelstate.h"
-#include "Camera.h"
+#include "view/LevelState.h"
 
 class Game {
 public:

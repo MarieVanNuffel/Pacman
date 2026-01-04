@@ -8,12 +8,16 @@
 
 #include "Camera.h"
 #include "EntityView.h"
-#include "logic/GhostModel.h"
+#include "logic/Direction.h"
+
+namespace logic {
+    class GhostModel;
+}
 
 
 class GhostView : public EntityView {
 public:
-    GhostView(logic::GhostModel* m);
+    explicit GhostView(logic::GhostModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 private:

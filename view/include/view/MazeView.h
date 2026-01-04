@@ -9,17 +9,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "../../logic/include/logic/World.h"
-
-#pragma once
-#include <SFML/Graphics.hpp>
-
-#include "Camera.h"
 #include "logic/World.h"
+#include "Camera.h"
+
 
 class MazeView {
 public:
-    MazeView(const logic::World* w);
+    explicit MazeView(const logic::World* w);
     void draw(sf::RenderWindow& win, const Camera& cam);
 
 private:

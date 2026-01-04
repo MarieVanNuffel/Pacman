@@ -6,7 +6,11 @@
 #define PACMANGAME_FRUITVIEW_H
 
 #include "EntityView.h"
-#include "logic/FruitModel.h"
+#include "logic/Observer.h"
+
+namespace logic {
+    class FruitModel;
+}
 
 class FruitView : public EntityView, public logic::Observer {
 public:

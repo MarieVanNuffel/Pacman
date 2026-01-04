@@ -19,7 +19,8 @@ namespace logic {
 class EntityView {
 public:
     virtual ~EntityView() = default;
-    EntityView(logic::Entity* model);
+
+    explicit EntityView(logic::Entity* model);
 
     virtual void draw(sf::RenderWindow&, const Camera&) = 0;
     virtual void updateSprite(double dt) = 0;

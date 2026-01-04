@@ -9,13 +9,16 @@
 #include <SFML/Graphics.hpp>
 #include "Camera.h"
 #include "EntityView.h"
-#include "logic/GhostDoorModel.h"
+
+namespace logic {
+    class GhostDoorModel;
+}
 
 class GhostDoorView : public EntityView {
 public:
-    GhostDoorView(logic::GhostDoorModel* model);
+    explicit GhostDoorView(logic::GhostDoorModel* model);
 
-    void draw(sf::RenderWindow& win, const Camera& cam);
+    void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 
 private:

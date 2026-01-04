@@ -3,6 +3,8 @@
 //
 
 #include "view/ConcreteEntityFactory.h"
+#include "view/CoinView.h"
+#include "view/FruitView.h"
 
 // Pacman
 std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>

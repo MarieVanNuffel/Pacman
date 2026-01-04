@@ -12,11 +12,13 @@
 #include "logic/Direction.h"
 #include "logic/Observer.h"
 
-class PacManModel;
+namespace logic {
+    class PacManModel;
+}
 
 class PacmanView : public EntityView, public logic::Observer {
 public:
-    PacmanView(logic::PacManModel* m);
+    explicit PacmanView(logic::PacManModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 

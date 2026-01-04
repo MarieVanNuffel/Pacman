@@ -12,8 +12,6 @@
 #include "logic/IEntityFactory.h"
 #include "PacManView.h"
 #include "GhostView.h"
-#include "CoinView.h"
-#include "FruitView.h"
 #include "GhostDoorView.h"
 
 namespace logic {
