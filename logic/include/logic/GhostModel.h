@@ -52,7 +52,7 @@ public:
      * @brief Geeft het ghost type terug.
      * @return GhostType van de ghost.
      */
-    [[nodiscard]] Mode getMode() const;
+    [[nodiscard]] Mode getMode() const { return mode; };
     /**
      * @brief Geeft het ghost type terug.
      * @return GhostType van de ghost.
@@ -145,11 +145,12 @@ private:
     double chaseSpeed = 2.0;
     bool frozen = false;
 
+    // Startposities
     double startX = 0.0;
     double startY = 0.0;
 
     double releaseTimer = 0.0;
-    double decisionTimer = 0.0;
+    double decisionTimer = 0.0; // wanneer beslissingen nemen
     double decisionCooldown = 0.12;
 
     double fearTimer = 0.0;

@@ -9,6 +9,7 @@ static double manhattan(double x1, double y1, double x2, double y2) {
     return std::abs(x1 - x2) + std::abs(y1 - y2);
 }
 
+// Check of twee richtingen elkaars tegenovergestelde zijn
 static bool isOpposite(Direction a, Direction b) {
     if (a == Direction::UP && b == Direction::DOWN) return true;
     if (a == Direction::DOWN && b == Direction::UP) return true;
@@ -21,9 +22,10 @@ GhostModel::GhostModel(GhostType t) : type(t) {
     chaseSpeed = 2.0;
     speed = chaseSpeed;
     mode = Mode::Waiting;
-    // decisionTimer en decisionCooldown kunnen ook hier worden geïnitialiseerd als je dat wilt:
-    decisionTimer = decisionCooldown; // start met cooldown voldaan zodat eerste beslissing meteen mag
 
+    decisionTimer = decisionCooldown; // ghost mag direct kiezen
+
+    // Start Direction afhankelijk van ghost type (ghosts kijken naar elkaar in box)
     if (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase) {
         desiredDirection = Direction::LEFT;
         direction = Direction::LEFT;
@@ -40,7 +42,7 @@ void GhostModel::setMode(Mode m) {
         speed = 1.5;
         fearTimer = 0.0;
 
-        // ✅ Reverse direction
+        // direction wordt omgekeerd bij FEAR mode
         switch (direction) {
             case Direction::UP:    direction = Direction::DOWN; break;
             case Direction::DOWN:  direction = Direction::UP; break;
@@ -49,24 +51,11 @@ void GhostModel::setMode(Mode m) {
             default: break;
         }
         desiredDirection = direction;
-
-        // Snap naar center als we dichtbij zijn
-        if (worldRef) {
-            double snapX = std::floor(x) + 0.5;
-            double snapY = std::floor(y) + 0.5;
-            if (std::abs(x - snapX) < 0.2 && std::abs(y - snapY) < 0.2) {
-                setPosition(snapX, snapY);
-            }
-        }
     }
 
     if (m == Mode::Eaten) {
-        speed = 3.0;
+        speed = 4.0; // snel terug naar spawn
     }
-}
-
-GhostModel::Mode GhostModel::getMode() const {
-    return mode;
 }
 
 
@@ -77,13 +66,11 @@ void GhostModel::update(double dt) {
     releaseTimer += dt;
     decisionTimer += dt; // update cooldown timer
 
-    // ------------------------------------------------
-    // 1) WAITING mode
-    // ------------------------------------------------
+    // --- WAITING mode ---
     if (mode == Mode::Waiting) {
         bool shouldRelease = false;
 
-        switch (type) {
+        switch (type) { // afhankelijk van ghost type, moet die langer wachten
             case GhostType::LockedRandom:
             case GhostType::AheadOfPacman1:
                 shouldRelease = true;
@@ -98,37 +85,29 @@ void GhostModel::update(double dt) {
 
         if (shouldRelease) {
             mode = Mode::Chase;
-            // allow immediate decision after release
-            decisionTimer = decisionCooldown;
+            decisionTimer = decisionCooldown; // direct richting kiezen
         } else {
             return;
         }
     }
 
-    // ------------------------------------------------
-    // 2) FEAR mode
-    // ------------------------------------------------
+    // --- FEAR mode ---
     if (mode == Mode::Fear) {
         fearTimer += dt;
         if (fearTimer >= fearDuration) {
-            setMode(Mode::Chase);
+            setMode(Mode::Chase); // terug naar chase
             return;
         }
     }
 
-    // ------------------------------------------------
-    // 3) EATEN → terug naar spawn
-    //    -> MINIMALE AANPASSING: gebruik exact dezelfde per-tile logica als chase, maar
-    //       doel = spawn tile, en bepaal beste richting via breadth-first (World::findPath)
-    //       met allowDoor = true, en verplaats ALTIJD via tryMoveGhost (geen directe x/y!)
-    // ------------------------------------------------
+    // --- EATEN mode ---
      if (mode == Mode::Eaten) {
         double snapX = std::floor(x) + 0.5;
         double snapY = std::floor(y) + 0.5;
         double snapEpsilon = 0.15;
         bool nearCenter = (std::abs(x - snapX) < snapEpsilon && std::abs(y - snapY) < snapEpsilon);
 
-        // ✅ Corridor centering: snap orthogonale richting
+        // Zorgen dat de ghosts in het midden van de gang lopen
         double centerForceEpsilon = 0.20;
         if (direction == Direction::UP || direction == Direction::DOWN) {
             if (std::abs(x - snapX) < centerForceEpsilon) { x = snapX; setPosition(x, y); }
@@ -136,14 +115,14 @@ void GhostModel::update(double dt) {
             if (std::abs(y - snapY) < centerForceEpsilon) { y = snapY; setPosition(x, y); }
         }
 
-        // gebruik gecentreerde coords voor BFS
+        // Gecentreerde coords voor breadth first
         double currentX = x, currentY = y;
         if (nearCenter) {
             currentX = snapX;
             currentY = snapY;
         }
 
-        // compute tile coords for BFS
+        // grid coords for breadth first
         int csx = static_cast<int>(std::floor(currentX));
         int csy = static_cast<int>(std::floor(currentY));
         int tx = static_cast<int>(std::floor(startX));
@@ -161,7 +140,7 @@ void GhostModel::update(double dt) {
              }
          }
 
-        // If we are already basically at spawn center, finish eaten
+        // Aangekomen bij spawnpoint, terug naar chase
         if (std::abs(x - startX) < 0.05 && std::abs(y - startY) < 0.05) {
             x = startX;
             y = startY;
@@ -170,6 +149,7 @@ void GhostModel::update(double dt) {
             setSpeed(chaseSpeed);
             releaseTimer = 0.0;
 
+            // Direction vanaf dat ze op hun spawn positie zijn
             if (type == GhostType::AheadOfPacman2 || type == GhostType::DirectChase) {
                 desiredDirection = Direction::LEFT;
                 direction = Direction::LEFT;
@@ -180,33 +160,30 @@ void GhostModel::update(double dt) {
             return;
         }
 
-        // ✅ Alleen nieuwe richting kiezen als we near center zijn (bij intersection)
-        // Check of we door kunnen bewegen (ghostdoor moet passeerbaar zijn in eaten mode)
         bool canMove = worldRef->canGhostMove(direction, x, y);
-
         bool atIntersection = nearCenter && worldRef->isIntersection(snapX, snapY);
 
-        // Als we gewoon rechtdoor kunnen en niet bij een kruising zijn, ga door
+        // Gewoon rechtdoor gaan als ze niet bij een kruispunt zijn (als het kan)
         if (canMove && !atIntersection) {
             worldRef->tryMoveGhost(this, direction, dt);
             return;
         }
 
-        // Als geblokkeerd, snap as naar center
+        // Als ze geblokkeerd zijn, snap naar het midden
         if (!canMove) {
             if (direction == Direction::UP || direction == Direction::DOWN) y = snapY;
             else if (direction == Direction::LEFT || direction == Direction::RIGHT) x = snapX;
             setPosition(x, y);
         }
 
-        // Ask world for BFS path (allowing ghostdoor)
+        // pad wordt berekent via breadth first search
         std::vector<Direction> path;
-        if (worldRef) path = worldRef->findPath(csx, csy, tx, ty, true);
+        if (worldRef) path = worldRef->findPath(csx, csy, tx, ty, true); // ghostdoor is toegestaan
 
         if (!path.empty()) {
             Direction cand = path.front();
 
-            // avoid immediate reverse unless that's the only option
+            // Liefst niet 180 graden draaien
             if (isOpposite(cand, direction) && path.size() > 1) {
                 std::vector<Direction> viable = worldRef->getFreeDirections(currentX, currentY);
                 for (Direction alt : viable) {
@@ -218,7 +195,7 @@ void GhostModel::update(double dt) {
             direction = cand;
             worldRef->tryMoveGhost(this, direction, dt);
         } else {
-            // BFS failed: continue in current direction if possible
+            // Als het zou falen, blijf huidige direction volgen
             if (worldRef->canGhostMove(direction, x, y)) {
                 worldRef->tryMoveGhost(this, direction, dt);
             }
@@ -226,18 +203,14 @@ void GhostModel::update(double dt) {
         return;
     }
 
-    // ------------------------------------------------
-    // 4) CHASE / FEAR mode core (unchanged aside from minimal centering / cooldown)
-    // ------------------------------------------------
+    // --- CHASE / FEAR mode ---
     Direction chosen = Direction::NONE;
     double snapX = std::floor(x) + 0.5;
     double snapY = std::floor(y) + 0.5;
-
-    // iets ruimere marge zodat we beslissingen alleen maken wanneer quasi- gecentreerd
     double snapEpsilon = 0.15;
     bool nearCenter = (std::abs(x - snapX) < snapEpsilon && std::abs(y - snapY) < snapEpsilon);
 
-    // minimale corridor-centering (orthogonale coord) — voorkomt dat ghosts buiten het midden blijven lopen
+    // midden van gangpad
     double centerForceEpsilon = 0.20;
     if (direction == Direction::UP || direction == Direction::DOWN) {
         if (std::abs(x - snapX) < centerForceEpsilon) { x = snapX; setPosition(x, y); }
@@ -250,28 +223,26 @@ void GhostModel::update(double dt) {
     for (const auto& door : worldRef->getGhostDoors()) {
         if (door->isGhostInDoorZone(x, y)) { nearDoor = true; break; }
     }
+
+    // Direction is omhoog (specifiek deze map)
     if (nearDoor && nearCenter) {
         direction = Direction::UP;
         desiredDirection = Direction::UP;
-        // reset cooldown so we don't immediately switch again
-        decisionTimer = 0.0;
+        decisionTimer = 0.0; // zorgen dat we niet direct terug beslissen
         worldRef->tryMoveGhost(this, Direction::UP, dt);
         return;
     }
 
     bool canMove = worldRef->canGhostMove(direction, x, y);
+    bool atIntersection = nearCenter && worldRef->isIntersection(snapX, snapY);
 
-    // intersection check uses centered coords when nearCenter
-    bool atIntersection = false;
-    if (nearCenter) atIntersection = worldRef->isIntersection(snapX, snapY);
-
-    // If moving fine and not at an intersection, continue
+    // Gewoon rechtdoor gaan als ze niet bij een kruispunt zijn (als het kan)
     if (canMove && !atIntersection) {
         worldRef->tryMoveGhost(this, direction, dt);
         return;
     }
 
-    // If current direction is blocked, snap axis to center to avoid corner stuck and allow immediate decision
+    // Als ze geblokkeerd zijn, snap naar het midden
     if (!canMove) {
         if (direction == Direction::UP || direction == Direction::DOWN) {
             y = snapY;
@@ -279,31 +250,30 @@ void GhostModel::update(double dt) {
             x = snapX;
         }
         setPosition(x, y);
-        // set decisionTimer high so we will evaluate options below even if cooldown not passed
+        // Direct beslissing nemen omdat er is gesnapt
         decisionTimer = decisionCooldown;
     }
 
-    // NEW: if we're at an intersection but still inside cooldown, don't re-evaluate: continue straight
-    // This prevents immediate flip-flop between two directions.
+    // Cooldown voor beslissingen zodat ze niet blijven hangen
     if (atIntersection && decisionTimer < decisionCooldown) {
         worldRef->tryMoveGhost(this, direction, dt);
         return;
     }
 
-    // gebruik gecentreerde coords voor vrije richtingen wanneer nearCenter is
-    double freeCheckX = x, freeCheckY = y;
-    if (nearCenter) { freeCheckX = snapX; freeCheckY = snapY; }
+    // gebruik gecentreerde coords voor Free Directions wanneer we dichtbij tile center zijn
+    double checkX = nearCenter ? snapX : x;
+    double checkY = nearCenter ? snapY : y;
 
-    std::vector<Direction> viableDirs = worldRef->getFreeDirections(freeCheckX, freeCheckY);
+    std::vector<Direction> viableDirs = worldRef->getFreeDirections(checkX, checkY);
     if (viableDirs.empty()) { return; }
 
-    // LockedRandom: kies richting (vermijd reverse als mogelijk)
+    // --- LockedRandom ---
     if (type == GhostType::LockedRandom) {
-        if (logic::Random::instance().nextDouble(0.0, 1.0) < 0.5) {
+        if (logic::Random::instance().nextDouble(0.0, 1.0) < 0.5) { // 50% kans op nieuwe richting
             Direction cand = viableDirs[
                 logic::Random::instance().nextInt(0, static_cast<int>(viableDirs.size()) - 1)
             ];
-            if (isOpposite(cand, direction) && viableDirs.size() > 1) {
+            if (isOpposite(cand, direction) && viableDirs.size() > 1) { // haal de 180 graden eruit als mogelijk
                 std::vector<Direction> nonOpp;
                 for (Direction d : viableDirs) if (!isOpposite(d, direction)) nonOpp.push_back(d);
                 if (!nonOpp.empty()) {
@@ -342,56 +312,64 @@ void GhostModel::update(double dt) {
         return;
     }
 
-    // Ahead/Direct chase: always herberekenen (maar nog steeds met cooldown guard hierboven)
+    // --- Ahead/Direct chase ---
     auto pm = worldRef->getPacman();
     double currentX = x, currentY = y;
     if (std::abs(x - snapX) < 0.15 && std::abs(y - snapY) < 0.15) { currentX = snapX; currentY = snapY; }
 
     std::vector<Direction> finalDirs = worldRef->getFreeDirections(currentX, currentY);
 
-    if (type == GhostType::AheadOfPacman1 || type == GhostType::AheadOfPacman2) {
-        auto [targetX, targetY] = worldRef->predictStep(pm->getX(), pm->getY(), pm->getDirection());
-        double bestDist = 1e9;
-        std::vector<Direction> bestDirs;
-        for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(currentX, currentY, d);
-            double dist = manhattan(ghostNextX, ghostNextY, targetX, targetY);
-            if (dist < bestDist - 0.0001) { bestDist = dist; bestDirs.clear(); bestDirs.push_back(d); }
-            else if (std::abs(dist - bestDist) < 0.0001) bestDirs.push_back(d);
-        }
-        if (!bestDirs.empty()) {
-            Direction cand = bestDirs[logic::Random::instance().nextInt(0, static_cast<int>(bestDirs.size()) - 1)];
-            if (isOpposite(cand, direction) && bestDirs.size() > 1) {
-                std::vector<Direction> nonOpp;
-                for (Direction d : bestDirs) if (!isOpposite(d, direction)) nonOpp.push_back(d);
-                if (!nonOpp.empty()) cand = nonOpp[logic::Random::instance().nextInt(0, static_cast<int>(nonOpp.size()) - 1)];
-            }
-            chosen = cand;
-        }
-    } else if (type == GhostType::DirectChase) {
-        double bestDist = 1e9;
-        std::vector<Direction> bestDirs;
-        for (Direction d : finalDirs) {
-            auto [ghostNextX, ghostNextY] = worldRef->predictStep(currentX, currentY, d);
-            double dist = manhattan(ghostNextX, ghostNextY, pm->getX(), pm->getY());
-            if (dist < bestDist - 0.0001) { bestDist = dist; bestDirs.clear(); bestDirs.push_back(d); }
-            else if (std::abs(dist - bestDist) < 0.0001) bestDirs.push_back(d);
-        }
-        if (!bestDirs.empty()) {
-            Direction cand = bestDirs[logic::Random::instance().nextInt(0, static_cast<int>(bestDirs.size()) - 1)];
-            if (isOpposite(cand, direction) && bestDirs.size() > 1) {
-                std::vector<Direction> nonOpp;
-                for (Direction d : bestDirs) if (!isOpposite(d, direction)) nonOpp.push_back(d);
-                if (!nonOpp.empty()) cand = nonOpp[logic::Random::instance().nextInt(0, static_cast<int>(nonOpp.size()) - 1)];
-            }
-            chosen = cand;
+    if (finalDirs.empty()) {
+        return;
+    }
+
+    double refX = 0.0, refY = 0.0;
+    bool maximize = (mode == Mode::Fear); // in fear mode wordt de manhatten afstand gemaximaliseert
+
+    if (maximize) {
+        // pacman is target (om zo ver mogelijk van weg te blijven)
+        refX = pm->getX();
+        refY = pm->getY();
+    } else {
+        if (type == GhostType::AheadOfPacman1 || type == GhostType::AheadOfPacman2) {
+            std::tie(refX, refY) = worldRef->predictStep(pm->getX(), pm->getY(), pm->getDirection()); // aheadOfPacman gebruikt tile voor pacman als target
+        } else { // DirectChase gebruikt pacman zelf als target
+            refX = pm->getX();
+            refY = pm->getY();
         }
     }
 
+    // Manhattan minimaliseren of maximaliseren afhankelijk van ghost mode
+    double bestMetric = maximize ? -1e18 : 1e18;
+    std::vector<Direction> bestDirs;
+    for (Direction d : finalDirs) {
+        auto [ghostNextX, ghostNextY] = worldRef->predictStep(currentX, currentY, d);
+        double metric = manhattan(ghostNextX, ghostNextY, refX, refY);
+        if (maximize) {
+            if (metric > bestMetric + 1e-9) { bestMetric = metric; bestDirs.clear(); bestDirs.push_back(d); }
+            else if (std::abs(metric - bestMetric) < 1e-9) { bestDirs.push_back(d); }
+        } else {
+            if (metric < bestMetric - 1e-9) { bestMetric = metric; bestDirs.clear(); bestDirs.push_back(d); }
+            else if (std::abs(metric - bestMetric) < 1e-9) { bestDirs.push_back(d); }
+        }
+    }
+
+    // Kies een Direction (random als er meerdere keuzes zijn)
+    if (!bestDirs.empty()) {
+        Direction cand = bestDirs[logic::Random::instance().nextInt(0, static_cast<int>(bestDirs.size()) - 1)];
+
+        // Liefst geen 180 graden draai
+        if (!maximize && isOpposite(cand, direction) && bestDirs.size() > 1) {
+            std::vector<Direction> nonOpp;
+            for (Direction d : bestDirs) if (!isOpposite(d, direction)) nonOpp.push_back(d);
+            if (!nonOpp.empty()) cand = nonOpp[logic::Random::instance().nextInt(0, static_cast<int>(nonOpp.size()) - 1)];
+        }
+        chosen = cand;
+    }
     if (chosen != Direction::NONE) {
         desiredDirection = chosen;
         direction = chosen;
-        decisionTimer = 0.0; // reset cooldown on new decision
+        decisionTimer = 0.0; // reset timer vanaf er een beslissing is genomen
         worldRef->tryMoveGhost(this, direction, dt);
     } else {
         worldRef->tryMoveGhost(this, direction, dt);
