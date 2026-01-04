@@ -45,7 +45,7 @@ namespace view {
         static constexpr int NUM_DEATH_FRAMES = 12; // 12 frames voor de animatie
 
         // richting van Pac-Man
-        logic::PacManModel *model;
+        std::weak_ptr<logic::PacManModel> model;
         sf::Sprite sprite;
         sf::Texture texture;
 

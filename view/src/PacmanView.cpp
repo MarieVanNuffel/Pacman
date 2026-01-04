@@ -24,11 +24,14 @@ namespace view {
 
     void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
     {
+        auto m = model.lock();
+        if (!m) return;
+
         double sizeW = 0.9;
         double sizeH = 0.9;
 
-        sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
-                                           model->getY() - sizeH/2.0,
+        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
+                                           m->getY() - sizeH/2.0,
                                            sizeW, sizeH);
         sprite.setPosition(rect.left + rect.width/2.f,
                            rect.top  + rect.height/2.f);
@@ -65,6 +68,9 @@ namespace view {
 
 
     void PacmanView::updateSprite(double dt) {
+        auto m = model.lock();
+        if (!m) return;
+
         if (deathPlaying) {
             animTimer += dt;
             if (animTimer >= frameTime) {
@@ -93,16 +99,16 @@ namespace view {
         }
 
         // als pacman tegen een muur loopt, dan moet de huidige direction behouden worden
-        if (model->getDirection() != logic::Direction::NONE) {
-            lastDirection = model->getDirection();
+        if (m->getDirection() != logic::Direction::NONE) {
+            lastDirection = m->getDirection();
         } else {
-            model->setDirection(lastDirection);
+            m->setDirection(lastDirection);
         }
 
         int frameX = frames[frameIndex];  // pak de juiste kolom
         int frameY = 0;
 
-        switch (model->getDirection()) {
+        switch (m->getDirection()) {
             case logic::Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
             case logic::Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
             case logic::Direction::UP:    frameY = 2 * FRAME_SIZE; break;

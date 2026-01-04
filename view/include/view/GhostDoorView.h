@@ -23,7 +23,7 @@ namespace view {
         void updateSprite(double dt) override;
 
     private:
-        logic::GhostDoorModel* model;
+        std::weak_ptr<logic::GhostDoorModel> model;
     };
 }
 

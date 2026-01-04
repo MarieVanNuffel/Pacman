@@ -35,14 +35,15 @@ namespace view {
 
     void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
     {
-        if (!model) return;
+        auto m = model.lock();
+        if (!m) return;
         if (!visible) return; // belangrijke check: als fruit verzameld is, niet tekenen
 
         double sizeW = 0.5; // halve cel
         double sizeH = 0.5;
 
-        sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
-                                           model->getY() - sizeH/2.0,
+        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
+                                           m->getY() - sizeH/2.0,
                                            sizeW, sizeH);
         sprite.setPosition(rect.left + rect.width/2.f,
                            rect.top  + rect.height/2.f);

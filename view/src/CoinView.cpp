@@ -16,14 +16,15 @@ namespace view {
 
     void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
     {
-        if (!model || !visible) return;
+        auto m = model.lock();
+        if (!m || !visible) return;
 
         double sizeW = 0.5; // halve cel
         double sizeH = 0.5;
 
         // verschuif middelpunt naar linker-bovenhoek van de coin
-        sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
-                                               model->getY() - sizeH/2.0,
+        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
+                                               m->getY() - sizeH/2.0,
                                                sizeW, sizeH);
 
         float radius = std::min(rect.width, rect.height) / 3.f;

@@ -9,12 +9,13 @@ namespace view {
     {}
 
     void GhostDoorView::draw(sf::RenderWindow& win, const Camera& cam) {
-        if (!model) return;
+        auto m = model.lock();
+        if (!m) return;
 
         // Deur = dun balkje in tile
         sf::FloatRect rect = cam.worldToPixels(
-            model->getX() - 0.5,
-            model->getY() - 0.5,
+            m->getX() - 0.5,
+            m->getY() - 0.5,
             1.0,
             0.2
         );

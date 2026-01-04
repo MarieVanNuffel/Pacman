@@ -21,7 +21,7 @@ namespace view {
 
         void onNotify(int event) override;
     private:
-        logic::FruitModel* model;
+        std::weak_ptr<logic::FruitModel> model;
         sf::Sprite sprite;
         sf::Texture texture;
         static constexpr int FRAME_SIZE = 15;

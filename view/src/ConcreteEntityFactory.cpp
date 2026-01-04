@@ -18,8 +18,7 @@ namespace view {
     std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
     ConcreteEntityFactory::createGhostView(std::shared_ptr<logic::GhostModel> m) {
         auto v = std::make_shared<GhostView>(m);
-        std::shared_ptr<logic::Observer> obs = std::static_pointer_cast<logic::Observer>(v);
-        return { v, obs };
+        return { v, nullptr };
     }
 
     std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>

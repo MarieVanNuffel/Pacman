@@ -25,7 +25,7 @@ namespace view {
         void onNotify(int event) override;
 
     private:
-        logic::CoinModel* model;
+        std::weak_ptr<logic::CoinModel> model;
         bool visible = true;
     };
 }

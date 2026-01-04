@@ -32,7 +32,7 @@ namespace view {
         int frames[NUM_FRAMES] = {0, 16}; // kolommen voor bewegingen
 
         // richting van Ghosts
-        logic::GhostModel* model;
+        std::weak_ptr<logic::GhostModel> model;
         sf::Sprite sprite;
         sf::Texture texture;
 

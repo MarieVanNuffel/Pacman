@@ -20,7 +20,8 @@ namespace view {
         sprite.setTexture(texture);
 
         int rectTop;
-        switch (model->getGhostType()) {
+
+        switch (m->getGhostType()) {
             case logic::GhostModel::GhostType::LockedRandom:    rectTop = 64; break;  // rood
             case logic::GhostModel::GhostType::AheadOfPacman1:  rectTop = 80; break; // roze
             case logic::GhostModel::GhostType::AheadOfPacman2:  rectTop = 96; break; // lichtblauw
@@ -34,6 +35,7 @@ namespace view {
 
     void GhostView::updateSprite(double dt)
     {
+        auto m = model.lock();
         animTimer += dt;
 
         if (animTimer >= frameTime) {
@@ -42,8 +44,8 @@ namespace view {
         }
 
         // richting onthouden zoals bij Pac-Man
-        if (model->getDirection() != logic::Direction::NONE) {
-            lastDirection = model->getDirection();
+        if (m->getDirection() != logic::Direction::NONE) {
+            lastDirection = m->getDirection();
         }
 
         constexpr int GHOST_BASE_Y = 64; // eerste ghostrij (rood)
@@ -51,7 +53,7 @@ namespace view {
         int rectLeft = 0;
         int rectTop  = 0;
 
-        if (model->getMode() == logic::GhostModel::Mode::Fear) {
+        if (m->getMode() == logic::GhostModel::Mode::Fear) {
             // Fear mode: blue ghost sprites
             rectTop = GHOST_BASE_Y;
             rectLeft = 128 + frameIndex * FRAME_SIZE;
@@ -60,7 +62,7 @@ namespace view {
             return; // ✅ Klaar, geen verdere processing
         }
 
-        if (model->getMode() == logic::GhostModel::Mode::Eaten) {
+        if (m->getMode() == logic::GhostModel::Mode::Eaten) {
             // Eaten mode: eyes only
             rectTop = 80;
 
@@ -88,7 +90,7 @@ namespace view {
 
         // --- KLEUR → RIJ ---
         int colorIndex = 0;
-        switch (model->getGhostType()) {
+        switch (m->getGhostType()) {
             case logic::GhostModel::GhostType::LockedRandom:   colorIndex = 0; break; // rood
             case logic::GhostModel::GhostType::AheadOfPacman1: colorIndex = 1; break; // roze
             case logic::GhostModel::GhostType::AheadOfPacman2: colorIndex = 2; break; // lichtblauw
@@ -123,13 +125,14 @@ namespace view {
 
     void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
     {
-        if (!model) return;
+        auto m = model.lock();
+        if (!m) return;
 
         double sizeW = 0.9; // 0.9 van een cel
         double sizeH = 0.9;
 
-        sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
-                                           model->getY() - sizeH/2.0,
+        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
+                                           m->getY() - sizeH/2.0,
                                            sizeW, sizeH);
         sprite.setPosition(rect.left + rect.width/2.f,
                            rect.top  + rect.height/2.f);
