@@ -71,7 +71,7 @@ public:
      * @brief Geeft het pacman model terug.
      * @return Shared pointer naar pacmanModel.
      */
-    [[nodiscard]] std::shared_ptr<PacManModel> getpacman() const { return pacman; }
+    [[nodiscard]] std::shared_ptr<PacManModel> getPacman() const { return pacman; }
     /**
      * @brief Geeft alle ghosts in de wereld terug.
      * @return Const referentie naar vector met GhostModel pointers.
@@ -109,7 +109,7 @@ public:
      * @brief Geeft de pacman view terug.
      * @return Shared pointer naar EntityView.
      */
-    [[nodiscard]] std::shared_ptr<EntityView> getpacmanView() const { return pacmanView; }
+    [[nodiscard]] std::shared_ptr<EntityView> getPacmanView() const { return pacmanView; }
     /**
      * @brief Geeft alle ghost views terug.
      * @return Const referentie naar vector met EntityView pointers.
