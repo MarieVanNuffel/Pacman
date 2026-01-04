@@ -433,107 +433,33 @@ bool World::isGhostDoor(double x, double y) const {
     return maze[cy][cx] == 6; // 6 = ghostdoor
 }
 
-// --- vervang tryMoveEntity door deze kleine wrapper die helper gebruikt ---------------------
-void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
-    if (!e || dir == Direction::NONE) return;
 
-    double step = e->getSpeed() * dt;
-    double nx = e->getX();
-    double ny = e->getY();
+// Grid helpers
+bool World::isAlignedWithGrid(double x, double y) const {
+    const double epsilon = 0.1; // marge
 
-    switch (dir) {
-        case Direction::UP:    ny -= step; break;
-        case Direction::DOWN:  ny += step; break;
-        case Direction::LEFT:  nx -= step; break;
-        case Direction::RIGHT: nx += step; break;
-        default: break;
-    }
+    double fractX = x - std::floor(x);
+    double fractY = y - std::floor(y);
 
-    // Pac-Man uses a larger collision radius and ghost-doors should block him.
-    const double radius = 0.49;
-
-    if (isBlockedAt(nx, ny, radius, /*disallowDoor=*/true)) {
-        return;
-    }
-
-    e->setPosition(nx, ny);
+    // Check of we dicht bij 0.5 zijn (center van tile)
+    return std::abs(fractX - 0.5) < epsilon &&
+           std::abs(fractY - 0.5) < epsilon;
 }
 
-// --- vervang canMoveIn door deze wrapper -----------------------------------------------
-bool World::canMoveIn(Direction dir, double x, double y) const {
-    if (dir == Direction::NONE) return false;
 
-    double checkStep = 0.05; // kleine check-step
-    double nx = x;
-    double ny = y;
-
-    switch(dir) {
-        case Direction::UP:    ny -= checkStep; break;
-        case Direction::DOWN:  ny += checkStep; break;
-        case Direction::LEFT:  nx -= checkStep; break;
-        case Direction::RIGHT: nx += checkStep; break;
-        default: break;
-    }
-
-    // Pac-Man collision radius and ghostdoor should block him (disallowDoor = true)
-    const double radius = 0.49;
-    return !isBlockedAt(nx, ny, radius, /*disallowDoor=*/true);
+bool World::isIntersection(double x, double y) const {
+    if (!isAlignedWithGrid(x, y)) return false;
+    return getFreeDirections(x, y).size() >= 3;
 }
-
-// --- vervang tryMoveGhost door gelijksoortige wrapper -----------------------------------
-void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
-    if (!e || dir == Direction::NONE) return;
-
-    double step = e->getSpeed() * dt;
-    double nx = e->getX(), ny = e->getY();
-
-    switch (dir) {
-        case Direction::UP:    ny -= step; break;
-        case Direction::DOWN:  ny += step; break;
-        case Direction::LEFT:  nx -= step; break;
-        case Direction::RIGHT: nx += step; break;
-        default: break;
-    }
-
-    // Ghosts use a smaller radius and ghostdoors should NOT block them here (disallowDoor = false)
-    const double radius = 0.35;
-
-    if (isBlockedAt(nx, ny, radius, /*disallowDoor=*/false)) {
-        return;
-    }
-
-    e->setPosition(nx, ny);
-}
-
-// --- vervang canGhostMove door deze kleine wrapper --------------------------------------
-bool World::canGhostMove(Direction dir, double x, double y) const {
-    if (dir == Direction::NONE) return false;
-
-    double step = 0.05;
-    double nx = x, ny = y;
-
-    switch (dir) {
-        case Direction::UP:    ny -= step; break;
-        case Direction::DOWN:  ny += step; break;
-        case Direction::LEFT:  nx -= step; break;
-        case Direction::RIGHT: nx += step; break;
-        default: break;
-    }
-
-    const double radius = 0.35;
-    // Ghosts ignore ghostdoor tiles for movement checks here (disallowDoor = false)
-    return !isBlockedAt(nx, ny, radius, /*disallowDoor=*/false);
-}
-
 
 std::vector<Direction> World::getFreeDirections(double x, double y) const {
     std::vector<Direction> dirs;
 
-    // ✅ Check gewoon de aangrenzende TILES, niet de beweging zelf
+    // zet om naar grid coördinaten
     int gridX = static_cast<int>(std::floor(x));
     int gridY = static_cast<int>(std::floor(y));
 
-    // Check of de aangrenzende tile vrij is
+    // Check of de aangrenzende tile vrij is in een bepaalde richting en voegt die richting dan toe aan de vector
     if (gridY > 0 && maze[gridY - 1][gridX] != 1 && maze[gridY - 1][gridX] != 6)
         dirs.push_back(Direction::UP);
 
@@ -550,13 +476,11 @@ std::vector<Direction> World::getFreeDirections(double x, double y) const {
 }
 
 
-
-// Predict next position after moving one step in direction d
 std::pair<double, double> World::predictStep(double x, double y, Direction d) const {
     double nx = x, ny = y;
     const double STEP = 0.5;
 
-    switch (d) {
+    switch (d) { // afhankelijk van de richting, pas het x of y coördinaat aan met + of -
         case Direction::UP:    ny -= STEP; break;
         case Direction::DOWN:  ny += STEP; break;
         case Direction::LEFT:  nx -= STEP; break;
@@ -567,96 +491,221 @@ std::pair<double, double> World::predictStep(double x, double y, Direction d) co
 }
 
 
-bool World::isAlignedWithGrid(double x, double y) const {
-    const double epsilon = 0.1; // ruimere marge
+// Movement helpers
+void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
+    if (!e || dir == Direction::NONE) return;
 
-    double fractX = x - std::floor(x);
-    double fractY = y - std::floor(y);
+    double step = e->getSpeed() * dt;
+    double nx = e->getX();
+    double ny = e->getY();
 
-    // Check of we dicht bij 0.5 zijn (center van tile)
-    return std::abs(fractX - 0.5) < epsilon &&
-           std::abs(fractY - 0.5) < epsilon;
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    const double radius = 0.49; // collision radius
+
+    if (isBlockedAt(nx, ny, radius, /*disallowDoor=*/true)) { // mag niet door ghostdoor
+        return;
+    }
+    e->setPosition(nx, ny);
 }
 
 
-bool World::isIntersection(double x, double y) const {
-    if (!isAlignedWithGrid(x, y)) return false;
-    return getFreeDirections(x, y).size() >= 3;
+void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
+    if (!e || dir == Direction::NONE) return;
+
+    double step = e->getSpeed() * dt;
+    double nx = e->getX(), ny = e->getY();
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    const double radius = 0.35; // ghosts hebben een kleinere radius
+
+    if (isBlockedAt(nx, ny, radius, /*disallowDoor=*/false)) { // mag door ghostdoor
+        return;
+    }
+    e->setPosition(nx, ny);
+}
+
+
+bool World::canMoveIn(Direction dir, double x, double y) const {
+    if (dir == Direction::NONE) return false;
+
+    double checkStep = 0.05; // kleine check-step
+    double nx = x;
+    double ny = y;
+
+    switch(dir) {
+        case Direction::UP:    ny -= checkStep; break;
+        case Direction::DOWN:  ny += checkStep; break;
+        case Direction::LEFT:  nx -= checkStep; break;
+        case Direction::RIGHT: nx += checkStep; break;
+        default: break;
+    }
+
+    const double radius = 0.49; // pacman radius
+    return !isBlockedAt(nx, ny, radius, /*disallowDoor=*/true); // niet door ghostdoor
+}
+
+
+bool World::canGhostMove(Direction dir, double x, double y) const {
+    if (dir == Direction::NONE) return false;
+
+    double step = 0.05;
+    double nx = x, ny = y;
+
+    switch (dir) {
+        case Direction::UP:    ny -= step; break;
+        case Direction::DOWN:  ny += step; break;
+        case Direction::LEFT:  nx -= step; break;
+        case Direction::RIGHT: nx += step; break;
+        default: break;
+    }
+
+    const double radius = 0.35;
+    return !isBlockedAt(nx, ny, radius, /*disallowDoor=*/false); // mag door ghostdoor
 }
 
 
 std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty, bool allowDoor) const {
     std::vector<Direction> empty;
-    if (sx == tx && sy == ty) return empty;
 
-    if (sx < 0 || sy < 0 || sx >= mazeWidth || sy >= mazeHeight) return empty;
-    if (tx < 0 || ty < 0 || tx >= mazeWidth || ty >= mazeHeight) return empty;
+    if (sx == tx && sy == ty) return empty; // Als start en target gelijk zijn, is er geen pad nodig
 
+    // Check of de posities geldig zijn
+    if (sx < 0 || sy < 0 || sx >= mazeWidth || sy >= mazeHeight)
+        return empty;
+
+    if (tx < 0 || ty < 0 || tx >= mazeWidth || ty >= mazeHeight)
+        return empty;
+
+    // kijken of het muren/ghostdoors zijn (afhankelijk van allowdoor)
     auto passable = [&](int x, int y) -> bool {
-        if (x < 0 || y < 0 || x >= mazeWidth || y >= mazeHeight) return false;
-        if (maze[y][x] == 1) return false; // muur
-        if (!allowDoor && maze[y][x] == 6) return false; // ghostdoor niet toegestaan tenzij expliciet
+        if (x < 0 || y < 0 || x >= mazeWidth || y >= mazeHeight)
+            return false;
+
+        if (maze[y][x] == 1) // 1 = muur
+            return false;
+
+        if (!allowDoor && maze[y][x] == 6) // 6 = ghostdoor
+            return false;
+
         return true;
     };
 
     int W = mazeWidth;
     int H = mazeHeight;
-    std::vector<int> parent(W * H, -1);
-    std::queue<std::pair<int,int>> q;
-    std::vector<std::vector<bool>> vis(H, std::vector<bool>(W,false));
 
+    // Parent array om het pad te reconstrueren
+    // parent[i] bevat de index van de vorige tile
+    std::vector<int> parent(W * H, -1);
+
+    // Queue voor breadth first search
+    std::queue<std::pair<int,int>> q;
+
+    // Matrix om de al bezochte tiles bij te houden
+    std::vector<std::vector<bool>> vis(H, std::vector<bool>(W, false));
+
+    // Start breadth first vanaf start tile
     q.push({sx, sy});
     vis[sy][sx] = true;
 
+    // Richtingen (up, down, left, right)
     const int dx[4] = {0, 0, -1, 1};
     const int dy[4] = {-1, 1, 0, 0};
-    const Direction dirMap[4] = {Direction::UP, Direction::DOWN, Direction::LEFT, Direction::RIGHT};
 
     bool found = false;
+
     while (!q.empty()) {
-        auto [cx, cy] = q.front(); q.pop();
-        if (cx == tx && cy == ty) { found = true; break; }
+        auto [cx, cy] = q.front();
+        q.pop();
+
+        // Target bereikt
+        if (cx == tx && cy == ty) {
+            found = true;
+            break;
+        }
+
+        // Overloop alle 4 richtingen
         for (int i = 0; i < 4; ++i) {
             int nx = cx + dx[i];
             int ny = cy + dy[i];
-            if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
-            if (vis[ny][nx]) continue;
-            if (!passable(nx, ny)) continue;
+
+            // Bounds check
+            if (nx < 0 || ny < 0 || nx >= W || ny >= H)
+                continue;
+
+            // al bezocht of niet
+            if (vis[ny][nx])
+                continue;
+
+            // Collision check
+            if (!passable(nx, ny))
+                continue;
+
+            // Markeer als bezocht en onthoud parent
             vis[ny][nx] = true;
-            parent[ny * W + nx] = cy * W + cx; // index van parent
+            parent[ny * W + nx] = cy * W + cx;
+
+            // Voeg toe aan queue
             q.push({nx, ny});
         }
     }
 
+    // Geen pad gevonden
     if (!found) return empty;
 
-    // reconstruct path from target back to start as tiles, then convert to Directions
+    // Bouw het pad op van target naar start
     std::vector<std::pair<int,int>> revTiles;
     int idx = ty * W + tx;
+
     while (idx != -1) {
         int px = idx % W;
         int py = idx / W;
         revTiles.push_back({px, py});
-        if (px == sx && py == sy) break;
+
+        // Stop wanneer we terug aan de start zijn
+        if (px == sx && py == sy)
+            break;
+
         idx = parent[idx];
     }
+
     if (revTiles.empty()) return empty;
 
+    // Draai om zodat het pad van start naar target loopt
     std::reverse(revTiles.begin(), revTiles.end());
-    // convert neighbouring tile pairs into directions
+
+    // Tiles worden in richtingen omgezet
     std::vector<Direction> path;
+
     for (size_t i = 1; i < revTiles.size(); ++i) {
-        int px = revTiles[i-1].first;
-        int py = revTiles[i-1].second;
+        int px = revTiles[i - 1].first;
+        int py = revTiles[i - 1].second;
         int cx = revTiles[i].first;
         int cy = revTiles[i].second;
-        if (cx == px + 1 && cy == py) path.push_back(Direction::RIGHT);
-        else if (cx == px - 1 && cy == py) path.push_back(Direction::LEFT);
-        else if (cx == px && cy == py + 1) path.push_back(Direction::DOWN);
-        else if (cx == px && cy == py - 1) path.push_back(Direction::UP);
-        else {
-            // unexpected; skip
-        }
+
+        // Bepaal richting op basis van tile verschil
+        if (cx == px + 1 && cy == py)
+            path.push_back(Direction::RIGHT);
+        else if (cx == px - 1 && cy == py)
+            path.push_back(Direction::LEFT);
+        else if (cx == px && cy == py + 1)
+            path.push_back(Direction::DOWN);
+        else if (cx == px && cy == py - 1)
+            path.push_back(Direction::UP);
     }
+
     return path;
 }

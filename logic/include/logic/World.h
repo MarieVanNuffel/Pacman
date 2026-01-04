@@ -2,14 +2,14 @@
 // Created by Marie Van Nuffel on 27/11/2025.
 //
 
-#ifndef PACMAN_WORLD_H
-#define PACMAN_WORLD_H
+#ifndef pacman_WORLD_H
+#define pacman_WORLD_H
 
 #pragma once
 
 #include <vector>
 #include <memory>
-#include "PacManModel.h"
+#include "pacmanModel.h"
 #include "GhostModel.h"
 #include "CoinModel.h"
 #include "FruitModel.h"
@@ -66,19 +66,69 @@ public:
     World(std::shared_ptr<IEntityFactory> factory, std::shared_ptr<Score> score);
 
     // Getters Entities
-    [[nodiscard]] std::shared_ptr<PacManModel> getPacman() const { return pacman; }
+
+    /**
+     * @brief Geeft het pacman model terug.
+     * @return Shared pointer naar pacmanModel.
+     */
+    [[nodiscard]] std::shared_ptr<PacManModel> getpacman() const { return pacman; }
+    /**
+     * @brief Geeft alle ghosts in de wereld terug.
+     * @return Const referentie naar vector met GhostModel pointers.
+     */
     [[nodiscard]] const std::vector<std::shared_ptr<GhostModel>>& getGhosts() const { return ghosts; }
+    /**
+     * @brief Geeft de maze grid terug.
+     * @return Const referentie naar de 2D maze vector.
+     */
     [[nodiscard]] const std::vector<std::vector<int>>& getMaze() const { return maze; };
+    /**
+     * @brief Geeft alle coins terug.
+     * @return Vector met CoinModel pointers.
+     */
     [[nodiscard]] std::vector<std::shared_ptr<CoinModel>> getCoins() const { return coins; }
+    /**
+     * @brief Geeft alle fruits terug.
+     * @return Vector met FruitModel pointers.
+     */
     [[nodiscard]] std::vector<std::shared_ptr<FruitModel>> getFruits() const { return fruits; }
+    /**
+     * @brief Geeft alle ghost doors terug.
+     * @return Vector met GhostDoorModel pointers.
+     */
     [[nodiscard]] std::vector<std::shared_ptr<GhostDoorModel>> getGhostDoors() const { return ghostDoors; }
+    /**
+     * @brief Geeft het score object terug.
+     * @return Shared pointer naar Score.
+     */
     [[nodiscard]] std::shared_ptr<Score> getScore() const { return score; }
 
     // Getters Views
-    [[nodiscard]] std::shared_ptr<EntityView> getPacmanView() const { return pacmanView; }
+
+    /**
+     * @brief Geeft de pacman view terug.
+     * @return Shared pointer naar EntityView.
+     */
+    [[nodiscard]] std::shared_ptr<EntityView> getpacmanView() const { return pacmanView; }
+    /**
+     * @brief Geeft alle ghost views terug.
+     * @return Const referentie naar vector met EntityView pointers.
+     */
     [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getGhostViews() const { return ghostViews; }
+    /**
+     * @brief Geeft alle coin views terug.
+     * @return Const referentie naar vector met EntityView pointers.
+     */
     [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getCoinViews() const { return coinViews; }
+    /**
+     * @brief Geeft alle fruit views terug.
+     * @return Const referentie naar vector met EntityView pointers.
+     */
     [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getFruitViews() const { return fruitViews; }
+    /**
+     * @brief Geeft alle ghost door views terug.
+     * @return Const referentie naar vector met EntityView pointers.
+     */
     [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getGhostDoorViews() const { return ghostDoorViews; }
 
     // Functies voor levels
@@ -167,29 +217,118 @@ public:
     bool isGhostDoor(double x, double y) const;
 
     // Grid helpers
-    // hier verdergaan Marie
+
+    /**
+     * @brief Kijkt of we dicht bij het midden van een tile zitten
+     *
+     * Kijkt met een kleine marge of we al dichtbij een tile center zitten om uiteindelijk te zien of we van richting mogen veranderen.
+     *
+     * @param x X-positie in wereldcoördinaten.
+     * @param y Y-positie in wereldcoördinaten.
+     * @return True als we uitgelijnd zijn met de grid, anders false
+     */
+    bool isAlignedWithGrid(double x, double y) const;
+
+    /**
+     * @brief Kijkt of we op een kruispunt zitten
+     *
+     * Kijkt of er 3 of meer vrije richtingen zijn vanaf een positie (en dus een kruispunt).
+     *
+     * @param x X-positie in wereldcoördinaten.
+     * @param y Y-positie in wereldcoördinaten.
+     * @return True als de positie een kruispunt is.
+     */
     bool isIntersection(double x, double y) const;
+
     /**
      * @brief Geeft alle mogelijke richtingen waar een entity naar kan bewegen.
      *
      * Berekent vanuit een wereldpositie welke richtingen geen muur bevatten.
-     * Wordt gebruikt door PacMan en Ghost AI om geldige bewegingen te bepalen.
      *
      * @param worldX X-positie in wereldcoördinaten.
      * @param worldY Y-positie in wereldcoördinaten.
-     * @return Vector met vrije richtingen.
+     * @return Vector met beschikbare richtingen.
      */
     std::vector<Direction> getFreeDirections(double worldX, double worldY) const;
+
+   /**
+    * @brief Voorspelt de volgende stap in een bepaalde richting.
+    *
+    * Berekent de volgende wereldpositie wanneer een entity één stap zou zetten in de richting dat die nu is aan het gaan.
+    *
+    * @param worldX Start X-positie.
+    * @param worldY Start Y-positie.
+    * @param dir Richting waarin bewogen wordt.
+    * @return De voorspelde positie.
+    */
     std::pair<double,double> predictStep(double worldX, double worldY, Direction dir) const;
-    std::vector<Direction> findPath(int sx, int sy, int tx, int ty, bool allowDoor = false) const;
+
 
     // Movement Helpers
+
+    /**
+    * @brief Probeert een entity te verplaatsen in een richting.
+    *
+    * Controleert collisions en verplaatst de entity enkel als het mag.
+    *
+    * @param e Entity die bewogen wordt.
+    * @param dir Richting waarin bewogen wordt.
+    * @param dt Delta time sinds de vorige update.
+    */
     void tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt);
+
+    /**
+    * @brief Probeert een ghost te verplaatsen in een richting.
+    *
+    * Gelijkaardig aan tryMoveEntity, maar met ghost-specifieke regels zoals ghost doors en movement states.
+    *
+    * @param e Ghost entity.
+    * @param dir Richting waarin bewogen wordt.
+    * @param dt Delta time sinds de vorige update.
+ */
     void tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt);
+
+    /**
+    * @brief Controleert of een entity kan bewegen in een richting.
+    *
+    * Houdt rekening met muren en ghostdoors.
+    *
+    * @param dir Richting om te testen.
+    * @param x X-positie in wereldcoördinaten.
+    * @param y Y-positie in wereldcoördinaten.
+    * @return True als beweging mogelijk is.
+    */
     bool canMoveIn(Direction dir, double x, double y) const;
+
+    /**
+     * @brief Controleert of een ghost kan bewegen in een richting.
+     *
+     * Versie van canMoveIn met extra ghost-regels zoals ghostdoors.
+     *
+     * @param dir Richting om te testen.
+     * @param x X-positie in wereldcoördinaten.
+     * @param y Y-positie in wereldcoördinaten.
+     * @return True als de ghost mag bewegen.
+     */
     bool canGhostMove(Direction dir, double x, double y) const;
-    bool isAlignedWithGrid(double x, double y) const;
+
+   // Pathfinding voor breadth first
+   /**
+    * @brief Zoekt een pad tussen twee gridposities.
+    *
+    * Gebruikt breadth first om een richtingen te bepalen van startpositie (sx,sy) naar target (tx,ty).
+    *
+    * Wordt voornamelijk gebruikt om ghosts terug naar spawn te laten gaan wanneer ze opgegeten worden.
+    *
+    * @param sx Start X-coördinaat (grid).
+    * @param sy Start Y-coördinaat (grid).
+    * @param tx Target X-coördinaat (grid).
+    * @param ty Target Y-coördinaat (grid).
+    * @param allowDoor Of ghost doors mogen worden gebruikt.
+    * @return Vector van richtingen die het pad vormen.
+    */
+   std::vector<Direction> findPath(int sx, int sy, int tx, int ty, bool allowDoor = false) const;
 };
 
 
-#endif //PACMAN_WORLD_H
+#endif //pacman_WORLD_H
