@@ -14,20 +14,21 @@ namespace logic {
     class CoinModel;
 }
 
-class CoinView : public EntityView, public logic::Observer {
-public:
-    explicit CoinView(logic::CoinModel* m);
+namespace view {
+    class CoinView : public EntityView, public logic::Observer {
+    public:
+        explicit CoinView(logic::CoinModel* m);
 
-    void draw(sf::RenderWindow& win, const Camera& cam) override;
-    void updateSprite(double dt) override;
+        void draw(sf::RenderWindow& win, const Camera& cam) override;
+        void updateSprite(double dt) override;
 
-    void onNotify(int event) override;
+        void onNotify(int event) override;
 
-private:
-    logic::CoinModel* model;
-    bool visible = true;
-};
-
+    private:
+        logic::CoinModel* model;
+        bool visible = true;
+    };
+}
 
 
 #endif //PACMANGAME_COINVIEW_H

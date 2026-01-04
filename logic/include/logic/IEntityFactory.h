@@ -9,11 +9,10 @@
 
 
 #include <memory>
-
 #include "GhostDoorModel.h"
 
 
-class EntityView;
+namespace view { class EntityView; }
 
 namespace logic {
     class Observer;
@@ -29,19 +28,19 @@ namespace logic {
     public:
         virtual ~IEntityFactory() = default;
 
-        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
         createPacmanView(PacManModel* model) = 0;
 
-        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
         createGhostView(GhostModel* model) = 0;
 
-        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
         createCoinView(CoinModel* model) = 0;
 
-        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
         createFruitView(FruitModel* model) = 0;
 
-        virtual std::pair<std::shared_ptr<EntityView>, std::shared_ptr<Observer>>
+        virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
         createGhostDoorView(GhostDoorModel* model) = 0;
     };
 }

@@ -3,63 +3,65 @@
 //
 
 #include "../include/view/FruitView.h"
+#include "logic/FruitModel.h"
 #include "../include/view/Camera.h"
 #include <iostream>
-
 #include "logic/Events.h"
 
-FruitView::FruitView(logic::FruitModel* m)
-    : EntityView(m), model(m)
-{
-    if (!texture.loadFromFile("view/assets/pacman.png"))
+namespace view {
+    FruitView::FruitView(logic::FruitModel* m)
+        : EntityView(m), model(m)
     {
-        std::cerr << "Kan fruit.png niet laden!" << std::endl;
+        if (!texture.loadFromFile("view/assets/pacman.png"))
+        {
+            std::cerr << "Kan fruit.png niet laden!" << std::endl;
+        }
+
+        sprite.setTexture(texture);
+
+        int spriteX = 0;
+        int spriteY = 128;
+
+        sprite.setTextureRect(sf::IntRect(spriteX, spriteY, FRAME_SIZE, FRAME_SIZE));
+
+        // Sprite centreren
+        sf::FloatRect bounds = sprite.getLocalBounds();
+        sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
 
-    sprite.setTexture(texture);
+    void FruitView::updateSprite(double dt)
+    {
+    }
 
-    int spriteX = 0;
-    int spriteY = 128;
+    void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
+    {
+        if (!model) return;
+        if (!visible) return; // belangrijke check: als fruit verzameld is, niet tekenen
 
-    sprite.setTextureRect(sf::IntRect(spriteX, spriteY, FRAME_SIZE, FRAME_SIZE));
+        double sizeW = 0.5; // halve cel
+        double sizeH = 0.5;
 
-    // Sprite centreren
-    sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-}
+        sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
+                                           model->getY() - sizeH/2.0,
+                                           sizeW, sizeH);
+        sprite.setPosition(rect.left + rect.width/2.f,
+                           rect.top  + rect.height/2.f);
 
-void FruitView::updateSprite(double dt)
-{
-}
+        // uniform scaling om vervorming te voorkomen
+        float sx = rect.width / sprite.getLocalBounds().width;
+        float sy = rect.height / sprite.getLocalBounds().height;
+        float s = std::min(sx, sy);
+        sprite.setScale(s * 1.4, s * 1.4);
 
-void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
-{
-    if (!model) return;
-    if (!visible) return; // belangrijke check: als fruit verzameld is, niet tekenen
+        win.draw(sprite);
+    }
 
-    double sizeW = 0.5; // halve cel
-    double sizeH = 0.5;
-
-    sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
-                                       model->getY() - sizeH/2.0,
-                                       sizeW, sizeH);
-    sprite.setPosition(rect.left + rect.width/2.f,
-                       rect.top  + rect.height/2.f);
-
-    // uniform scaling om vervorming te voorkomen
-    float sx = rect.width / sprite.getLocalBounds().width;
-    float sy = rect.height / sprite.getLocalBounds().height;
-    float s = std::min(sx, sy);
-    sprite.setScale(s * 1.4, s * 1.4);
-
-    win.draw(sprite);
-}
-
-void FruitView::onNotify(int event)
-{
-    if (event == static_cast<int>(logic::Event::FRUIT_EATEN)) {
-        visible = false;
-    } else if (event == static_cast<int>(logic::Event::FRUIT_RESPAWN)) {
-        visible = true;
+    void FruitView::onNotify(int event)
+    {
+        if (event == static_cast<int>(logic::Event::FRUIT_EATEN)) {
+            visible = false;
+        } else if (event == static_cast<int>(logic::Event::FRUIT_RESPAWN)) {
+            visible = true;
+        }
     }
 }

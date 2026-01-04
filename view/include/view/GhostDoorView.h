@@ -14,16 +14,17 @@ namespace logic {
     class GhostDoorModel;
 }
 
-class GhostDoorView : public EntityView {
-public:
-    explicit GhostDoorView(logic::GhostDoorModel* model);
+namespace view {
+    class GhostDoorView : public EntityView {
+    public:
+        explicit GhostDoorView(logic::GhostDoorModel* model);
 
-    void draw(sf::RenderWindow& win, const Camera& cam) override;
-    void updateSprite(double dt) override;
+        void draw(sf::RenderWindow& win, const Camera& cam) override;
+        void updateSprite(double dt) override;
 
-private:
-    logic::GhostDoorModel* model;
-};
-
+    private:
+        logic::GhostDoorModel* model;
+    };
+}
 
 #endif //PACMANGAME_GHOSTDOORVIEW_H

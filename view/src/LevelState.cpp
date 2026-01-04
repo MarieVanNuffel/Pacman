@@ -14,14 +14,14 @@
 LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     : State(win, sm), camera(0,0,0,0)
 {
-    factory = std::make_shared<ConcreteEntityFactory>();
+    factory = std::make_shared<view::ConcreteEntityFactory>();
     world = std::make_shared<logic::World>(factory, stateManager.getScore());
     world->spawnEntitiesForLevel();
 
-    mazeView = std::make_unique<MazeView>(world.get());
+    mazeView = std::make_unique<view::MazeView>(world.get());
 
     const auto& maze = world->getMaze();
-    camera = Camera(
+    camera = view::Camera(
         window.getSize().x,
         window.getSize().y,
         maze[0].size(),
@@ -152,7 +152,7 @@ void LevelState::render() {
     uiScale = std::min(scaleX, scaleY);
 
     const auto& maze = world->getMaze();
-    camera = Camera(window.getSize().x, window.getSize().y, maze[0].size(), maze.size());
+    camera = view::Camera(window.getSize().x, window.getSize().y, maze[0].size(), maze.size());
 
     window.setView(window.getDefaultView());
 

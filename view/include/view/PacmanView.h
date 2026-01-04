@@ -16,41 +16,42 @@ namespace logic {
     class PacManModel;
 }
 
-class PacmanView : public EntityView, public logic::Observer {
-public:
-    explicit PacmanView(logic::PacManModel* m);
-    void draw(sf::RenderWindow& win, const Camera& cam) override;
-    void updateSprite(double dt) override;
+namespace view {
+    class PacmanView : public EntityView, public logic::Observer {
+    public:
+        explicit PacmanView(logic::PacManModel* m);
+        void draw(sf::RenderWindow& win, const Camera& cam) override;
+        void updateSprite(double dt) override;
 
-    void startDeath(); // start de death animatie
-    void stopDeath(); // stop de death animatie
-    double getDeathDuration() const; // duur death animatie
+        void startDeath(); // start de death animatie
+        void stopDeath(); // stop de death animatie
+        double getDeathDuration() const; // duur death animatie
 
-    void onNotify(int event) override;
-private:
-    // animatie
-    double animTimer = 0.0;
-    double frameTime = 0.15;
+        void onNotify(int event) override;
+    private:
+        // animatie
+        double animTimer = 0.0;
+        double frameTime = 0.15;
 
-    // sprite sheet frames
-    static constexpr int FRAME_SIZE = 15;
-    static constexpr int NUM_FRAMES = 2;
-    int frameIndex = 0;
-    int frames[NUM_FRAMES] = {0, 15}; // kolommen voor open, half-open, bijna dicht
+        // sprite sheet frames
+        static constexpr int FRAME_SIZE = 15;
+        static constexpr int NUM_FRAMES = 2;
+        int frameIndex = 0;
+        int frames[NUM_FRAMES] = {0, 15}; // kolommen voor open, half-open, bijna dicht
 
-    // death animatie
-    bool deathPlaying = false;
-    int deathFrameIndex = 0;
-    static constexpr int NUM_DEATH_FRAMES = 12; // 12 frames voor de animatie
+        // death animatie
+        bool deathPlaying = false;
+        int deathFrameIndex = 0;
+        static constexpr int NUM_DEATH_FRAMES = 12; // 12 frames voor de animatie
 
-    // richting van Pac-Man
-    logic::PacManModel *model;
-    sf::Sprite sprite;
-    sf::Texture texture;
+        // richting van Pac-Man
+        logic::PacManModel *model;
+        sf::Sprite sprite;
+        sf::Texture texture;
 
-    logic::Direction lastDirection = logic::Direction::RIGHT;
+        logic::Direction lastDirection = logic::Direction::RIGHT;
 
-};
-
+    };
+}
 
 #endif //PACMANGAME_PACMANVIEW_H

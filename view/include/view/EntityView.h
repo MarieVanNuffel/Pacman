@@ -15,18 +15,19 @@ namespace logic {
     class Entity;
 }
 
-class EntityView {
-public:
-    virtual ~EntityView() = default;
+namespace view {
+    class EntityView {
+    public:
+        virtual ~EntityView() = default;
 
-    explicit EntityView(logic::Entity* model);
+        explicit EntityView(logic::Entity* model);
 
-    virtual void draw(sf::RenderWindow&, const Camera&) = 0;
-    virtual void updateSprite(double dt) = 0;
-protected:
-    logic::Entity* model;
-};
-
+        virtual void draw(sf::RenderWindow&, const Camera&) = 0;
+        virtual void updateSprite(double dt) = 0;
+    protected:
+        logic::Entity* model;
+    };
+}
 
 
 #endif //PACMANGAME_ENTITYVIEW_H

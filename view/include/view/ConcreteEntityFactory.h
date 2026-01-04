@@ -23,24 +23,25 @@ namespace logic {
     class Observer;
 }
 
-class ConcreteEntityFactory : public logic::IEntityFactory {
-public:
-    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-    createPacmanView(logic::PacManModel* m) override;
+namespace view {
+    class ConcreteEntityFactory : public logic::IEntityFactory {
+    public:
+        std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
+        createPacmanView(logic::PacManModel* m) override;
 
-    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-    createGhostView(logic::GhostModel* m) override;
+        std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
+        createGhostView(logic::GhostModel* m) override;
 
-    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-    createCoinView(logic::CoinModel* m) override;
+        std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
+        createCoinView(logic::CoinModel* m) override;
 
-    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-    createFruitView(logic::FruitModel* m) override;
+        std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
+        createFruitView(logic::FruitModel* m) override;
 
-    std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-    createGhostDoorView(logic::GhostDoorModel* m) override;
-};
-
+        std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
+        createGhostDoorView(logic::GhostDoorModel* m) override;
+    };
+}
 
 
 

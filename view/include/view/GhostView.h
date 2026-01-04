@@ -14,30 +14,30 @@ namespace logic {
     class GhostModel;
 }
 
+namespace view {
+    class GhostView : public EntityView {
+    public:
+        explicit GhostView(logic::GhostModel* m);
+        void draw(sf::RenderWindow& win, const Camera& cam) override;
+        void updateSprite(double dt) override;
+    private:
+        // animatie
+        double animTimer = 0.0;
+        double frameTime = 0.15;
 
-class GhostView : public EntityView {
-public:
-    explicit GhostView(logic::GhostModel* m);
-    void draw(sf::RenderWindow& win, const Camera& cam) override;
-    void updateSprite(double dt) override;
-private:
-    // animatie
-    double animTimer = 0.0;
-    double frameTime = 0.15;
+        // sprite sheet frames
+        static constexpr int FRAME_SIZE = 16;
+        static constexpr int NUM_FRAMES = 2;
+        int frameIndex = 0;
+        int frames[NUM_FRAMES] = {0, 16}; // kolommen voor bewegingen
 
-    // sprite sheet frames
-    static constexpr int FRAME_SIZE = 16;
-    static constexpr int NUM_FRAMES = 2;
-    int frameIndex = 0;
-    int frames[NUM_FRAMES] = {0, 16}; // kolommen voor bewegingen
+        // richting van Ghosts
+        logic::GhostModel* model;
+        sf::Sprite sprite;
+        sf::Texture texture;
 
-    // richting van Ghosts
-    logic::GhostModel* model;
-    sf::Sprite sprite;
-    sf::Texture texture;
-
-    logic::Direction lastDirection = logic::Direction::RIGHT;
-};
-
+        logic::Direction lastDirection = logic::Direction::RIGHT;
+    };
+}
 
 #endif //PACMANGAME_GHOSTVIEW_H

@@ -24,15 +24,15 @@ public:
 
 private:
     std::shared_ptr<logic::World> world;
-    std::shared_ptr<ConcreteEntityFactory> factory;
-    Camera camera;
+    std::shared_ptr<view::ConcreteEntityFactory> factory;
+    view::Camera camera;
 
-    std::unique_ptr<MazeView> mazeView;
-    std::shared_ptr<EntityView> pacmanView;
-    std::vector<std::shared_ptr<EntityView>> ghostViews;
-    std::vector<std::shared_ptr<EntityView>> coinViews;
-    std::vector<std::shared_ptr<EntityView>> fruitViews;
-    std::vector<std::shared_ptr<EntityView>> ghostDoorViews;
+    std::unique_ptr<view::MazeView> mazeView;
+    std::shared_ptr<view::EntityView> pacmanView;
+    std::vector<std::shared_ptr<view::EntityView>> ghostViews;
+    std::vector<std::shared_ptr<view::EntityView>> coinViews;
+    std::vector<std::shared_ptr<view::EntityView>> fruitViews;
+    std::vector<std::shared_ptr<view::EntityView>> ghostDoorViews;
 
     float tileW{};
     float tileH{};

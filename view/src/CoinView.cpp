@@ -9,45 +9,47 @@
 #include "logic/Events.h"
 #include "logic/World.h"
 
-CoinView::CoinView(logic::CoinModel* m)
-    : EntityView(m), model(m), visible(true)
-{}
+namespace view {
+    CoinView::CoinView(logic::CoinModel* m)
+        : EntityView(m), model(m)
+    {}
 
-void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
-{
-    if (!model || !visible) return;
+    void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
+    {
+        if (!model || !visible) return;
 
-    double sizeW = 0.5; // halve cel
-    double sizeH = 0.5;
+        double sizeW = 0.5; // halve cel
+        double sizeH = 0.5;
 
-    // verschuif middelpunt naar linker-bovenhoek van de coin
-    sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
-                                           model->getY() - sizeH/2.0,
-                                           sizeW, sizeH);
+        // verschuif middelpunt naar linker-bovenhoek van de coin
+        sf::FloatRect rect = cam.worldToPixels(model->getX() - sizeW/2.0,
+                                               model->getY() - sizeH/2.0,
+                                               sizeW, sizeH);
 
-    float radius = std::min(rect.width, rect.height) / 3.f;
+        float radius = std::min(rect.width, rect.height) / 3.f;
 
-    sf::CircleShape coin(radius);
-    coin.setFillColor(sf::Color::Yellow);
+        sf::CircleShape coin(radius);
+        coin.setFillColor(sf::Color::Yellow);
 
-    // centreer coin in rect
-    coin.setOrigin(radius, radius);  // zet origin in het midden van de cirkel
-    coin.setPosition(rect.left + rect.width / 2.f,
-                     rect.top  + rect.height / 2.f);
+        // centreer coin in rect
+        coin.setOrigin(radius, radius);  // zet origin in het midden van de cirkel
+        coin.setPosition(rect.left + rect.width / 2.f,
+                         rect.top  + rect.height / 2.f);
 
-    win.draw(coin);
-}
-
-
-void CoinView::updateSprite(double dt) {
-}
+        win.draw(coin);
+    }
 
 
-void CoinView::onNotify(int event)
-{
-    if (event == static_cast<int>(logic::Event::COIN_COLLECTED)) {
-        visible = false;
-    } else if (event == static_cast<int>(logic::Event::COIN_RESPAWN)) {
-        visible = true;
+    void CoinView::updateSprite(double dt) {
+    }
+
+
+    void CoinView::onNotify(int event)
+    {
+        if (event == static_cast<int>(logic::Event::COIN_COLLECTED)) {
+            visible = false;
+        } else if (event == static_cast<int>(logic::Event::COIN_RESPAWN)) {
+            visible = true;
+        }
     }
 }

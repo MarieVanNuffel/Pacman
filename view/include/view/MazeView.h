@@ -12,21 +12,21 @@
 #include "logic/World.h"
 #include "Camera.h"
 
+namespace view {
+    class MazeView {
+    public:
+        explicit MazeView(const logic::World* w);
+        void draw(sf::RenderWindow& win, const Camera& cam);
 
-class MazeView {
-public:
-    explicit MazeView(const logic::World* w);
-    void draw(sf::RenderWindow& win, const Camera& cam);
+    private:
+        const logic::World* world;
 
-private:
-    const logic::World* world;
+        float cellSize = 48.f; // of dynamisch aangepast
 
-    float cellSize = 48.f; // of dynamisch aangepast
-
-    sf::Texture wallTexture;
-    sf::Sprite wallSprite;
-};
-
+        sf::Texture wallTexture;
+        sf::Sprite wallSprite;
+    };
+}
 
 
 #endif //PACMANGAME_MAZEVIEW_H

@@ -4,4 +4,6 @@
 
 #include "view/EntityView.h"
 
-EntityView::EntityView(logic::Entity* m) : model(m) {}
+namespace view {
+    EntityView::EntityView(logic::Entity* m) : model(m) {}
+}

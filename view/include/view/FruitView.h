@@ -12,21 +12,22 @@ namespace logic {
     class FruitModel;
 }
 
-class FruitView : public EntityView, public logic::Observer {
-public:
-    explicit FruitView(logic::FruitModel* m);
-    void draw(sf::RenderWindow& win, const Camera& cam) override;
-    void updateSprite(double dt) override;
+namespace view {
+    class FruitView : public EntityView, public logic::Observer {
+    public:
+        explicit FruitView(logic::FruitModel* m);
+        void draw(sf::RenderWindow& win, const Camera& cam) override;
+        void updateSprite(double dt) override;
 
-    void onNotify(int event) override;
-private:
-    logic::FruitModel* model;
-    sf::Sprite sprite;
-    sf::Texture texture;
-    static constexpr int FRAME_SIZE = 15;
-    double animTime = 0.0;
-    bool visible = true;
-};
-
+        void onNotify(int event) override;
+    private:
+        logic::FruitModel* model;
+        sf::Sprite sprite;
+        sf::Texture texture;
+        static constexpr int FRAME_SIZE = 15;
+        double animTime = 0.0;
+        bool visible = true;
+    };
+}
 
 #endif //PACMANGAME_FRUITVIEW_H
