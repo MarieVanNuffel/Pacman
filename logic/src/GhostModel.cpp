@@ -39,11 +39,22 @@ static bool isOpposite(Direction a, Direction b) {
     void GhostModel::setMode(Mode m) {
         mode = m;
 
-        if (m == Mode::Fear) {
+    switch (m) {
+        case Mode::Waiting:
+            speed = chaseSpeed;
+            break;
+
+        case Mode::Chase:
+            // gewone chase snelheid
+            speed = chaseSpeed;
+            break;
+
+        case Mode::Fear:
+            // trager in fear mode
             speed = 1.5;
             fearTimer = 0.0;
 
-            // direction wordt omgekeerd bij FEAR mode
+            // Keer direction om bij FEAR mode
             switch (direction) {
                 case Direction::UP:    direction = Direction::DOWN; break;
                 case Direction::DOWN:  direction = Direction::UP; break;
@@ -52,11 +63,16 @@ static bool isOpposite(Direction a, Direction b) {
                 default: break;
             }
             desiredDirection = direction;
-        }
+            break;
 
-        if (m == Mode::Eaten) {
-            speed = 4.0; // snel terug naar spawn
-        }
+        case Mode::Eaten:
+            // heel snel terug naar spawn
+            speed = 4.0;
+            break;
+
+        default:
+            break;
+    }
     }
 
 
@@ -148,7 +164,6 @@ static bool isOpposite(Direction a, Direction b) {
                 y = startY;
                 setPosition(x, y);
                 setMode(Mode::Chase);
-                setSpeed(chaseSpeed);
                 releaseTimer = 0.0;
 
                 // Direction vanaf dat ze op hun spawn positie zijn
