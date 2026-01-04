@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(PacMan LANGUAGES CXX)
+
 add_executable(pacman
         src/main.cpp
         src/Game.cpp

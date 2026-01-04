@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(PacMan LANGUAGES CXX)
+
 add_library(logic
         src/World.cpp
         src/Stopwatch.cpp
