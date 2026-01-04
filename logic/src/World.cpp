@@ -32,8 +32,6 @@ World::World(std::shared_ptr<IEntityFactory> factory_, std::shared_ptr<Score> sc
     };
     mazeHeight = maze.size();
     mazeWidth = maze[0].size();
-
-    spawnEntitiesForLevel();
 }
 
 

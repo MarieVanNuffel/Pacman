@@ -8,6 +8,8 @@
 #pragma once
 
 
+#include <cassert>
+
 #include "Entity.h"
 #include "Subject.h"
 
@@ -91,7 +93,7 @@ public:
      *
      * @param w Pointer naar World.
      */
-    void setWorld(const std::shared_ptr<World>& w) { worldRef = w; };
+    void setWorld(const std::shared_ptr<World>& w) { assert(w && "setWorld called with null"); worldRef = w; };
     /**
      * @brief Zet de mode van de ghost.
      *

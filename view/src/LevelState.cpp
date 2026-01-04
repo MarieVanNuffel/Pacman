@@ -22,6 +22,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 {
     factory = std::make_shared<ConcreteEntityFactory>();
     world = std::make_shared<World>(factory, stateManager.getScore());
+    world->spawnEntitiesForLevel();
 
     mazeView = std::make_unique<MazeView>(world.get());
 
