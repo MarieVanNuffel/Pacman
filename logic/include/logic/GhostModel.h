@@ -145,7 +145,7 @@ namespace logic {
         GhostType type;
         Mode mode;
 
-        double chaseSpeed = 2.0;
+        double chaseSpeed;
         bool frozen = false;
 
         // Startposities
