@@ -36,7 +36,3 @@ void Camera::recompute() {
     offsetY = (hPixels - totalH) / 2.0f;
 }
 
-
-
-
-

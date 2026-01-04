@@ -59,7 +59,7 @@ void FruitView::onNotify(int event)
 {
     if (event == static_cast<int>(logic::Event::FRUIT_EATEN)) {
         visible = false;
-    } else {
+    } else if (event == static_cast<int>(logic::Event::FRUIT_RESPAWN)) {
         visible = true;
     }
 }

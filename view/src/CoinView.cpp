@@ -47,7 +47,7 @@ void CoinView::onNotify(int event)
 {
     if (event == static_cast<int>(logic::Event::COIN_COLLECTED)) {
         visible = false;
-    } else {
+    } else if (event == static_cast<int>(logic::Event::COIN_RESPAWN)) {
         visible = true;
     }
 }
