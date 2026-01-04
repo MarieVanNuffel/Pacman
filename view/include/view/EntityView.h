@@ -9,7 +9,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <memory>
 #include "Camera.h"
 
 namespace logic {

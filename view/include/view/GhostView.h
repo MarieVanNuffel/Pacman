@@ -4,8 +4,8 @@
 
 #ifndef PACMANGAME_GHOSTVIEW_H
 #define PACMANGAME_GHOSTVIEW_H
-#include <SFML/Graphics/RenderWindow.hpp>
 
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "Camera.h"
 #include "EntityView.h"
 #include "logic/Direction.h"

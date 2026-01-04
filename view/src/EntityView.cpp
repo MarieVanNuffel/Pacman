@@ -3,6 +3,5 @@
 //
 
 #include "view/EntityView.h"
-#include "logic/Entity.h"
 
 EntityView::EntityView(logic::Entity* m) : model(m) {}

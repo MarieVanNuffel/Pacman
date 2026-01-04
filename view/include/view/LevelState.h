@@ -12,7 +12,7 @@
 #include "State.h"
 #include "logic/World.h"
 #include "ConcreteEntityFactory.h"
-#include "view/MazeView.h"  // nieuwe MazeView
+#include "view/MazeView.h"
 
 class LevelState : public State {
 public:

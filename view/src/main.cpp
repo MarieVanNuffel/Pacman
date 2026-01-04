@@ -9,10 +9,8 @@
     //game.run();
 //}
 
-#include <SFML/Graphics.hpp>
-#include "view/Game.h"  // als Game alles beheert
-// OF: direct LevelState gebruiken
-// #include "LevelState.h"
+#include "view/Game.h"
+
 
 int main() {
     Game g;

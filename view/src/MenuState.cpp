@@ -3,14 +3,11 @@
 //
 
 #include "view/MenuState.h"
-
 #include <cmath>
 #include <iomanip>
-
 #include "view/LevelState.h"
 #include <iostream>
 #include <sstream>
-
 #include "view/StateManager.h"
 
 MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
