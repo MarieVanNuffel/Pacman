@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "../include/logic/Stopwatch.h"
+#include "logic/Events.h"
 
 
 PacManModel::PacManModel() {
@@ -28,11 +29,10 @@ void PacManModel::reset() {
 }
 
 void PacManModel::die() {
-    // notify observers
-    notify(2); // 2 = Pac-Man died
+    notify(static_cast<int>(logic::Event::PACMAN_DIED));
 }
 
 void PacManModel::revive() {
-    notify(3); // 3 = Pac-Man revived
+    notify(static_cast<int>(logic::Event::PACMAN_REVIVED));
 }
 

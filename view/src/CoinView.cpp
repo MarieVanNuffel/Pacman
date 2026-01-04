@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include "../include/view/Camera.h"
+#include "logic/Events.h"
 #include "logic/World.h"
 
 CoinView::CoinView(CoinModel* m)
@@ -44,7 +45,7 @@ void CoinView::updateSprite(double dt) {
 
 void CoinView::onNotify(int event)
 {
-    if (event == 1) { // 1 = coin collected event
+    if (event == static_cast<int>(logic::Event::COIN_COLLECTED)) {
         visible = false;
     } else {
         visible = true;

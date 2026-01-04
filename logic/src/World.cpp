@@ -48,17 +48,8 @@ void World::spawnEntitiesForLevel() {
         }
     }
 
-        // view en observer
-        auto pv = factory->createPacmanView(pacman.get());
-        pacmanView = pv.first;
-        auto pacmanObs = pv.second;
-        if (pacmanObs) {
-            pacman->addObserver(pacmanObs);
-    }
-
     // --- GHOSTS ---
     ghosts.clear();
-    ghostViews.clear();
 
     int ghostIndex = 0;
 
@@ -80,14 +71,6 @@ void World::spawnEntitiesForLevel() {
                 ghost->setWorld(this);  // belangrijk voor AI
 
                 ghosts.push_back(ghost);
-
-                // view en observer
-                auto gv = factory->createGhostView(ghost.get());
-                ghostViews.push_back(gv.first);
-                if (gv.second) {
-                    ghost->addObserver(gv.second);
-                }
-
                 ghostIndex++;
             }
         }
@@ -95,7 +78,6 @@ void World::spawnEntitiesForLevel() {
 
     // --- COINS ---
     coins.clear();
-    coinViews.clear();
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
@@ -103,29 +85,12 @@ void World::spawnEntitiesForLevel() {
                 auto c = std::make_shared<CoinModel>();
                 c->setPosition(x + 0.5, y + 0.5);
                 coins.push_back(c);
-
-                // view en observer
-                auto viewPair = factory->createCoinView(c.get());
-                auto cv = viewPair.first;
-                auto cvObs = viewPair.second;
-
-                // bewaar de view
-                coinViews.push_back(cv);
-
-                // registreer Score als observer
-                c->addObserver(std::static_pointer_cast<Observer>(score));
-
-                // als de concrete view zelf een Observer was, registreer die ook
-                if (cvObs) {
-                    c->addObserver(cvObs);
-                }
             }
         }
     }
 
     // --- FRUITS ---
     fruits.clear();
-    fruitViews.clear();
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
@@ -133,29 +98,12 @@ void World::spawnEntitiesForLevel() {
                 auto f = std::make_shared<FruitModel>();
                 f->setPosition(x + 0.5, y + 0.5);
                 fruits.push_back(f);
-
-                // view en observer
-                auto viewPair = factory->createFruitView(f.get());
-                auto fv = viewPair.first;
-                auto fvObs = viewPair.second;
-
-                // bewaar view
-                fruitViews.push_back(fv);
-
-                // registreer Score als observer
-                f->addObserver(std::static_pointer_cast<Observer>(score));
-
-                // registreer view als observer indien concrete view dat aanbiedt
-                if (fvObs) {
-                    f->addObserver(fvObs);
-                }
             }
         }
     }
 
     // --- GHOSTDOOR ---
     ghostDoors.clear();
-    ghostDoorViews.clear();
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
@@ -163,10 +111,6 @@ void World::spawnEntitiesForLevel() {
                 auto door = std::make_shared<GhostDoorModel>();
                 door->setPosition(x + 0.5, y + 0.5);
                 ghostDoors.push_back(door);
-
-                // view en observer
-                auto dv = factory->createGhostDoorView(door.get());
-                ghostDoorViews.push_back(dv.first);
             }
         }
     }

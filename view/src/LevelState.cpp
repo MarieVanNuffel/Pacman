@@ -73,6 +73,44 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 
     // Maak een "blur" effect door een witte semi-transparante rechthoek
     blurBackground.setFillColor(sf::Color(255, 255, 255, 30));
+
+    // Pacman view
+    {
+        auto pv = factory->createPacmanView(world->getPacman().get());
+        pacmanView = pv.first;
+        if (pv.second) world->getPacman()->addObserver(pv.second);
+    }
+
+    // Ghost views
+    ghostViews.clear();
+    for (auto& gm : world->getGhosts()) {
+        auto gv = factory->createGhostView(gm.get());
+        ghostViews.push_back(gv.first);
+        if (gv.second) gm->addObserver(gv.second);
+    }
+
+    // Coin views
+    coinViews.clear();
+    for (auto& cm : world->getCoins()) {
+        auto cv = factory->createCoinView(cm.get());
+        coinViews.push_back(cv.first);
+        if (cv.second) cm->addObserver(cv.second);
+    }
+
+    // Fruit views
+    fruitViews.clear();
+    for (auto& fm : world->getFruits()) {
+        auto fv = factory->createFruitView(fm.get());
+        fruitViews.push_back(fv.first);
+        if (fv.second) fm->addObserver(fv.second);
+    }
+
+    // Ghost door views
+    ghostDoorViews.clear();
+    for (auto& gd : world->getGhostDoors()) {
+        auto dv = factory->createGhostDoorView(gd.get());
+        ghostDoorViews.push_back(dv.first);
+    }
 }
 
 
@@ -82,11 +120,11 @@ void LevelState::update(float dt) {
     if (!isPaused) {
         world->update(dt);
 
-        world->getPacmanView()->updateSprite(dt);
-        for (auto& gv : world->getGhostViews())
+        pacmanView->updateSprite(dt);
+        for (auto& gv : ghostViews)
             gv->updateSprite(dt);
 
-        for (auto& cv : world->getCoinViews())
+        for (auto& cv : coinViews)
             cv->updateSprite(dt);
 
         updateUI();
@@ -178,24 +216,24 @@ void LevelState::drawMaze() {
 
 void LevelState::drawEntities() {
     // PACMAN
-    world->getPacmanView()->draw(window, camera);
+    pacmanView->draw(window, camera);
 
     // GHOSTS
-    for (auto& gv : world->getGhostViews()) {
+    for (auto& gv : ghostViews) {
         gv->draw(window, camera);
     }
 
     // COINS
-    for (auto& cv : world->getCoinViews()) {
+    for (auto& cv : coinViews) {
         cv->draw(window, camera);
     }
 
     // FRUITS
-    for (auto& fv : world->getFruitViews()) {
+    for (auto& fv : fruitViews) {
         fv->draw(window, camera);
     }
 
-    for (auto& gdv: world->getGhostDoorViews()) {
+    for (auto& gdv: ghostDoorViews) {
         gdv->draw(window, camera);
     }
 }

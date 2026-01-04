@@ -2,12 +2,12 @@
 // Created by Marie Van Nuffel on 28/11/2025.
 //
 
+#include "logic/PacManModel.h"
 #include "../include/view/PacmanView.h"
-
+#include "logic/Events.h"
 #include <iostream>
-
-#include "logic/PacManModel.h"        // model class
 #include <SFML/Graphics.hpp>
+
 
 PacmanView::PacmanView(PacManModel* m)
     : EntityView(m), model(m)
@@ -59,11 +59,8 @@ double PacmanView::getDeathDuration() const {
 }
 
 void PacmanView::onNotify(int event) {
-    if (event == 2) { // pacman dood
-        startDeath();
-    } else if (event == 3) { // pacman revived
-        stopDeath();
-    }
+    if (event == static_cast<int>(logic::Event::PACMAN_DIED)) startDeath();
+    else if (event == static_cast<int>(logic::Event::PACMAN_REVIVED)) stopDeath();
 }
 
 

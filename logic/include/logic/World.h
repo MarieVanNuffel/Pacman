@@ -41,14 +41,6 @@ private:
     std::vector<std::shared_ptr<GhostDoorModel>> ghostDoors;
     std::shared_ptr<Score> score;
 
-    // Views
-    std::shared_ptr<EntityView> pacmanView;
-    std::vector<std::shared_ptr<EntityView>> ghostViews;
-    std::vector<std::shared_ptr<EntityView>> coinViews;
-    std::vector<std::shared_ptr<EntityView>> fruitViews;
-    std::vector<std::shared_ptr<EntityView>> ghostDoorViews;
-
-
     std::vector<std::vector<int>> maze; // 2D grid, 0 = empty, 1 = wall, 2 = coin, 3 = fruit, 4 = pacman, 5 = ghost
     int mazeHeight;
     int mazeWidth;
@@ -103,33 +95,6 @@ public:
      */
     [[nodiscard]] std::shared_ptr<Score> getScore() const { return score; }
 
-    // Getters Views
-
-    /**
-     * @brief Geeft de pacman view terug.
-     * @return Shared pointer naar EntityView.
-     */
-    [[nodiscard]] std::shared_ptr<EntityView> getPacmanView() const { return pacmanView; }
-    /**
-     * @brief Geeft alle ghost views terug.
-     * @return Const referentie naar vector met EntityView pointers.
-     */
-    [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getGhostViews() const { return ghostViews; }
-    /**
-     * @brief Geeft alle coin views terug.
-     * @return Const referentie naar vector met EntityView pointers.
-     */
-    [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getCoinViews() const { return coinViews; }
-    /**
-     * @brief Geeft alle fruit views terug.
-     * @return Const referentie naar vector met EntityView pointers.
-     */
-    [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getFruitViews() const { return fruitViews; }
-    /**
-     * @brief Geeft alle ghost door views terug.
-     * @return Const referentie naar vector met EntityView pointers.
-     */
-    [[nodiscard]] const std::vector<std::shared_ptr<EntityView>>& getGhostDoorViews() const { return ghostDoorViews; }
 
     // Functies voor levels
     /**

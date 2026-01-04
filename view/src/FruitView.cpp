@@ -6,6 +6,8 @@
 #include "../include/view/Camera.h"
 #include <iostream>
 
+#include "logic/Events.h"
+
 FruitView::FruitView(FruitModel* m)
     : EntityView(m), model(m)
 {
@@ -55,7 +57,7 @@ void FruitView::draw(sf::RenderWindow& win, const Camera& cam)
 
 void FruitView::onNotify(int event)
 {
-    if (event == 2) { // 2 = fruit collected event
+    if (event == static_cast<int>(logic::Event::FRUIT_EATEN)) {
         visible = false;
     } else {
         visible = true;

@@ -4,10 +4,12 @@
 
 #include "../include/logic/FruitModel.h"
 
+#include "logic/Events.h"
+
 void FruitModel::collect() {
     if (!collected) {
         collected = true;
-        notify(2); // 2 = fruit collected
+        notify(static_cast<int>(logic::Event::FRUIT_EATEN));
     }
 }
 
@@ -17,5 +19,5 @@ void FruitModel::update(double /*dt*/) {
 
 void FruitModel::reset() {
     collected = false;
-    notify(0);
+    notify(static_cast<int>(logic::Event::FRUIT_RESPAWN));
 }

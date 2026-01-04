@@ -4,18 +4,20 @@
 
 #include "../include/logic/CoinModel.h"
 
+#include "logic/Events.h"
+
 void CoinModel::collect() {
     if (!collected) {
         collected = true;
-        notify(1); // 1 = coin collected
+        notify(static_cast<int>(logic::Event::COIN_COLLECTED));
     }
-}
-
-void CoinModel::update(double /*dt*/) {
-    // coins zijn statisch — geen update nodig
 }
 
 void CoinModel::reset() {
     collected = false;
-    notify(0); // zodat view weer zichtbaar wordt
+    notify(static_cast<int>(logic::Event::COIN_RESPAWN));
+}
+
+void CoinModel::update(double dt) {
+    // statisch, dus niet nodig
 }
