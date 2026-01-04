@@ -7,16 +7,15 @@
 #include "logic/Events.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "view/Resource.h"
 
 namespace view {
     PacmanView::PacmanView(std::shared_ptr<logic::PacManModel> m)
         : EntityView(m), model(m)
     {
-        if (!texture.loadFromFile("view/assets/pacman.png")) {
-            throw std::runtime_error("Failed to load pacman texture!");
-        }
+        texturePtr = view::Resource::loadTexture("view/assets/pacman.png");
+        if (texturePtr) sprite.setTexture(*texturePtr);
 
-        sprite.setTexture(texture);
         sprite.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
         sprite.setOrigin(FRAME_SIZE / 2.f, FRAME_SIZE / 2.f);
     }

@@ -3,21 +3,19 @@
 //
 
 #include "../include/view/FruitView.h"
+#include <filesystem>
 #include "logic/FruitModel.h"
 #include "../include/view/Camera.h"
 #include <iostream>
 #include "logic/Events.h"
+#include "view/Resource.h"
 
 namespace view {
     FruitView::FruitView(std::shared_ptr<logic::FruitModel> m)
         : EntityView(m), model(m)
     {
-        if (!texture.loadFromFile("view/assets/pacman.png"))
-        {
-            std::cerr << "Kan fruit.png niet laden!" << std::endl;
-        }
-
-        sprite.setTexture(texture);
+        texturePtr = view::Resource::loadTexture("view/assets/pacman.png");
+        if (texturePtr) sprite.setTexture(*texturePtr);
 
         int spriteX = 0;
         int spriteY = 128;

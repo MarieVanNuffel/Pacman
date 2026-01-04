@@ -5,19 +5,14 @@
 #include "../include/view/GhostView.h"
 #include "logic/GhostModel.h"
 #include <iostream>
-#include <ostream>
-#include <SFML/Graphics/Texture.hpp>
+#include "view/Resource.h"
 
 namespace view {
     GhostView::GhostView(std::shared_ptr<logic::GhostModel> m)
         : EntityView(m), model(m)
     {
-        if (!texture.loadFromFile("view/assets/pacman.png"))
-        {
-            std::cerr << "Kan ghost.png niet laden!" << std::endl;
-        }
-
-        sprite.setTexture(texture);
+        texturePtr = view::Resource::loadTexture("view/assets/pacman.png");
+        if (texturePtr) sprite.setTexture(*texturePtr);
 
         int rectTop;
 

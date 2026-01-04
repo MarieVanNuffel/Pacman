@@ -34,7 +34,7 @@ namespace view {
         // richting van Ghosts
         std::weak_ptr<logic::GhostModel> model;
         sf::Sprite sprite;
-        sf::Texture texture;
+        std::shared_ptr<sf::Texture> texturePtr;
 
         logic::Direction lastDirection = logic::Direction::RIGHT;
     };

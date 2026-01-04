@@ -47,7 +47,7 @@ namespace view {
         // richting van Pac-Man
         std::weak_ptr<logic::PacManModel> model;
         sf::Sprite sprite;
-        sf::Texture texture;
+        std::shared_ptr<sf::Texture> texturePtr;
 
         logic::Direction lastDirection = logic::Direction::RIGHT;
 

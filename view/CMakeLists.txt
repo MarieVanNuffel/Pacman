@@ -13,6 +13,7 @@ add_executable(pacman
         src/MenuState.cpp
         src/ConcreteEntityFactory.cpp
         src/GhostDoorView.cpp
+        src/Resource.cpp
 )
 
 target_include_directories(pacman PUBLIC include)
