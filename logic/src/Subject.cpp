@@ -8,7 +8,7 @@
 namespace logic {
     void Subject::addObserver(std::shared_ptr<Observer> o) {
         if (!o) return;
-        // voorkom dubbele registratie (optioneel)
+        // voorkom dubbele registratie
         for (auto &w : observers) {
             if (auto s = w.lock()) {
                 if (s == o) return;
@@ -31,7 +31,7 @@ namespace logic {
                 s->onNotify(event);
                 ++it;
             } else {
-                it = observers.erase(it);
+                it = observers.erase(it); // verwijder verlopen observers
             }
         }
     }

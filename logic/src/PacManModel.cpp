@@ -17,7 +17,7 @@ namespace logic {
     }
 
     void PacManModel::update(double dt) {
-        // Nothing here, movement handled in World
+        // movement gebeurt in world, want heeft geen AI nodig
     }
 
     void PacManModel::reset() {
@@ -25,10 +25,10 @@ namespace logic {
     }
 
     void PacManModel::die() {
-        notify(static_cast<int>(logic::Event::PACMAN_DIED));
+        notify(static_cast<int>(logic::Event::PACMAN_DIED)); // stuurt event
     }
 
     void PacManModel::revive() {
-        notify(static_cast<int>(logic::Event::PACMAN_REVIVED));
+        notify(static_cast<int>(logic::Event::PACMAN_REVIVED)); // stuurt event
     }
 }

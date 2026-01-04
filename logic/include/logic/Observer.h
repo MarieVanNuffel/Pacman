@@ -9,9 +9,20 @@
 #pragma once
 
 namespace logic {
+
+    /**
+     * @brief Observer interface
+     *
+     * Ontvangt events van Subjects.
+     */
     class Observer {
     public:
         virtual ~Observer() = default;
+
+        /**
+         * @brief Wordt aangeroepen bij een event
+         * @param event Event id
+         */
         virtual void onNotify(int event) = 0;
     };
 }

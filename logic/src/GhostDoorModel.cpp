@@ -21,9 +21,9 @@ namespace logic {
         int doorTileX = static_cast<int>(std::floor(getX()));
         int doorTileY = static_cast<int>(std::floor(getY()));
 
-        bool sameColumn = (ghostTileX == doorTileX);
-        bool inDoorTile = (ghostTileY == doorTileY);
-        bool underDoorTile = (ghostTileY == doorTileY + 1);
+        bool sameColumn = (ghostTileX == doorTileX); // moet zelfde kolom zijn
+        bool inDoorTile = (ghostTileY == doorTileY); //
+        bool underDoorTile = (ghostTileY == doorTileY + 1); // kijkt ook tile onder de deur
 
         return sameColumn && (inDoorTile || underDoorTile);
     }
@@ -36,7 +36,7 @@ namespace logic {
         int doorTileY = static_cast<int>(std::floor(getY()));
 
         bool sameColumn = (ghostTileX == doorTileX);
-        bool aboveDoorTile = (ghostTileY == doorTileY - 1);
+        bool aboveDoorTile = (ghostTileY == doorTileY - 1); // kijkt naar tile boven de deur
 
         return sameColumn && aboveDoorTile;
     }

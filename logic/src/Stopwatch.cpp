@@ -16,7 +16,7 @@ namespace logic {
 
     double Stopwatch::tick() {
         auto now = std::chrono::steady_clock::now();
-        std::chrono::duration<double> diff = now - last;
+        std::chrono::duration<double> diff = now - last; // verschil berekenen
         last = now;
         return diff.count();
     }

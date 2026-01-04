@@ -11,17 +11,31 @@
 #include "Subject.h"
 
 namespace logic {
+
+    /**
+     * @brief Model voor een coin
+     */
     class CoinModel : public Entity, public Subject {
     public:
         CoinModel() = default;
         ~CoinModel() override = default;
 
-        // mark collected and notify observers
+        /**
+         * @brief Coin is opgepakt, notify observers
+         */
         void collect();
 
-        // coin is static; implement update as no-op so class is not abstract
+        /**
+         * @brief Update functie
+         *
+         * Coin is statisch, dus doet niets
+         * @param dt Delta time
+         */
         void update(double dt) override;
 
+        /**
+         * @brief Reset coin, notify obervers
+         */
         void reset();
 
         bool collected = false;

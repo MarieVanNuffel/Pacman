@@ -11,17 +11,31 @@
 #include "Subject.h"
 
 namespace logic {
+
+    /**
+     * @brief Model voor een fruit entity
+     */
     class FruitModel : public Entity, public Subject {
     public:
         FruitModel() = default;
         ~FruitModel() override = default;
 
-        // mark collected and notify observers (event == 2 for fruit)
+        /**
+         * @brief fruit als gegeten en notify observers
+         */
         void collect();
 
-        // fruit is static by default; implement update as no-op so class is not abstract
+        /**
+         * @brief Update functie
+         *
+         * Fruit is statisch, dus doet niets
+         * @param dt Delta time
+         */
         void update(double dt) override;
 
+        /**
+         * @brief Reset fruit originele staat, notify observers
+         */
         void reset();
 
         bool collected = false;

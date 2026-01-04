@@ -15,26 +15,81 @@
 #include "Observer.h"
 
 namespace logic {
+
+    /**
+     * @brief Beheert score en highscores
+     *
+     * Reageert op game events via observer.
+     */
     class Score : public Observer {
     public:
+        /**
+         * @brief Constructor
+         *
+         * Laadt highscores.
+         */
         Score();
 
-        // score mutators
+        // Score aanpassingen
+
+        /**
+         * @brief Verwerkt coin score afhankelijk van tijd tussen collected coins
+         * @param timeSinceLastCoin Tijd sinds vorige coin
+         */
         void coinCollected(double timeSinceLastCoin);
+
+        /**
+         * @brief Verhoog score bij level clear
+         */
         void levelCleared();
+
+        /**
+         * @brief Verhoog score bij fruit
+         */
         void fruitCollected();
+
+        /**
+         * @brief Verhoog score bij ghost eat
+         */
         void ghostEaten();
+
+        /**
+         * @brief Verlaag score bij pacman death
+         */
         void pacmanDied();
 
-        // Observer interface
+
+        // Observer
+        /**
+         * @brief Ontvangt events van entities
+         * @param event Event id
+         */
         void onNotify(int event) override;
 
-        // highscore persistence (simple in-memory API)
+
+        // Highscores
+        /**
+         * @brief Laad highscores
+         */
         void loadHighScores();
+
+        /**
+         * @brief Sla highscores op
+         */
         void saveHighScores();
 
-        // getters
+        // Getters
+
+        /**
+         * @brief Geef huidige score
+         * @return Current score
+         */
         int getCurrentScore() const { return currentScore; }
+
+        /**
+         * @brief Geef highscores
+         * @return Vector met highscores
+         */
         const std::vector<int>& getHighScores() const { return highScores; }
 
     private:

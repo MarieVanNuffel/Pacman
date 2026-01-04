@@ -18,13 +18,13 @@ namespace logic {
 
 
     int Random::nextInt(int a, int b) {
-        std::uniform_int_distribution<int> dist(a, b);
+        std::uniform_int_distribution<int> dist(a, b); // random int tussen a en b
         return dist(rng);
     }
 
 
     double Random::nextDouble(double a, double b) {
-        std::uniform_real_distribution<double> dist(a, b);
+        std::uniform_real_distribution<double> dist(a, b); // random double tussen a en b
         return dist(rng);
     }
 }
