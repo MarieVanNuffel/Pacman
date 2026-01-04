@@ -8,7 +8,7 @@
 
 #include "logic/Events.h"
 
-FruitView::FruitView(FruitModel* m)
+FruitView::FruitView(logic::FruitModel* m)
     : EntityView(m), model(m)
 {
     if (!texture.loadFromFile("view/assets/pacman.png"))

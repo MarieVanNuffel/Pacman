@@ -34,7 +34,7 @@ void Game::run()
             stateManager.handleInput(ev);
         }
 
-        double dt = Stopwatch::instance().tick();
+        double dt = logic::Stopwatch::instance().tick();
         stateManager.update(dt);
 
         window.clear();

@@ -24,12 +24,12 @@ public:
     void update(double dt);
     void render();
 
-    std::shared_ptr<Score> getScore() const { return score; }
+    std::shared_ptr<logic::Score> getScore() const { return score; }
 
 private:
     sf::RenderWindow& window;
     std::vector<std::shared_ptr<State>> states;
-    std::shared_ptr<Score> score;;
+    std::shared_ptr<logic::Score> score;;
 };
 
 #endif

@@ -3,7 +3,7 @@
 //
 #include "../include/view/MazeView.h"
 
-MazeView::MazeView(const World* w)
+MazeView::MazeView(const logic::World* w)
     : world(w)
 {
 }

@@ -5,4 +5,4 @@
 #include "view/EntityView.h"
 #include "logic/Entity.h"
 
-EntityView::EntityView(Entity* m) : model(m) {}
+EntityView::EntityView(logic::Entity* m) : model(m) {}

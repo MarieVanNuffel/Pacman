@@ -11,9 +11,9 @@
 #include "Camera.h"
 #include "logic/Observer.h"
 
-class CoinView : public EntityView, public Observer {
+class CoinView : public EntityView, public logic::Observer {
 public:
-    explicit CoinView(CoinModel* m);
+    explicit CoinView(logic::CoinModel* m);
 
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
@@ -21,7 +21,7 @@ public:
     void onNotify(int event) override;
 
 private:
-    CoinModel* model;
+    logic::CoinModel* model;
     bool visible = true;
 };
 

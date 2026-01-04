@@ -2,7 +2,7 @@
 #include "view/Camera.h"
 #include <SFML/Graphics.hpp>
 
-GhostDoorView::GhostDoorView(GhostDoorModel* m)
+GhostDoorView::GhostDoorView(logic::GhostDoorModel* m)
     : EntityView(m), model(m)
 {}
 

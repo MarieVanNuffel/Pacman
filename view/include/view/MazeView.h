@@ -19,11 +19,11 @@
 
 class MazeView {
 public:
-    MazeView(const World* w);
+    MazeView(const logic::World* w);
     void draw(sf::RenderWindow& win, const Camera& cam);
 
 private:
-    const World* world;
+    const logic::World* world;
 
     float cellSize = 48.f; // of dynamisch aangepast
 

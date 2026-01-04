@@ -14,9 +14,9 @@
 
 class PacManModel;
 
-class PacmanView : public EntityView, public Observer {
+class PacmanView : public EntityView, public logic::Observer {
 public:
-    PacmanView(PacManModel* m);
+    PacmanView(logic::PacManModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 
@@ -42,11 +42,11 @@ private:
     static constexpr int NUM_DEATH_FRAMES = 12; // 12 frames voor de animatie
 
     // richting van Pac-Man
-    PacManModel* model;
+    logic::PacManModel *model;
     sf::Sprite sprite;
     sf::Texture texture;
 
-    Direction lastDirection = Direction::RIGHT;
+    logic::Direction lastDirection = logic::Direction::RIGHT;
 
 };
 

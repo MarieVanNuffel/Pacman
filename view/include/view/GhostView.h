@@ -13,7 +13,7 @@
 
 class GhostView : public EntityView {
 public:
-    GhostView(GhostModel* m);
+    GhostView(logic::GhostModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 private:
@@ -28,11 +28,11 @@ private:
     int frames[NUM_FRAMES] = {0, 16}; // kolommen voor bewegingen
 
     // richting van Ghosts
-    GhostModel* model;
+    logic::GhostModel* model;
     sf::Sprite sprite;
     sf::Texture texture;
 
-    Direction lastDirection = Direction::RIGHT;
+    logic::Direction lastDirection = logic::Direction::RIGHT;
 };
 
 

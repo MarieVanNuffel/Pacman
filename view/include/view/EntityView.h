@@ -12,15 +12,19 @@
 #include <memory>
 #include "Camera.h"
 
-class Entity;
+namespace logic {
+    class Entity;
+}
 
 class EntityView {
 public:
-    EntityView(Entity* model);
+    virtual ~EntityView() = default;
+    EntityView(logic::Entity* model);
+
     virtual void draw(sf::RenderWindow&, const Camera&) = 0;
     virtual void updateSprite(double dt) = 0;
 protected:
-    Entity* model;
+    logic::Entity* model;
 };
 
 

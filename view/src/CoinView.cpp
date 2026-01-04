@@ -9,7 +9,7 @@
 #include "logic/Events.h"
 #include "logic/World.h"
 
-CoinView::CoinView(CoinModel* m)
+CoinView::CoinView(logic::CoinModel* m)
     : EntityView(m), model(m), visible(true)
 {}
 

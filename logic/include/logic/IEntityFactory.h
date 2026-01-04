@@ -13,16 +13,15 @@
 #include "GhostDoorModel.h"
 
 
-class Entity;
-class PacManModel;
-class GhostModel;
-class CoinModel;
-class FruitModel;
-
 class EntityView;
 
 namespace logic {
-    class Observer; // forward
+    class Observer;
+    class Entity;
+    class PacManModel;
+    class GhostModel;
+    class CoinModel;
+    class FruitModel;
 }
 
 namespace logic {

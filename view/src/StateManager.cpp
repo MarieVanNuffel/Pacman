@@ -8,7 +8,7 @@
 StateManager::StateManager(sf::RenderWindow& win)
     : window(win)
 {
-    score = std::make_shared<Score>();   // 👈 één score voor hele game
+    score = std::make_shared<logic::Score>();   // 👈 één score voor hele game
 }
 
 void StateManager::pushState(std::shared_ptr<State> state) {

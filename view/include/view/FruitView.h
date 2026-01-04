@@ -8,15 +8,15 @@
 #include "EntityView.h"
 #include "logic/FruitModel.h"
 
-class FruitView : public EntityView, public Observer {
+class FruitView : public EntityView, public logic::Observer {
 public:
-    explicit FruitView(FruitModel* m);
+    explicit FruitView(logic::FruitModel* m);
     void draw(sf::RenderWindow& win, const Camera& cam) override;
     void updateSprite(double dt) override;
 
     void onNotify(int event) override;
 private:
-    FruitModel* model;
+    logic::FruitModel* model;
     sf::Sprite sprite;
     sf::Texture texture;
     static constexpr int FRAME_SIZE = 15;

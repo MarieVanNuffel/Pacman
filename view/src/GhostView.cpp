@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Texture.hpp>
 
 
-GhostView::GhostView(GhostModel* m)
+GhostView::GhostView(logic::GhostModel* m)
     : EntityView(m), model(m)
 {
     if (!texture.loadFromFile("view/assets/pacman.png"))
@@ -21,10 +21,10 @@ GhostView::GhostView(GhostModel* m)
 
     int rectTop;
     switch (model->getGhostType()) {
-        case GhostModel::GhostType::LockedRandom:    rectTop = 64; break;  // rood
-        case GhostModel::GhostType::AheadOfPacman1:  rectTop = 80; break; // roze
-        case GhostModel::GhostType::AheadOfPacman2:  rectTop = 96; break; // lichtblauw
-        case GhostModel::GhostType::DirectChase:     rectTop = 112; break; // oranje
+        case logic::GhostModel::GhostType::LockedRandom:    rectTop = 64; break;  // rood
+        case logic::GhostModel::GhostType::AheadOfPacman1:  rectTop = 80; break; // roze
+        case logic::GhostModel::GhostType::AheadOfPacman2:  rectTop = 96; break; // lichtblauw
+        case logic::GhostModel::GhostType::DirectChase:     rectTop = 112; break; // oranje
         default: rectTop = 0; break;
     }
     sprite.setTextureRect(sf::IntRect(0, rectTop, FRAME_SIZE, FRAME_SIZE));
@@ -42,7 +42,7 @@ void GhostView::updateSprite(double dt)
     }
 
     // richting onthouden zoals bij Pac-Man
-    if (model->getDirection() != Direction::NONE) {
+    if (model->getDirection() != logic::Direction::NONE) {
         lastDirection = model->getDirection();
     }
 
@@ -51,7 +51,7 @@ void GhostView::updateSprite(double dt)
     int rectLeft = 0;
     int rectTop  = 0;
 
-    if (model->getMode() == GhostModel::Mode::Fear) {
+    if (model->getMode() == logic::GhostModel::Mode::Fear) {
         // Fear mode: blue ghost sprites
         rectTop = GHOST_BASE_Y;
         rectLeft = 128 + frameIndex * FRAME_SIZE;
@@ -60,21 +60,21 @@ void GhostView::updateSprite(double dt)
         return; // ✅ Klaar, geen verdere processing
     }
 
-    if (model->getMode() == GhostModel::Mode::Eaten) {
+    if (model->getMode() == logic::GhostModel::Mode::Eaten) {
         // Eaten mode: eyes only
         rectTop = 80;
 
         switch (lastDirection) {
-            case Direction::RIGHT:
+            case logic::Direction::RIGHT:
                 rectLeft = 128;
                 break;
-            case Direction::LEFT:
+            case logic::Direction::LEFT:
                 rectLeft = 144;
                 break;
-            case Direction::UP:
+            case logic::Direction::UP:
                 rectLeft = 160;
                 break;
-            case Direction::DOWN:
+            case logic::Direction::DOWN:
                 rectLeft = 176;
                 break;
             default:
@@ -89,26 +89,26 @@ void GhostView::updateSprite(double dt)
     // --- KLEUR → RIJ ---
     int colorIndex = 0;
     switch (model->getGhostType()) {
-        case GhostModel::GhostType::LockedRandom:   colorIndex = 0; break; // rood
-        case GhostModel::GhostType::AheadOfPacman1: colorIndex = 1; break; // roze
-        case GhostModel::GhostType::AheadOfPacman2: colorIndex = 2; break; // lichtblauw
-        case GhostModel::GhostType::DirectChase:    colorIndex = 3; break; // oranje
+        case logic::GhostModel::GhostType::LockedRandom:   colorIndex = 0; break; // rood
+        case logic::GhostModel::GhostType::AheadOfPacman1: colorIndex = 1; break; // roze
+        case logic::GhostModel::GhostType::AheadOfPacman2: colorIndex = 2; break; // lichtblauw
+        case logic::GhostModel::GhostType::DirectChase:    colorIndex = 3; break; // oranje
     }
 
     rectTop = GHOST_BASE_Y + colorIndex * FRAME_SIZE;
 
     // --- RICHTING → KOLOM ---
     switch (lastDirection) {
-        case Direction::RIGHT:
+        case logic::Direction::RIGHT:
             rectLeft = 0 + frameIndex * FRAME_SIZE;
             break;
-        case Direction::LEFT:
+        case logic::Direction::LEFT:
             rectLeft = 32 + frameIndex * FRAME_SIZE;
             break;
-        case Direction::UP:
+        case logic::Direction::UP:
             rectLeft = 64 + frameIndex * FRAME_SIZE;
             break;
-        case Direction::DOWN:
+        case logic::Direction::DOWN:
             rectLeft = 96 + frameIndex * FRAME_SIZE;
             break;
         default:

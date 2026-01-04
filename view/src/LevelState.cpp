@@ -3,25 +3,19 @@
 //
 
 #include "view/LevelState.h"
-
-#include <iomanip>
-#include <iostream>
-
-#include "view/PacManView.h"
 #include "view/GhostView.h"
-#include "view/CoinView.h"
-#include "view/FruitView.h"
-#include "view/GhostDoorView.h"
-#include "view/MazeView.h"  // nieuwe MazeView met sprites
+#include "view/MazeView.h"
 #include "view/MenuState.h"
 #include "view/StateManager.h"
+#include <iomanip>
+#include <iostream>
 
 
 LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     : State(win, sm), camera(0,0,0,0)
 {
     factory = std::make_shared<ConcreteEntityFactory>();
-    world = std::make_shared<World>(factory, stateManager.getScore());
+    world = std::make_shared<logic::World>(factory, stateManager.getScore());
     world->spawnEntitiesForLevel();
 
     mazeView = std::make_unique<MazeView>(world.get());
@@ -253,20 +247,20 @@ void LevelState::handleInput(sf::Event& ev)
             auto pacman = world->getPacman();
 
             if (ev.key.code == sf::Keyboard::Up) {
-                pacman->setDirection(Direction::UP);
-                pacman->setDesiredDirection(Direction::UP);
+                pacman->setDirection(logic::Direction::UP);
+                pacman->setDesiredDirection(logic::Direction::UP);
             }
             else if (ev.key.code == sf::Keyboard::Down) {
-                pacman->setDirection(Direction::DOWN);
-                pacman->setDesiredDirection(Direction::DOWN);
+                pacman->setDirection(logic::Direction::DOWN);
+                pacman->setDesiredDirection(logic::Direction::DOWN);
             }
             else if (ev.key.code == sf::Keyboard::Left) {
-                pacman->setDirection(Direction::LEFT);
-                pacman->setDesiredDirection(Direction::LEFT);
+                pacman->setDirection(logic::Direction::LEFT);
+                pacman->setDesiredDirection(logic::Direction::LEFT);
             }
             else if (ev.key.code == sf::Keyboard::Right) {
-                pacman->setDirection(Direction::RIGHT);
-                pacman->setDesiredDirection(Direction::RIGHT);
+                pacman->setDirection(logic::Direction::RIGHT);
+                pacman->setDesiredDirection(logic::Direction::RIGHT);
             }
         }
     }

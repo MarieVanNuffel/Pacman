@@ -13,13 +13,13 @@
 
 class GhostDoorView : public EntityView {
 public:
-    GhostDoorView(GhostDoorModel* model);
+    GhostDoorView(logic::GhostDoorModel* model);
 
     void draw(sf::RenderWindow& win, const Camera& cam);
     void updateSprite(double dt) override;
 
 private:
-    GhostDoorModel* model;
+    logic::GhostDoorModel* model;
 };
 
 

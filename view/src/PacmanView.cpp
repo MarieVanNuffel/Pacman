@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 
 
-PacmanView::PacmanView(PacManModel* m)
+PacmanView::PacmanView(logic::PacManModel* m)
     : EntityView(m), model(m)
 {
     if (!texture.loadFromFile("view/assets/pacman.png")) {
@@ -93,7 +93,7 @@ void PacmanView::updateSprite(double dt) {
     }
 
     // als pacman tegen een muur loopt, dan moet de huidige direction behouden worden
-    if (model->getDirection() != Direction::NONE) {
+    if (model->getDirection() != logic::Direction::NONE) {
         lastDirection = model->getDirection();
     } else {
         model->setDirection(lastDirection);
@@ -103,10 +103,10 @@ void PacmanView::updateSprite(double dt) {
     int frameY = 0;
 
     switch (model->getDirection()) {
-        case Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
-        case Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
-        case Direction::UP:    frameY = 2 * FRAME_SIZE; break;
-        case Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
+        case logic::Direction::RIGHT: frameY = 0 * FRAME_SIZE; break;
+        case logic::Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
+        case logic::Direction::UP:    frameY = 2 * FRAME_SIZE; break;
+        case logic::Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
         default: return; // geen beweging -> animatie niet updaten
     }
 

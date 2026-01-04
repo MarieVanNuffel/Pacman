@@ -23,7 +23,7 @@ public:
     void render() override;
 
 private:
-    std::shared_ptr<World> world;
+    std::shared_ptr<logic::World> world;
     std::shared_ptr<ConcreteEntityFactory> factory;
     Camera camera;
 
@@ -34,8 +34,8 @@ private:
     std::vector<std::shared_ptr<EntityView>> fruitViews;
     std::vector<std::shared_ptr<EntityView>> ghostDoorViews;
 
-    float tileW;
-    float tileH;
+    float tileW{};
+    float tileH{};
 
     // ✅ UI elements
     sf::Font font;
