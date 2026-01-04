@@ -11,12 +11,6 @@
 
 namespace logic {
 
-#pragma once
-
-
-#include <random>
-
-
     class Random {
     public:
         static Random& instance();

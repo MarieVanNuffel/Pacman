@@ -460,7 +460,7 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
 }
 
 
-void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
+void World::tryMoveGhost(Entity* e, Direction dir, double dt) {
     if (!e || dir == Direction::NONE) return;
 
     double step = e->getSpeed() * dt;

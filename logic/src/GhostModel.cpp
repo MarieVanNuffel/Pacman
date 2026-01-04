@@ -69,25 +69,13 @@ GhostModel::Mode GhostModel::getMode() const {
     return mode;
 }
 
-Direction GhostModel::decideDirection() {
-    int r = logic::Random::instance().nextInt(0, 3);
-    switch (r) {
-        case 0: return Direction::UP;
-        case 1: return Direction::DOWN;
-        case 2: return Direction::LEFT;
-        default: return Direction::RIGHT;
-    }
-}
 
 void GhostModel::update(double dt) {
     if (!worldRef) return;
+    if (frozen) return; // geen beweging of updates timers wanneer bevroren
 
     releaseTimer += dt;
     decisionTimer += dt; // update cooldown timer
-
-    if (frozen) {
-        return; // niets doen tijdens pacman death animatie
-    }
 
     // ------------------------------------------------
     // 1) WAITING mode
@@ -167,7 +155,7 @@ void GhostModel::update(double dt) {
                  if (nearCenter && door->aboveGhostDoor(snapX, snapY)) {
                      direction = Direction::DOWN;
                      desiredDirection = Direction::DOWN;
-                     worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), Direction::DOWN, dt);
+                     worldRef->tryMoveGhost(this, Direction::DOWN, dt);
                      return;
                  }
              }
@@ -196,24 +184,11 @@ void GhostModel::update(double dt) {
         // Check of we door kunnen bewegen (ghostdoor moet passeerbaar zijn in eaten mode)
         bool canMove = worldRef->canGhostMove(direction, x, y);
 
-        // ✅ Als we geblokkeerd zijn door ghostdoor, kijk of we erin mogen
-        if (!canMove) {
-            double checkStep = 0.05;
-            double testX = x, testY = y;
-            switch (direction) {
-                case Direction::UP:    testY -= checkStep; break;
-                case Direction::DOWN:  testY += checkStep; break;
-                case Direction::LEFT:  testX -= checkStep; break;
-                case Direction::RIGHT: testX += checkStep; break;
-                default: break;
-            }
-        }
-
         bool atIntersection = nearCenter && worldRef->isIntersection(snapX, snapY);
 
         // Als we gewoon rechtdoor kunnen en niet bij een kruising zijn, ga door
         if (canMove && !atIntersection) {
-            worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+            worldRef->tryMoveGhost(this, direction, dt);
             return;
         }
 
@@ -241,11 +216,11 @@ void GhostModel::update(double dt) {
 
             desiredDirection = cand;
             direction = cand;
-            worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+            worldRef->tryMoveGhost(this, direction, dt);
         } else {
             // BFS failed: continue in current direction if possible
             if (worldRef->canGhostMove(direction, x, y)) {
-                worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+                worldRef->tryMoveGhost(this, direction, dt);
             }
         }
         return;
@@ -280,7 +255,7 @@ void GhostModel::update(double dt) {
         desiredDirection = Direction::UP;
         // reset cooldown so we don't immediately switch again
         decisionTimer = 0.0;
-        worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), Direction::UP, dt);
+        worldRef->tryMoveGhost(this, Direction::UP, dt);
         return;
     }
 
@@ -292,7 +267,7 @@ void GhostModel::update(double dt) {
 
     // If moving fine and not at an intersection, continue
     if (canMove && !atIntersection) {
-        worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+        worldRef->tryMoveGhost(this, direction, dt);
         return;
     }
 
@@ -311,7 +286,7 @@ void GhostModel::update(double dt) {
     // NEW: if we're at an intersection but still inside cooldown, don't re-evaluate: continue straight
     // This prevents immediate flip-flop between two directions.
     if (atIntersection && decisionTimer < decisionCooldown) {
-        worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+        worldRef->tryMoveGhost(this, direction, dt);
         return;
     }
 
@@ -321,8 +296,6 @@ void GhostModel::update(double dt) {
 
     std::vector<Direction> viableDirs = worldRef->getFreeDirections(freeCheckX, freeCheckY);
     if (viableDirs.empty()) { return; }
-
-    bool allowReverse = (mode == Mode::Fear || mode == Mode::Eaten);
 
     // LockedRandom: kies richting (vermijd reverse als mogelijk)
     if (type == GhostType::LockedRandom) {
@@ -364,7 +337,7 @@ void GhostModel::update(double dt) {
             // reset cooldown after a deliberate choice
             decisionTimer = 0.0;
 
-            worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+            worldRef->tryMoveGhost(this, direction, dt);
         }
         return;
     }
@@ -419,8 +392,8 @@ void GhostModel::update(double dt) {
         desiredDirection = chosen;
         direction = chosen;
         decisionTimer = 0.0; // reset cooldown on new decision
-        worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+        worldRef->tryMoveGhost(this, direction, dt);
     } else {
-        worldRef->tryMoveGhost(std::shared_ptr<Entity>(this, [](Entity*){}), direction, dt);
+        worldRef->tryMoveGhost(this, direction, dt);
     }
 }

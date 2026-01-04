@@ -251,7 +251,7 @@ public:
     * @param dir Richting waarin bewogen wordt.
     * @param dt Delta time sinds de vorige update.
  */
-    void tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt);
+    void tryMoveGhost(Entity* e, Direction dir, double dt);
 
     /**
     * @brief Controleert of een entity kan bewegen in een richting.
