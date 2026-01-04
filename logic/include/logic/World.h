@@ -9,7 +9,7 @@
 
 #include <vector>
 #include <memory>
-#include "pacmanModel.h"
+#include "pacManModel.h"
 #include "GhostModel.h"
 #include "CoinModel.h"
 #include "FruitModel.h"

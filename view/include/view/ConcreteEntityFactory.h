@@ -10,7 +10,7 @@
 
 #include <memory>
 #include "logic/IEntityFactory.h"
-#include "PacManView.h"
+#include "PacmanView.h"
 #include "GhostView.h"
 #include "GhostDoorView.h"
 
