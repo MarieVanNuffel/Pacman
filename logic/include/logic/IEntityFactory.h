@@ -29,19 +29,19 @@ namespace logic {
         virtual ~IEntityFactory() = default;
 
         virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
-        createPacmanView(PacManModel* model) = 0;
+        createPacmanView(std::shared_ptr<PacManModel> model) = 0;
 
         virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
-        createGhostView(GhostModel* model) = 0;
+        createGhostView(std::shared_ptr<GhostModel> model) = 0;
 
         virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
-        createCoinView(CoinModel* model) = 0;
+        createCoinView(std::shared_ptr<CoinModel> model) = 0;
 
         virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
-        createFruitView(FruitModel* model) = 0;
+        createFruitView(std::shared_ptr<FruitModel> model) = 0;
 
         virtual std::pair<std::shared_ptr<view::EntityView>, std::shared_ptr<Observer>>
-        createGhostDoorView(GhostDoorModel* model) = 0;
+        createGhostDoorView(std::shared_ptr<GhostDoorModel> model) = 0;
     };
 }
 

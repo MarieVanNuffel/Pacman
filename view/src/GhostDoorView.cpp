@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 namespace view {
-    GhostDoorView::GhostDoorView(logic::GhostDoorModel* m)
+    GhostDoorView::GhostDoorView(std::shared_ptr<logic::GhostDoorModel> m)
         : EntityView(m), model(m)
     {}
 

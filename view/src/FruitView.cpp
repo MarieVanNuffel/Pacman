@@ -9,7 +9,7 @@
 #include "logic/Events.h"
 
 namespace view {
-    FruitView::FruitView(logic::FruitModel* m)
+    FruitView::FruitView(std::shared_ptr<logic::FruitModel> m)
         : EntityView(m), model(m)
     {
         if (!texture.loadFromFile("view/assets/pacman.png"))

@@ -17,7 +17,7 @@ namespace logic {
 namespace view {
     class CoinView : public EntityView, public logic::Observer {
     public:
-        explicit CoinView(logic::CoinModel* m);
+        explicit CoinView(std::shared_ptr<logic::CoinModel> m);
 
         void draw(sf::RenderWindow& win, const Camera& cam) override;
         void updateSprite(double dt) override;

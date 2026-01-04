@@ -3,7 +3,6 @@
 //
 
 #include "view/EntityView.h"
+#include "logic/Entity.h"
 
-namespace view {
-    EntityView::EntityView(logic::Entity* m) : model(m) {}
-}
+view::EntityView::EntityView(std::shared_ptr<logic::Entity> m) : model(m) {}

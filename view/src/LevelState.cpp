@@ -71,7 +71,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 
     // Pacman view
     {
-        auto pv = factory->createPacmanView(world->getPacman().get());
+        auto pv = factory->createPacmanView(world->getPacman());
         pacmanView = pv.first;
         if (pv.second) world->getPacman()->addObserver(pv.second);
     }
@@ -79,7 +79,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     // Ghost views
     ghostViews.clear();
     for (auto& gm : world->getGhosts()) {
-        auto gv = factory->createGhostView(gm.get());
+        auto gv = factory->createGhostView(gm);
         ghostViews.push_back(gv.first);
         if (gv.second) gm->addObserver(gv.second);
     }
@@ -87,7 +87,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     // Coin views
     coinViews.clear();
     for (auto& cm : world->getCoins()) {
-        auto cv = factory->createCoinView(cm.get());
+        auto cv = factory->createCoinView(cm);
         coinViews.push_back(cv.first);
         if (cv.second) cm->addObserver(cv.second);
     }
@@ -95,7 +95,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     // Fruit views
     fruitViews.clear();
     for (auto& fm : world->getFruits()) {
-        auto fv = factory->createFruitView(fm.get());
+        auto fv = factory->createFruitView(fm);
         fruitViews.push_back(fv.first);
         if (fv.second) fm->addObserver(fv.second);
     }
@@ -103,7 +103,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     // Ghost door views
     ghostDoorViews.clear();
     for (auto& gd : world->getGhostDoors()) {
-        auto dv = factory->createGhostDoorView(gd.get());
+        auto dv = factory->createGhostDoorView(gd);
         ghostDoorViews.push_back(dv.first);
     }
 }

@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "Camera.h"
 
@@ -20,12 +21,12 @@ namespace view {
     public:
         virtual ~EntityView() = default;
 
-        explicit EntityView(logic::Entity* model);
+        explicit EntityView(std::shared_ptr<logic::Entity> model);
 
         virtual void draw(sf::RenderWindow&, const Camera&) = 0;
         virtual void updateSprite(double dt) = 0;
     protected:
-        logic::Entity* model;
+        std::weak_ptr<logic::Entity> model;
     };
 }
 

@@ -15,7 +15,7 @@ namespace logic {
 namespace view {
     class FruitView : public EntityView, public logic::Observer {
     public:
-        explicit FruitView(logic::FruitModel* m);
+        explicit FruitView(std::shared_ptr<logic::FruitModel> m);
         void draw(sf::RenderWindow& win, const Camera& cam) override;
         void updateSprite(double dt) override;
 

@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Texture.hpp>
 
 namespace view {
-    GhostView::GhostView(logic::GhostModel* m)
+    GhostView::GhostView(std::shared_ptr<logic::GhostModel> m)
         : EntityView(m), model(m)
     {
         if (!texture.loadFromFile("view/assets/pacman.png"))

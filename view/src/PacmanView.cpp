@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 
 namespace view {
-    PacmanView::PacmanView(logic::PacManModel* m)
+    PacmanView::PacmanView(std::shared_ptr<logic::PacManModel> m)
         : EntityView(m), model(m)
     {
         if (!texture.loadFromFile("view/assets/pacman.png")) {

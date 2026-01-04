@@ -10,7 +10,7 @@
 #include "logic/World.h"
 
 namespace view {
-    CoinView::CoinView(logic::CoinModel* m)
+    CoinView::CoinView(std::shared_ptr<logic::CoinModel> m)
         : EntityView(m), model(m)
     {}
 

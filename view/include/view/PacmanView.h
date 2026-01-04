@@ -19,7 +19,7 @@ namespace logic {
 namespace view {
     class PacmanView : public EntityView, public logic::Observer {
     public:
-        explicit PacmanView(logic::PacManModel* m);
+        explicit PacmanView(std::shared_ptr<logic::PacManModel> m);
         void draw(sf::RenderWindow& win, const Camera& cam) override;
         void updateSprite(double dt) override;
 

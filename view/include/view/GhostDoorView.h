@@ -17,7 +17,7 @@ namespace logic {
 namespace view {
     class GhostDoorView : public EntityView {
     public:
-        explicit GhostDoorView(logic::GhostDoorModel* model);
+        explicit GhostDoorView(std::shared_ptr<logic::GhostDoorModel> m);
 
         void draw(sf::RenderWindow& win, const Camera& cam) override;
         void updateSprite(double dt) override;

@@ -27,19 +27,19 @@ namespace view {
     class ConcreteEntityFactory : public logic::IEntityFactory {
     public:
         std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-        createPacmanView(logic::PacManModel* m) override;
+        createPacmanView(std::shared_ptr<logic::PacManModel> m) override;
 
         std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-        createGhostView(logic::GhostModel* m) override;
+        createGhostView(std::shared_ptr<logic::GhostModel> m) override;
 
         std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-        createCoinView(logic::CoinModel* m) override;
+        createCoinView(std::shared_ptr<logic::CoinModel> m) override;
 
         std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-        createFruitView(logic::FruitModel* m) override;
+        createFruitView(std::shared_ptr<logic::FruitModel> m) override;
 
         std::pair<std::shared_ptr<EntityView>, std::shared_ptr<logic::Observer>>
-        createGhostDoorView(logic::GhostDoorModel* m) override;
+        createGhostDoorView(std::shared_ptr<logic::GhostDoorModel> m) override;
     };
 }
 
