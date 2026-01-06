@@ -10,6 +10,8 @@
 #include <iomanip>
 #include <iostream>
 
+#include "view/Resource.h"
+
 
 LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     : State(win, sm), camera(0,0,0,0)
@@ -28,39 +30,39 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
         maze.size()
     );
 
-    // ✅ Load font
+    // Font inladen
     if (!font.loadFromFile("view/assets/fonts/PressStart2P-Regular.ttf")) {
         std::cerr << "Could not load font!" << std::endl;
     }
 
-    // ✅ Setup score text
+    // Score text
     scoreText.setFont(font);
     scoreText.setCharacterSize(24);
     scoreText.setFillColor(sf::Color::White);
     scoreText.setPosition(10 * uiScale, 30 * uiScale);
 
-    // ✅ Setup lives text
+    // Lives text
     livesText.setFont(font);
     livesText.setCharacterSize(24);
     livesText.setFillColor(sf::Color::White);
 
-    // ✅ Load Pac-Man sprite for lives display
-    if (!lifeTexture.loadFromFile("view/assets/pacman.png")) {
-        std::cerr << "Could not load pacman.png for lives!" << std::endl;
-    }
-    lifeSprite.setTexture(lifeTexture);
-    lifeSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
-    lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);   // 2x is klassiek arcade
+    // Pacman sprite voor bij de levens te zetten
+    lifeTexturePtr = view::Resource::loadTexture("view/assets/pacman.png");
+    if (lifeTexturePtr) lifeSprite.setTexture(*lifeTexturePtr);
 
-    // PAUSE SYSTEM INIT
+    lifeSprite.setTexture(*lifeTexturePtr);
+    lifeSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+    lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);
+
+    // Pause systeem
     isPaused = false;
 
-    // Maak een wazige overlay
+    // Wazige overlay (blur)
     pauseOverlay.setSize(sf::Vector2f(window.getSize()));
     pauseOverlay.setFillColor(sf::Color(0, 0, 0, 150)); // Semi-transparant zwart
 
-    // Pause tekst
-    pauseText.setFont(font); // Gebruik dezelfde font als scoreText
+    // Pauze tekst
+    pauseText.setFont(font); // Zelfde font
     pauseText.setString("PAUSED");
     pauseText.setCharacterSize(48);
     pauseText.setFillColor(sf::Color::Yellow);
@@ -100,7 +102,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
         if (fv.second) fm->addObserver(fv.second);
     }
 
-    // Ghost door views
+    // Ghostdoor views
     ghostDoorViews.clear();
     for (auto& gd : world->getGhostDoors()) {
         auto dv = factory->createGhostDoorView(gd);
@@ -136,12 +138,12 @@ void LevelState::update(float dt) {
 void LevelState::updateUI() {
     auto score = world->getScore();
 
-    // ✅ Format score with leading zeros
+    // Score met nullen vanvoor
     std::ostringstream oss;
     oss << "SCORE:" << std::setw(6) << std::setfill('0') << score->getCurrentScore();
     scoreText.setString(oss.str());
 
-    // ✅ Update lives text (optional, we'll draw sprites)
+    // Lives text
     livesText.setString("LIVES:");
 }
 
@@ -160,30 +162,30 @@ void LevelState::render() {
     drawEntities();
     drawUI();
 
-    // Teken pause overlay als gepauzeerd
+    // Teken pauze overlay als gepauzeerd
     if (isPaused) {
         drawPauseScreen();
     }
 }
 
 void LevelState::drawUI() {
-    // UI werkt in scherm-coördinaten
+    // UI werkt in schermcoördinaten
     window.setView(window.getDefaultView());
 
-    // --- SCORE ---
+    // Score
     scoreText.setCharacterSize(static_cast<unsigned>(24 * uiScale));
     scoreText.setPosition(20.f, 40.f);
     window.draw(scoreText);
 
-    // --- LIVES ---
+    // Lives
     livesText.setCharacterSize(static_cast<unsigned>(24 * uiScale));
 
-    // Vaste positie: 20 pixels van links, 100 pixels van onder
+    // Positie
     float livesY = window.getSize().y - 45.f * uiScale;
     livesText.setPosition(20.f, livesY);
     window.draw(livesText);
 
-    // --- LIVES ICONS ---
+    // Lives icoontjes
     lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);
     int lives = world->getPacman()->getLives();
 
@@ -205,29 +207,29 @@ void LevelState::drawUI() {
 }
 
 void LevelState::drawMaze() {
-    // Teken nu alleen de sprite-based maze
     mazeView->draw(window, camera);
 }
 
 void LevelState::drawEntities() {
-    // PACMAN
+    // pacman
     pacmanView->draw(window, camera);
 
-    // GHOSTS
+    // ghosts
     for (auto& gv : ghostViews) {
         gv->draw(window, camera);
     }
 
-    // COINS
+    // coins
     for (auto& cv : coinViews) {
         cv->draw(window, camera);
     }
 
-    // FRUITS
+    // fruits
     for (auto& fv : fruitViews) {
         fv->draw(window, camera);
     }
 
+    // ghostdoor
     for (auto& gdv: ghostDoorViews) {
         gdv->draw(window, camera);
     }
@@ -237,12 +239,12 @@ void LevelState::drawEntities() {
 void LevelState::handleInput(sf::Event& ev)
 {
     if (ev.type == sf::Event::KeyPressed) {
-        // ESC toggles pause
+        // Escape voor pause
         if (ev.key.code == sf::Keyboard::Escape) {
             isPaused = !isPaused;
         }
 
-        // Als niet gepauzeerd, behandel Pac-Man input
+        // Als niet gepauzeerd, verwerk de pacman input (richting)
         if (!isPaused) {
             auto pacman = world->getPacman();
 
@@ -277,10 +279,9 @@ void LevelState::drawPauseScreen()
     // Update overlay grootte naar huidige window grootte
     pauseOverlay.setSize(sf::Vector2f(window.getSize()));
 
-    // Teken semi-transparante overlay
+    // Teken semi-transparante overlay (blur)
     window.draw(pauseOverlay);
 
-    // Teken "blur" effect over het hele scherm
     blurBackground.setSize(sf::Vector2f(window.getSize()));
     window.draw(blurBackground);
 
@@ -298,7 +299,7 @@ void LevelState::drawPauseScreen()
 
     window.draw(pauseText);
 
-    // Optioneel: voeg instructie tekst toe
+    // Tekst voor terug te hervatten naar het spel
     sf::Text instructionText;
     instructionText.setFont(font);
     instructionText.setString("Press ESC to resume");

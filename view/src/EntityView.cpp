@@ -1,8 +1,0 @@
-//
-// Created by Marie Van Nuffel on 27/11/2025.
-//
-
-#include "view/EntityView.h"
-#include "logic/Entity.h"
-
-view::EntityView::EntityView(std::shared_ptr<logic::Entity> m) : model(m) {}

@@ -18,7 +18,7 @@ namespace view {
 
         switch (m->getGhostType()) {
             case logic::GhostModel::GhostType::LockedRandom:    rectTop = 64; break;  // rood
-            case logic::GhostModel::GhostType::AheadOfPacman1:  rectTop = 80; break; // roze
+            case logic::GhostModel::GhostType::AheadOfPacman1:  rectTop = 80; break; // roos
             case logic::GhostModel::GhostType::AheadOfPacman2:  rectTop = 96; break; // lichtblauw
             case logic::GhostModel::GhostType::DirectChase:     rectTop = 112; break; // oranje
             default: rectTop = 0; break;
@@ -35,10 +35,10 @@ namespace view {
 
         if (animTimer >= frameTime) {
             animTimer = 0.0;
-            frameIndex = (frameIndex + 1) % 2; // 2 frames: dicht/open
+            frameIndex = (frameIndex + 1) % 2; // frames voor dicht en open
         }
 
-        // richting onthouden zoals bij Pac-Man
+        // richting onthouden zoals bij pacman
         if (m->getDirection() != logic::Direction::NONE) {
             lastDirection = m->getDirection();
         }
@@ -48,17 +48,15 @@ namespace view {
         int rectLeft = 0;
         int rectTop  = 0;
 
-        if (m->getMode() == logic::GhostModel::Mode::Fear) {
-            // Fear mode: blue ghost sprites
+        if (m->getMode() == logic::GhostModel::Mode::Fear) { // fear mode: blauwe ghost sprites
             rectTop = GHOST_BASE_Y;
             rectLeft = 128 + frameIndex * FRAME_SIZE;
 
             sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
-            return; // ✅ Klaar, geen verdere processing
+            return;
         }
 
-        if (m->getMode() == logic::GhostModel::Mode::Eaten) {
-            // Eaten mode: eyes only
+        if (m->getMode() == logic::GhostModel::Mode::Eaten) { // Eaten mode: oogjes
             rectTop = 80;
 
             switch (lastDirection) {
@@ -80,10 +78,10 @@ namespace view {
             }
 
             sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
-            return; // ✅ Klaar
+            return; //
         }
 
-        // --- KLEUR → RIJ ---
+        // rij bepaalt de kleur
         int colorIndex = 0;
         switch (m->getGhostType()) {
             case logic::GhostModel::GhostType::LockedRandom:   colorIndex = 0; break; // rood
@@ -94,7 +92,7 @@ namespace view {
 
         rectTop = GHOST_BASE_Y + colorIndex * FRAME_SIZE;
 
-        // --- RICHTING → KOLOM ---
+        // kolom bepaalt de richting
         switch (lastDirection) {
             case logic::Direction::RIGHT:
                 rectLeft = 0 + frameIndex * FRAME_SIZE;

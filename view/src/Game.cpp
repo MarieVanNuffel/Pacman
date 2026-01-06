@@ -5,10 +5,10 @@
 #include "logic/Stopwatch.h"
 
 Game::Game()
-    : window(sf::VideoMode(800, 800), "Pac-Man"), stateManager(window)
+    : window(sf::VideoMode(800, 800), "PacMan"), stateManager(window)
 {
     stateManager.pushState(
-        std::make_shared<MenuState>(window, stateManager)
+        std::make_shared<MenuState>(window, stateManager) // menustate pushen
     );
     isFullscreen = false;
 }
@@ -17,7 +17,7 @@ void Game::run()
 {
     while (window.isOpen()) {
         sf::Event ev;
-        while (window.pollEvent(ev)) {
+        while (window.pollEvent(ev)) { // event handling
             if (ev.type == sf::Event::Closed)
                 window.close();
 
@@ -26,7 +26,7 @@ void Game::run()
                 toggleFullscreen();
             }
 
-            // als window resized wordt, reset de view (veiligheid)
+            // als window resized wordt, reset de view
             if (ev.type == sf::Event::Resized) {
                 window.setView(window.getDefaultView());
             }
@@ -34,29 +34,29 @@ void Game::run()
             stateManager.handleInput(ev);
         }
 
-        double dt = logic::Stopwatch::instance().tick();
+        double dt = logic::Stopwatch::instance().tick(); // tijd sinds vorige frame
         stateManager.update(dt);
 
         window.clear();
-        stateManager.render();
+        stateManager.render(); // statemanager tekent de huidige state
         window.display();
     }
 }
 
 void Game::toggleFullscreen()
 {
-    // wissel state
+    // wissel van/naar fullscreen
     isFullscreen = !isFullscreen;
 
     if (isFullscreen) {
-        // echte fullscreen met desktop resolutie
+        // fullscreen met desktop resolutie
         sf::VideoMode dm = sf::VideoMode::getDesktopMode();
-        window.create(dm, "Pac-Man", sf::Style::Fullscreen);
+        window.create(dm, "PacMan", sf::Style::Fullscreen);
     } else {
-        // terug naar windowed mode (800x800 zoals aanvankelijk)
-        window.create(sf::VideoMode(800, 800), "Pac-Man", sf::Style::Close | sf::Style::Titlebar);
+        // terug naar windowed mode
+        window.create(sf::VideoMode(800, 800), "PacMan", sf::Style::Close | sf::Style::Titlebar);
     }
 
-    // reset SFML view zodat oude zoom/viewport geen effect meer heeft
+    // reset SFML view zodat er geen verkeerde zoom of schaling is
     window.setView(window.getDefaultView());
 }

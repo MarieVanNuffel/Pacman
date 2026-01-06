@@ -17,22 +17,22 @@ namespace view {
     void CoinView::draw(sf::RenderWindow& win, const Camera& cam)
     {
         auto m = model.lock();
-        if (!m || !visible) return;
+        if (!m || !visible) return; // kijken of de coin nog visible is
 
         double sizeW = 0.5; // halve cel
         double sizeH = 0.5;
 
-        // verschuif middelpunt naar linker-bovenhoek van de coin
+        // verschuif middelpunt (X, Y) naar linker-bovenhoek van de coin voor worldToPixels
         sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
                                                m->getY() - sizeH/2.0,
                                                sizeW, sizeH);
 
-        float radius = std::min(rect.width, rect.height) / 3.f;
+        float radius = std::min(rect.width, rect.height) / 3.f; // radius van coin
 
-        sf::CircleShape coin(radius);
+        sf::CircleShape coin(radius); // coin tekenen
         coin.setFillColor(sf::Color::Yellow);
 
-        // centreer coin in rect
+        // centreer coin
         coin.setOrigin(radius, radius);  // zet origin in het midden van de cirkel
         coin.setPosition(rect.left + rect.width / 2.f,
                          rect.top  + rect.height / 2.f);
@@ -42,6 +42,7 @@ namespace view {
 
 
     void CoinView::updateSprite(double dt) {
+        // statisch, dus doet niets
     }
 
 

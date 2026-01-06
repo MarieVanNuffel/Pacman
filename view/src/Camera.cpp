@@ -12,7 +12,7 @@ namespace view {
 
 
     sf::FloatRect Camera::worldToPixels(double x, double y, double w, double h) const {
-        // x,y,w,h are in maze tile units. Use cellSize and offsets to convert to pixels.
+        // converteren naar pixels + naar midden verschuiven
         float px = offsetX + float(x) * cellSize;
         float py = offsetY + float(y) * cellSize;
         float pw = float(w) * cellSize;
@@ -22,16 +22,16 @@ namespace view {
     }
 
     void Camera::recompute() {
-        // compute cell sizes per axis, pick the smallest to keep cells square
-        float cellW = float(wPixels) / std::max(1, mazeWidth);
-        float cellH = float(hPixels) / std::max(1, mazeHeight);
+        // berekent cellsize per as
+        float cellW = float(wPixels) / std::max(1, mazeWidth); // horizontaal
+        float cellH = float(hPixels) / std::max(1, mazeHeight); // verticaal
 
-        cellSize = std::min(cellW, cellH);
+        cellSize = std::min(cellW, cellH); // kleinste nemen
 
-        // center the maze in window (letterbox)
         float totalW = cellSize * mazeWidth;
         float totalH = cellSize * mazeHeight;
 
+        // centreren
         offsetX = (wPixels - totalW) / 2.0f;
         offsetY = (hPixels - totalH) / 2.0f;
     }

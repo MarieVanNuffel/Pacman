@@ -11,11 +11,31 @@
 #include "view/StateManager.h"
 #include "view/LevelState.h"
 
+/**
+ * @brief Hoofdklasse van het spel
+ *
+ * Beheert SFML, de game loop en de state manager.
+ */
 class Game {
 public:
+
+    /**
+     * @brief Constructor
+     *
+     * Initialiseert het venster en zet de start state naar menu state.
+     */
     Game();
+
+    /**
+     * @brief Start de game loop
+     *
+     * Verwerkt input, update logica en rendert de actieve state.
+     */
     void run();
 
+    /**
+     * @brief Wisselt tussen fullscreen en klein window
+     */
     void toggleFullscreen();
 private:
     sf::RenderWindow window;

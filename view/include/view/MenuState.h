@@ -4,7 +4,8 @@
 
 #ifndef PACMANGAME_MENUSTATE_H
 #define PACMANGAME_MENUSTATE_H
-
+//* Voor het design heb ik het internet gebruikt om op te zoeken hoe de originele arcade game eruit zag.
+// * Voor het design/de animatie heb ik AI gebruikt om SFML functies op te zoeken voor hoe ik het kon implementeren.
 
 #pragma once
 #include "State.h"

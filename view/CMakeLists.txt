@@ -6,7 +6,6 @@ add_executable(pacman
         src/Game.cpp
         src/StateManager.cpp
         src/LevelState.cpp
-        src/EntityView.cpp
         src/Camera.cpp
         src/CoinView.cpp
         src/FruitView.cpp
