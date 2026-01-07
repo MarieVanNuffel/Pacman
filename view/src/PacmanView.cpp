@@ -20,7 +20,6 @@ namespace view {
         sprite.setOrigin(FRAME_SIZE / 2.f, FRAME_SIZE / 2.f);
     }
 
-
     void PacmanView::draw(sf::RenderWindow& win, const Camera& cam)
     {
         auto m = model.lock();
@@ -29,9 +28,20 @@ namespace view {
         double sizeW = 0.9;
         double sizeH = 0.9;
 
-        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
-                                           m->getY() - sizeH/2.0,
-                                           sizeW, sizeH);
+        // tile center (zoals in logic)
+        double tileCenterX = m->getX();
+        double tileCenterY = m->getY();
+
+        // converteer naar genormalizeerde coords
+        auto [nx, ny] = cam.tileToNormalized(tileCenterX, tileCenterY);
+
+        // grootte als fractie van de maze
+        double wFrac = sizeW / static_cast<double>(cam.mazeWidth);
+        double hFrac = sizeH / static_cast<double>(cam.mazeHeight);
+
+        // gebruik genormalizeerde helper in de Camera
+        sf::FloatRect rect = cam.normalizedToPixels(nx, ny, wFrac, hFrac);
+
         sprite.setPosition(rect.left + rect.width/2.f,
                            rect.top  + rect.height/2.f);
 

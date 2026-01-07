@@ -40,10 +40,18 @@ namespace view {
         double sizeW = 0.5; // halve cel
         double sizeH = 0.5;
 
-        // verschuif middelpunt (X, Y) naar linker-bovenhoek van het fruit voor worldToPixels
-        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
-                                           m->getY() - sizeH/2.0,
-                                           sizeW, sizeH);
+        // tile center
+        double tileCenterX = m->getX();
+        double tileCenterY = m->getY();
+
+        // genormalizeerd
+        auto [nx, ny] = cam.tileToNormalized(tileCenterX, tileCenterY);
+
+        double wFrac = sizeW / static_cast<double>(cam.mazeWidth);
+        double hFrac = sizeH / static_cast<double>(cam.mazeHeight);
+
+        // gebruik normalizedToPixels
+        sf::FloatRect rect = cam.normalizedToPixels(nx, ny, wFrac, hFrac);
 
         // centreren in tile
         sprite.setPosition(rect.left + rect.width/2.f,

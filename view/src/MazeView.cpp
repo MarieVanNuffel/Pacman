@@ -21,7 +21,15 @@ namespace view {
                 double sizeW = 1.0; // 1 cel breed
                 double sizeH = 1.0; // 1 cel hoog
 
-                sf::FloatRect rect = cam.worldToPixels(x, y, sizeW, sizeH);
+                // tile center
+                double tileCenterX = x + 0.5;
+                double tileCenterY = y + 0.5;
+
+                auto [nx, ny] = cam.tileToNormalized(tileCenterX, tileCenterY);
+                double wFrac = sizeW / static_cast<double>(cam.mazeWidth);
+                double hFrac = sizeH / static_cast<double>(cam.mazeHeight);
+
+                sf::FloatRect rect = cam.normalizedToPixels(nx, ny, wFrac, hFrac);
 
                 // tekenen met SFML
                 sf::RectangleShape tile;

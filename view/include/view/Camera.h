@@ -30,8 +30,8 @@ namespace view {
         Camera(int pixelWidth, int pixelHeight, int mazeW, int mazeH);
 
         /**
-         * @brief Converteert world-coördinaten naar pixel rectangle.
-         * Dit heeft SFML nodig om te plaatsen en tekenen
+         * @brief Converteert world coördinaten naar pixel rectangle.
+         *
          * @param x X-positie in world units
          * @param y Y-positie in world units
          * @param w Breedte in world units
@@ -39,6 +39,35 @@ namespace view {
          * @return SFML Rect in pixelcoördinaten
          */
         sf::FloatRect worldToPixels(double x, double y, double w, double h) const;
+
+        /**
+         * @brief Converteert tile coördinaten naar genormalizeerd [-1, 1].
+         *
+         * @param tileX X tile positie
+         * @param tileY Y tile positie
+         * @return pair (nx, ny) in [-1,1]
+         */
+        std::pair<double,double> tileToNormalized(double tileX, double tileY) const;
+
+        /**
+         * @brief Converteert genormalizeerde coords terug naar tile coördinaten.
+         *
+         * @param nx genormalizeerde X in [-1,1]
+         * @param ny genormalizeerde Y in [-1,1]
+         * @return pair (tileX, tileY) (centered, fractional)
+         */
+        std::pair<double,double> normalizedToTile(double nx, double ny) const;
+
+        /**
+         * @brief Converteert genormalizeerde center coords naar pixels.
+         *
+         * @param nx genormalizeerde center X in [-1,1]
+         * @param ny genormalizeerde center Y in [-1,1]
+         * @param wFrac breedte als fractie van de totale maze breedte
+         * @param hFrac hoogte als fractie van de totale maze hoogte
+         * @return sf::FloatRect (top-left x,y en width,height in pixels)
+         */
+        sf::FloatRect normalizedToPixels(double nx, double ny, double wFrac, double hFrac) const;
 
         int mazeWidth;
         int mazeHeight;

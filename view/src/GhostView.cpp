@@ -113,9 +113,6 @@ namespace view {
         sprite.setTextureRect(sf::IntRect(rectLeft, rectTop, FRAME_SIZE, FRAME_SIZE));
     }
 
-
-
-
     void GhostView::draw(sf::RenderWindow& win, const Camera& cam)
     {
         auto m = model.lock();
@@ -124,9 +121,18 @@ namespace view {
         double sizeW = 0.9; // 0.9 van een cel
         double sizeH = 0.9;
 
-        sf::FloatRect rect = cam.worldToPixels(m->getX() - sizeW/2.0,
-                                           m->getY() - sizeH/2.0,
-                                           sizeW, sizeH);
+        // tile center
+        double tileCenterX = m->getX();
+        double tileCenterY = m->getY();
+
+        // genormalizeerd
+        auto [nx, ny] = cam.tileToNormalized(tileCenterX, tileCenterY);
+
+        double wFrac = sizeW / static_cast<double>(cam.mazeWidth);
+        double hFrac = sizeH / static_cast<double>(cam.mazeHeight);
+
+        sf::FloatRect rect = cam.normalizedToPixels(nx, ny, wFrac, hFrac);
+
         sprite.setPosition(rect.left + rect.width/2.f,
                            rect.top  + rect.height/2.f);
 
