@@ -76,3 +76,7 @@ Dit gebeurt volledig in de view, niet in logic.
 - Ghost AI met Breadth-First Search (BFS)
 Ghosts gebruiken het BFS algoritme om terug naar hun spawn point te gaan wanneer ze opgegeten zijn.
 Deze search is veel slimmer dan de manhatten search.
+
+### Doxygen
+Om doxygen te runnen heb ik bij tools -> external tools -> generate doxygen. 
+Normaal gezien komt de output in doxygen_output in index.html.
