@@ -26,8 +26,8 @@ namespace logic {
          *
          * Ghost mag enkel erdoor als hij onder de deur zit en aligned is met de deur.
          *
-         * @param ghostX X positie van ghost
-         * @param ghostY Y positie van ghost
+         * @param fromX X positie van ghost
+         * @param fromY Y positie van ghost
          * @return true als ghost door de deur mag
          */
         bool canGhostPass(double fromX, double fromY) const;

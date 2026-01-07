@@ -33,7 +33,7 @@ namespace view {
          * @param win RenderWindow
          * @param cam Camera voor world to pixel conversie
          */
-        virtual void draw(sf::RenderWindow&, const Camera&) = 0;
+        virtual void draw(sf::RenderWindow& win, const Camera&) = 0;
 
         /**
          * @brief Update sprite per frame
