@@ -1,6 +1,7 @@
 # Pacman
 
 ###  Marie Van Nuffel
+###  Studentennummer: 20240829
 
 ### Structuur:
 logic/        
@@ -59,3 +60,19 @@ De StateManager beheert deze stack, waarbij enkel de bovenste state actief is. H
 - Stopwatch berekent deltaTime, waardoor beweging en animaties framerate onafhankelijk zijn.
 - Score ontvangt events via het observer pattern en berekent dynamisch de score, inclusief tijdsbonussen en levelbonussen.
 - Highscores worden opgeslagen in een bestand.
+
+### Bonus Features
+- GhostDoor
+De deur die de ghostbox afsluit waar alleen de ghosts doorheen kunnen, en Pac-Man niet.
+De World controleert bij elke beweging of pacman of een ghost door de ghostdoor wilt.
+pacman kan er niet door, ghosts wel, maar alleen als ze terug naar hun spawn point gaan wanneer ze opgegeten zijn.
+Dit gebeurt volledig via collision checks in de world class, dus de logica blijft netjes gescheiden van de rendering.
+
+- Menu Animatie 
+Het menuscherm heeft een kleine animatie om het spel visueel aantrekkelijker te maken.
+Van links naar rechts op het beeld zie je pacman die achtervolgt wordt door de ghosts.
+Dit gebeurt volledig in de view, niet in logic.
+
+- Ghost AI met Breadth-First Search (BFS)
+Ghosts gebruiken het BFS algoritme om terug naar hun spawn point te gaan wanneer ze opgegeten zijn.
+Deze search is veel slimmer dan de manhatten search.

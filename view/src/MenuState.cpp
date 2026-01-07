@@ -17,7 +17,7 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
 {
     // Font
     if (!font.loadFromFile("view/assets/fonts/PressStart2P-Regular.ttf")) {
-        std::cerr << "Failed to load font!\n";
+        throw std::runtime_error("Failed to load font: view/assets/fonts/PressStart2P-Regular.ttf");
     }
 
     // Titel

@@ -32,7 +32,7 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 
     // Font inladen
     if (!font.loadFromFile("view/assets/fonts/PressStart2P-Regular.ttf")) {
-        std::cerr << "Could not load font!" << std::endl;
+        throw std::runtime_error("Failed to load font: view/assets/fonts/PressStart2P-Regular.ttf");
     }
 
     // Score text

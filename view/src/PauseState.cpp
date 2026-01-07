@@ -17,7 +17,7 @@ PauseState::PauseState(sf::RenderWindow& window, StateManager& sm, const sf::Tex
     blurBackground.setFillColor(sf::Color(255, 255, 255, 30));
 
     if (!font.loadFromFile("view/assets/fonts/PressStart2P-Regular.ttf")) {
-        std::cerr << "PauseState: Could not load font!" << std::endl;
+        throw std::runtime_error("Failed to load font: view/assets/fonts/PressStart2P-Regular.ttf");
     }
 
     pauseText.setFont(font);
