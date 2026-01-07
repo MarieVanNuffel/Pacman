@@ -1,0 +1,47 @@
+# url=https://github.com/MarieVanNuffel/Pacman/blob/master/.github/workflows/ci.yml
+name: CMake CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-logic-only:
+    name: Build logic (no SFML)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure (logic only)
+        run: |
+          mkdir -p build
+          cd build
+          cmake -S .. -B . -DCMAKE_BUILD_TYPE=Release
+      - name: Build logic target
+        run: |
+          cd build
+          cmake --build . --target logic -- -j$(nproc)
+
+  build-full:
+    name: Build full project (with SFML)
+    runs-on: ubuntu-latest
+    needs: build-logic-only
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake libsfml-dev
+      - name: Configure
+        run: |
+          mkdir -p build
+          cd build
+          cmake -S .. -B . -DCMAKE_BUILD_TYPE=Release
+      - name: Build all
+        run: |
+          cd build
+          cmake --build . -- -j$(nproc)
+      - name: (optional) Run runtime smoke test
+        run: |
+          echo "No automated runtime tests configured"
