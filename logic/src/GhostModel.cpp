@@ -152,7 +152,7 @@ static bool isOpposite(Direction a, Direction b) {
                     if (nearCenter && door->aboveGhostDoor(snapX, snapY)) {
                         direction = Direction::DOWN;
                         desiredDirection = Direction::DOWN;
-                        worldPtr->tryMoveGhost(this, Direction::DOWN, dt);
+                        worldPtr->tryMoveGhost(shared_from_this(), Direction::DOWN, dt);
                         return;
                     }
                 }
@@ -182,7 +182,7 @@ static bool isOpposite(Direction a, Direction b) {
 
             // Gewoon rechtdoor gaan als ze niet bij een kruispunt zijn (als het kan)
             if (canMove && !atIntersection) {
-                worldPtr->tryMoveGhost(this, direction, dt);
+                worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
                 return;
             }
 
@@ -210,11 +210,11 @@ static bool isOpposite(Direction a, Direction b) {
 
                 desiredDirection = cand;
                 direction = cand;
-                worldPtr->tryMoveGhost(this, direction, dt);
+                worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
             } else {
                 // Als het zou falen, blijf huidige direction volgen
                 if (worldPtr->canGhostMove(direction, x, y)) {
-                    worldPtr->tryMoveGhost(this, direction, dt);
+                    worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
                 }
             }
             return;
@@ -246,7 +246,7 @@ static bool isOpposite(Direction a, Direction b) {
             direction = Direction::UP;
             desiredDirection = Direction::UP;
             decisionTimer = 0.0; // zorgen dat we niet direct terug beslissen
-            worldPtr->tryMoveGhost(this, Direction::UP, dt);
+            worldPtr->tryMoveGhost(shared_from_this(), Direction::UP, dt);
             return;
         }
 
@@ -255,7 +255,7 @@ static bool isOpposite(Direction a, Direction b) {
 
         // Gewoon rechtdoor gaan als ze niet bij een kruispunt zijn (als het kan)
         if (canMove && !atIntersection) {
-            worldPtr->tryMoveGhost(this, direction, dt);
+            worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
             return;
         }
 
@@ -273,7 +273,7 @@ static bool isOpposite(Direction a, Direction b) {
 
         // Cooldown voor beslissingen zodat ze niet blijven hangen
         if (atIntersection && decisionTimer < decisionCooldown) {
-            worldPtr->tryMoveGhost(this, direction, dt);
+            worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
             return;
         }
 
@@ -324,7 +324,7 @@ static bool isOpposite(Direction a, Direction b) {
                 // reset cooldown after a deliberate choice
                 decisionTimer = 0.0;
 
-                worldPtr->tryMoveGhost(this, direction, dt);
+                worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
             }
             return;
         }
@@ -387,9 +387,9 @@ static bool isOpposite(Direction a, Direction b) {
             desiredDirection = chosen;
             direction = chosen;
             decisionTimer = 0.0; // reset timer vanaf er een beslissing is genomen
-            worldPtr->tryMoveGhost(this, direction, dt);
+            worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
         } else {
-            worldPtr->tryMoveGhost(this, direction, dt);
+            worldPtr->tryMoveGhost(shared_from_this(), direction, dt);
         }
     }
 }

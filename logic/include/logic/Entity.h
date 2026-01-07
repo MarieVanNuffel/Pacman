@@ -21,7 +21,7 @@ namespace logic {
      * Bevat positie, size, direction en speed.
      * Wordt gebruikt door alle entities.
      */
-    class Entity {
+    class Entity : public std::enable_shared_from_this<Entity> {
     protected:
         double x = 0.0, y = 0.0; // wereld positie
         double w = 0.1, h = 0.1; // size
