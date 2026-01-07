@@ -29,6 +29,12 @@ target_link_libraries(pacman
         sfml-audio
 )
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets
-        DESTINATION ${CMAKE_BINARY_DIR})
+# Assets kopiëren naar de build map (indien aanwezig)
+set(ASSETS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+if(EXISTS "${ASSETS_SRC}")
+    # Kopieer de hele assets map naar de build root, zodat runtime path 'build/assets/...' werkt
+    file(COPY "${ASSETS_SRC}" DESTINATION "${CMAKE_BINARY_DIR}")
+else()
+    message(WARNING "Assets directory not found at ${ASSETS_SRC}; skipping asset copy.")
+endif()
 
