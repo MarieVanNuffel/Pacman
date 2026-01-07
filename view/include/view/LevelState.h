@@ -67,16 +67,8 @@ private:
     sf::Sprite lifeSprite;
     std::shared_ptr<sf::Texture> lifeTexturePtr;
 
-    bool isPaused;
-    sf::Text pauseText;
-    sf::RectangleShape pauseOverlay;
-    sf::RectangleShape blurBackground;
-    /**
-     * @brief Tekent het pauze scherm.
-     *
-     * Het slaag de huidige view van de game op, blurred het en zet er tekst over.
-     */
-    void drawPauseScreen();
+    // voor pauseState
+    sf::Texture lastFrameTexture;
 
     const float BASE_WIDTH  = 800.f;
     const float BASE_HEIGHT = 600.f;

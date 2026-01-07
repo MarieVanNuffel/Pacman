@@ -16,6 +16,7 @@ add_executable(pacman
         src/ConcreteEntityFactory.cpp
         src/GhostDoorView.cpp
         src/Resource.cpp
+        src/PauseState.cpp
 )
 
 target_include_directories(pacman PUBLIC include)

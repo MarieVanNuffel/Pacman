@@ -8,17 +8,19 @@
 #include "view/LevelState.h"
 #include <iostream>
 #include <sstream>
+
+#include "view/Resource.h"
 #include "view/StateManager.h"
 
 MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
     : State(win, sm)
 {
-    // FONT
+    // Font
     if (!font.loadFromFile("view/assets/fonts/PressStart2P-Regular.ttf")) {
         std::cerr << "Failed to load font!\n";
     }
 
-    // TITEL
+    // Titel
     title.setFont(font);
     title.setString("PAC-MAN");
     title.setCharacterSize(64);
@@ -27,14 +29,14 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
     title.setOutlineColor({sf::Color::Black});
     title.setOutlineThickness(4.f);
 
-    // PLAY BUTTON
+    // Play Button
     playButton.setFont(font);
     playButton.setString("PLAY");
     playButton.setCharacterSize(36);
     playButton.setFillColor(sf::Color::White);
     playButton.setPosition(350, 300);
 
-    // HIGHSCORES
+    // Highscores
     highScoreText.setFont(font);
     highScoreText.setCharacterSize(24);
     highScoreText.setFillColor({207, 23, 23});
@@ -43,38 +45,37 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
     highScoreText.setOutlineThickness(1.5);
 
 
-    // FADE
+    // Fade
     fadeRect.setSize(sf::Vector2f(window.getSize()));
     fadeRect.setFillColor(sf::Color(0, 0, 0, 255));
 
-    // ANIMATIE INITIALISATIE
-    if (!pacmanTexture.loadFromFile("view/assets/pacman.png")) {
-        std::cerr << "Failed to load pacman texture for menu animation!\n";
-    }
+    // Animatie
+    pacmanTexturePtr = view::Resource::loadTexture("view/assets/pacman.png");
 
-    // Gebruik dezelfde texture voor ghosts
-    ghostTexture = pacmanTexture;
+    // Gebruik dezelfde spritesheet voor ghosts
+    ghostTexturePtr = pacmanTexturePtr;
 
-    // Pac-Man sprite instellen
-    pacmanSprite.setTexture(pacmanTexture);
+    // Pacman sprite instellen
+    if (pacmanTexturePtr) pacmanSprite.setTexture(*pacmanTexturePtr);
     pacmanSprite.setTextureRect(sf::IntRect(0, 0, 15, 15)); // Eerste frame
     pacmanSprite.setOrigin(8, 8);
-    pacmanSprite.setScale(2.5f, 2.5f); // Groter voor menu
+    pacmanSprite.setScale(2.5f, 2.5f);
 
     // Maak 4 ghost sprites
     for (int i = 0; i < 4; i++) {
         sf::Sprite ghost;
-        ghost.setTexture(ghostTexture);
+        if (ghostTexturePtr) ghost.setTexture(*ghostTexturePtr);
 
-        // Stel de juiste kleur in (zelfde als in GhostView)
+        // De juiste kleuren instellen
         int rectTop = 0;
         switch (i) {
-            case 0: rectTop = 64; break;  // rood (Blinky)
-            case 1: rectTop = 80; break;  // roze (Pinky)
-            case 2: rectTop = 96; break;  // lichtblauw (Inky)
-            case 3: rectTop = 112; break; // oranje (Clyde)
+            case 0: rectTop = 64; break;  // rood
+            case 1: rectTop = 80; break;  // roos
+            case 2: rectTop = 96; break;  // lichtblauw
+            case 3: rectTop = 112; break; // oranje
         }
 
+        // sprite instellen
         ghost.setTextureRect(sf::IntRect(0, rectTop, 16, 16));
         ghost.setOrigin(8, 8);
         ghost.setScale(2.5f, 2.5f);
@@ -83,9 +84,9 @@ MenuState::MenuState(sf::RenderWindow& win, StateManager& sm)
 
     // Animatie variabelen
     animationTimer = 0.0f;
-    animationSpeed = 100.0f; // Pixels per seconde
-    pacmanPositionX = -100.0f; // Start off-screen links
-    ghostSpacing = 50.0f; // Afstand tussen ghosts
+    animationSpeed = 100.0f;
+    pacmanPositionX = -100.0f; // start links van het scherm
+    ghostSpacing = 50.0f; // afstand tussen ghosts
     isAnimating = true;
     currentFrame = 0;
     ghostColorOffset = 0.0f;
@@ -98,20 +99,15 @@ void MenuState::handleInput(sf::Event& ev)
         auto mouse = sf::Mouse::getPosition(window);
         if (playButton.getGlobalBounds().contains(mouse.x, mouse.y)) {
             stateManager.changeState(
-                std::make_shared<LevelState>(window, stateManager)
+                std::make_shared<LevelState>(window, stateManager) // start het level
             );
         }
-    }
-
-    if (ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::Enter) {
-        stateManager.changeState(
-            std::make_shared<LevelState>(window, stateManager)
-        );
     }
 }
 
 void MenuState::update(float dt)
 {
+    // een fade naar het menuscherm
     if (fadingIn) {
         fadeAlpha -= 150.f * dt;
         float alphaFactor = 1.0f - fadeAlpha / 255.f;
@@ -124,22 +120,21 @@ void MenuState::update(float dt)
         fadeRect.setFillColor(sf::Color(0, 0, 0, static_cast<sf::Uint8>(fadeAlpha)));
     }
 
-    // ANIMATIE UPDATE
+    // Animatie update
     if (isAnimating) {
         // Update timer voor frame animatie
         static float frameTimer = 0.0f;
         frameTimer += dt;
 
-        // Pac-Man mond animatie (elke 0.15 seconden)
+        // update de animatie van pacman
         if (frameTimer >= 0.15f) {
             frameTimer = 0.0f;
             currentFrame = (currentFrame + 1) % 2;
 
-            // Update Pac-Man frame
             int frameX = currentFrame * 16;
             pacmanSprite.setTextureRect(sf::IntRect(frameX, 0, 15, 15));
 
-            // Update ghost frames (dicht/open mond)
+            // update de ghost anmimaties
             for (auto& ghost : ghostSprites) {
                 auto rect = ghost.getTextureRect();
                 int frameX = currentFrame * 16;
@@ -147,21 +142,20 @@ void MenuState::update(float dt)
             }
         }
 
-        // Beweging van rechts naar links
         pacmanPositionX += animationSpeed * dt;
 
         // Bereken positie van de laatste ghost
         int lastGhostIndex = ghostSprites.size() - 1;
         float lastGhostX = pacmanPositionX - (lastGhostIndex + 1) * ghostSpacing * uiScale - 30.f;
 
-        // Als de LAATSTE ghost helemaal voorbij is, reset naar rechts
+        // Als de laatste ghost helemaal voorbij is, reset
         float windowWidth = window.getSize().x;
         if (lastGhostX > windowWidth + 200.0f) {
-            // Reset alle posities naar links (off-screen)
+            // Reset alle posities naar links van het scherm
             pacmanPositionX = -200.0f;
         }
 
-        // Ghosts volgen Pac-Man met een delay
+        // ghosts chasen pacman met een delay
         ghostColorOffset += dt * 10.0f;
     }
 }
@@ -172,42 +166,41 @@ void MenuState::render()
     float scaleY = window.getSize().y / BASE_HEIGHT;
     uiScale = std::min(scaleX, scaleY);
 
-    // Zorg dat we tekenen in standaard window-pixelruimte (geen oude SFML view)
     window.setView(window.getDefaultView());
 
-    // ACHTERGROND
+    // Achtergrond
     sf::Vector2u ws = window.getSize();
     sf::RectangleShape bg(sf::Vector2f(ws.x, ws.y));
     bg.setFillColor(sf::Color(10, 10, 50));
 
     float centerX = static_cast<float>(ws.x) * 0.5f;
 
-    // TITEL - Eerst tekst instellen, dan achtergrond berekenen
+    // Titel tekst
     title.setCharacterSize(static_cast<unsigned>(64 * uiScale));
     auto titleBounds = title.getLocalBounds();
     float titleX = centerX - (titleBounds.left + titleBounds.width) / 2.f;
     float titleY = static_cast<float>(ws.y) * 0.15f;
     title.setPosition(titleX, titleY);
 
-    // TITEL ACHTERGROND - Nu met twee lagen
+    // Titel achtergrond
     float bgPaddingX = 40.f * uiScale;
     float bgPaddingY = 20.f * uiScale;
     float bgWidth = titleBounds.width + 2 * bgPaddingX;
     float bgHeight = titleBounds.height + 2 * bgPaddingY;
 
-    // 1. DONKER ORANJE OUTLINE (externe rand)
+    // Donker oranje outline
     sf::RectangleShape titleOutline;
     titleOutline.setSize(sf::Vector2f(bgWidth, bgHeight));
     titleOutline.setOrigin(bgWidth / 2.f, bgHeight / 2.f);
     float titleCenterX = titleX + titleBounds.left + titleBounds.width / 2.f;
     float titleCenterY = titleY + titleBounds.top + titleBounds.height / 2.f;
     titleOutline.setPosition(titleCenterX, titleCenterY);
-    titleOutline.setFillColor(sf::Color(226, 67, 47));  // Donker oranje
-    titleOutline.setOutlineColor(sf::Color::Black);     // Zwarte outline
-    titleOutline.setOutlineThickness(3.f * uiScale);    // Dunne zwarte outline
+    titleOutline.setFillColor(sf::Color(226, 67, 47));
+    titleOutline.setOutlineColor(sf::Color::Black); // zwarte outline
+    titleOutline.setOutlineThickness(3.f * uiScale);
 
-    // 2. ORANJE ACHTERGROND (interne vulkleur)
-    float innerPadding = 9.f * uiScale;  // Hoe dik de "outline" moet zijn
+    // oranje ingekleurde achtergrond
+    float innerPadding = 9.f * uiScale; // dikte van de outline
     sf::RectangleShape titleBackGround;
     titleBackGround.setSize(sf::Vector2f(
         bgWidth - 2 * innerPadding,
@@ -218,12 +211,12 @@ void MenuState::render()
         titleBackGround.getSize().y / 2.f
     );
     titleBackGround.setPosition(titleCenterX, titleCenterY);
-    titleBackGround.setFillColor(sf::Color(237, 138, 58));  // Oranje
-    titleBackGround.setOutlineColor(sf::Color::Black);      // Optioneel: zwarte outline voor binnenste
-    titleBackGround.setOutlineThickness(3.f * uiScale);     // Optioneel
+    titleBackGround.setFillColor(sf::Color(237, 138, 58));
+    titleBackGround.setOutlineColor(sf::Color::Black);
+    titleBackGround.setOutlineThickness(3.f * uiScale);
 
 
-    // PLAY BUTTON
+    // Play button
     playButton.setCharacterSize(static_cast<unsigned>(36 * uiScale));
     auto btnBounds = playButton.getLocalBounds();
     float btnX = centerX - (btnBounds.left + btnBounds.width) / 2.f;
@@ -231,13 +224,13 @@ void MenuState::render()
     playButton.setPosition(btnX, btnY);
 
     auto mouse = sf::Mouse::getPosition(window);
-    if (playButton.getGlobalBounds().contains(mouse.x, mouse.y)) {
+    if (playButton.getGlobalBounds().contains(mouse.x, mouse.y)) { // kleurt geel wanneer de muis erover hangt
         playButton.setFillColor(sf::Color::Yellow);
     } else {
         playButton.setFillColor(sf::Color::White);
     }
 
-    // HIGHSCORES
+    // Highscores
     auto scores = stateManager.getScore()->getHighScores();
 
     std::ostringstream oss;
@@ -245,20 +238,20 @@ void MenuState::render()
     highScoreText.setString(oss.str());
     highScoreText.setCharacterSize(static_cast<unsigned>(24 * uiScale));
 
-    // Bereken positie voor de titel "HIGHSCORES"
+    // Bereken positie voor de highscores
     auto hscBounds = highScoreText.getLocalBounds();
     float hscX = centerX - (hscBounds.left + hscBounds.width) / 2.f;
     float hscY = static_cast<float>(ws.y) * 0.65f;
     highScoreText.setPosition(hscX, hscY);
 
-    // Maak en positioneer de score teksten
+    // Maken van de score text
     std::vector<sf::Text> scoreTexts;
     for (int i = 0; i < scores.size(); i++) {
         sf::Text t;
         t.setFont(font);
         t.setCharacterSize(static_cast<unsigned>(20 * uiScale)); // iets kleiner voor de cijfers
 
-        // Formatteer score met leading zeros
+        // Eerst nullen
         std::ostringstream scoreOss;
         scoreOss << std::setw(2) << std::setfill('0') << (i + 1) << ". "
                  << std::setw(6) << std::setfill('0') << scores[i];
@@ -282,20 +275,20 @@ void MenuState::render()
     // Teken alles in de juiste volgorde
     window.draw(bg);
 
-    // Bereken Y-positie voor animatie (onder titel)
+    // Animatie net onder de titel
     float titleBottomY = titleY + titleBounds.height + 20.f * uiScale;
     float animationY = titleBottomY + 50.f * uiScale;
 
     // Teken animatie
     if (isAnimating) {
-        // Teken Pac-Man
+        // Tekent pacman
         pacmanSprite.setPosition(pacmanPositionX, animationY);
         pacmanSprite.setScale(2.5f * uiScale, 2.5f * uiScale);
         window.draw(pacmanSprite);
 
-        // Teken ghosts met offset (achter Pac-Man)
+        // Tekent ghosts achter pacman
         for (int i = 0; i < ghostSprites.size(); i++) {
-            // Bereken positie met sinus voor natuurlijke beweging
+            // Sinus gebruiken om ze mooi te laten bewegen
             float offsetX = pacmanPositionX - (i + 1) * ghostSpacing * uiScale;
             float offsetY = animationY + sin(ghostColorOffset + i) * 10.f * uiScale;
 
@@ -305,9 +298,9 @@ void MenuState::render()
         }
     }
 
-    window.draw(titleOutline);      // Eerst donker oranje met zwarte rand
-    window.draw(titleBackGround);   // Dan oranje achtergrond
-    window.draw(title);            // Dan de tekst
+    window.draw(titleOutline); // eerst donker oranje met zwarte rand
+    window.draw(titleBackGround); // dan oranje achtergrond
+    window.draw(title); // dan de tekst
     window.draw(playButton);
     window.draw(highScoreText);
     for (auto& t : scoreTexts) {

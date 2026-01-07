@@ -13,18 +13,28 @@
 #include "Camera.h"
 
 namespace view {
+
+    /**
+     * @brief View van de maze
+     *
+     * MazeView tekent de maze dat in world is gegeven
+     */
     class MazeView {
     public:
+
+        /**
+         * @brief Constructor
+         * @param w Pointer naar de World die de maze bevat
+         */
         explicit MazeView(const logic::World* w);
+
+        /**
+         * @brief Tekent de volledige maze volgens de vector dat in world is gegeven
+         */
         void draw(sf::RenderWindow& win, const Camera& cam);
 
     private:
         const logic::World* world;
-
-        float cellSize = 48.f; // of dynamisch aangepast
-
-        sf::Texture wallTexture;
-        sf::Sprite wallSprite;
     };
 }
 

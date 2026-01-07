@@ -84,13 +84,13 @@ namespace logic {
          * @brief Geef huidige score
          * @return Current score
          */
-        int getCurrentScore() const { return currentScore; }
+        [[nodiscard]] int getCurrentScore() const { return currentScore; }
 
         /**
          * @brief Geef highscores
          * @return Vector met highscores
          */
-        const std::vector<int>& getHighScores() const { return highScores; }
+        [[nodiscard]] const std::vector<int>& getHighScores() const { return highScores; }
 
     private:
         int currentScore = 0;

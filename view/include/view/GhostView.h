@@ -19,8 +19,7 @@ namespace view {
     /**
      * @brief View voor de ghosts
      *
-     * GhostView is verantwoordelijk voor het tekenen en animeren van een ghost
-     * op basis van zijn richting, type en huidige modus (normaal, fear, eaten).
+     * GhostView tekent en animeert de ghosts op basis van hun richting, type en modus (chase, fear, eaten).
      */
     class GhostView : public EntityView {
     public:

@@ -35,7 +35,7 @@ namespace view {
 
         if (animTimer >= frameTime) {
             animTimer = 0.0;
-            frameIndex = (frameIndex + 1) % 2; // frames voor dicht en open
+            frameIndex = (frameIndex + 1) % 2;
         }
 
         // richting onthouden zoals bij pacman
@@ -131,7 +131,7 @@ namespace view {
                            rect.top  + rect.height/2.f);
 
         auto texRect = sprite.getTextureRect();
-        // uniform scaling to preserve aspect ratio
+        // uniforme schaling
         float sx = rect.width / texRect.width;
         float sy = rect.height / texRect.height;
         float s = std::min(sx, sy);

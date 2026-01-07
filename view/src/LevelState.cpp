@@ -9,7 +9,7 @@
 #include "view/StateManager.h"
 #include <iomanip>
 #include <iostream>
-
+#include "view/PauseState.h"
 #include "view/Resource.h"
 
 
@@ -54,23 +54,6 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
     lifeSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
     lifeSprite.setScale(2.5f * uiScale, 2.5f * uiScale);
 
-    // Pause systeem
-    isPaused = false;
-
-    // Wazige overlay (blur)
-    pauseOverlay.setSize(sf::Vector2f(window.getSize()));
-    pauseOverlay.setFillColor(sf::Color(0, 0, 0, 150)); // Semi-transparant zwart
-
-    // Pauze tekst
-    pauseText.setFont(font); // Zelfde font
-    pauseText.setString("PAUSED");
-    pauseText.setCharacterSize(48);
-    pauseText.setFillColor(sf::Color::Yellow);
-    pauseText.setStyle(sf::Text::Bold);
-
-    // Maak een "blur" effect door een witte semi-transparante rechthoek
-    blurBackground.setFillColor(sf::Color(255, 255, 255, 30));
-
     // Pacman view
     {
         auto pv = factory->createPacmanView(world->getPacman());
@@ -113,25 +96,22 @@ LevelState::LevelState(sf::RenderWindow& win, StateManager& sm)
 
 
 void LevelState::update(float dt) {
-    // Alleen updaten als niet gepauzeerd
-    if (!isPaused) {
-        world->update(dt);
+    world->update(dt);
 
-        pacmanView->updateSprite(dt);
-        for (auto& gv : ghostViews)
-            gv->updateSprite(dt);
+    pacmanView->updateSprite(dt);
+    for (auto& gv : ghostViews)
+        gv->updateSprite(dt);
 
-        for (auto& cv : coinViews)
-            cv->updateSprite(dt);
+    for (auto& cv : coinViews)
+        cv->updateSprite(dt);
 
-        updateUI();
+    updateUI();
 
-        if (world->getPacman()->isGameOver()) {
-            stateManager.getScore()->saveHighScores();
-            stateManager.changeState(
-                std::make_shared<MenuState>(window, stateManager)
-            );
-        }
+    if (world->getPacman()->isGameOver()) {
+        stateManager.getScore()->saveHighScores();
+        stateManager.changeState(
+            std::make_shared<MenuState>(window, stateManager)
+        );
     }
 }
 
@@ -161,11 +141,6 @@ void LevelState::render() {
     drawMaze();
     drawEntities();
     drawUI();
-
-    // Teken pauze overlay als gepauzeerd
-    if (isPaused) {
-        drawPauseScreen();
-    }
 }
 
 void LevelState::drawUI() {
@@ -241,11 +216,20 @@ void LevelState::handleInput(sf::Event& ev)
     if (ev.type == sf::Event::KeyPressed) {
         // Escape voor pause
         if (ev.key.code == sf::Keyboard::Escape) {
-            isPaused = !isPaused;
+            window.display();
+
+            // Maak 'screenshot'
+            const sf::Vector2u size = window.getSize();
+            if (size.x > 0 && size.y > 0) {
+                lastFrameTexture.create(size.x, size.y);
+                lastFrameTexture.update(window);
+            }
+
+            stateManager.pushState(
+                std::make_shared<PauseState>(window, stateManager, lastFrameTexture));
         }
 
-        // Als niet gepauzeerd, verwerk de pacman input (richting)
-        if (!isPaused) {
+        else {
             auto pacman = world->getPacman();
 
             if (ev.key.code == sf::Keyboard::Up) {
@@ -266,54 +250,4 @@ void LevelState::handleInput(sf::Event& ev)
             }
         }
     }
-}
-
-void LevelState::drawPauseScreen()
-{
-    // Sla de huidige view op
-    sf::View originalView = window.getView();
-
-    // Schakel over naar default view voor UI
-    window.setView(window.getDefaultView());
-
-    // Update overlay grootte naar huidige window grootte
-    pauseOverlay.setSize(sf::Vector2f(window.getSize()));
-
-    // Teken semi-transparante overlay (blur)
-    window.draw(pauseOverlay);
-
-    blurBackground.setSize(sf::Vector2f(window.getSize()));
-    window.draw(blurBackground);
-
-    // Centreer de pause tekst
-    sf::FloatRect textBounds = pauseText.getLocalBounds();
-    pauseText.setOrigin(textBounds.left + textBounds.width / 2.0f,
-                       textBounds.top + textBounds.height / 2.0f);
-    pauseText.setPosition(window.getSize().x / 2.0f,
-                         window.getSize().y / 2.0f);
-
-    // Maak de tekst groter voor pause scherm
-    pauseText.setCharacterSize(static_cast<unsigned>(64 * uiScale));
-    pauseText.setOutlineColor(sf::Color::Black);
-    pauseText.setOutlineThickness(4.0f * uiScale);
-
-    window.draw(pauseText);
-
-    // Tekst voor terug te hervatten naar het spel
-    sf::Text instructionText;
-    instructionText.setFont(font);
-    instructionText.setString("Press ESC to resume");
-    instructionText.setCharacterSize(static_cast<unsigned>(20 * uiScale));
-    instructionText.setFillColor(sf::Color::White);
-
-    sf::FloatRect instrBounds = instructionText.getLocalBounds();
-    instructionText.setOrigin(instrBounds.left + instrBounds.width / 2.0f,
-                             instrBounds.top + instrBounds.height / 2.0f);
-    instructionText.setPosition(window.getSize().x / 2.0f,
-                               window.getSize().y / 2.0f + 80.f * uiScale);
-
-    window.draw(instructionText);
-
-    // Herstel de originele view
-    window.setView(originalView);
 }

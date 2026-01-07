@@ -44,37 +44,37 @@ namespace logic {
          * @brief Geeft x-positie terug
          * @return x-coördinaat
          */
-        double getX() const { return x; }
+        [[nodiscard]] double getX() const { return x; }
 
         /**
          * @brief Geeft y-positie terug
          * @return y-coördinaat
          */
-        double getY() const { return y; }
+        [[nodiscard]] double getY() const { return y; }
 
         /**
          * @brief Geeft breedte terug
          * @return Width
          */
-        double getW() const { return w; }
+        [[nodiscard]] double getW() const { return w; }
 
         /**
          * @brief Geeft hoogte terug
          * @return Height
          */
-        double getH() const { return h; }
+        [[nodiscard]] double getH() const { return h; }
 
         /**
          * @brief Geeft huidige direction terug
          * @return Direction
          */
-        Direction getDirection() const { return direction; }
+        [[nodiscard]] Direction getDirection() const { return direction; }
 
         /**
          * @brief Geeft desired direction terug
          * @return Desired direction
          */
-        Direction getDesiredDirection() const { return desiredDirection; }
+        [[nodiscard]] Direction getDesiredDirection() const { return desiredDirection; }
 
         /**
          * @brief Zet huidige direction
@@ -86,13 +86,13 @@ namespace logic {
          * @brief Geeft bounding box terug
          * @return Rect bounds
          */
-        Rect getBounds() const { return Rect{x, y, w, h}; }
+        [[nodiscard]] Rect getBounds() const { return Rect{x, y, w, h}; }
 
         /**
          * @brief Geeft movement speed terug
          * @return Speed
          */
-        double getSpeed() const { return speed; };
+        [[nodiscard]] double getSpeed() const { return speed; };
 
         /**
          * @brief Zet entity positie

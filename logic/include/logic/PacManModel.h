@@ -49,13 +49,13 @@ namespace logic {
         * @brief Geeft aantal levens terug
         * @return Aantal lives
         */
-        int getLives() const { return lives; }
+        [[nodiscard]] int getLives() const { return lives; }
 
         /**
          * @brief Geeft duur van death animatie terug
          * @return Death animation duration
          */
-        double getDeathAnimationDuration() const { return deathAnimationDuration; }
+        [[nodiscard]] double getDeathAnimationDuration() const { return deathAnimationDuration; }
 
         // pacman leven
         /**

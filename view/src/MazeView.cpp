@@ -11,7 +11,7 @@ namespace view {
 
     void MazeView::draw(sf::RenderWindow& win, const Camera& cam)
     {
-        const auto& maze = world->getMaze();
+        const auto& maze = world->getMaze(); // vector met getallen
         int H = maze.size();
         int W = maze[0].size();
 
@@ -23,7 +23,7 @@ namespace view {
 
                 sf::FloatRect rect = cam.worldToPixels(x, y, sizeW, sizeH);
 
-
+                // tekenen met SFML
                 sf::RectangleShape tile;
                 tile.setPosition(rect.left, rect.top);
                 tile.setSize(sf::Vector2f(rect.width, rect.height));

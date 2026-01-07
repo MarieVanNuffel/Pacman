@@ -36,7 +36,7 @@ namespace view {
                            rect.top  + rect.height/2.f);
 
         auto texRect = sprite.getTextureRect();
-        // uniform scale: gebruik de kleinst passende factor zodat sprite niet vervormt
+        // uniforme schaling
         float sx = rect.width / texRect.width;
         float sy = rect.height / texRect.height;
         float s = std::min(sx, sy);
@@ -76,11 +76,10 @@ namespace view {
                 animTimer -= frameTime;
                 deathFrameIndex++;
                 if (deathFrameIndex >= NUM_DEATH_FRAMES) {
-                    deathFrameIndex = NUM_DEATH_FRAMES - 1; // hold last frame until world resets model
+                    deathFrameIndex = NUM_DEATH_FRAMES - 1; // De laatste frame wordt vastgehouden tot de reset gebeurd
                 }
             }
 
-            // Death frames are on the first row after the normal frames
             int deathStartX = NUM_FRAMES * FRAME_SIZE;
             int frameX = deathStartX + deathFrameIndex * FRAME_SIZE;
             int frameY = 0 * FRAME_SIZE;
@@ -91,7 +90,7 @@ namespace view {
 
         animTimer += dt;
 
-        // Ga naar volgende frame
+        // ga naar volgende frame
         if (animTimer >= frameTime) {
             animTimer = 0.0;
             frameIndex = (frameIndex + 1) % NUM_FRAMES;
@@ -112,9 +111,8 @@ namespace view {
             case logic::Direction::LEFT:  frameY = 1 * FRAME_SIZE; break;
             case logic::Direction::UP:    frameY = 2 * FRAME_SIZE; break;
             case logic::Direction::DOWN:  frameY = 3 * FRAME_SIZE; break;
-            default: return; // geen beweging -> animatie niet updaten
+            default: return; // geen beweging, dus animatie niet updaten
         }
-
         sprite.setTextureRect(sf::IntRect(frameX, frameY, FRAME_SIZE, FRAME_SIZE));
     }
 }
