@@ -3,6 +3,8 @@
 ###  Marie Van Nuffel
 ###  Studentennummer: 20240829
 
+Ik heb problemen gehad met github en mijn e-mail adres, dus er staat dat twee mensen commits hebben terwijl ik ze allebei ben.
+
 ### Structuur:
 logic/        
 - World.h – centraal voor game logic en interacties
