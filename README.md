@@ -43,13 +43,13 @@ Daardoor blijft alles er goed uitzien op verschillende resoluties, en kun je de 
 De logic blijft dus grafisch onafhankelijk en de Camera regelt de vertaling naar schermpixels.
 
 ### Design patterns
-| Design pattern            | Toepassing                            | Doel                                                   |
-| ------------------------- | ------------------------------------- |--------------------------------------------------------|
-| **Model-View-Controller** | World (Controller), Models en Views   | Scheiding tussen logica en representatie               |
-| **Observer**              | Models → Views & Score                | Automatische updates bij state veranderingen (events)  |
+| Design pattern            | Toepassing                            | Doel                                                  |
+| ------------------------- |---------------------------------------|-------------------------------------------------------|
+| **Model-View-Controller** | World (Controller), Models en Views   | Scheiding tussen logica en representatie              |
+| **Observer**              | Models -> Views & Score               | Automatische updates bij (events)  |
 | **Abstract Factory**      | ConcreteEntityFactory                 | Aanmaken van entiteiten zonder afhankelijkheid van SFML |
-| **Singleton**             | Stopwatch, Random                     | Eén instantie voor timing en randomisatie       |
-| **State**                 | StateManager + MenuState / LevelState | Makkelijke state wisselingen met state stack           |
+| **Singleton**             | Stopwatch, Random                     | Eén instantie voor timing en randomisatie      |
+| **State**                 | StateManager + MenuState / LevelState | Makkelijke state wisselingen met state stack          |
 
 ### State Systeem
 Het spel maakt gebruik van een state stack om verschillende speltoestanden te beheren zoals:
