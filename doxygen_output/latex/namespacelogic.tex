@@ -1,0 +1,162 @@
+\doxysection{logic Namespace Reference}
+\hypertarget{namespacelogic}{}\label{namespacelogic}\index{logic@{logic}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classlogic_1_1_coin_model}{Coin\+Model}}
+\begin{DoxyCompactList}\small\item\em Model voor een coin. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_entity}{Entity}}
+\begin{DoxyCompactList}\small\item\em Basis class voor alle entities. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_fruit_model}{Fruit\+Model}}
+\begin{DoxyCompactList}\small\item\em Model voor een fruit entity. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{Ghost\+Door\+Model}}
+\begin{DoxyCompactList}\small\item\em Model voor een ghostdoor. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_ghost_model}{Ghost\+Model}}
+\begin{DoxyCompactList}\small\item\em Model voor een ghost met AI. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_i_entity_factory}{IEntity\+Factory}}
+\begin{DoxyCompactList}\small\item\em Abstract factory voor entity views. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_observer}{Observer}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classlogic_1_1_observer}{Observer} interface. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_pac_man_model}{Pac\+Man\+Model}}
+\begin{DoxyCompactList}\small\item\em Model voor de pacman entity. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_random}{Random}}
+\begin{DoxyCompactList}\small\item\em Singleton random number generator. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlogic_1_1_rect}{Rect}}
+\begin{DoxyCompactList}\small\item\em Axis-\/aligned rectangle. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_score}{Score}}
+\begin{DoxyCompactList}\small\item\em Beheert score en highscores. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_stopwatch}{Stopwatch}}
+\begin{DoxyCompactList}\small\item\em Singleton stopwatch voor delta-\/time berekening. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_subject}{Subject}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classlogic_1_1_subject}{Subject} in het Observer-\/patroon. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classlogic_1_1_world}{World}}
+\begin{DoxyCompactList}\small\item\em Beheert alle game logica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \{ \newline
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52afbaedde498cdead4f2780217646e9ba1}{UP}}
+, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ac4e0e4e3118472beeb2ae75827450f1f}{DOWN}}
+, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a684d325a7303f52e64011467ff5c5758}{LEFT}}
+, \newline
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}{RIGHT}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}{Event}} \{ \newline
+\mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65eea0f753024c6499bcdc1c393174b2b1fdc}{COIN\+\_\+\+RESPAWN}} = 0
+, \mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65eea28b14abed0e1014eea55071bd78dc0b0}{COIN\+\_\+\+COLLECTED}} = 1
+, \mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65eea5d8dce69372b8aba765e922e8828a792}{PACMAN\+\_\+\+DIED}} = 2
+, \mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65eea029083caae25be37a97bdf5108de4814}{PACMAN\+\_\+\+REVIVED}} = 3
+, \newline
+\mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65eea921e36c7a6944deef831a7299cd1083c}{FRUIT\+\_\+\+EATEN}} = 4
+, \mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65eea151e7b0469ec0e690def6fe0cf04ff3a}{FRUIT\+\_\+\+RESPAWN}} = 5
+ \}
+\begin{DoxyCompactList}\small\item\em Event codes gebruikt door notify(int). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{namespacelogic_a503b347fc77121a5b716e2585805c1a1}{manhattan}} (double x1, double y1, double x2, double y2)
+\item 
+static bool \mbox{\hyperlink{namespacelogic_abb4ec8dd2b66d5dc4cf9e9cb1346b0eb}{is\+Opposite}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} a, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} b)
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{namespacelogic_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}\index{logic@{logic}!Direction@{Direction}}
+\index{Direction@{Direction}!logic@{logic}}
+\doxysubsubsection{\texorpdfstring{Direction}{Direction}}
+{\footnotesize\ttfamily \label{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52} 
+enum class \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{logic\+::\+Direction}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!logic@{logic}}\index{logic@{logic}!NONE@{NONE}}}\Hypertarget{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}\label{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!logic@{logic}}\index{logic@{logic}!UP@{UP}}}\Hypertarget{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52afbaedde498cdead4f2780217646e9ba1}\label{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52afbaedde498cdead4f2780217646e9ba1} 
+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!logic@{logic}}\index{logic@{logic}!DOWN@{DOWN}}}\Hypertarget{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ac4e0e4e3118472beeb2ae75827450f1f}\label{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ac4e0e4e3118472beeb2ae75827450f1f} 
+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!logic@{logic}}\index{logic@{logic}!LEFT@{LEFT}}}\Hypertarget{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a684d325a7303f52e64011467ff5c5758}\label{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a684d325a7303f52e64011467ff5c5758} 
+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!logic@{logic}}\index{logic@{logic}!RIGHT@{RIGHT}}}\Hypertarget{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}\label{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403} 
+RIGHT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}\index{logic@{logic}!Event@{Event}}
+\index{Event@{Event}!logic@{logic}}
+\doxysubsubsection{\texorpdfstring{Event}{Event}}
+{\footnotesize\ttfamily \label{namespacelogic_ad45732bab433bbec0ccac6512cce65ee} 
+enum class \mbox{\hyperlink{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}{logic\+::\+Event}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+\doxylink{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}{Event} codes gebruikt door notify(int). 
+
+Gebruik deze enum via static\+\_\+cast$<$int$>$(logic\+::\+Event\+::\+NAME) \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COIN\_RESPAWN@{COIN\_RESPAWN}!logic@{logic}}\index{logic@{logic}!COIN\_RESPAWN@{COIN\_RESPAWN}}}\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65eea0f753024c6499bcdc1c393174b2b1fdc}\label{namespacelogic_ad45732bab433bbec0ccac6512cce65eea0f753024c6499bcdc1c393174b2b1fdc} 
+COIN\+\_\+\+RESPAWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COIN\_COLLECTED@{COIN\_COLLECTED}!logic@{logic}}\index{logic@{logic}!COIN\_COLLECTED@{COIN\_COLLECTED}}}\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65eea28b14abed0e1014eea55071bd78dc0b0}\label{namespacelogic_ad45732bab433bbec0ccac6512cce65eea28b14abed0e1014eea55071bd78dc0b0} 
+COIN\+\_\+\+COLLECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PACMAN\_DIED@{PACMAN\_DIED}!logic@{logic}}\index{logic@{logic}!PACMAN\_DIED@{PACMAN\_DIED}}}\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65eea5d8dce69372b8aba765e922e8828a792}\label{namespacelogic_ad45732bab433bbec0ccac6512cce65eea5d8dce69372b8aba765e922e8828a792} 
+PACMAN\+\_\+\+DIED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PACMAN\_REVIVED@{PACMAN\_REVIVED}!logic@{logic}}\index{logic@{logic}!PACMAN\_REVIVED@{PACMAN\_REVIVED}}}\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65eea029083caae25be37a97bdf5108de4814}\label{namespacelogic_ad45732bab433bbec0ccac6512cce65eea029083caae25be37a97bdf5108de4814} 
+PACMAN\+\_\+\+REVIVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FRUIT\_EATEN@{FRUIT\_EATEN}!logic@{logic}}\index{logic@{logic}!FRUIT\_EATEN@{FRUIT\_EATEN}}}\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65eea921e36c7a6944deef831a7299cd1083c}\label{namespacelogic_ad45732bab433bbec0ccac6512cce65eea921e36c7a6944deef831a7299cd1083c} 
+FRUIT\+\_\+\+EATEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FRUIT\_RESPAWN@{FRUIT\_RESPAWN}!logic@{logic}}\index{logic@{logic}!FRUIT\_RESPAWN@{FRUIT\_RESPAWN}}}\Hypertarget{namespacelogic_ad45732bab433bbec0ccac6512cce65eea151e7b0469ec0e690def6fe0cf04ff3a}\label{namespacelogic_ad45732bab433bbec0ccac6512cce65eea151e7b0469ec0e690def6fe0cf04ff3a} 
+FRUIT\+\_\+\+RESPAWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacelogic_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacelogic_abb4ec8dd2b66d5dc4cf9e9cb1346b0eb}\index{logic@{logic}!isOpposite@{isOpposite}}
+\index{isOpposite@{isOpposite}!logic@{logic}}
+\doxysubsubsection{\texorpdfstring{isOpposite()}{isOpposite()}}
+{\footnotesize\ttfamily \label{namespacelogic_abb4ec8dd2b66d5dc4cf9e9cb1346b0eb} 
+bool logic\+::is\+Opposite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{a}{, }\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{namespacelogic_abb4ec8dd2b66d5dc4cf9e9cb1346b0eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacelogic_a503b347fc77121a5b716e2585805c1a1}\index{logic@{logic}!manhattan@{manhattan}}
+\index{manhattan@{manhattan}!logic@{logic}}
+\doxysubsubsection{\texorpdfstring{manhattan()}{manhattan()}}
+{\footnotesize\ttfamily \label{namespacelogic_a503b347fc77121a5b716e2585805c1a1} 
+double logic\+::manhattan (\begin{DoxyParamCaption}\item[{double}]{x1}{, }\item[{double}]{y1}{, }\item[{double}]{x2}{, }\item[{double}]{y2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{namespacelogic_a503b347fc77121a5b716e2585805c1a1_icgraph}
+\end{center}
+\end{figure}

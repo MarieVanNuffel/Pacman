@@ -1,0 +1,11 @@
+<map id="logic::Observer" name="logic::Observer">
+<area shape="rect" id="Node000001" title="Observer interface." alt="" coords="225,5,324,96"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_score.html" title="Beheert score en highscores." alt="" coords="5,219,133,523"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,87,179,113,147,146,125,181,108,220,103,218,121,179,143,142,175,109,214,83"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_coin_view.html" title="View voor coin entity." alt="" coords="157,293,262,448"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,108,227,294,222,293,261,112"/>
+<area shape="rect" id="Node000004" href="$classview_1_1_fruit_view.html" title="View voor het fruit." alt="" coords="286,251,394,491"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,108,318,251,313,251,286,113"/>
+<area shape="rect" id="Node000005" href="$classview_1_1_pacman_view.html" title="View voor de ghosts." alt="" coords="418,144,588,597"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="336,82,375,109,409,142,421,159,415,159,405,146,372,113,337,88"/>
+</map>

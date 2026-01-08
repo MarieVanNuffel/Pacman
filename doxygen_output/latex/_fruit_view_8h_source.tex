@@ -1,0 +1,43 @@
+\doxysection{Fruit\+View.\+h}
+\hypertarget{_fruit_view_8h_source}{}\label{_fruit_view_8h_source}\index{view/include/view/FruitView.h@{view/include/view/FruitView.h}}
+\mbox{\hyperlink{_fruit_view_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 28/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_FRUITVIEW\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_FRUITVIEW\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_view_8h}{EntityView.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_observer_8h}{logic/Observer.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_fruit_model}{FruitModel}};}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceview}{view}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classview_1_1_fruit_view_ae0987de3e0ccc37aafc39d2ded567ac1}{FruitView}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{EntityView}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classlogic_1_1_observer}{logic::Observer}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classview_1_1_fruit_view_ae0987de3e0ccc37aafc39d2ded567ac1}{FruitView}}(std::shared\_ptr<logic::FruitModel>\ m);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classview_1_1_fruit_view_a43c0223fd46979d7bc264581174356b0}{draw}}(sf::RenderWindow\&\ win,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classview_1_1_camera}{Camera}}\&\ cam)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classview_1_1_fruit_view_a879747583a951197cedeb13b070ce695}{updateSprite}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classview_1_1_fruit_view_af37d8d770f81763af7b470fb9949ac8c}{onNotify}}(\textcolor{keywordtype}{int}\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ std::weak\_ptr<logic::FruitModel>\ \mbox{\hyperlink{classview_1_1_fruit_view_a35689d8d1135e008ee81b3c455cd5556}{model}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ sf::Sprite\ \mbox{\hyperlink{classview_1_1_fruit_view_ab10d89b17d13bb983e21abe9e5896583}{sprite}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ std::shared\_ptr<sf::Texture>\ \mbox{\hyperlink{classview_1_1_fruit_view_a8b4bbb416775d3ce662309d526e8748d}{texturePtr}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_fruit_view_a89c713f926e307f17e0e6b17c4472778}{FRAME\_SIZE}}\ =\ 15;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classview_1_1_fruit_view_a5aadc62cba44e16ced2fef056fce13cb}{animTime}}\ =\ 0.0;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classview_1_1_fruit_view_a2c0d1820f4ef7ebc85fd35936a96f76a}{visible}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00056\ \ \ \ \ \};}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_FRUITVIEW\_H}}
+
+\end{DoxyCode}

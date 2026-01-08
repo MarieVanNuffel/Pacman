@@ -1,0 +1,56 @@
+\doxysection{Concrete\+Entity\+Factory.\+h}
+\hypertarget{_concrete_entity_factory_8h_source}{}\label{_concrete_entity_factory_8h_source}\index{view/include/view/ConcreteEntityFactory.h@{view/include/view/ConcreteEntityFactory.h}}
+\mbox{\hyperlink{_concrete_entity_factory_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 28/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_CONCRETEENTITYFACTORY\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_CONCRETEENTITYFACTORY\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_entity_factory_8h}{logic/IEntityFactory.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pacman_view_8h}{PacmanView.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ghost_view_8h}{GhostView.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ghost_door_view_8h}{GhostDoorView.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_pac_man_model}{PacManModel}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_ghost_model}{GhostModel}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_coin_model}{CoinModel}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_fruit_model}{FruitModel}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_ghost_door_model}{GhostDoorModel}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_observer}{Observer}};}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceview}{view}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classview_1_1_concrete_entity_factory}{ConcreteEntityFactory}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classlogic_1_1_i_entity_factory}{logic::IEntityFactory}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::pair<std::shared\_ptr<EntityView>,\ std::shared\_ptr<logic::Observer>>}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_ab4dd017ac088a0c49a84bdd79487de32}{createPacmanView}}(std::shared\_ptr<logic::PacManModel>\ m)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::pair<std::shared\_ptr<EntityView>,\ std::shared\_ptr<logic::Observer>>}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a2fc07ad9bb4416471e21374a64498c8f}{createGhostView}}(std::shared\_ptr<logic::GhostModel>\ m)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::pair<std::shared\_ptr<EntityView>,\ std::shared\_ptr<logic::Observer>>}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a01be341480166f16782f7bb67d1cf58c}{createCoinView}}(std::shared\_ptr<logic::CoinModel>\ m)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ std::pair<std::shared\_ptr<EntityView>,\ std::shared\_ptr<logic::Observer>>}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a0f3ac37b9e92c5458a98d28f455d3d43}{createFruitView}}(std::shared\_ptr<logic::FruitModel>\ m)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ std::pair<std::shared\_ptr<EntityView>,\ std::shared\_ptr<logic::Observer>>}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a47fd9b66d0ec447cf4bd2a6aa4aea109}{createGhostDoorView}}(std::shared\_ptr<logic::GhostDoorModel>\ m)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00075\ \ \ \ \ \};}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_CONCRETEENTITYFACTORY\_H}}
+
+\end{DoxyCode}

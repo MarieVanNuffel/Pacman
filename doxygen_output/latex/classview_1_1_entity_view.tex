@@ -1,0 +1,129 @@
+\doxysection{view\+::Entity\+View Class Reference}
+\hypertarget{classview_1_1_entity_view}{}\label{classview_1_1_entity_view}\index{view::EntityView@{view::EntityView}}
+
+
+{\ttfamily \#include $<$Entity\+View.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Entity\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_entity_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Entity\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classview_1_1_entity_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{Entity\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Basis klasse voor entit views. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}{\texorpdfstring{$\sim$}{\string~}\+Entity\+View}} ()=default
+\item 
+virtual void \mbox{\hyperlink{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&)=0
+\begin{DoxyCompactList}\small\item\em Tekent entity. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}{update\+Sprite}} (double dt)=0
+\begin{DoxyCompactList}\small\item\em Update sprite per frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ \mbox{\hyperlink{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}{model}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_entity_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}\index{view::EntityView@{view::EntityView}!EntityView@{EntityView}}
+\index{EntityView@{EntityView}!view::EntityView@{view::EntityView}}
+\doxysubsubsection{\texorpdfstring{EntityView()}{EntityView()}}
+{\footnotesize\ttfamily \label{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066} 
+view\+::\+Entity\+View\+::\+Entity\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Basis klasse voor entit views. 
+
+Verbindt een logic Entity met rendering. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}\index{view::EntityView@{view::EntityView}!````~EntityView@{\texorpdfstring{$\sim$}{\string~}EntityView}}
+\index{````~EntityView@{\texorpdfstring{$\sim$}{\string~}EntityView}!view::EntityView@{view::EntityView}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}EntityView()}{\string~EntityView()}}
+{\footnotesize\ttfamily \label{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135} 
+virtual view\+::\+Entity\+View\+::\texorpdfstring{$\sim$}{\string~}\+Entity\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_entity_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}\index{view::EntityView@{view::EntityView}!draw@{draw}}
+\index{draw@{draw}!view::EntityView@{view::EntityView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7} 
+virtual void view\+::\+Entity\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Tekent entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win} & Render\+Window \\
+\hline
+{\em cam} & \doxylink{classview_1_1_camera}{Camera} voor world to pixel conversie \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classview_1_1_coin_view_a581e35be97b910a4ac4a00b1111625ac}{view\+::\+Coin\+View}}, \mbox{\hyperlink{classview_1_1_fruit_view_a43c0223fd46979d7bc264581174356b0}{view\+::\+Fruit\+View}}, \mbox{\hyperlink{classview_1_1_ghost_door_view_a99a6c7038d35e6a6af2d553ec7eccc9e}{view\+::\+Ghost\+Door\+View}}, \mbox{\hyperlink{classview_1_1_ghost_view_a92ccaf4fe530f48cb28e0ec3d61c3ba4}{view\+::\+Ghost\+View}}, and \mbox{\hyperlink{classview_1_1_pacman_view_ae0fee0dd4cc7428765572898bc36b635}{view\+::\+Pacman\+View}}.
+
+\Hypertarget{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}\index{view::EntityView@{view::EntityView}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!view::EntityView@{view::EntityView}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily \label{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a} 
+virtual void view\+::\+Entity\+View\+::update\+Sprite (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Update sprite per frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classview_1_1_coin_view_a05b131e55e5609ab7ae4e20c8d72460f}{view\+::\+Coin\+View}}, \mbox{\hyperlink{classview_1_1_fruit_view_a879747583a951197cedeb13b070ce695}{view\+::\+Fruit\+View}}, \mbox{\hyperlink{classview_1_1_ghost_door_view_a0ffdafa7928ba836bf1f25f1992db111}{view\+::\+Ghost\+Door\+View}}, \mbox{\hyperlink{classview_1_1_ghost_view_a596a4158b718206f71d4ff316b3290de}{view\+::\+Ghost\+View}}, and \mbox{\hyperlink{classview_1_1_pacman_view_a0dcb94819973c00682fbfd8b68a964d7}{view\+::\+Pacman\+View}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_entity_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}\index{view::EntityView@{view::EntityView}!model@{model}}
+\index{model@{model}!view::EntityView@{view::EntityView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}$>$ view\+::\+Entity\+View\+::model\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_entity_view_8h}{Entity\+View.\+h}}\end{DoxyCompactItemize}

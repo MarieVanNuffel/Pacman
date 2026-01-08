@@ -1,0 +1,5 @@
+<map id="logic::Entity" name="logic::Entity">
+<area shape="rect" id="Node000001" title="Basis class voor alle entities." alt="" coords="5,139,152,571"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="14,5,144,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,103,81,139,76,139,79,108"/>
+</map>

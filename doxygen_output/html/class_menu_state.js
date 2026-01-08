@@ -1,0 +1,28 @@
+var class_menu_state =
+[
+    [ "MenuState", "class_menu_state.html#a5a2159b90d2749f6464c9add3d330015", null ],
+    [ "handleInput", "class_menu_state.html#a544e331622b71f15f8e920631af9802d", null ],
+    [ "render", "class_menu_state.html#ac216e0b4c7f5c5d39520165c45af0da6", null ],
+    [ "update", "class_menu_state.html#a650aa2bb1ff45a304ca7b69771217def", null ],
+    [ "animationSpeed", "class_menu_state.html#a5e6daf791c0b7c7549c68c7ed161aafd", null ],
+    [ "animationTimer", "class_menu_state.html#a926d4b1bc32df280cc366489d646fde9", null ],
+    [ "BASE_HEIGHT", "class_menu_state.html#a55e63615f8969b15a46fbb4a5f05ce13", null ],
+    [ "BASE_WIDTH", "class_menu_state.html#af8b5341ffbe5cc044a46e89a0caf761b", null ],
+    [ "currentFrame", "class_menu_state.html#ab64a73bd587e0a4b8907a1d9cbbd81a8", null ],
+    [ "fadeAlpha", "class_menu_state.html#afe356600472d27be04aa59d4fd6cc5f7", null ],
+    [ "fadeRect", "class_menu_state.html#a40bc8324b4c38417ffdef18a7b00c9f8", null ],
+    [ "fadingIn", "class_menu_state.html#a61b8aa7fd1cbbbf9158566751f344d12", null ],
+    [ "font", "class_menu_state.html#a46edc93094fab46c002476505a6bec3f", null ],
+    [ "ghostColorOffset", "class_menu_state.html#a7591a497a37c71dc40e90b84b3204637", null ],
+    [ "ghostSpacing", "class_menu_state.html#a4a59c5c2f03d6ef9c76fc53ada78a817", null ],
+    [ "ghostSprites", "class_menu_state.html#a86d64b138ee73986d39efaa4bba379c8", null ],
+    [ "ghostTexturePtr", "class_menu_state.html#ad3221a122ff6908b4d84811adc8d4f2a", null ],
+    [ "highScoreText", "class_menu_state.html#ae52505a2a2a2e276a9eed22a4e9402a0", null ],
+    [ "isAnimating", "class_menu_state.html#a18ba1992535650a8fcd1b6af5d6f3741", null ],
+    [ "pacmanPositionX", "class_menu_state.html#a409a1d357ffd9bc3a8ee59921ce12995", null ],
+    [ "pacmanSprite", "class_menu_state.html#a61342183050534ad3195edef15d912bf", null ],
+    [ "pacmanTexturePtr", "class_menu_state.html#a2d08bf83c1c0b55d4f773f35aa4e2f60", null ],
+    [ "playButton", "class_menu_state.html#a2b02628ee62de341b579d81490448111", null ],
+    [ "title", "class_menu_state.html#a2cd58b7359e4163c148d46d1dcb939fe", null ],
+    [ "uiScale", "class_menu_state.html#a9f568987ca9606433927620d0c6fd254", null ]
+];

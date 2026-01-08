@@ -1,0 +1,165 @@
+\doxysection{logic\+::Random Class Reference}
+\hypertarget{classlogic_1_1_random}{}\label{classlogic_1_1_random}\index{logic::Random@{logic::Random}}
+
+
+Singleton random number generator.  
+
+
+
+
+{\ttfamily \#include $<$Random.\+h$>$}
+
+
+
+Collaboration diagram for logic\+::Random\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classlogic_1_1_random__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classlogic_1_1_random_a413aea8c3ec6f339a54a4410933373b1}{next\+Int}} (int a, int b)
+\begin{DoxyCompactList}\small\item\em Genereert random int in \mbox{[}a, b\mbox{]}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_random_a1aaea8082251e6c303812a5875829455}{next\+Double}} (double a, double b)
+\begin{DoxyCompactList}\small\item\em Genereert random double in \mbox{[}a, b\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classlogic_1_1_random_a7b4f4508c119caeadb94ad569e864015}{Random}} \& \mbox{\hyperlink{classlogic_1_1_random_a2175c5108f032d690cc108a1a01093e1}{instance}} ()
+\begin{DoxyCompactList}\small\item\em Geeft singleton instance terug. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_random_a7b4f4508c119caeadb94ad569e864015}{Random}} ()
+\begin{DoxyCompactList}\small\item\em Private constructor voor singleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mt19937 \mbox{\hyperlink{classlogic_1_1_random_a44e1678db617357326b3f03cabcf3ae1}{rng}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton random number generator. 
+
+Wordt gebruikt voor random ghost gedrag. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_random_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_random_a7b4f4508c119caeadb94ad569e864015}\index{logic::Random@{logic::Random}!Random@{Random}}
+\index{Random@{Random}!logic::Random@{logic::Random}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_random_a7b4f4508c119caeadb94ad569e864015} 
+logic\+::\+Random\+::\+Random (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Private constructor voor singleton. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_random_a7b4f4508c119caeadb94ad569e864015_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_random_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_random_a2175c5108f032d690cc108a1a01093e1}\index{logic::Random@{logic::Random}!instance@{instance}}
+\index{instance@{instance}!logic::Random@{logic::Random}}
+\doxysubsubsection{\texorpdfstring{instance()}{instance()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_random_a2175c5108f032d690cc108a1a01093e1} 
+\mbox{\hyperlink{classlogic_1_1_random_a7b4f4508c119caeadb94ad569e864015}{Random}} \& logic\+::\+Random\+::instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Geeft singleton instance terug. 
+
+\begin{DoxyReturn}{Returns}
+Referentie naar \doxylink{classlogic_1_1_random}{Random} instance 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_random_a2175c5108f032d690cc108a1a01093e1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{classlogic_1_1_random_a2175c5108f032d690cc108a1a01093e1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_random_a1aaea8082251e6c303812a5875829455}\index{logic::Random@{logic::Random}!nextDouble@{nextDouble}}
+\index{nextDouble@{nextDouble}!logic::Random@{logic::Random}}
+\doxysubsubsection{\texorpdfstring{nextDouble()}{nextDouble()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_random_a1aaea8082251e6c303812a5875829455} 
+double logic\+::\+Random\+::next\+Double (\begin{DoxyParamCaption}\item[{double}]{a}{, }\item[{double}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Genereert random double in \mbox{[}a, b\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Ondergrens \\
+\hline
+{\em b} & Bovengrens \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classlogic_1_1_random}{Random} double 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_random_a413aea8c3ec6f339a54a4410933373b1}\index{logic::Random@{logic::Random}!nextInt@{nextInt}}
+\index{nextInt@{nextInt}!logic::Random@{logic::Random}}
+\doxysubsubsection{\texorpdfstring{nextInt()}{nextInt()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_random_a413aea8c3ec6f339a54a4410933373b1} 
+int logic\+::\+Random\+::next\+Int (\begin{DoxyParamCaption}\item[{int}]{a}{, }\item[{int}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Genereert random int in \mbox{[}a, b\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Ondergrens \\
+\hline
+{\em b} & Bovengrens \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classlogic_1_1_random}{Random} int 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classlogic_1_1_random_a413aea8c3ec6f339a54a4410933373b1_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_random_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_random_a44e1678db617357326b3f03cabcf3ae1}\index{logic::Random@{logic::Random}!rng@{rng}}
+\index{rng@{rng}!logic::Random@{logic::Random}}
+\doxysubsubsection{\texorpdfstring{rng}{rng}}
+{\footnotesize\ttfamily \label{classlogic_1_1_random_a44e1678db617357326b3f03cabcf3ae1} 
+std\+::mt19937 logic\+::\+Random\+::rng\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_random_8h}{Random.\+h}}\item 
+logic/src/\mbox{\hyperlink{_random_8cpp}{Random.\+cpp}}\end{DoxyCompactItemize}

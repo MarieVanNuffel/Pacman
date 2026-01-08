@@ -1,0 +1,53 @@
+\doxysection{Ghost\+View.\+h}
+\hypertarget{_ghost_view_8h_source}{}\label{_ghost_view_8h_source}\index{view/include/view/GhostView.h@{view/include/view/GhostView.h}}
+\mbox{\hyperlink{_ghost_view_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 28/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_GHOSTVIEW\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_GHOSTVIEW\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <SFML/Graphics/RenderWindow.hpp>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_camera_8h}{Camera.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_view_8h}{EntityView.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_direction_8h}{logic/Direction.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_ghost_model}{GhostModel}};}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceview}{view}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classview_1_1_ghost_view_a01f23f09aad7a359aa2bca756a4038fa}{GhostView}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{EntityView}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classview_1_1_ghost_view_a01f23f09aad7a359aa2bca756a4038fa}{GhostView}}(std::shared\_ptr<logic::GhostModel>\ m);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classview_1_1_ghost_view_a92ccaf4fe530f48cb28e0ec3d61c3ba4}{draw}}(sf::RenderWindow\&\ win,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classview_1_1_camera}{Camera}}\&\ cam)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classview_1_1_ghost_view_a596a4158b718206f71d4ff316b3290de}{updateSprite}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Animatie}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classview_1_1_ghost_view_a342739bd7a613febfe7e0a7d27fcd5e3}{animTimer}}\ =\ 0.0;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classview_1_1_ghost_view_ab561cb17c3dbedd24322b0aa59879cec}{frameTime}}\ =\ 0.15;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sprite\ sheet\ frames}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_ghost_view_a7f8609cbb66bde2e7a6cf67d52a0b4a7}{FRAME\_SIZE}}\ =\ 16;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8}{NUM\_FRAMES}}\ =\ 2;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_ghost_view_a259db8377e9b2e76784ac281439988b6}{frameIndex}}\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_ghost_view_a132a2097b23dec405278154f95a510fc}{frames}}[\mbox{\hyperlink{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8}{NUM\_FRAMES}}]\ =\ \{0,\ 16\};\ \textcolor{comment}{//\ kolommen\ voor\ bewegingen}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ghosts}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ std::weak\_ptr<logic::GhostModel>\ \mbox{\hyperlink{classview_1_1_ghost_view_af99f1c647716532743ecc91d2a548314}{model}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ sf::Sprite\ \mbox{\hyperlink{classview_1_1_ghost_view_aabf98937e751086d5413787ee49fbb39}{sprite}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ std::shared\_ptr<sf::Texture>\ \mbox{\hyperlink{classview_1_1_ghost_view_a2919d37bdabfa9861cf172bca0c1c2ba}{texturePtr}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{logic::Direction}}\ \mbox{\hyperlink{classview_1_1_ghost_view_afa202599e6b7af4414ce0e723f10fcba}{lastDirection}}\ =\ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}{logic::Direction::RIGHT}};}
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_GHOSTVIEW\_H}}
+
+\end{DoxyCode}

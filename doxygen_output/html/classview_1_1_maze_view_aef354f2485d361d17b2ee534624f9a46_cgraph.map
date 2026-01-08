@@ -1,0 +1,7 @@
+<map id="view::MazeView::draw" name="view::MazeView::draw">
+<area shape="rect" id="Node000001" title="Tekent de volledige maze volgens de vector dat in world is gegeven." alt="" coords="5,43,159,69"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_camera.html#ab451ba874f10de29d4fb15b157f630dd" title="Converteert genormalizeerde center coords naar pixels." alt="" coords="224,5,397,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,44,211,39,206,40,160,49"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_camera.html#ab67a9099042d076405a5e07c590ac3d3" title="Converteert tile coördinaten naar genormalizeerd [&#45;1, 1]." alt="" coords="207,72,414,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,63,194,70,189,70,159,69"/>
+</map>

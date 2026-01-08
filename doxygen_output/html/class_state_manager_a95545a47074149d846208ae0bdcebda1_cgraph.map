@@ -1,0 +1,5 @@
+<map id="StateManager::changeState" name="StateManager::changeState">
+<area shape="rect" id="Node000001" title="Vervangt alle huidige states door één nieuwe state." alt="" coords="5,5,189,32"/>
+<area shape="rect" id="Node000002" href="$class_state_manager.html#ad6bf067afa8e7a9fe75e159281315f46" title="Voegt een nieuwe state toe bovenop de stack." alt="" coords="237,5,406,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,16,223,19,218,19,189,21"/>
+</map>

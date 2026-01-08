@@ -1,0 +1,5 @@
+<map id="logic::FruitModel::collect" name="logic::FruitModel::collect">
+<area shape="rect" id="Node000001" title="fruit als gegeten en notify observers" alt="" coords="5,5,131,48"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_subject.html#ada4a6d23acb1b26fb8da600ef7ceb862" title="Notify de observers." alt="" coords="179,13,319,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,24,166,26,161,27,131,29"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="logic::CoinModel::collect" name="logic::CoinModel::collect">
+<area shape="rect" id="Node000001" title="Coin is opgepakt, notify observers." alt="" coords="5,5,170,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_subject.html#ada4a6d23acb1b26fb8da600ef7ceb862" title="Notify de observers." alt="" coords="218,5,358,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,16,205,19,200,19,170,21"/>
+</map>

@@ -10,34 +10,32 @@
 
 namespace logic {
 
-    /**
-     * @brief Singleton stopwatch voor delta-time berekening
-     *
-     * Kan gebruikt worden om frame-timing bij te houden.
-     */
-    class Stopwatch {
-    public:
+/**
+ * @brief Singleton stopwatch voor delta-time berekening
+ *
+ * Kan gebruikt worden om frame-timing bij te houden.
+ */
+class Stopwatch {
+public:
+  /**
+   * @brief Verkrijg singleton instantie
+   * @return Referentie naar Stopwatch
+   */
+  static Stopwatch &instance();
 
-        /**
-         * @brief Verkrijg singleton instantie
-         * @return Referentie naar Stopwatch
-         */
-        static Stopwatch& instance();
+  /**
+   * @brief Bereken tijd sinds laatste tick
+   * @return Delta-time in seconden
+   */
+  double tick();
 
-        /**
-         * @brief Bereken tijd sinds laatste tick
-         * @return Delta-time in seconden
-         */
-        double tick();
+private:
+  /**
+   * @brief Constructor, initieert starttijd
+   */
+  Stopwatch();
+  std::chrono::steady_clock::time_point last;
+};
+} // namespace logic
 
-    private:
-        /**
-         * @brief Constructor, initieert starttijd
-         */
-        Stopwatch();
-        std::chrono::steady_clock::time_point last;
-    };
-}
-
-
-#endif //PACMAN_STOPWATCH_H
+#endif // PACMAN_STOPWATCH_H

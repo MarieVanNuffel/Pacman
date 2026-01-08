@@ -1,0 +1,5 @@
+<map id="Game" name="Game">
+<area shape="rect" id="Node000001" title="Hoofdklasse van het spel." alt="" coords="5,339,132,472"/>
+<area shape="rect" id="Node000002" href="$class_state_manager.html" title="Beheert de verschillende states van het spel." alt="" coords="12,5,125,267"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,264,71,322,66,321,68,269"/>
+</map>

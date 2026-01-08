@@ -1,0 +1,8 @@
+<map id="logic::World::resetPositions" name="logic::World::resetPositions">
+<area shape="rect" id="Node000001" title="Entities terug op hun spawn positie zetten." alt="" coords="415,31,595,57"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#aec39adc36a1e504cd9740fb1841fb502" title="Gaat naar het volgende level (moeilijker)." alt="" coords="190,5,367,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="397,32,367,31,368,26,402,32"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_world.html#affdadc66a5af7d6d315d11a4c8623ed3" title="Update entities/level per tick." alt="" coords="5,31,142,57"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="399,47,142,47,142,41,399,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="172,32,142,38,141,33,177,31"/>
+</map>

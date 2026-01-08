@@ -1,0 +1,145 @@
+\doxysection{view\+::Ghost\+Door\+View Class Reference}
+\hypertarget{classview_1_1_ghost_door_view}{}\label{classview_1_1_ghost_door_view}\index{view::GhostDoorView@{view::GhostDoorView}}
+
+
+View voor de ghostdoor.  
+
+
+
+
+{\ttfamily \#include $<$Ghost\+Door\+View.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Ghost\+Door\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classview_1_1_ghost_door_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Ghost\+Door\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classview_1_1_ghost_door_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_ghost_door_view_af2a00ccd85cad70edaddd8d28100903c}{Ghost\+Door\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{logic\+::\+Ghost\+Door\+Model}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_ghost_door_view_a99a6c7038d35e6a6af2d553ec7eccc9e}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&cam) override
+\begin{DoxyCompactList}\small\item\em Tekent de ghostdoor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_ghost_door_view_a0ffdafa7928ba836bf1f25f1992db111}{update\+Sprite}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update van sprite, maar beweegt niet dus doet niets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{Entity\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Basis klasse voor entit views. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}{\texorpdfstring{$\sim$}{\string~}\+Entity\+View}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{logic\+::\+Ghost\+Door\+Model}} $>$ \mbox{\hyperlink{classview_1_1_ghost_door_view_a322c3a9da47f0a307c4aceb50e839264}{model}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ \mbox{\hyperlink{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}{model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View voor de ghostdoor. 
+
+Tekent de deur die de ghost box afsluit. 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_ghost_door_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_ghost_door_view_af2a00ccd85cad70edaddd8d28100903c}\index{view::GhostDoorView@{view::GhostDoorView}!GhostDoorView@{GhostDoorView}}
+\index{GhostDoorView@{GhostDoorView}!view::GhostDoorView@{view::GhostDoorView}}
+\doxysubsubsection{\texorpdfstring{GhostDoorView()}{GhostDoorView()}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_door_view_af2a00ccd85cad70edaddd8d28100903c} 
+view\+::\+Ghost\+Door\+View\+::\+Ghost\+Door\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{logic\+::\+Ghost\+Door\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Ghost\+Door\+Model \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_ghost_door_view_af2a00ccd85cad70edaddd8d28100903c_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_ghost_door_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_ghost_door_view_a99a6c7038d35e6a6af2d553ec7eccc9e}\index{view::GhostDoorView@{view::GhostDoorView}!draw@{draw}}
+\index{draw@{draw}!view::GhostDoorView@{view::GhostDoorView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_door_view_a99a6c7038d35e6a6af2d553ec7eccc9e} 
+void view\+::\+Ghost\+Door\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tekent de ghostdoor. 
+
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}{view\+::\+Entity\+View}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_ghost_door_view_a99a6c7038d35e6a6af2d553ec7eccc9e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_ghost_door_view_a0ffdafa7928ba836bf1f25f1992db111}\index{view::GhostDoorView@{view::GhostDoorView}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!view::GhostDoorView@{view::GhostDoorView}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_door_view_a0ffdafa7928ba836bf1f25f1992db111} 
+void view\+::\+Ghost\+Door\+View\+::update\+Sprite (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update van sprite, maar beweegt niet dus doet niets. 
+
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}{view\+::\+Entity\+View}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_ghost_door_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_ghost_door_view_a322c3a9da47f0a307c4aceb50e839264}\index{view::GhostDoorView@{view::GhostDoorView}!model@{model}}
+\index{model@{model}!view::GhostDoorView@{view::GhostDoorView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_door_view_a322c3a9da47f0a307c4aceb50e839264} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_ghost_door_model}{logic\+::\+Ghost\+Door\+Model}}$>$ view\+::\+Ghost\+Door\+View\+::model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_ghost_door_view_8h}{Ghost\+Door\+View.\+h}}\item 
+view/src/\mbox{\hyperlink{_ghost_door_view_8cpp}{Ghost\+Door\+View.\+cpp}}\end{DoxyCompactItemize}

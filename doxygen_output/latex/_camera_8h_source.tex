@@ -1,0 +1,50 @@
+\doxysection{Camera.\+h}
+\hypertarget{_camera_8h_source}{}\label{_camera_8h_source}\index{view/include/view/Camera.h@{view/include/view/Camera.h}}
+\mbox{\hyperlink{_camera_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 28/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_CAMERA\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_CAMERA\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceview}{view}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classview_1_1_camera_a917c6017e5708394d6dcabecc6c0fae4}{Camera}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classview_1_1_camera_a917c6017e5708394d6dcabecc6c0fae4}{Camera}}(\textcolor{keywordtype}{int}\ pixelWidth,\ \textcolor{keywordtype}{int}\ pixelHeight,\ \textcolor{keywordtype}{int}\ mazeW,\ \textcolor{keywordtype}{int}\ mazeH);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ sf::FloatRect\ \mbox{\hyperlink{classview_1_1_camera_a63f66f8616c1fa6068aa068242ffc4e6}{worldToPixels}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y,\ \textcolor{keywordtype}{double}\ w,\ \textcolor{keywordtype}{double}\ h)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ std::pair<double,double>\ \mbox{\hyperlink{classview_1_1_camera_ab67a9099042d076405a5e07c590ac3d3}{tileToNormalized}}(\textcolor{keywordtype}{double}\ tileX,\ \textcolor{keywordtype}{double}\ tileY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::pair<double,double>\ \mbox{\hyperlink{classview_1_1_camera_af6d275419142b6b12888f5b6a6c1448c}{normalizedToTile}}(\textcolor{keywordtype}{double}\ nx,\ \textcolor{keywordtype}{double}\ ny)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ sf::FloatRect\ \mbox{\hyperlink{classview_1_1_camera_ab451ba874f10de29d4fb15b157f630dd}{normalizedToPixels}}(\textcolor{keywordtype}{double}\ nx,\ \textcolor{keywordtype}{double}\ ny,\ \textcolor{keywordtype}{double}\ wFrac,\ \textcolor{keywordtype}{double}\ hFrac)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_camera_a9b13e8c731bc67b9e567f84bbb56efb4}{mazeWidth}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_camera_a1f3927a78e521f1b8780ac78ded26a64}{mazeHeight}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_camera_a481198f76b759d23f40fbacc5cb21a5d}{wPixels}};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classview_1_1_camera_ad1dfadf605cf783f73e2342fa0dccf9c}{hPixels}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classview_1_1_camera_a128394c1e74f32c9a11abda029a78d22}{cellSize}};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classview_1_1_camera_ade3eed3735fb1dedac6459e9aae2a167}{offsetX}};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classview_1_1_camera_a4be46e32a6a06ebb2d0233c0f076497f}{offsetY}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classview_1_1_camera_a1e5f0b611155994aad44fa248123015c}{recompute}}();}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_CAMERA\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="view::GhostDoorView::draw" name="view::GhostDoorView::draw">
+<area shape="rect" id="Node000001" title="Tekent de ghostdoor." alt="" coords="5,5,154,48"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_camera.html#a63f66f8616c1fa6068aa068242ffc4e6" title="Converteert world coördinaten naar pixel rectangle." alt="" coords="202,13,393,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,24,189,26,183,27,154,29"/>
+</map>

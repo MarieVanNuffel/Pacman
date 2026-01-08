@@ -1,0 +1,57 @@
+\doxysection{IEntity\+Factory.\+h}
+\hypertarget{_i_entity_factory_8h_source}{}\label{_i_entity_factory_8h_source}\index{logic/include/logic/IEntityFactory.h@{logic/include/logic/IEntityFactory.h}}
+\mbox{\hyperlink{_i_entity_factory_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 27/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_IENTITYFACTORY\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_IENTITYFACTORY\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ghost_door_model_8h}{GhostDoorModel.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceview}{view}}\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classview_1_1_entity_view}{EntityView}};\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }Observer;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{class\ }Entity;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }PacManModel;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{class\ }GhostModel;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{class\ }CoinModel;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }FruitModel;}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_i_entity_factory}{IEntityFactory}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a0e6d20caae0a051b0da5cfe0eb70f538}{\string~IEntityFactory}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::pair<std::shared\_ptr<view::EntityView>,\ std::shared\_ptr<Observer>>}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a2e08c6e33b013e7fae4de678d310bd8d}{createPacmanView}}(std::shared\_ptr<PacManModel>\ model)\ =\ 0;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::pair<std::shared\_ptr<view::EntityView>,\ std::shared\_ptr<Observer>>}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a604c16f92785e545db135bc9213d4f95}{createGhostView}}(std::shared\_ptr<GhostModel>\ model)\ =\ 0;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::pair<std::shared\_ptr<view::EntityView>,\ std::shared\_ptr<Observer>>}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_i_entity_factory_af1138e9c0b16420e89f0335798547fdf}{createCoinView}}(std::shared\_ptr<CoinModel>\ model)\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::pair<std::shared\_ptr<view::EntityView>,\ std::shared\_ptr<Observer>>}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a722751131f71751c2569f43045a1167b}{createFruitView}}(std::shared\_ptr<FruitModel>\ model)\ =\ 0;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::pair<std::shared\_ptr<view::EntityView>,\ std::shared\_ptr<Observer>>}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_i_entity_factory_aebccf2eb0778179dfdf97209f1ea316f}{createGhostDoorView}}(std::shared\_ptr<GhostDoorModel>\ model)\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \};}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_IENTITYFACTORY\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,70 @@
+\doxysection{view\+::Resource Class Reference}
+\hypertarget{classview_1_1_resource}{}\label{classview_1_1_resource}\index{view::Resource@{view::Resource}}
+
+
+Beheert het laden en hergebruiken van de spritesheet.  
+
+
+
+
+{\ttfamily \#include $<$Resource.\+h$>$}
+
+
+
+Collaboration diagram for view\+::Resource\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{classview_1_1_resource__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{classview_1_1_resource_a7750092e5edc0404ccbbb24337c12058}{load\+Texture}} (const std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em Laadt een texture uit een bestand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Beheert het laden en hergebruiken van de spritesheet. 
+
+Deze klasse wordt gebruikt zodat de spritesheet maar 1 keer geladen wordt ipv voor elke sprite opnieuw. Dit gebeurt met een shared pointer zodat meerdere views dezelfde kunnen gebruiken. 
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_resource_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_resource_a7750092e5edc0404ccbbb24337c12058}\index{view::Resource@{view::Resource}!loadTexture@{loadTexture}}
+\index{loadTexture@{loadTexture}!view::Resource@{view::Resource}}
+\doxysubsubsection{\texorpdfstring{loadTexture()}{loadTexture()}}
+{\footnotesize\ttfamily \label{classview_1_1_resource_a7750092e5edc0404ccbbb24337c12058} 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ view\+::\+Resource\+::load\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Laadt een texture uit een bestand. 
+
+Laadt de spritesheet vanuit een pad en desnoods uit de cache. Als de texture al eens eerder werd geladen, wordt een shared pointer naar de bestaande texture teruggegeven. De shared\+\_\+ptr zorgt er ook voor dat de texture in het geheugen blijft zolang minstens 1 sprite ernaar verwijst.
+
+De functie is thread-\/safe door de lock.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Pad naar het texturebestand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ pointer indien het laden succesvol was, anders nullptr 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_resource_a7750092e5edc0404ccbbb24337c12058_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_resource_8h}{Resource.\+h}}\item 
+view/src/\mbox{\hyperlink{_resource_8cpp}{Resource.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="view::MazeView" name="view::MazeView">
+<area shape="rect" id="Node000001" title="View van de maze." alt="" coords="34,793,141,884"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html" title="Beheert alle game logica." alt="" coords="5,140,169,721"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,719,90,777,85,776,86,724"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="23,5,152,91"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,103,90,140,85,140,87,108"/>
+</map>

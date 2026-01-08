@@ -1,0 +1,5 @@
+<map id="PauseState" name="PauseState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,229,143,533"/>
+<area shape="rect" id="Node000002" href="$class_state.html" title=" " alt="" coords="23,5,126,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,194,77,230,72,229,74,199"/>
+</map>

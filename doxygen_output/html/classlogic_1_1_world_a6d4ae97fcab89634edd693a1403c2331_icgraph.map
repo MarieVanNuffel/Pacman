@@ -1,0 +1,5 @@
+<map id="logic::World::getFreeDirections" name="logic::World::getFreeDirections">
+<area shape="rect" id="Node000001" title="Geeft alle mogelijke richtingen waar een entity naar kan bewegen." alt="" coords="229,5,429,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#a90df2f1328df5609a7cec7df87a6c65d" title="Kijkt of we op een kruispunt zitten." alt="" coords="5,5,181,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,19,181,21,181,16,216,19"/>
+</map>

@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <memory>
+#include "ConcreteEntityFactory.h"
 #include "State.h"
 #include "logic/World.h"
-#include "ConcreteEntityFactory.h"
 #include "view/MazeView.h"
+#include <SFML/Graphics.hpp>
+#include <memory>
 
 /**
  * @brief Game state voor een level
@@ -22,79 +22,78 @@
  */
 class LevelState : public State {
 public:
+  /**
+   * @brief Constructor
+   * @param window Referentie naar het SFML window
+   * @param sm StateManager voor state-overgangen
+   */
+  LevelState(sf::RenderWindow &window, StateManager &sm);
 
-    /**
-     * @brief Constructor
-     * @param window Referentie naar het SFML window
-     * @param sm StateManager voor state-overgangen
-     */
-    LevelState(sf::RenderWindow& window, StateManager& sm);
+  /**
+   * @brief Verwerkt input events (keyboard)
+   */
+  void handleInput(sf::Event &ev) override;
 
-    /**
-     * @brief Verwerkt input events (keyboard)
-     */
-    void handleInput(sf::Event& ev) override;
+  /**
+   * @brief Update game logica en animaties
+   */
+  void update(float dt) override;
 
-    /**
-     * @brief Update game logica en animaties
-     */
-    void update(float dt) override;
-
-    /**
-     * @brief Render maze, entities en UI
-     */
-    void render() override;
+  /**
+   * @brief Render maze, entities en UI
+   */
+  void render() override;
 
 private:
-    std::shared_ptr<logic::World> world;
-    std::shared_ptr<view::ConcreteEntityFactory> factory;
-    view::Camera camera;
+  std::shared_ptr<logic::World> world;
+  std::shared_ptr<view::ConcreteEntityFactory> factory;
+  view::Camera camera;
 
-    std::unique_ptr<view::MazeView> mazeView;
-    std::shared_ptr<view::EntityView> pacmanView;
-    std::vector<std::shared_ptr<view::EntityView>> ghostViews;
-    std::vector<std::shared_ptr<view::EntityView>> coinViews;
-    std::vector<std::shared_ptr<view::EntityView>> fruitViews;
-    std::vector<std::shared_ptr<view::EntityView>> ghostDoorViews;
+  std::unique_ptr<view::MazeView> mazeView;
+  std::shared_ptr<view::EntityView> pacmanView;
+  std::vector<std::shared_ptr<view::EntityView>> ghostViews;
+  std::vector<std::shared_ptr<view::EntityView>> coinViews;
+  std::vector<std::shared_ptr<view::EntityView>> fruitViews;
+  std::vector<std::shared_ptr<view::EntityView>> ghostDoorViews;
 
-    float tileW{};
-    float tileH{};
+  float tileW{};
+  float tileH{};
 
-    // UI elements
-    sf::Font font;
-    sf::Text scoreText;
-    sf::Text livesText;
-    sf::Sprite lifeSprite;
-    std::shared_ptr<sf::Texture> lifeTexturePtr;
+  // UI elements
+  sf::Font font;
+  sf::Text scoreText;
+  sf::Text livesText;
+  sf::Sprite lifeSprite;
+  std::shared_ptr<sf::Texture> lifeTexturePtr;
 
-    // voor pauseState
-    sf::Texture lastFrameTexture;
+  // voor pauseState
+  sf::Texture lastFrameTexture;
 
-    const float BASE_WIDTH  = 800.f;
-    const float BASE_HEIGHT = 600.f;
-    float uiScale = 1.f;
+  const float BASE_WIDTH = 800.f;
+  const float BASE_HEIGHT = 600.f;
+  float uiScale = 1.f;
 
-    // Helper functies
+  // Helper functies
 
-    /**
-     * @brief Tekent de maze
-     */
-    void drawMaze();
+  /**
+   * @brief Tekent de maze
+   */
+  void drawMaze();
 
-    /**
-     * @brief tekent entities
-     */
-    void drawEntities();
+  /**
+   * @brief tekent entities
+   */
+  void drawEntities();
 
-    /**
-     * @brief Tekent de UI
-     */
-    void drawUI();
+  /**
+   * @brief Tekent de UI
+   */
+  void drawUI();
 
-    /**
-     * @brief Update de UI
-     */
-    void updateUI();
+  /**
+   * @brief Update de UI
+   */
+  void updateUI();
 };
 
-#endif //PACMAN_LEVELSTATE_H
+#endif // PACMAN_LEVELSTATE_H

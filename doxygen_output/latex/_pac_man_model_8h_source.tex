@@ -1,0 +1,60 @@
+\doxysection{Pac\+Man\+Model.\+h}
+\hypertarget{_pac_man_model_8h_source}{}\label{_pac_man_model_8h_source}\index{logic/include/logic/PacManModel.h@{logic/include/logic/PacManModel.h}}
+\mbox{\hyperlink{_pac_man_model_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 27/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_PACMANMODEL\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_PACMANMODEL\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_direction_8h}{Direction.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_subject_8h}{Subject.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_pac_man_model_a1fdb20542b45cde772f5a01163a580ab}{PacManModel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classlogic_1_1_entity}{Entity}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classlogic_1_1_subject}{Subject}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff}{lives}}\ =\ 3;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a3473f24a53a4b3af226a96abb8b83517}{deathAnimationDuration}}\ =\ 12\ *\ 0.15;\ \textcolor{comment}{//\ 12\ frames\ *\ 0.15s}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a1fdb20542b45cde772f5a01163a580ab}{PacManModel}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setters}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a400307e133a3eb69481c7a7c3469d9a9}{setDirection}}(\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ d);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a0581229e6b9aaf05fc0c457674de879a}{setDesiredDirection}}(\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ d)\ \{\ \mbox{\hyperlink{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}{desiredDirection}}\ =\ d;\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a200bcf27666dd9f675e18093f828cbdd}{getLives}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff}{lives}};\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a599a0eba014dbbc658a9ec0d4f9f6db3}{getDeathAnimationDuration}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a3473f24a53a4b3af226a96abb8b83517}{deathAnimationDuration}};\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ pacman\ leven}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a9e7c510ecf723049d591fff47648239a}{loseLife}}()\ \{\ -\/-\/\mbox{\hyperlink{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff}{lives}};\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a846654b59912903dcca52b2549fbf262}{isGameOver}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff}{lives}}\ <=\ 0;\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a827d681a6aa5fe207d4b870b5986f214}{die}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a32680fb42d83354919bfd5fcaa5c7992}{revive}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a9d4f6bf4a66f7fe5bb08d59a88258092}{reset}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_pac_man_model_a03a94e545c04994a0bbecd44ca14b830}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_PACMANMODEL\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,328 @@
+\doxysection{Menu\+State Class Reference}
+\hypertarget{class_menu_state}{}\label{class_menu_state}\index{MenuState@{MenuState}}
+
+
+Hoofdmenu van pacman.  
+
+
+
+
+{\ttfamily \#include $<$Menu\+State.\+h$>$}
+
+
+
+Inheritance diagram for Menu\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{class_menu_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Menu\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_menu_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_menu_state_a5a2159b90d2749f6464c9add3d330015}{Menu\+State}} (sf\+::\+Render\+Window \&\mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_menu_state_a544e331622b71f15f8e920631af9802d}{handle\+Input}} (sf\+::\+Event \&ev) override
+\begin{DoxyCompactList}\small\item\em Verwerkt input in het menu. ( op play klikken = start level). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_menu_state_a650aa2bb1ff45a304ca7b69771217def}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update animaties en zorgt voor een fade. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_menu_state_ac216e0b4c7f5c5d39520165c45af0da6}{render}} () override
+\begin{DoxyCompactList}\small\item\em Tekent het menu met het hele design op het scherm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_state_a783d52422b544bb226e13de8ecfd6ad6}{\texorpdfstring{$\sim$}{\string~}\+State}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Font \mbox{\hyperlink{class_menu_state_a46edc93094fab46c002476505a6bec3f}{font}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_menu_state_a2cd58b7359e4163c148d46d1dcb939fe}{title}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_menu_state_a2b02628ee62de341b579d81490448111}{play\+Button}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_menu_state_ae52505a2a2a2e276a9eed22a4e9402a0}{high\+Score\+Text}}
+\item 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{class_menu_state_a2d08bf83c1c0b55d4f773f35aa4e2f60}{pacman\+Texture\+Ptr}}
+\item 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{class_menu_state_ad3221a122ff6908b4d84811adc8d4f2a}{ghost\+Texture\+Ptr}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_menu_state_a61342183050534ad3195edef15d912bf}{pacman\+Sprite}}
+\item 
+std\+::vector$<$ sf\+::\+Sprite $>$ \mbox{\hyperlink{class_menu_state_a86d64b138ee73986d39efaa4bba379c8}{ghost\+Sprites}}
+\item 
+float \mbox{\hyperlink{class_menu_state_a926d4b1bc32df280cc366489d646fde9}{animation\+Timer}}
+\item 
+float \mbox{\hyperlink{class_menu_state_a5e6daf791c0b7c7549c68c7ed161aafd}{animation\+Speed}}
+\item 
+float \mbox{\hyperlink{class_menu_state_a409a1d357ffd9bc3a8ee59921ce12995}{pacman\+PositionX}}
+\item 
+float \mbox{\hyperlink{class_menu_state_a4a59c5c2f03d6ef9c76fc53ada78a817}{ghost\+Spacing}}
+\item 
+bool \mbox{\hyperlink{class_menu_state_a18ba1992535650a8fcd1b6af5d6f3741}{is\+Animating}}
+\item 
+int \mbox{\hyperlink{class_menu_state_ab64a73bd587e0a4b8907a1d9cbbd81a8}{current\+Frame}}
+\item 
+float \mbox{\hyperlink{class_menu_state_a7591a497a37c71dc40e90b84b3204637}{ghost\+Color\+Offset}}
+\item 
+float \mbox{\hyperlink{class_menu_state_a9f568987ca9606433927620d0c6fd254}{ui\+Scale}} = 1.f
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_menu_state_a40bc8324b4c38417ffdef18a7b00c9f8}{fade\+Rect}}
+\item 
+float \mbox{\hyperlink{class_menu_state_afe356600472d27be04aa59d4fd6cc5f7}{fade\+Alpha}} = 255.f
+\item 
+bool \mbox{\hyperlink{class_menu_state_a61b8aa7fd1cbbbf9158566751f344d12}{fading\+In}} = true
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{class_menu_state_af8b5341ffbe5cc044a46e89a0caf761b}{BASE\+\_\+\+WIDTH}} = 800.f
+\item 
+static constexpr float \mbox{\hyperlink{class_menu_state_a55e63615f8969b15a46fbb4a5f05ce13}{BASE\+\_\+\+HEIGHT}} = 600.f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_state_abb2174cacbef3c06ff9e37235f6ca52e}{State}} (sf\+::\+Render\+Window \&win, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}
+\item 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}} \& \mbox{\hyperlink{class_state_a2c50419dbdfc3618c7a8f6e7d11e7e7a}{state\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hoofdmenu van pacman. 
+
+Voor het design heb ik het internet gebruikt om op te zoeken hoe de originele arcade game eruit zag. Voor het design/de animatie heb ik AI gebruikt om SFML functies op te zoeken voor hoe ik het kon implementeren.
+
+Het design bevat de titel in de originele kleuren met daaronder een animatie van de ghosts die achter pacman zweven. Er is ook een play button die van kleur verandert als je met je muis erover gaat en de highscores met 1 in goud, 2 in zilver en 3 in brons.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+{\em sm} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-constructors}
+\Hypertarget{class_menu_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_menu_state_a5a2159b90d2749f6464c9add3d330015}\index{MenuState@{MenuState}!MenuState@{MenuState}}
+\index{MenuState@{MenuState}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{MenuState()}{MenuState()}}
+{\footnotesize\ttfamily \label{class_menu_state_a5a2159b90d2749f6464c9add3d330015} 
+Menu\+State\+::\+Menu\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{\mbox{\hyperlink{class_state_manager}{State\+Manager}} \&}]{sm}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_menu_state_a5a2159b90d2749f6464c9add3d330015_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_menu_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_menu_state_a544e331622b71f15f8e920631af9802d}\index{MenuState@{MenuState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_menu_state_a544e331622b71f15f8e920631af9802d} 
+void Menu\+State\+::handle\+Input (\begin{DoxyParamCaption}\item[{sf\+::\+Event \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Verwerkt input in het menu. ( op play klikken = start level). 
+
+
+
+Implements \mbox{\hyperlink{class_state_af019c528ad5d846fd968f767ebcbc17b}{State}}.
+
+\Hypertarget{class_menu_state_ac216e0b4c7f5c5d39520165c45af0da6}\index{MenuState@{MenuState}!render@{render}}
+\index{render@{render}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_menu_state_ac216e0b4c7f5c5d39520165c45af0da6} 
+void Menu\+State\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tekent het menu met het hele design op het scherm. 
+
+
+
+Implements \mbox{\hyperlink{class_state_a71f5105bcdc39481be7684d853fe12e9}{State}}.
+
+\Hypertarget{class_menu_state_a650aa2bb1ff45a304ca7b69771217def}\index{MenuState@{MenuState}!update@{update}}
+\index{update@{update}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_menu_state_a650aa2bb1ff45a304ca7b69771217def} 
+void Menu\+State\+::update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update animaties en zorgt voor een fade. 
+
+
+
+Implements \mbox{\hyperlink{class_state_a07b507523aaffc4cf78f3dd3174a68ea}{State}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_menu_state_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_menu_state_a5e6daf791c0b7c7549c68c7ed161aafd}\index{MenuState@{MenuState}!animationSpeed@{animationSpeed}}
+\index{animationSpeed@{animationSpeed}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{animationSpeed}{animationSpeed}}
+{\footnotesize\ttfamily \label{class_menu_state_a5e6daf791c0b7c7549c68c7ed161aafd} 
+float Menu\+State\+::animation\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a926d4b1bc32df280cc366489d646fde9}\index{MenuState@{MenuState}!animationTimer@{animationTimer}}
+\index{animationTimer@{animationTimer}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{animationTimer}{animationTimer}}
+{\footnotesize\ttfamily \label{class_menu_state_a926d4b1bc32df280cc366489d646fde9} 
+float Menu\+State\+::animation\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a55e63615f8969b15a46fbb4a5f05ce13}\index{MenuState@{MenuState}!BASE\_HEIGHT@{BASE\_HEIGHT}}
+\index{BASE\_HEIGHT@{BASE\_HEIGHT}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{BASE\_HEIGHT}{BASE\_HEIGHT}}
+{\footnotesize\ttfamily \label{class_menu_state_a55e63615f8969b15a46fbb4a5f05ce13} 
+float Menu\+State\+::\+BASE\+\_\+\+HEIGHT = 600.f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_af8b5341ffbe5cc044a46e89a0caf761b}\index{MenuState@{MenuState}!BASE\_WIDTH@{BASE\_WIDTH}}
+\index{BASE\_WIDTH@{BASE\_WIDTH}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{BASE\_WIDTH}{BASE\_WIDTH}}
+{\footnotesize\ttfamily \label{class_menu_state_af8b5341ffbe5cc044a46e89a0caf761b} 
+float Menu\+State\+::\+BASE\+\_\+\+WIDTH = 800.f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_ab64a73bd587e0a4b8907a1d9cbbd81a8}\index{MenuState@{MenuState}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{currentFrame}{currentFrame}}
+{\footnotesize\ttfamily \label{class_menu_state_ab64a73bd587e0a4b8907a1d9cbbd81a8} 
+int Menu\+State\+::current\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_afe356600472d27be04aa59d4fd6cc5f7}\index{MenuState@{MenuState}!fadeAlpha@{fadeAlpha}}
+\index{fadeAlpha@{fadeAlpha}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{fadeAlpha}{fadeAlpha}}
+{\footnotesize\ttfamily \label{class_menu_state_afe356600472d27be04aa59d4fd6cc5f7} 
+float Menu\+State\+::fade\+Alpha = 255.f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a40bc8324b4c38417ffdef18a7b00c9f8}\index{MenuState@{MenuState}!fadeRect@{fadeRect}}
+\index{fadeRect@{fadeRect}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{fadeRect}{fadeRect}}
+{\footnotesize\ttfamily \label{class_menu_state_a40bc8324b4c38417ffdef18a7b00c9f8} 
+sf\+::\+Rectangle\+Shape Menu\+State\+::fade\+Rect\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a61b8aa7fd1cbbbf9158566751f344d12}\index{MenuState@{MenuState}!fadingIn@{fadingIn}}
+\index{fadingIn@{fadingIn}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{fadingIn}{fadingIn}}
+{\footnotesize\ttfamily \label{class_menu_state_a61b8aa7fd1cbbbf9158566751f344d12} 
+bool Menu\+State\+::fading\+In = true\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a46edc93094fab46c002476505a6bec3f}\index{MenuState@{MenuState}!font@{font}}
+\index{font@{font}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_menu_state_a46edc93094fab46c002476505a6bec3f} 
+sf\+::\+Font Menu\+State\+::font\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a7591a497a37c71dc40e90b84b3204637}\index{MenuState@{MenuState}!ghostColorOffset@{ghostColorOffset}}
+\index{ghostColorOffset@{ghostColorOffset}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{ghostColorOffset}{ghostColorOffset}}
+{\footnotesize\ttfamily \label{class_menu_state_a7591a497a37c71dc40e90b84b3204637} 
+float Menu\+State\+::ghost\+Color\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a4a59c5c2f03d6ef9c76fc53ada78a817}\index{MenuState@{MenuState}!ghostSpacing@{ghostSpacing}}
+\index{ghostSpacing@{ghostSpacing}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{ghostSpacing}{ghostSpacing}}
+{\footnotesize\ttfamily \label{class_menu_state_a4a59c5c2f03d6ef9c76fc53ada78a817} 
+float Menu\+State\+::ghost\+Spacing\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a86d64b138ee73986d39efaa4bba379c8}\index{MenuState@{MenuState}!ghostSprites@{ghostSprites}}
+\index{ghostSprites@{ghostSprites}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{ghostSprites}{ghostSprites}}
+{\footnotesize\ttfamily \label{class_menu_state_a86d64b138ee73986d39efaa4bba379c8} 
+std\+::vector$<$sf\+::\+Sprite$>$ Menu\+State\+::ghost\+Sprites\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_ad3221a122ff6908b4d84811adc8d4f2a}\index{MenuState@{MenuState}!ghostTexturePtr@{ghostTexturePtr}}
+\index{ghostTexturePtr@{ghostTexturePtr}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{ghostTexturePtr}{ghostTexturePtr}}
+{\footnotesize\ttfamily \label{class_menu_state_ad3221a122ff6908b4d84811adc8d4f2a} 
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ Menu\+State\+::ghost\+Texture\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_ae52505a2a2a2e276a9eed22a4e9402a0}\index{MenuState@{MenuState}!highScoreText@{highScoreText}}
+\index{highScoreText@{highScoreText}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{highScoreText}{highScoreText}}
+{\footnotesize\ttfamily \label{class_menu_state_ae52505a2a2a2e276a9eed22a4e9402a0} 
+sf\+::\+Text Menu\+State\+::high\+Score\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a18ba1992535650a8fcd1b6af5d6f3741}\index{MenuState@{MenuState}!isAnimating@{isAnimating}}
+\index{isAnimating@{isAnimating}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{isAnimating}{isAnimating}}
+{\footnotesize\ttfamily \label{class_menu_state_a18ba1992535650a8fcd1b6af5d6f3741} 
+bool Menu\+State\+::is\+Animating\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a409a1d357ffd9bc3a8ee59921ce12995}\index{MenuState@{MenuState}!pacmanPositionX@{pacmanPositionX}}
+\index{pacmanPositionX@{pacmanPositionX}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{pacmanPositionX}{pacmanPositionX}}
+{\footnotesize\ttfamily \label{class_menu_state_a409a1d357ffd9bc3a8ee59921ce12995} 
+float Menu\+State\+::pacman\+PositionX\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a61342183050534ad3195edef15d912bf}\index{MenuState@{MenuState}!pacmanSprite@{pacmanSprite}}
+\index{pacmanSprite@{pacmanSprite}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{pacmanSprite}{pacmanSprite}}
+{\footnotesize\ttfamily \label{class_menu_state_a61342183050534ad3195edef15d912bf} 
+sf\+::\+Sprite Menu\+State\+::pacman\+Sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a2d08bf83c1c0b55d4f773f35aa4e2f60}\index{MenuState@{MenuState}!pacmanTexturePtr@{pacmanTexturePtr}}
+\index{pacmanTexturePtr@{pacmanTexturePtr}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{pacmanTexturePtr}{pacmanTexturePtr}}
+{\footnotesize\ttfamily \label{class_menu_state_a2d08bf83c1c0b55d4f773f35aa4e2f60} 
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ Menu\+State\+::pacman\+Texture\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a2b02628ee62de341b579d81490448111}\index{MenuState@{MenuState}!playButton@{playButton}}
+\index{playButton@{playButton}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{playButton}{playButton}}
+{\footnotesize\ttfamily \label{class_menu_state_a2b02628ee62de341b579d81490448111} 
+sf\+::\+Text Menu\+State\+::play\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a2cd58b7359e4163c148d46d1dcb939fe}\index{MenuState@{MenuState}!title@{title}}
+\index{title@{title}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily \label{class_menu_state_a2cd58b7359e4163c148d46d1dcb939fe} 
+sf\+::\+Text Menu\+State\+::title\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_menu_state_a9f568987ca9606433927620d0c6fd254}\index{MenuState@{MenuState}!uiScale@{uiScale}}
+\index{uiScale@{uiScale}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{uiScale}{uiScale}}
+{\footnotesize\ttfamily \label{class_menu_state_a9f568987ca9606433927620d0c6fd254} 
+float Menu\+State\+::ui\+Scale = 1.f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_menu_state_8h}{Menu\+State.\+h}}\item 
+view/src/\mbox{\hyperlink{_menu_state_8cpp}{Menu\+State.\+cpp}}\end{DoxyCompactItemize}

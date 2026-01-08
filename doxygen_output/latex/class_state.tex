@@ -1,0 +1,128 @@
+\doxysection{State Class Reference}
+\hypertarget{class_state}{}\label{class_state}\index{State@{State}}
+
+
+{\ttfamily \#include $<$State.\+h$>$}
+
+
+
+Inheritance diagram for State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{class_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_state_a783d52422b544bb226e13de8ecfd6ad6}{\texorpdfstring{$\sim$}{\string~}\+State}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_state_af019c528ad5d846fd968f767ebcbc17b}{handle\+Input}} (sf\+::\+Event \&ev)=0
+\item 
+virtual void \mbox{\hyperlink{class_state_a07b507523aaffc4cf78f3dd3174a68ea}{update}} (float dt)=0
+\item 
+virtual void \mbox{\hyperlink{class_state_a71f5105bcdc39481be7684d853fe12e9}{render}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_state_abb2174cacbef3c06ff9e37235f6ca52e}{State}} (sf\+::\+Render\+Window \&win, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}
+\item 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}} \& \mbox{\hyperlink{class_state_a2c50419dbdfc3618c7a8f6e7d11e7e7a}{state\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_state_a783d52422b544bb226e13de8ecfd6ad6}\index{State@{State}!````~State@{\texorpdfstring{$\sim$}{\string~}State}}
+\index{````~State@{\texorpdfstring{$\sim$}{\string~}State}!State@{State}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}State()}{\string~State()}}
+{\footnotesize\ttfamily \label{class_state_a783d52422b544bb226e13de8ecfd6ad6} 
+virtual State\+::\texorpdfstring{$\sim$}{\string~}\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+\Hypertarget{class_state_abb2174cacbef3c06ff9e37235f6ca52e}\index{State@{State}!State@{State}}
+\index{State@{State}!State@{State}}
+\doxysubsubsection{\texorpdfstring{State()}{State()}}
+{\footnotesize\ttfamily \label{class_state_abb2174cacbef3c06ff9e37235f6ca52e} 
+State\+::\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{\mbox{\hyperlink{class_state_manager}{State\+Manager}} \&}]{sm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{class_state_abb2174cacbef3c06ff9e37235f6ca52e_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_state_af019c528ad5d846fd968f767ebcbc17b}\index{State@{State}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!State@{State}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_state_af019c528ad5d846fd968f767ebcbc17b} 
+virtual void State\+::handle\+Input (\begin{DoxyParamCaption}\item[{sf\+::\+Event \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_level_state_a6c6620b9b330a4675f529ec483257289}{Level\+State}}, \mbox{\hyperlink{class_menu_state_a544e331622b71f15f8e920631af9802d}{Menu\+State}}, and \mbox{\hyperlink{class_pause_state_aa9c9561350433bd4014cd4fd7d62478f}{Pause\+State}}.
+
+\Hypertarget{class_state_a71f5105bcdc39481be7684d853fe12e9}\index{State@{State}!render@{render}}
+\index{render@{render}!State@{State}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_state_a71f5105bcdc39481be7684d853fe12e9} 
+virtual void State\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_level_state_a35bcf6729c5becf048fc132fc891cbf4}{Level\+State}}, \mbox{\hyperlink{class_menu_state_ac216e0b4c7f5c5d39520165c45af0da6}{Menu\+State}}, and \mbox{\hyperlink{class_pause_state_a75c23f306a72b82b344007b55dea4ba4}{Pause\+State}}.
+
+\Hypertarget{class_state_a07b507523aaffc4cf78f3dd3174a68ea}\index{State@{State}!update@{update}}
+\index{update@{update}!State@{State}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_state_a07b507523aaffc4cf78f3dd3174a68ea} 
+virtual void State\+::update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_level_state_aa06aa4650f27df031d709dff56098624}{Level\+State}}, \mbox{\hyperlink{class_menu_state_a650aa2bb1ff45a304ca7b69771217def}{Menu\+State}}, and \mbox{\hyperlink{class_pause_state_ac887f1f5ac067fffb0bcd120291e1939}{Pause\+State}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_state_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_state_a2c50419dbdfc3618c7a8f6e7d11e7e7a}\index{State@{State}!stateManager@{stateManager}}
+\index{stateManager@{stateManager}!State@{State}}
+\doxysubsubsection{\texorpdfstring{stateManager}{stateManager}}
+{\footnotesize\ttfamily \label{class_state_a2c50419dbdfc3618c7a8f6e7d11e7e7a} 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}}\& State\+::state\+Manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_state_a897c8f448ef6e27108c47447334a8860}\index{State@{State}!window@{window}}
+\index{window@{window}!State@{State}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{class_state_a897c8f448ef6e27108c47447334a8860} 
+sf\+::\+Render\+Window\& State\+::window\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_state_8h}{State.\+h}}\end{DoxyCompactItemize}

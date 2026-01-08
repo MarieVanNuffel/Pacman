@@ -1,0 +1,5 @@
+<map id="logic::World::advanceLevel" name="logic::World::advanceLevel">
+<area shape="rect" id="Node000001" title="Gaat naar het volgende level (moeilijker)." alt="" coords="5,5,183,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#a389aee9839cd4382ba3f21ef9cd0b728" title="Entities terug op hun spawn positie zetten." alt="" coords="231,5,411,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,16,218,19,213,19,183,21"/>
+</map>

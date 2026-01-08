@@ -1,0 +1,13 @@
+<map id="view::Resource::loadTexture" name="view::Resource::loadTexture">
+<area shape="rect" id="Node000001" title="Laadt een texture uit een bestand." alt="" coords="272,107,459,133"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_fruit_view.html#ae0987de3e0ccc37aafc39d2ded567ac1" title="Constructor." alt="" coords="27,5,202,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="327,98,279,72,223,46,188,35,187,30,225,42,282,68,332,98"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_ghost_view.html#a01f23f09aad7a359aa2bca756a4038fa" title="Constructor." alt="" coords="18,56,211,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,104,184,86,184,81,283,102"/>
+<area shape="rect" id="Node000004" href="$class_level_state.html#a68b13883debde1294705796af8d704b2" title="Constructor." alt="" coords="38,107,191,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="254,121,192,123,191,117,259,119"/>
+<area shape="rect" id="Node000005" href="$class_menu_state.html#a5a2159b90d2749f6464c9add3d330015" title="Constructor." alt="" coords="37,157,192,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="278,138,185,159,183,154,283,136"/>
+<area shape="rect" id="Node000006" href="$classview_1_1_pacman_view.html#aa1a908846665a70fdf8c82ece0c8ba2b" title="Constructor." alt="" coords="5,208,224,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="332,141,282,172,225,198,188,210,187,205,223,194,279,168,327,143"/>
+</map>

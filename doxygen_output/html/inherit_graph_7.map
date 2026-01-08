@@ -1,0 +1,23 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,124,137,167"/>
+<area shape="rect" id="Node000001" href="$classlogic_1_1_entity.html" title="Basis class voor alle entities." alt="" coords="190,81,280,108"/>
+<area shape="poly" id="edge5_Node000000_Node000001" title=" " alt="" coords="150,118,191,107,187,110,153,123"/>
+<area shape="rect" id="Node000008" href="$classlogic_1_1_world.html" title="Beheert alle game logica." alt="" coords="190,183,280,209"/>
+<area shape="poly" id="edge11_Node000000_Node000008" title=" " alt="" coords="151,167,192,182,187,183,151,173"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_coin_model.html" title="Model voor een coin." alt="" coords="351,56,469,83"/>
+<area shape="poly" id="edge6_Node000001_Node000002" title=" " alt="" coords="295,83,353,77,348,79,296,88"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_fruit_model.html" title="Model voor een fruit entity." alt="" coords="352,107,469,133"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="295,101,354,111,349,112,296,106"/>
+<area shape="rect" id="Node000005" href="$classlogic_1_1_ghost_door_model.html" title="Model voor een ghostdoor." alt="" coords="333,157,487,184"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="277,113,286,118,334,143,366,157,360,157,332,148,284,122,276,118"/>
+<area shape="rect" id="Node000006" href="$classlogic_1_1_ghost_model.html" title="Model voor een ghost met AI." alt="" coords="347,208,473,235"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="282,114,287,118,303,138,311,158,319,176,335,194,355,208,350,207,331,198,314,179,306,160,298,141,283,122,281,119"/>
+<area shape="rect" id="Node000007" href="$classlogic_1_1_pac_man_model.html" title="Model voor de pacman entity." alt="" coords="340,5,480,32"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="272,71,332,42,365,31,361,34,334,46,274,76"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_subject.html" title="Subject in het Observer&#45;patroon." alt="" coords="185,132,285,159"/>
+<area shape="poly" id="edge12_Node000003_Node000002" title=" " alt="" coords="275,122,284,118,332,92,366,82,361,84,334,97,286,122,278,127"/>
+<area shape="poly" id="edge13_Node000003_Node000004" title=" " alt="" coords="300,133,354,128,349,129,301,138"/>
+<area shape="poly" id="edge14_Node000003_Node000005" title=" " alt="" coords="301,152,336,159,330,160,301,157"/>
+<area shape="poly" id="edge15_Node000003_Node000006" title=" " alt="" coords="277,164,286,168,334,194,366,208,360,207,332,198,284,173,276,169"/>
+<area shape="poly" id="edge16_Node000003_Node000007" title=" " alt="" coords="280,121,283,118,298,99,306,80,314,61,331,42,350,34,355,31,335,46,319,64,311,82,303,102,287,122,283,125"/>
+</map>

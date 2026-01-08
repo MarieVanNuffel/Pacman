@@ -1,0 +1,5 @@
+<map id="logic::Score::fruitCollected" name="logic::Score::fruitCollected">
+<area shape="rect" id="Node000001" title="Verhoog score bij fruit." alt="" coords="201,5,376,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_score.html#a35f9225c87dc158549860ef70779a809" title="Ontvangt events van entities." alt="" coords="5,5,153,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,19,153,21,153,16,188,19"/>
+</map>

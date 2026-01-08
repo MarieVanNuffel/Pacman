@@ -1,0 +1,81 @@
+\doxysection{logic\+::Observer Class Reference}
+\hypertarget{classlogic_1_1_observer}{}\label{classlogic_1_1_observer}\index{logic::Observer@{logic::Observer}}
+
+
+\doxylink{classlogic_1_1_observer}{Observer} interface.  
+
+
+
+
+{\ttfamily \#include $<$Observer.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Observer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_observer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Observer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{classlogic_1_1_observer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e}{\texorpdfstring{$\sim$}{\string~}\+Observer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd}{on\+Notify}} (int event)=0
+\begin{DoxyCompactList}\small\item\em Wordt aangeroepen bij een event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classlogic_1_1_observer}{Observer} interface. 
+
+Ontvangt events van Subjects. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_observer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e}\index{logic::Observer@{logic::Observer}!````~Observer@{\texorpdfstring{$\sim$}{\string~}Observer}}
+\index{````~Observer@{\texorpdfstring{$\sim$}{\string~}Observer}!logic::Observer@{logic::Observer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Observer()}{\string~Observer()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e} 
+virtual logic\+::\+Observer\+::\texorpdfstring{$\sim$}{\string~}\+Observer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_observer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd}\index{logic::Observer@{logic::Observer}!onNotify@{onNotify}}
+\index{onNotify@{onNotify}!logic::Observer@{logic::Observer}}
+\doxysubsubsection{\texorpdfstring{onNotify()}{onNotify()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd} 
+virtual void logic\+::\+Observer\+::on\+Notify (\begin{DoxyParamCaption}\item[{int}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Wordt aangeroepen bij een event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \doxylink{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}{Event} id \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classlogic_1_1_score_a35f9225c87dc158549860ef70779a809}{logic\+::\+Score}}, \mbox{\hyperlink{classview_1_1_coin_view_a827f188acc6a8a051b1d7a4eb88c0403}{view\+::\+Coin\+View}}, \mbox{\hyperlink{classview_1_1_fruit_view_af37d8d770f81763af7b470fb9949ac8c}{view\+::\+Fruit\+View}}, and \mbox{\hyperlink{classview_1_1_pacman_view_a68aaec4362bc2ecfa86c439ac0ab8e19}{view\+::\+Pacman\+View}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_observer_8h}{Observer.\+h}}\end{DoxyCompactItemize}

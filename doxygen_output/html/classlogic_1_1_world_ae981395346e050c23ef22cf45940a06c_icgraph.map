@@ -1,0 +1,5 @@
+<map id="logic::World::tryMoveEntity" name="logic::World::tryMoveEntity">
+<area shape="rect" id="Node000001" title="Probeert een entity te verplaatsen in een richting." alt="" coords="190,5,368,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#affdadc66a5af7d6d315d11a4c8623ed3" title="Update entities/level per tick." alt="" coords="5,5,142,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,19,142,21,142,16,177,18"/>
+</map>

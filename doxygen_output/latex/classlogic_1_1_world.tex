@@ -1,0 +1,818 @@
+\doxysection{logic\+::World Class Reference}
+\hypertarget{classlogic_1_1_world}{}\label{classlogic_1_1_world}\index{logic::World@{logic::World}}
+
+
+Beheert alle game logica.  
+
+
+
+
+{\ttfamily \#include $<$World.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::World\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_world__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::World\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_world__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_world_a55b904f4995b50be200162cb09523fbc}{World}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_i_entity_factory}{IEntity\+Factory}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a6a4e8e220b5d1ee672706176a2ea4e07}{factory}}, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{Score}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01}{score}})
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{Pac\+Man\+Model}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a622deb0b19a6cd976032d0a36d70d6e1}{get\+Pacman}} () const
+\begin{DoxyCompactList}\small\item\em Geeft het pacman model terug. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{Ghost\+Model}} $>$ $>$ \& \mbox{\hyperlink{classlogic_1_1_world_a782adc0b66a35007be978f1046361921}{get\+Ghosts}} () const
+\begin{DoxyCompactList}\small\item\em Geeft alle ghosts in de wereld terug. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& \mbox{\hyperlink{classlogic_1_1_world_aa752b08b8d111b72510306c009b0e408}{get\+Maze}} () const
+\begin{DoxyCompactList}\small\item\em Geeft de maze grid terug. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{Coin\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_aa0f263f53c43be46ce7e1164f3ced25b}{get\+Coins}} () const
+\begin{DoxyCompactList}\small\item\em Geeft alle coins terug. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{Fruit\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_ae0a8dc7849998b999eb5091158740449}{get\+Fruits}} () const
+\begin{DoxyCompactList}\small\item\em Geeft alle fruits terug. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{Ghost\+Door\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_ac0252a215a8619e788c99081a3701d04}{get\+Ghost\+Doors}} () const
+\begin{DoxyCompactList}\small\item\em Geeft alle ghost doors terug. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{Score}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a15fc414a1ced5e78eb52fb5dd9d58c6a}{get\+Score}} () const
+\begin{DoxyCompactList}\small\item\em Geeft het score object terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_ac69f318edab024f81a02c944cfae2068}{spawn\+Entities\+For\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Spawnt de entities in de map. factory maakt views en observer worden toegevoegd. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_aec39adc36a1e504cd9740fb1841fb502}{advance\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Gaat naar het volgende level (moeilijker). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_a389aee9839cd4382ba3f21ef9cd0b728}{reset\+Positions}} ()
+\begin{DoxyCompactList}\small\item\em Entities terug op hun spawn positie zetten. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_ac1af14e723e8848cfbfac9be9ba3b5ba}{start\+Death\+Animatie}} ()
+\begin{DoxyCompactList}\small\item\em Start de death animatie van pacman. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_affdadc66a5af7d6d315d11a4c8623ed3}{update}} (double dt)
+\begin{DoxyCompactList}\small\item\em Update entities/level per tick. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_ae8b881e77f5a8c39a1ab0e275673fb46}{is\+Wall\+At}} (double x, double y) const
+\begin{DoxyCompactList}\small\item\em Controleert of er een muur is. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_ab035c7140e1314a28bfb93e0b51861d8}{is\+Blocked\+At}} (double x, double y, double radius, bool disallow\+Door) const
+\begin{DoxyCompactList}\small\item\em Kijkt of een entity geblokkeerd wordt op een positie. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_a2fb0221d2018cd492b7fdd20ceb9b7fc}{is\+Ghost\+Door}} (double x, double y) const
+\begin{DoxyCompactList}\small\item\em Controleert of de tile een ghostdoor is. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_a178627911c42f02e862b29360b8d80fb}{is\+Aligned\+With\+Grid}} (double x, double y) const
+\begin{DoxyCompactList}\small\item\em Kijkt of we dicht bij het midden van een tile zitten. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_a90df2f1328df5609a7cec7df87a6c65d}{is\+Intersection}} (double x, double y) const
+\begin{DoxyCompactList}\small\item\em Kijkt of we op een kruispunt zitten. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a6d4ae97fcab89634edd693a1403c2331}{get\+Free\+Directions}} (double worldX, double worldY) const
+\begin{DoxyCompactList}\small\item\em Geeft alle mogelijke richtingen waar een entity naar kan bewegen. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classlogic_1_1_world_a02ea944c00492b8898630757bada7836}{predict\+Step}} (double worldX, double worldY, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} dir) const
+\begin{DoxyCompactList}\small\item\em Voorspelt de volgende stap in een bepaalde richting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_ae981395346e050c23ef22cf45940a06c}{try\+Move\+Entity}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{Entity}} $>$ e, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} dir, double dt)
+\begin{DoxyCompactList}\small\item\em Probeert een entity te verplaatsen in een richting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_world_a03e703d58c62b2fd7a7d1a32adc727f1}{try\+Move\+Ghost}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{Entity}} $>$ e, \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} dir, double dt)
+\begin{DoxyCompactList}\small\item\em Probeert een ghost te verplaatsen in een richting. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_a97e8589dba06ba13b74cab2465a41793}{can\+Move\+In}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} dir, double x, double y) const
+\begin{DoxyCompactList}\small\item\em Controleert of een entity kan bewegen in een richting. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_a2fadfbc973cfb98bd4f7d77a33f84bab}{can\+Ghost\+Move}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} dir, double x, double y) const
+\begin{DoxyCompactList}\small\item\em Controleert of een ghost kan bewegen in een richting. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a9bb3a6a108dcd8579c7ac3e417c7633a}{find\+Path}} (int sx, int sy, int tx, int ty, bool allow\+Door=false) const
+\begin{DoxyCompactList}\small\item\em Zoekt een pad tussen twee gridposities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_i_entity_factory}{IEntity\+Factory}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a6a4e8e220b5d1ee672706176a2ea4e07}{factory}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{Pac\+Man\+Model}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a3a252a2443735c05663e22d8a7cd6b66}{pacman}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{Ghost\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_a92e43ac20e041ffdded801789909ddee}{ghosts}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{Coin\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_aa434094b767bbbd5648f141439c46c8b}{coins}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{Fruit\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_aa06b30f06ba8f7a7024d4718c932f2c6}{fruits}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{Ghost\+Door\+Model}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_a1e637058febbf822beced94d85a18f44}{ghost\+Doors}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{Score}} $>$ \mbox{\hyperlink{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01}{score}}
+\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classlogic_1_1_world_a7918253283da5618aefd2c5af449101c}{maze}}
+\item 
+int \mbox{\hyperlink{classlogic_1_1_world_a3f557389e11dfe7864dd00a4ab3f283a}{maze\+Height}}
+\item 
+int \mbox{\hyperlink{classlogic_1_1_world_a0df0bb743860541592b96d219fd3c047}{maze\+Width}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_world_aeaa54e51733073af90e8e84151a3dbfd}{time\+Since\+Last\+Coin}} = 0.\+0
+\item 
+int \mbox{\hyperlink{classlogic_1_1_world_a1d82f7a4bbd9f3c543c6353c6a846ad0}{current\+Level}} = 1
+\item 
+bool \mbox{\hyperlink{classlogic_1_1_world_a8c91cf02c80477774f4b71afe6d98b24}{death\+Animation}} = false
+\item 
+double \mbox{\hyperlink{classlogic_1_1_world_a0500aa95c8ce5860de2684da381ce36c}{death\+Timer}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_world_a7e0e38f597983df2262fb0d2301c4dfe}{death\+Duration}} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Beheert alle game logica. 
+
+\doxylink{classlogic_1_1_world}{World} is de controller. Het creëert entities via de abstract factory en notificeert de observers via het Observer‑pattern. \doxylink{classlogic_1_1_world}{World} is verantwoordelijk voor\+:
+\begin{DoxyItemize}
+\item het spawnen en resetten van entities per level,
+\item het updaten van game state per tick,
+\item collision detection en pathfinding helpers voor pacman en de ghosts.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+\doxylink{classlogic_1_1_world}{World} behoort tot de logic library en bevat geen SFML‑afhankelijkheden. 
+\end{DoxyNote}
+
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_world_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_world_a55b904f4995b50be200162cb09523fbc}\index{logic::World@{logic::World}!World@{World}}
+\index{World@{World}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{World()}{World()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a55b904f4995b50be200162cb09523fbc} 
+logic\+::\+World\+::\+World (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_i_entity_factory}{IEntity\+Factory}} $>$}]{factory}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{Score}} $>$}]{score}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_world_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_world_aec39adc36a1e504cd9740fb1841fb502}\index{logic::World@{logic::World}!advanceLevel@{advanceLevel}}
+\index{advanceLevel@{advanceLevel}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{advanceLevel()}{advanceLevel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_aec39adc36a1e504cd9740fb1841fb502} 
+void logic\+::\+World\+::advance\+Level (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gaat naar het volgende level (moeilijker). 
+
+
+\begin{DoxyItemize}
+\item Level gaat omhoog.
+\item Entities worden gereset naar hun startposities.
+\item Coins en Fruits worden gereset, dus worden ook terug zichtbaar.
+\item Moeilijkheid wordt aangepast door snelheid te verhogen en kortere fear mode. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_aec39adc36a1e504cd9740fb1841fb502_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_aec39adc36a1e504cd9740fb1841fb502_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a2fadfbc973cfb98bd4f7d77a33f84bab}\index{logic::World@{logic::World}!canGhostMove@{canGhostMove}}
+\index{canGhostMove@{canGhostMove}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{canGhostMove()}{canGhostMove()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a2fadfbc973cfb98bd4f7d77a33f84bab} 
+bool logic\+::\+World\+::can\+Ghost\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{dir}{, }\item[{double}]{x}{, }\item[{double}]{y}{}\end{DoxyParamCaption}) const}
+
+
+
+Controleert of een ghost kan bewegen in een richting. 
+
+Versie van can\+Move\+In met extra ghost-\/regels zoals ghostdoors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Richting om te testen. \\
+\hline
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als de ghost mag bewegen. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a2fadfbc973cfb98bd4f7d77a33f84bab_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a97e8589dba06ba13b74cab2465a41793}\index{logic::World@{logic::World}!canMoveIn@{canMoveIn}}
+\index{canMoveIn@{canMoveIn}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{canMoveIn()}{canMoveIn()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a97e8589dba06ba13b74cab2465a41793} 
+bool logic\+::\+World\+::can\+Move\+In (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{dir}{, }\item[{double}]{x}{, }\item[{double}]{y}{}\end{DoxyParamCaption}) const}
+
+
+
+Controleert of een entity kan bewegen in een richting. 
+
+Houdt rekening met muren en ghostdoors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Richting om te testen. \\
+\hline
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als beweging mogelijk is. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a97e8589dba06ba13b74cab2465a41793_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{classlogic_1_1_world_a97e8589dba06ba13b74cab2465a41793_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a9bb3a6a108dcd8579c7ac3e417c7633a}\index{logic::World@{logic::World}!findPath@{findPath}}
+\index{findPath@{findPath}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{findPath()}{findPath()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a9bb3a6a108dcd8579c7ac3e417c7633a} 
+std\+::vector$<$ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} $>$ logic\+::\+World\+::find\+Path (\begin{DoxyParamCaption}\item[{int}]{sx}{, }\item[{int}]{sy}{, }\item[{int}]{tx}{, }\item[{int}]{ty}{, }\item[{bool}]{allow\+Door}{ = {\ttfamily false}}\end{DoxyParamCaption}) const}
+
+
+
+Zoekt een pad tussen twee gridposities. 
+
+Gebruikt breadth first om een richtingen te bepalen van startpositie (sx,sy) naar target (tx,ty).
+
+Wordt voornamelijk gebruikt om ghosts terug naar spawn te laten gaan wanneer ze opgegeten worden.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sx} & Start X-\/coördinaat (grid). \\
+\hline
+{\em sy} & Start Y-\/coördinaat (grid). \\
+\hline
+{\em tx} & Target X-\/coördinaat (grid). \\
+\hline
+{\em ty} & Target Y-\/coördinaat (grid). \\
+\hline
+{\em allow\+Door} & Of ghost doors mogen worden gebruikt. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector van richtingen die het pad vormen. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_aa0f263f53c43be46ce7e1164f3ced25b}\index{logic::World@{logic::World}!getCoins@{getCoins}}
+\index{getCoins@{getCoins}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getCoins()}{getCoins()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_aa0f263f53c43be46ce7e1164f3ced25b} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{Coin\+Model}} $>$ $>$ logic\+::\+World\+::get\+Coins (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft alle coins terug. 
+
+\begin{DoxyReturn}{Returns}
+Vector met \doxylink{classlogic_1_1_coin_model}{Coin\+Model} pointers. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_a6d4ae97fcab89634edd693a1403c2331}\index{logic::World@{logic::World}!getFreeDirections@{getFreeDirections}}
+\index{getFreeDirections@{getFreeDirections}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getFreeDirections()}{getFreeDirections()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a6d4ae97fcab89634edd693a1403c2331} 
+std\+::vector$<$ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} $>$ logic\+::\+World\+::get\+Free\+Directions (\begin{DoxyParamCaption}\item[{double}]{worldX}{, }\item[{double}]{worldY}{}\end{DoxyParamCaption}) const}
+
+
+
+Geeft alle mogelijke richtingen waar een entity naar kan bewegen. 
+
+Berekent vanuit een wereldpositie welke richtingen geen muur bevatten.
+
+
+\begin{DoxyParams}{Parameters}
+{\em worldX} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em worldY} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector met beschikbare richtingen. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a6d4ae97fcab89634edd693a1403c2331_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_ae0a8dc7849998b999eb5091158740449}\index{logic::World@{logic::World}!getFruits@{getFruits}}
+\index{getFruits@{getFruits}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getFruits()}{getFruits()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ae0a8dc7849998b999eb5091158740449} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{Fruit\+Model}} $>$ $>$ logic\+::\+World\+::get\+Fruits (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft alle fruits terug. 
+
+\begin{DoxyReturn}{Returns}
+Vector met \doxylink{classlogic_1_1_fruit_model}{Fruit\+Model} pointers. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_ac0252a215a8619e788c99081a3701d04}\index{logic::World@{logic::World}!getGhostDoors@{getGhostDoors}}
+\index{getGhostDoors@{getGhostDoors}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getGhostDoors()}{getGhostDoors()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ac0252a215a8619e788c99081a3701d04} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{Ghost\+Door\+Model}} $>$ $>$ logic\+::\+World\+::get\+Ghost\+Doors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft alle ghost doors terug. 
+
+\begin{DoxyReturn}{Returns}
+Vector met \doxylink{classlogic_1_1_ghost_door_model}{Ghost\+Door\+Model} pointers. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_a782adc0b66a35007be978f1046361921}\index{logic::World@{logic::World}!getGhosts@{getGhosts}}
+\index{getGhosts@{getGhosts}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getGhosts()}{getGhosts()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a782adc0b66a35007be978f1046361921} 
+const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{Ghost\+Model}} $>$ $>$ \& logic\+::\+World\+::get\+Ghosts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft alle ghosts in de wereld terug. 
+
+\begin{DoxyReturn}{Returns}
+Const referentie naar vector met \doxylink{classlogic_1_1_ghost_model}{Ghost\+Model} pointers. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_aa752b08b8d111b72510306c009b0e408}\index{logic::World@{logic::World}!getMaze@{getMaze}}
+\index{getMaze@{getMaze}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getMaze()}{getMaze()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_aa752b08b8d111b72510306c009b0e408} 
+const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \& logic\+::\+World\+::get\+Maze (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft de maze grid terug. 
+
+\begin{DoxyReturn}{Returns}
+Const referentie naar de 2D maze vector. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_a622deb0b19a6cd976032d0a36d70d6e1}\index{logic::World@{logic::World}!getPacman@{getPacman}}
+\index{getPacman@{getPacman}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getPacman()}{getPacman()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a622deb0b19a6cd976032d0a36d70d6e1} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{Pac\+Man\+Model}} $>$ logic\+::\+World\+::get\+Pacman (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft het pacman model terug. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer naar pacman\+Model. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_a15fc414a1ced5e78eb52fb5dd9d58c6a}\index{logic::World@{logic::World}!getScore@{getScore}}
+\index{getScore@{getScore}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{getScore()}{getScore()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a15fc414a1ced5e78eb52fb5dd9d58c6a} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{Score}} $>$ logic\+::\+World\+::get\+Score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft het score object terug. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer naar \doxylink{classlogic_1_1_score}{Score}. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_a178627911c42f02e862b29360b8d80fb}\index{logic::World@{logic::World}!isAlignedWithGrid@{isAlignedWithGrid}}
+\index{isAlignedWithGrid@{isAlignedWithGrid}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{isAlignedWithGrid()}{isAlignedWithGrid()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a178627911c42f02e862b29360b8d80fb} 
+bool logic\+::\+World\+::is\+Aligned\+With\+Grid (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{y}{}\end{DoxyParamCaption}) const}
+
+
+
+Kijkt of we dicht bij het midden van een tile zitten. 
+
+Kijkt met een kleine marge of we al dichtbij een tile center zitten om uiteindelijk te zien of we van richting mogen veranderen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als we uitgelijnd zijn met de grid, anders false 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a178627911c42f02e862b29360b8d80fb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_ab035c7140e1314a28bfb93e0b51861d8}\index{logic::World@{logic::World}!isBlockedAt@{isBlockedAt}}
+\index{isBlockedAt@{isBlockedAt}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{isBlockedAt()}{isBlockedAt()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ab035c7140e1314a28bfb93e0b51861d8} 
+bool logic\+::\+World\+::is\+Blocked\+At (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{y}{, }\item[{double}]{radius}{, }\item[{bool}]{disallow\+Door}{}\end{DoxyParamCaption}) const}
+
+
+
+Kijkt of een entity geblokkeerd wordt op een positie. 
+
+Kijkt naar muren en eventueel ghost doors. Het gebruikt de radius van de entity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+{\em radius} & Collision radius van de entity. \\
+\hline
+{\em disallow\+Door} & Indien true zijn ghost doors niet toegestaan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als de positie geblokkeerd is. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_ab035c7140e1314a28bfb93e0b51861d8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_ab035c7140e1314a28bfb93e0b51861d8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a2fb0221d2018cd492b7fdd20ceb9b7fc}\index{logic::World@{logic::World}!isGhostDoor@{isGhostDoor}}
+\index{isGhostDoor@{isGhostDoor}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{isGhostDoor()}{isGhostDoor()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a2fb0221d2018cd492b7fdd20ceb9b7fc} 
+bool logic\+::\+World\+::is\+Ghost\+Door (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{y}{}\end{DoxyParamCaption}) const}
+
+
+
+Controleert of de tile een ghostdoor is. 
+
+Zet wereldcoördinaten om naar gridcoördinaten en kijkt of de tile een ghostdoor is.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als het een ghostdoor is, anders false. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a2fb0221d2018cd492b7fdd20ceb9b7fc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a90df2f1328df5609a7cec7df87a6c65d}\index{logic::World@{logic::World}!isIntersection@{isIntersection}}
+\index{isIntersection@{isIntersection}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{isIntersection()}{isIntersection()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a90df2f1328df5609a7cec7df87a6c65d} 
+bool logic\+::\+World\+::is\+Intersection (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{y}{}\end{DoxyParamCaption}) const}
+
+
+
+Kijkt of we op een kruispunt zitten. 
+
+Kijkt of er 3 of meer vrije richtingen zijn vanaf een positie (en dus een kruispunt).
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als de positie een kruispunt is. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a90df2f1328df5609a7cec7df87a6c65d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_ae8b881e77f5a8c39a1ab0e275673fb46}\index{logic::World@{logic::World}!isWallAt@{isWallAt}}
+\index{isWallAt@{isWallAt}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{isWallAt()}{isWallAt()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ae8b881e77f5a8c39a1ab0e275673fb46} 
+bool logic\+::\+World\+::is\+Wall\+At (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{y}{}\end{DoxyParamCaption}) const}
+
+
+
+Controleert of er een muur is. 
+
+Zet wereldcoördinaten om naar gridcoördinaten en kijkt of de tile een muur is of buiten de map valt.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/positie in wereldcoördinaten. \\
+\hline
+{\em y} & Y-\/positie in wereldcoördinaten. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True als er een muur is (of buiten map), anders false. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_ae8b881e77f5a8c39a1ab0e275673fb46_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a02ea944c00492b8898630757bada7836}\index{logic::World@{logic::World}!predictStep@{predictStep}}
+\index{predictStep@{predictStep}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{predictStep()}{predictStep()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a02ea944c00492b8898630757bada7836} 
+std\+::pair$<$ double, double $>$ logic\+::\+World\+::predict\+Step (\begin{DoxyParamCaption}\item[{double}]{worldX}{, }\item[{double}]{worldY}{, }\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{dir}{}\end{DoxyParamCaption}) const}
+
+
+
+Voorspelt de volgende stap in een bepaalde richting. 
+
+Berekent de volgende wereldpositie wanneer een entity één stap zou zetten in de richting dat die nu is aan het gaan.
+
+
+\begin{DoxyParams}{Parameters}
+{\em worldX} & Start X-\/positie. \\
+\hline
+{\em worldY} & Start Y-\/positie. \\
+\hline
+{\em dir} & Richting waarin bewogen wordt. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+De voorspelde positie. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_world_a389aee9839cd4382ba3f21ef9cd0b728}\index{logic::World@{logic::World}!resetPositions@{resetPositions}}
+\index{resetPositions@{resetPositions}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{resetPositions()}{resetPositions()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a389aee9839cd4382ba3f21ef9cd0b728} 
+void logic\+::\+World\+::reset\+Positions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Entities terug op hun spawn positie zetten. 
+
+Overloopt alle entities en zet ze terug op hun spawn positie en startrichting. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a389aee9839cd4382ba3f21ef9cd0b728_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_ac69f318edab024f81a02c944cfae2068}\index{logic::World@{logic::World}!spawnEntitiesForLevel@{spawnEntitiesForLevel}}
+\index{spawnEntitiesForLevel@{spawnEntitiesForLevel}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{spawnEntitiesForLevel()}{spawnEntitiesForLevel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ac69f318edab024f81a02c944cfae2068} 
+void logic\+::\+World\+::spawn\+Entities\+For\+Level (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Spawnt de entities in de map. factory maakt views en observer worden toegevoegd. 
+
+Entities worden aangemaakt en in de maze gezet. view en observer worden aangemaakt. Ghosts types worden bepaalt op de spawn volgorde. \Hypertarget{classlogic_1_1_world_ac1af14e723e8848cfbfac9be9ba3b5ba}\index{logic::World@{logic::World}!startDeathAnimatie@{startDeathAnimatie}}
+\index{startDeathAnimatie@{startDeathAnimatie}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{startDeathAnimatie()}{startDeathAnimatie()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ac1af14e723e8848cfbfac9be9ba3b5ba} 
+void logic\+::\+World\+::start\+Death\+Animatie (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Start de death animatie van pacman. 
+
+
+\begin{DoxyItemize}
+\item Start de timer van de death animatie.
+\item Het bevriest alle ghosts.
+\item Stuurt naar de observer zodat de animatie kan beginnen. 
+\end{DoxyItemize}Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{classlogic_1_1_world_ac1af14e723e8848cfbfac9be9ba3b5ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_ae981395346e050c23ef22cf45940a06c}\index{logic::World@{logic::World}!tryMoveEntity@{tryMoveEntity}}
+\index{tryMoveEntity@{tryMoveEntity}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{tryMoveEntity()}{tryMoveEntity()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_ae981395346e050c23ef22cf45940a06c} 
+void logic\+::\+World\+::try\+Move\+Entity (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{Entity}} $>$}]{e}{, }\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{dir}{, }\item[{double}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Probeert een entity te verplaatsen in een richting. 
+
+Controleert collisions en verplaatst de entity enkel als het mag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \doxylink{classlogic_1_1_entity}{Entity} die bewogen wordt. \\
+\hline
+{\em dir} & Richting waarin bewogen wordt. \\
+\hline
+{\em dt} & Delta time sinds de vorige update. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_ae981395346e050c23ef22cf45940a06c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_ae981395346e050c23ef22cf45940a06c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_a03e703d58c62b2fd7a7d1a32adc727f1}\index{logic::World@{logic::World}!tryMoveGhost@{tryMoveGhost}}
+\index{tryMoveGhost@{tryMoveGhost}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{tryMoveGhost()}{tryMoveGhost()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a03e703d58c62b2fd7a7d1a32adc727f1} 
+void logic\+::\+World\+::try\+Move\+Ghost (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{Entity}} $>$}]{e}{, }\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{dir}{, }\item[{double}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Probeert een ghost te verplaatsen in een richting. 
+
+Gelijkaardig aan try\+Move\+Entity, maar met ghost-\/specifieke regels zoals ghost doors en movement states.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Ghost entity. \\
+\hline
+{\em dir} & Richting waarin bewogen wordt. \\
+\hline
+{\em dt} & Delta time sinds de vorige update. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_a03e703d58c62b2fd7a7d1a32adc727f1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_world_affdadc66a5af7d6d315d11a4c8623ed3}\index{logic::World@{logic::World}!update@{update}}
+\index{update@{update}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_affdadc66a5af7d6d315d11a4c8623ed3} 
+void logic\+::\+World\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Update entities/level per tick. 
+
+Deze functie wordt elke tick aangeroepen door Levelstate.
+\begin{DoxyItemize}
+\item Het verwerkt input buffers, verplaatst pacman en update ghosts, coins en fruits.
+\item Het houdt de time\+Since\+Lastcoin bij voor de score juist up te daten.
+\item Het kijkt of alle coins zijn verzameld en dus het level gedaan is en gaat naar het volgende level.
+\item Als pacman een ghost aanraakt in CHASE mode wordt de death animatie gestart.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time in seconden sinds de vorige update. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_world_affdadc66a5af7d6d315d11a4c8623ed3_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_world_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_world_aa434094b767bbbd5648f141439c46c8b}\index{logic::World@{logic::World}!coins@{coins}}
+\index{coins@{coins}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{coins}{coins}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_aa434094b767bbbd5648f141439c46c8b} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_coin_model}{Coin\+Model}}$>$ $>$ logic\+::\+World\+::coins\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a1d82f7a4bbd9f3c543c6353c6a846ad0}\index{logic::World@{logic::World}!currentLevel@{currentLevel}}
+\index{currentLevel@{currentLevel}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{currentLevel}{currentLevel}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a1d82f7a4bbd9f3c543c6353c6a846ad0} 
+int logic\+::\+World\+::current\+Level = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a8c91cf02c80477774f4b71afe6d98b24}\index{logic::World@{logic::World}!deathAnimation@{deathAnimation}}
+\index{deathAnimation@{deathAnimation}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{deathAnimation}{deathAnimation}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a8c91cf02c80477774f4b71afe6d98b24} 
+bool logic\+::\+World\+::death\+Animation = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a7e0e38f597983df2262fb0d2301c4dfe}\index{logic::World@{logic::World}!deathDuration@{deathDuration}}
+\index{deathDuration@{deathDuration}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{deathDuration}{deathDuration}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a7e0e38f597983df2262fb0d2301c4dfe} 
+double logic\+::\+World\+::death\+Duration = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a0500aa95c8ce5860de2684da381ce36c}\index{logic::World@{logic::World}!deathTimer@{deathTimer}}
+\index{deathTimer@{deathTimer}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{deathTimer}{deathTimer}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a0500aa95c8ce5860de2684da381ce36c} 
+double logic\+::\+World\+::death\+Timer = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a6a4e8e220b5d1ee672706176a2ea4e07}\index{logic::World@{logic::World}!factory@{factory}}
+\index{factory@{factory}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a6a4e8e220b5d1ee672706176a2ea4e07} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_i_entity_factory}{IEntity\+Factory}}$>$ logic\+::\+World\+::factory\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_aa06b30f06ba8f7a7024d4718c932f2c6}\index{logic::World@{logic::World}!fruits@{fruits}}
+\index{fruits@{fruits}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{fruits}{fruits}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_aa06b30f06ba8f7a7024d4718c932f2c6} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_fruit_model}{Fruit\+Model}}$>$ $>$ logic\+::\+World\+::fruits\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a1e637058febbf822beced94d85a18f44}\index{logic::World@{logic::World}!ghostDoors@{ghostDoors}}
+\index{ghostDoors@{ghostDoors}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{ghostDoors}{ghostDoors}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a1e637058febbf822beced94d85a18f44} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_ghost_door_model}{Ghost\+Door\+Model}}$>$ $>$ logic\+::\+World\+::ghost\+Doors\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a92e43ac20e041ffdded801789909ddee}\index{logic::World@{logic::World}!ghosts@{ghosts}}
+\index{ghosts@{ghosts}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{ghosts}{ghosts}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a92e43ac20e041ffdded801789909ddee} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_ghost_model}{Ghost\+Model}}$>$ $>$ logic\+::\+World\+::ghosts\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a7918253283da5618aefd2c5af449101c}\index{logic::World@{logic::World}!maze@{maze}}
+\index{maze@{maze}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{maze}{maze}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a7918253283da5618aefd2c5af449101c} 
+std\+::vector$<$std\+::vector$<$int$>$ $>$ logic\+::\+World\+::maze\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a3f557389e11dfe7864dd00a4ab3f283a}\index{logic::World@{logic::World}!mazeHeight@{mazeHeight}}
+\index{mazeHeight@{mazeHeight}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{mazeHeight}{mazeHeight}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a3f557389e11dfe7864dd00a4ab3f283a} 
+int logic\+::\+World\+::maze\+Height\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a0df0bb743860541592b96d219fd3c047}\index{logic::World@{logic::World}!mazeWidth@{mazeWidth}}
+\index{mazeWidth@{mazeWidth}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{mazeWidth}{mazeWidth}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a0df0bb743860541592b96d219fd3c047} 
+int logic\+::\+World\+::maze\+Width\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a3a252a2443735c05663e22d8a7cd6b66}\index{logic::World@{logic::World}!pacman@{pacman}}
+\index{pacman@{pacman}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{pacman}{pacman}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a3a252a2443735c05663e22d8a7cd6b66} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_pac_man_model}{Pac\+Man\+Model}}$>$ logic\+::\+World\+::pacman\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01}\index{logic::World@{logic::World}!score@{score}}
+\index{score@{score}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_score}{Score}}$>$ logic\+::\+World\+::score\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_world_aeaa54e51733073af90e8e84151a3dbfd}\index{logic::World@{logic::World}!timeSinceLastCoin@{timeSinceLastCoin}}
+\index{timeSinceLastCoin@{timeSinceLastCoin}!logic::World@{logic::World}}
+\doxysubsubsection{\texorpdfstring{timeSinceLastCoin}{timeSinceLastCoin}}
+{\footnotesize\ttfamily \label{classlogic_1_1_world_aeaa54e51733073af90e8e84151a3dbfd} 
+double logic\+::\+World\+::time\+Since\+Last\+Coin = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_world_8h}{World.\+h}}\item 
+logic/src/\mbox{\hyperlink{_world_8cpp}{World.\+cpp}}\end{DoxyCompactItemize}

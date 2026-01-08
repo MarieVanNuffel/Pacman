@@ -1,0 +1,9 @@
+<map id="State" name="State">
+<area shape="rect" id="Node000001" title=" " alt="" coords="163,5,266,181"/>
+<area shape="rect" id="Node000002" href="$class_level_state.html" title="Game state voor een level." alt="" coords="5,229,125,661"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,194,140,230,128,259,123,257,135,228,157,189"/>
+<area shape="rect" id="Node000003" href="$class_menu_state.html" title="Hoofdmenu van pacman." alt="" coords="150,251,280,640"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,193,217,251,212,250,214,199"/>
+<area shape="rect" id="Node000004" href="$class_pause_state.html" title=" " alt="" coords="304,293,442,597"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="274,190,294,228,323,294,317,294,290,230,273,195"/>
+</map>

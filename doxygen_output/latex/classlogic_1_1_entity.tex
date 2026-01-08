@@ -1,0 +1,322 @@
+\doxysection{logic\+::Entity Class Reference}
+\hypertarget{classlogic_1_1_entity}{}\label{classlogic_1_1_entity}\index{logic::Entity@{logic::Entity}}
+
+
+Basis class voor alle entities.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Entity\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_entity__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Entity\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classlogic_1_1_entity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\item 
+virtual void \mbox{\hyperlink{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15}{update}} (double dt)=0
+\begin{DoxyCompactList}\small\item\em Update entity per tick. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3}{getX}} () const
+\begin{DoxyCompactList}\small\item\em Geeft x-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11}{getY}} () const
+\begin{DoxyCompactList}\small\item\em Geeft y-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd}{getW}} () const
+\begin{DoxyCompactList}\small\item\em Geeft breedte terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a344cc207ef296314760d99817843645e}{getH}} () const
+\begin{DoxyCompactList}\small\item\em Geeft hoogte terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft huidige direction terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337}{get\+Desired\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft desired direction terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478}{set\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet huidige direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlogic_1_1_rect}{Rect}} \mbox{\hyperlink{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20}{get\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Geeft bounding box terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Geeft movement speed terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197}{set\+Position}} (double nx, double ny)
+\begin{DoxyCompactList}\small\item\em Zet entity positie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}{x}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}{y}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}} = 0.\+1
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a}{h}} = 0.\+1
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5}{direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}{desired\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}{speed}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Basis class voor alle entities. 
+
+Bevat positie, size, direction en speed. Wordt gebruikt door alle entities. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_entity_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e}\index{logic::Entity@{logic::Entity}!````~Entity@{\texorpdfstring{$\sim$}{\string~}Entity}}
+\index{````~Entity@{\texorpdfstring{$\sim$}{\string~}Entity}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Entity()}{\string~Entity()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e} 
+virtual logic\+::\+Entity\+::\texorpdfstring{$\sim$}{\string~}\+Entity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_entity_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20}\index{logic::Entity@{logic::Entity}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20} 
+\mbox{\hyperlink{structlogic_1_1_rect}{Rect}} logic\+::\+Entity\+::get\+Bounds (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft bounding box terug. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structlogic_1_1_rect}{Rect} bounds 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337}\index{logic::Entity@{logic::Entity}!getDesiredDirection@{getDesiredDirection}}
+\index{getDesiredDirection@{getDesiredDirection}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getDesiredDirection()}{getDesiredDirection()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337} 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} logic\+::\+Entity\+::get\+Desired\+Direction (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft desired direction terug. 
+
+\begin{DoxyReturn}{Returns}
+Desired direction 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b}\index{logic::Entity@{logic::Entity}!getDirection@{getDirection}}
+\index{getDirection@{getDirection}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getDirection()}{getDirection()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b} 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} logic\+::\+Entity\+::get\+Direction (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft huidige direction terug. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction} 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_entity_a344cc207ef296314760d99817843645e}\index{logic::Entity@{logic::Entity}!getH@{getH}}
+\index{getH@{getH}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getH()}{getH()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a344cc207ef296314760d99817843645e} 
+double logic\+::\+Entity\+::getH (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft hoogte terug. 
+
+\begin{DoxyReturn}{Returns}
+Height 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096}\index{logic::Entity@{logic::Entity}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096} 
+double logic\+::\+Entity\+::get\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft movement speed terug. 
+
+\begin{DoxyReturn}{Returns}
+Speed 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd}\index{logic::Entity@{logic::Entity}!getW@{getW}}
+\index{getW@{getW}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getW()}{getW()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd} 
+double logic\+::\+Entity\+::getW (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft breedte terug. 
+
+\begin{DoxyReturn}{Returns}
+Width 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3}\index{logic::Entity@{logic::Entity}!getX@{getX}}
+\index{getX@{getX}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getX()}{getX()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3} 
+double logic\+::\+Entity\+::getX (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft x-\/positie terug. 
+
+\begin{DoxyReturn}{Returns}
+x-\/coördinaat 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11}\index{logic::Entity@{logic::Entity}!getY@{getY}}
+\index{getY@{getY}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{getY()}{getY()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11} 
+double logic\+::\+Entity\+::getY (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft y-\/positie terug. 
+
+\begin{DoxyReturn}{Returns}
+y-\/coördinaat 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478}\index{logic::Entity@{logic::Entity}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478} 
+void logic\+::\+Entity\+::set\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet huidige direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Nieuwe direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197}\index{logic::Entity@{logic::Entity}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197} 
+void logic\+::\+Entity\+::set\+Position (\begin{DoxyParamCaption}\item[{double}]{nx}{, }\item[{double}]{ny}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet entity positie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & Nieuwe x \\
+\hline
+{\em ny} & Nieuwe y \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15}\index{logic::Entity@{logic::Entity}!update@{update}}
+\index{update@{update}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15} 
+virtual void logic\+::\+Entity\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Update entity per tick. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classlogic_1_1_coin_model_a5ed1b3049b40420e3159faa2d5056c07}{logic\+::\+Coin\+Model}}, \mbox{\hyperlink{classlogic_1_1_fruit_model_a3f37dfb4b3403072b1061327f75fe3f9}{logic\+::\+Fruit\+Model}}, \mbox{\hyperlink{classlogic_1_1_ghost_door_model_a55645755d24026fd7b6441c30456a721}{logic\+::\+Ghost\+Door\+Model}}, \mbox{\hyperlink{classlogic_1_1_ghost_model_a7f0c07a340ffee28c75edbcc58488417}{logic\+::\+Ghost\+Model}}, and \mbox{\hyperlink{classlogic_1_1_pac_man_model_a03a94e545c04994a0bbecd44ca14b830}{logic\+::\+Pac\+Man\+Model}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_entity_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}\index{logic::Entity@{logic::Entity}!desiredDirection@{desiredDirection}}
+\index{desiredDirection@{desiredDirection}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{desiredDirection}{desiredDirection}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c} 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} logic\+::\+Entity\+::desired\+Direction = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5}\index{logic::Entity@{logic::Entity}!direction@{direction}}
+\index{direction@{direction}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5} 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} logic\+::\+Entity\+::direction = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a}\index{logic::Entity@{logic::Entity}!h@{h}}
+\index{h@{h}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{h}{h}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a} 
+double logic\+::\+Entity\+::h = 0.\+1\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}\index{logic::Entity@{logic::Entity}!speed@{speed}}
+\index{speed@{speed}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4} 
+double logic\+::\+Entity\+::speed = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}\index{logic::Entity@{logic::Entity}!w@{w}}
+\index{w@{w}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb} 
+double logic\+::\+Entity\+::w = 0.\+1\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}\index{logic::Entity@{logic::Entity}!x@{x}}
+\index{x@{x}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df} 
+double logic\+::\+Entity\+::x = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}\index{logic::Entity@{logic::Entity}!y@{y}}
+\index{y@{y}!logic::Entity@{logic::Entity}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \label{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af} 
+double logic\+::\+Entity\+::y = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_entity_8h}{Entity.\+h}}\end{DoxyCompactItemize}

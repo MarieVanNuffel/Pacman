@@ -1,0 +1,5 @@
+<map id="logic::World::startDeathAnimatie" name="logic::World::startDeathAnimatie">
+<area shape="rect" id="Node000001" title="Start de death animatie van pacman." alt="" coords="190,5,348,48"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#affdadc66a5af7d6d315d11a4c8623ed3" title="Update entities/level per tick." alt="" coords="5,13,142,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,27,142,29,142,24,177,26"/>
+</map>

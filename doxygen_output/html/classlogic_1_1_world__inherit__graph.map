@@ -1,0 +1,5 @@
+<map id="logic::World" name="logic::World">
+<area shape="rect" id="Node000001" title="Beheert alle game logica." alt="" coords="5,139,169,720"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="23,5,152,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,103,90,139,85,139,87,108"/>
+</map>

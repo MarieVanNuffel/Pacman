@@ -1,0 +1,5 @@
+<map id="logic::Random::instance" name="logic::Random::instance">
+<area shape="rect" id="Node000001" title="Geeft singleton instance terug." alt="" coords="5,5,168,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_random.html#a7b4f4508c119caeadb94ad569e864015" title="Private constructor voor singleton." alt="" coords="216,5,378,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,16,203,19,197,19,168,21"/>
+</map>

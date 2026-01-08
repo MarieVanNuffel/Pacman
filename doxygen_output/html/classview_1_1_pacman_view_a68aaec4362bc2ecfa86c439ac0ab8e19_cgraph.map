@@ -1,0 +1,7 @@
+<map id="view::PacmanView::onNotify" name="view::PacmanView::onNotify">
+<area shape="rect" id="Node000001" title="Ontvangt events van de observer." alt="" coords="5,31,196,57"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_pacman_view.html#a35ea5c6c2a5815abd9cb450b070726c7" title="Start de death animatie." alt="" coords="244,5,446,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,31,231,30,225,31,197,37"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_pacman_view.html#a0e0156b38055ec5d2c964a2b3be6b6e3" title="Stopt de death animatie." alt="" coords="244,56,446,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,51,231,57,226,57,196,57"/>
+</map>

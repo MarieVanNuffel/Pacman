@@ -1,0 +1,122 @@
+\doxysection{logic\+::Subject Class Reference}
+\hypertarget{classlogic_1_1_subject}{}\label{classlogic_1_1_subject}\index{logic::Subject@{logic::Subject}}
+
+
+\doxylink{classlogic_1_1_subject}{Subject} in het Observer-\/patroon.  
+
+
+
+
+{\ttfamily \#include $<$Subject.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Subject\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_subject__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Subject\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classlogic_1_1_subject__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2}{add\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Voeg een observer toe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec}{remove\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Verwijder een observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862}{notify}} (int event)
+\begin{DoxyCompactList}\small\item\em Notify de observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ $>$ \mbox{\hyperlink{classlogic_1_1_subject_a79ce4a3536a674196573d894b0a1de04}{observers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classlogic_1_1_subject}{Subject} in het Observer-\/patroon. 
+
+Beheert een lijst van observers en notify bij events. (Observers worden opgeslagen als weak\+\_\+ptr om dangling pointers te vermijden.) 
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_subject_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2}\index{logic::Subject@{logic::Subject}!addObserver@{addObserver}}
+\index{addObserver@{addObserver}!logic::Subject@{logic::Subject}}
+\doxysubsubsection{\texorpdfstring{addObserver()}{addObserver()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2} 
+void logic\+::\+Subject\+::add\+Observer (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$}]{o}{}\end{DoxyParamCaption})}
+
+
+
+Voeg een observer toe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & Shared pointer naar de observer die toegevoegd wordt. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862}\index{logic::Subject@{logic::Subject}!notify@{notify}}
+\index{notify@{notify}!logic::Subject@{logic::Subject}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862} 
+void logic\+::\+Subject\+::notify (\begin{DoxyParamCaption}\item[{int}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Notify de observers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \doxylink{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}{Event} code die wordt doorgegeven aan observers\\
+\hline
+\end{DoxyParams}
+Verwijdert automatisch verlopen observers. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec}\index{logic::Subject@{logic::Subject}!removeObserver@{removeObserver}}
+\index{removeObserver@{removeObserver}!logic::Subject@{logic::Subject}}
+\doxysubsubsection{\texorpdfstring{removeObserver()}{removeObserver()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec} 
+void logic\+::\+Subject\+::remove\+Observer (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$}]{o}{}\end{DoxyParamCaption})}
+
+
+
+Verwijder een observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & Shared pointer naar de observer die verwijderd wordt.\\
+\hline
+\end{DoxyParams}
+Verwijdert ook verlopen weak\+\_\+ptrs. 
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_subject_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_subject_a79ce4a3536a674196573d894b0a1de04}\index{logic::Subject@{logic::Subject}!observers@{observers}}
+\index{observers@{observers}!logic::Subject@{logic::Subject}}
+\doxysubsubsection{\texorpdfstring{observers}{observers}}
+{\footnotesize\ttfamily \label{classlogic_1_1_subject_a79ce4a3536a674196573d894b0a1de04} 
+std\+::vector$<$std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_observer}{Observer}}$>$ $>$ logic\+::\+Subject\+::observers\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_subject_8h}{Subject.\+h}}\item 
+logic/src/\mbox{\hyperlink{_subject_8cpp}{Subject.\+cpp}}\end{DoxyCompactItemize}

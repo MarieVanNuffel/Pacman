@@ -1,0 +1,7 @@
+<map id="view::FruitView::FruitView" name="view::FruitView::FruitView">
+<area shape="rect" id="Node000001" title="Constructor." alt="" coords="5,31,180,57"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_entity_view.html#a7196700bcd86a228913a4b6e51a30066" title="Basis klasse voor entit views." alt="" coords="228,5,418,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,32,215,30,209,31,180,37"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_resource.html#a7750092e5edc0404ccbbb24337c12058" title="Laadt een texture uit een bestand." alt="" coords="229,56,416,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,51,217,57,211,58,180,56"/>
+</map>

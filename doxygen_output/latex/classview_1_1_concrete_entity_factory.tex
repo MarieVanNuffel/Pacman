@@ -1,0 +1,173 @@
+\doxysection{view\+::Concrete\+Entity\+Factory Class Reference}
+\hypertarget{classview_1_1_concrete_entity_factory}{}\label{classview_1_1_concrete_entity_factory}\index{view::ConcreteEntityFactory@{view::ConcreteEntityFactory}}
+
+
+Concrete implementatie van IEntity\+Factory.  
+
+
+
+
+{\ttfamily \#include $<$Concrete\+Entity\+Factory.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Concrete\+Entity\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classview_1_1_concrete_entity_factory__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Concrete\+Entity\+Factory\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classview_1_1_concrete_entity_factory__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_ab4dd017ac088a0c49a84bdd79487de32}{create\+Pacman\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{logic\+::\+Pac\+Man\+Model}} $>$ m) override
+\begin{DoxyCompactList}\small\item\em Maakt pacman view + observer. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a2fc07ad9bb4416471e21374a64498c8f}{create\+Ghost\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{logic\+::\+Ghost\+Model}} $>$ m) override
+\begin{DoxyCompactList}\small\item\em Maakt ghost view. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a01be341480166f16782f7bb67d1cf58c}{create\+Coin\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{logic\+::\+Coin\+Model}} $>$ m) override
+\begin{DoxyCompactList}\small\item\em Maakt coin view + observer. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a0f3ac37b9e92c5458a98d28f455d3d43}{create\+Fruit\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{logic\+::\+Fruit\+Model}} $>$ m) override
+\begin{DoxyCompactList}\small\item\em Maakt fruit view + observer. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ \mbox{\hyperlink{classview_1_1_concrete_entity_factory_a47fd9b66d0ec447cf4bd2a6aa4aea109}{create\+Ghost\+Door\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{logic\+::\+Ghost\+Door\+Model}} $>$ m) override
+\begin{DoxyCompactList}\small\item\em Maakt ghostdoor view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_i_entity_factory}{logic\+::\+IEntity\+Factory}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a0e6d20caae0a051b0da5cfe0eb70f538}{\texorpdfstring{$\sim$}{\string~}\+IEntity\+Factory}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Concrete implementatie van IEntity\+Factory. 
+
+Maakt views en observers voor concrete entity types. 
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_concrete_entity_factory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_concrete_entity_factory_a01be341480166f16782f7bb67d1cf58c}\index{view::ConcreteEntityFactory@{view::ConcreteEntityFactory}!createCoinView@{createCoinView}}
+\index{createCoinView@{createCoinView}!view::ConcreteEntityFactory@{view::ConcreteEntityFactory}}
+\doxysubsubsection{\texorpdfstring{createCoinView()}{createCoinView()}}
+{\footnotesize\ttfamily \label{classview_1_1_concrete_entity_factory_a01be341480166f16782f7bb67d1cf58c} 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ view\+::\+Concrete\+Entity\+Factory\+::create\+Coin\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{logic\+::\+Coin\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Maakt coin view + observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Coin model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair van \doxylink{classview_1_1_entity_view}{Entity\+View} en Observer 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_i_entity_factory_af1138e9c0b16420e89f0335798547fdf}{logic\+::\+IEntity\+Factory}}.
+
+\Hypertarget{classview_1_1_concrete_entity_factory_a0f3ac37b9e92c5458a98d28f455d3d43}\index{view::ConcreteEntityFactory@{view::ConcreteEntityFactory}!createFruitView@{createFruitView}}
+\index{createFruitView@{createFruitView}!view::ConcreteEntityFactory@{view::ConcreteEntityFactory}}
+\doxysubsubsection{\texorpdfstring{createFruitView()}{createFruitView()}}
+{\footnotesize\ttfamily \label{classview_1_1_concrete_entity_factory_a0f3ac37b9e92c5458a98d28f455d3d43} 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ view\+::\+Concrete\+Entity\+Factory\+::create\+Fruit\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{logic\+::\+Fruit\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Maakt fruit view + observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Fruit model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair van \doxylink{classview_1_1_entity_view}{Entity\+View} en Observer 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a722751131f71751c2569f43045a1167b}{logic\+::\+IEntity\+Factory}}.
+
+\Hypertarget{classview_1_1_concrete_entity_factory_a47fd9b66d0ec447cf4bd2a6aa4aea109}\index{view::ConcreteEntityFactory@{view::ConcreteEntityFactory}!createGhostDoorView@{createGhostDoorView}}
+\index{createGhostDoorView@{createGhostDoorView}!view::ConcreteEntityFactory@{view::ConcreteEntityFactory}}
+\doxysubsubsection{\texorpdfstring{createGhostDoorView()}{createGhostDoorView()}}
+{\footnotesize\ttfamily \label{classview_1_1_concrete_entity_factory_a47fd9b66d0ec447cf4bd2a6aa4aea109} 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ view\+::\+Concrete\+Entity\+Factory\+::create\+Ghost\+Door\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_door_model}{logic\+::\+Ghost\+Door\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Maakt ghostdoor view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Ghost\+Door model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair van \doxylink{classview_1_1_entity_view}{Entity\+View} en nullptr observer, want krijgt geen events 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_i_entity_factory_aebccf2eb0778179dfdf97209f1ea316f}{logic\+::\+IEntity\+Factory}}.
+
+\Hypertarget{classview_1_1_concrete_entity_factory_a2fc07ad9bb4416471e21374a64498c8f}\index{view::ConcreteEntityFactory@{view::ConcreteEntityFactory}!createGhostView@{createGhostView}}
+\index{createGhostView@{createGhostView}!view::ConcreteEntityFactory@{view::ConcreteEntityFactory}}
+\doxysubsubsection{\texorpdfstring{createGhostView()}{createGhostView()}}
+{\footnotesize\ttfamily \label{classview_1_1_concrete_entity_factory_a2fc07ad9bb4416471e21374a64498c8f} 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ view\+::\+Concrete\+Entity\+Factory\+::create\+Ghost\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{logic\+::\+Ghost\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Maakt ghost view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Ghost model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair van \doxylink{classview_1_1_entity_view}{Entity\+View} en nullptr observer, want krijgt geen events 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a604c16f92785e545db135bc9213d4f95}{logic\+::\+IEntity\+Factory}}.
+
+\Hypertarget{classview_1_1_concrete_entity_factory_ab4dd017ac088a0c49a84bdd79487de32}\index{view::ConcreteEntityFactory@{view::ConcreteEntityFactory}!createPacmanView@{createPacmanView}}
+\index{createPacmanView@{createPacmanView}!view::ConcreteEntityFactory@{view::ConcreteEntityFactory}}
+\doxysubsubsection{\texorpdfstring{createPacmanView()}{createPacmanView()}}
+{\footnotesize\ttfamily \label{classview_1_1_concrete_entity_factory_ab4dd017ac088a0c49a84bdd79487de32} 
+std\+::pair$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}} $>$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}} $>$ $>$ view\+::\+Concrete\+Entity\+Factory\+::create\+Pacman\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{logic\+::\+Pac\+Man\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Maakt pacman view + observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Pacman model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair van \doxylink{classview_1_1_entity_view}{Entity\+View} en Observer 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_i_entity_factory_a2e08c6e33b013e7fae4de678d310bd8d}{logic\+::\+IEntity\+Factory}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_concrete_entity_factory_8h}{Concrete\+Entity\+Factory.\+h}}\item 
+view/src/\mbox{\hyperlink{_concrete_entity_factory_8cpp}{Concrete\+Entity\+Factory.\+cpp}}\end{DoxyCompactItemize}

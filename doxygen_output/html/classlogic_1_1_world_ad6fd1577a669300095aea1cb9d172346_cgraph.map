@@ -1,0 +1,17 @@
+<map id="logic::World::tryMoveGhost" name="logic::World::tryMoveGhost">
+<area shape="rect" id="Node000001" title="Probeert een ghost te verplaatsen in een richting." alt="" coords="5,107,185,133"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_entity.html#a452c1cdbe126c1511bf8c1983fa69096" title="Geeft movement speed terug." alt="" coords="240,5,393,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,104,168,73,232,42,252,36,247,39,234,46,170,78,119,108"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_entity.html#aa22d1a41d16c41978abdd622c96dbca3" title="Geeft x&#45;positie terug." alt="" coords="254,56,379,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,104,242,85,238,88,158,109"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_entity.html#a9de0b62562ab971b9c103937a2af5b11" title="Geeft y&#45;positie terug." alt="" coords="254,107,379,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,117,241,119,236,121,186,123"/>
+<area shape="rect" id="Node000005" href="$classlogic_1_1_world.html#ab035c7140e1314a28bfb93e0b51861d8" title="Kijkt of een entity geblokkeerd wordt op een positie." alt="" coords="233,157,400,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="157,131,243,152,238,154,157,137"/>
+<area shape="rect" id="Node000008" href="$classlogic_1_1_entity.html#a54aac7176a9ddc5ea15b78a4c2d6c197" title="Zet entity positie." alt="" coords="235,208,398,235"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="118,131,170,162,234,194,252,203,247,202,232,198,168,167,117,136"/>
+<area shape="rect" id="Node000006" href="$classlogic_1_1_world.html#a2fb0221d2018cd492b7fdd20ceb9b7fc" title="Controleert of de tile een ghostdoor is." alt="" coords="448,132,618,159"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="400,158,435,157,430,157,401,164"/>
+<area shape="rect" id="Node000007" href="$classlogic_1_1_world.html#ae8b881e77f5a8c39a1ab0e275673fb46" title="Controleert of er een muur is." alt="" coords="460,183,606,209"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="401,178,448,186,442,186,400,183"/>
+</map>

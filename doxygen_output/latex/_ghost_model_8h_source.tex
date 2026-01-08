@@ -1,0 +1,76 @@
+\doxysection{Ghost\+Model.\+h}
+\hypertarget{_ghost_model_8h_source}{}\label{_ghost_model_8h_source}\index{logic/include/logic/GhostModel.h@{logic/include/logic/GhostModel.h}}
+\mbox{\hyperlink{_ghost_model_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 27/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_GHOSTMODEL\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_GHOSTMODEL\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_subject_8h}{Subject.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_world}{World}};\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_ghost_model_a37de0fd88446de413c82a141578a6adc}{GhostModel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classlogic_1_1_entity}{Entity}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classlogic_1_1_subject}{Subject}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}}\ \{\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da5706de961fb376d701be6e7762d8b09c}{Waiting}},\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4daeaff692e84900d6b0999355abb0f3e43}{Chase}},\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da85caab9f87aaab2166693ab8a1aeaa97}{Fear}},\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da870f5974abdb800a274349808b210d34}{Eaten}}\ \};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{GhostType}}\ \{\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea0da92400f9e52c66e84326338a181039}{LockedRandom}},\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea30dcc60dcd7a4846518a375905673d43}{AheadOfPacman1}},\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eab13dc54c04f722486a37a79c9fd74171}{AheadOfPacman2}},\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eac2917cd64cb54cb8fa3f7d4d540fb68c}{DirectChase}}\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_ghost_model_a37de0fd88446de413c82a141578a6adc}{GhostModel}}(\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{GhostType}}\ t);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a7f0c07a340ffee28c75edbcc58488417}{update}}(\textcolor{keywordtype}{double}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a159f2a518e5a8b10b93c77137eba95d3}{getMode}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2e5c495972920a6806eb43282f925757}{mode}};\ \};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{GhostType}}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a6d0ab72eddfc6b913d65ee0a7ca89960}{getGhostType}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a4a8ef4c9881eaa3cced4f6ec9264e427}{type}};\ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a72932a6468683fb4800989bbf0d5179c}{getStartX}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_ab2ee188b4710a6145fd53fb089dd2b05}{startX}};\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a759c748f658db5de217ad0d040c5a684}{getStartY}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_af3f9c8729367073cfcf780bbfb7d4eb6}{startY}};\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a649ecf2b30ea8ca8fa1040cc7de83c1b}{getFearDuration}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a1fbc4aa48dc5046e55d5b3c2a3fd74c8}{fearDuration}};\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a1c48a29ca28b0c0e74a7827392a523ef}{getChaseSpeed}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_ab0c10b8ebb638f345b02e113b5887d06}{chaseSpeed}};\ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_af7de79e30045edfb5d55b8d1d18860db}{isFrozen}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aeac543153e095498799204cf19cbc6f5}{frozen}};\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setters}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a3e130680214d21ace265c878ae7d1bab}{setWorld}}(\textcolor{keyword}{const}\ std::shared\_ptr<World>\&\ \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}})\ \{\ assert(\mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}}\ \&\&\ \textcolor{stringliteral}{"{}setWorld\ called\ with\ null"{}});\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a460b69121723fbd399811c20987c0bfe}{worldRef}}\ =\ \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}};\ \};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a41d17323c715018cb5df19576e068b84}{setMode}}(\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}}\ m);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a03cf8ec3232070246dd0aad554157f34}{setSpeed}}(\textcolor{keywordtype}{double}\ s)\ \{\ \mbox{\hyperlink{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}{speed}}\ =\ s;\ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2547d0acbdd437478cacdb49297e2ec3}{setFearDuration}}(\textcolor{keywordtype}{double}\ d)\ \{\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a1fbc4aa48dc5046e55d5b3c2a3fd74c8}{fearDuration}}\ =\ d;\ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2d8b84fb345396229c8104043a5afd3d}{setChaseSpeed}}(\textcolor{keywordtype}{double}\ d)\ \{\ \mbox{\hyperlink{classlogic_1_1_ghost_model_ab0c10b8ebb638f345b02e113b5887d06}{chaseSpeed}}\ =\ d;\ \};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a0f8175dd147faed474125edaaaf47cc3}{setStartPosition}}(\textcolor{keywordtype}{double}\ sx,\ \textcolor{keywordtype}{double}\ sy)\ \{\ \mbox{\hyperlink{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}{x}}\ =\ sx;\ \mbox{\hyperlink{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}{y}}\ =\ sy;\ \mbox{\hyperlink{classlogic_1_1_ghost_model_ab2ee188b4710a6145fd53fb089dd2b05}{startX}}\ =\ sx;\ \mbox{\hyperlink{classlogic_1_1_ghost_model_af3f9c8729367073cfcf780bbfb7d4eb6}{startY}}\ =\ sy;\ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a75d00957493ffe46818be9fe2337aafb}{setFrozen}}(\textcolor{keywordtype}{bool}\ f)\ \{\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aeac543153e095498799204cf19cbc6f5}{frozen}}\ =\ f;\ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_afebe4e481e99459f06b6b76c21a76c40}{setReleaseTimer}}(\textcolor{keywordtype}{double}\ dt)\ \{\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2c6e8dc0361c32c710ffc71b115dcb05}{releaseTimer}}\ =\ dt;\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{GhostType}}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a4a8ef4c9881eaa3cced4f6ec9264e427}{type}};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2e5c495972920a6806eb43282f925757}{mode}};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_ab0c10b8ebb638f345b02e113b5887d06}{chaseSpeed}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_aeac543153e095498799204cf19cbc6f5}{frozen}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Startposities}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_ab2ee188b4710a6145fd53fb089dd2b05}{startX}}\ =\ 0.0;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_af3f9c8729367073cfcf780bbfb7d4eb6}{startY}}\ =\ 0.0;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2c6e8dc0361c32c710ffc71b115dcb05}{releaseTimer}}\ =\ 0.0;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2488db3b69c867e9de989c1e0ce36cf8}{decisionTimer}}\ =\ 0.0;\ \textcolor{comment}{//\ wanneer\ beslissingen\ nemen}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a06df448eee37f3dc405b706f191b3f63}{decisionCooldown}}\ =\ 0.12;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a2b4261252b6935733e63b67bad7b1606}{fearTimer}}\ =\ 0.0;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a1fbc4aa48dc5046e55d5b3c2a3fd74c8}{fearDuration}}\ =\ 6.0;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ std::weak\_ptr<World>\ \mbox{\hyperlink{classlogic_1_1_ghost_model_a460b69121723fbd399811c20987c0bfe}{worldRef}};}
+\DoxyCodeLine{00163\ \ \ \ \ \};}
+\DoxyCodeLine{00164\ \}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_GHOSTMODEL\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,269 @@
+\doxysection{logic\+::Score Class Reference}
+\hypertarget{classlogic_1_1_score}{}\label{classlogic_1_1_score}\index{logic::Score@{logic::Score}}
+
+
+Beheert score en highscores.  
+
+
+
+
+{\ttfamily \#include $<$Score.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Score\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classlogic_1_1_score__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Score\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classlogic_1_1_score__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_score_a07b6ac91ebef7416e8544d80295d4b22}{Score}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_ab0de0347b60ab36941e457ef4b1098ed}{coin\+Collected}} (double time\+Since\+Last\+Coin)
+\begin{DoxyCompactList}\small\item\em Verwerkt coin score afhankelijk van tijd tussen collected coins. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_a4d488d55efe8d41b975a291bc4e6ce05}{level\+Cleared}} ()
+\begin{DoxyCompactList}\small\item\em Verhoog score bij level clear. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_a62502ec775216ff1caa6f8a18dd96526}{fruit\+Collected}} ()
+\begin{DoxyCompactList}\small\item\em Verhoog score bij fruit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_ae21918c3785f32c4f378a0fe7bbd72ba}{ghost\+Eaten}} ()
+\begin{DoxyCompactList}\small\item\em Verhoog score bij ghost eat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_a5688a6f9357b6ae9713a43b68ca65e25}{pacman\+Died}} ()
+\begin{DoxyCompactList}\small\item\em Verlaag score bij pacman death. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_a35f9225c87dc158549860ef70779a809}{on\+Notify}} (int event) override
+\begin{DoxyCompactList}\small\item\em Ontvangt events van entities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_acf433ec3b062f9a66f0c6f217f43a5cc}{load\+High\+Scores}} ()
+\begin{DoxyCompactList}\small\item\em Laad highscores. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_score_abfe81d67316d38f433458fae86b81f25}{save\+High\+Scores}} ()
+\begin{DoxyCompactList}\small\item\em Sla highscores op. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classlogic_1_1_score_a2b481945aa09f10205bd8e861b591501}{get\+Current\+Score}} () const
+\begin{DoxyCompactList}\small\item\em Geef huidige score. \end{DoxyCompactList}\item 
+const std\+::vector$<$ int $>$ \& \mbox{\hyperlink{classlogic_1_1_score_a6c4e0261d12f9d9b464821e908087818}{get\+High\+Scores}} () const
+\begin{DoxyCompactList}\small\item\em Geef highscores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e}{\texorpdfstring{$\sim$}{\string~}\+Observer}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classlogic_1_1_score_a06068060eafe473298b04688349f46cd}{current\+Score}} = 0
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classlogic_1_1_score_a78521d8b8449c49a7033381eea107de5}{high\+Scores}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Beheert score en highscores. 
+
+Reageert op game events via observer. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_score_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_score_a07b6ac91ebef7416e8544d80295d4b22}\index{logic::Score@{logic::Score}!Score@{Score}}
+\index{Score@{Score}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{Score()}{Score()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a07b6ac91ebef7416e8544d80295d4b22} 
+logic\+::\+Score\+::\+Score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Laadt highscores. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_score_a07b6ac91ebef7416e8544d80295d4b22_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_score_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_score_ab0de0347b60ab36941e457ef4b1098ed}\index{logic::Score@{logic::Score}!coinCollected@{coinCollected}}
+\index{coinCollected@{coinCollected}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{coinCollected()}{coinCollected()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_ab0de0347b60ab36941e457ef4b1098ed} 
+void logic\+::\+Score\+::coin\+Collected (\begin{DoxyParamCaption}\item[{double}]{time\+Since\+Last\+Coin}{}\end{DoxyParamCaption})}
+
+
+
+Verwerkt coin score afhankelijk van tijd tussen collected coins. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Since\+Last\+Coin} & Tijd sinds vorige coin \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_score_a62502ec775216ff1caa6f8a18dd96526}\index{logic::Score@{logic::Score}!fruitCollected@{fruitCollected}}
+\index{fruitCollected@{fruitCollected}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{fruitCollected()}{fruitCollected()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a62502ec775216ff1caa6f8a18dd96526} 
+void logic\+::\+Score\+::fruit\+Collected (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verhoog score bij fruit. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_score_a62502ec775216ff1caa6f8a18dd96526_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_score_a2b481945aa09f10205bd8e861b591501}\index{logic::Score@{logic::Score}!getCurrentScore@{getCurrentScore}}
+\index{getCurrentScore@{getCurrentScore}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{getCurrentScore()}{getCurrentScore()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a2b481945aa09f10205bd8e861b591501} 
+int logic\+::\+Score\+::get\+Current\+Score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geef huidige score. 
+
+\begin{DoxyReturn}{Returns}
+Current score 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_score_a6c4e0261d12f9d9b464821e908087818}\index{logic::Score@{logic::Score}!getHighScores@{getHighScores}}
+\index{getHighScores@{getHighScores}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{getHighScores()}{getHighScores()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a6c4e0261d12f9d9b464821e908087818} 
+const std\+::vector$<$ int $>$ \& logic\+::\+Score\+::get\+High\+Scores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geef highscores. 
+
+\begin{DoxyReturn}{Returns}
+Vector met highscores 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_score_ae21918c3785f32c4f378a0fe7bbd72ba}\index{logic::Score@{logic::Score}!ghostEaten@{ghostEaten}}
+\index{ghostEaten@{ghostEaten}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{ghostEaten()}{ghostEaten()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_ae21918c3785f32c4f378a0fe7bbd72ba} 
+void logic\+::\+Score\+::ghost\+Eaten (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verhoog score bij ghost eat. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_score_ae21918c3785f32c4f378a0fe7bbd72ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_score_a4d488d55efe8d41b975a291bc4e6ce05}\index{logic::Score@{logic::Score}!levelCleared@{levelCleared}}
+\index{levelCleared@{levelCleared}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{levelCleared()}{levelCleared()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a4d488d55efe8d41b975a291bc4e6ce05} 
+void logic\+::\+Score\+::level\+Cleared (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verhoog score bij level clear. 
+
+\Hypertarget{classlogic_1_1_score_acf433ec3b062f9a66f0c6f217f43a5cc}\index{logic::Score@{logic::Score}!loadHighScores@{loadHighScores}}
+\index{loadHighScores@{loadHighScores}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{loadHighScores()}{loadHighScores()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_acf433ec3b062f9a66f0c6f217f43a5cc} 
+void logic\+::\+Score\+::load\+High\+Scores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Laad highscores. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_score_acf433ec3b062f9a66f0c6f217f43a5cc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_score_a35f9225c87dc158549860ef70779a809}\index{logic::Score@{logic::Score}!onNotify@{onNotify}}
+\index{onNotify@{onNotify}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{onNotify()}{onNotify()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a35f9225c87dc158549860ef70779a809} 
+void logic\+::\+Score\+::on\+Notify (\begin{DoxyParamCaption}\item[{int}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Ontvangt events van entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \doxylink{namespacelogic_ad45732bab433bbec0ccac6512cce65ee}{Event} id \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd}{logic\+::\+Observer}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_score_a35f9225c87dc158549860ef70779a809_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_score_a5688a6f9357b6ae9713a43b68ca65e25}\index{logic::Score@{logic::Score}!pacmanDied@{pacmanDied}}
+\index{pacmanDied@{pacmanDied}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{pacmanDied()}{pacmanDied()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a5688a6f9357b6ae9713a43b68ca65e25} 
+void logic\+::\+Score\+::pacman\+Died (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verlaag score bij pacman death. 
+
+\Hypertarget{classlogic_1_1_score_abfe81d67316d38f433458fae86b81f25}\index{logic::Score@{logic::Score}!saveHighScores@{saveHighScores}}
+\index{saveHighScores@{saveHighScores}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{saveHighScores()}{saveHighScores()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_abfe81d67316d38f433458fae86b81f25} 
+void logic\+::\+Score\+::save\+High\+Scores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sla highscores op. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_score_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_score_a06068060eafe473298b04688349f46cd}\index{logic::Score@{logic::Score}!currentScore@{currentScore}}
+\index{currentScore@{currentScore}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{currentScore}{currentScore}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a06068060eafe473298b04688349f46cd} 
+int logic\+::\+Score\+::current\+Score = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_score_a78521d8b8449c49a7033381eea107de5}\index{logic::Score@{logic::Score}!highScores@{highScores}}
+\index{highScores@{highScores}!logic::Score@{logic::Score}}
+\doxysubsubsection{\texorpdfstring{highScores}{highScores}}
+{\footnotesize\ttfamily \label{classlogic_1_1_score_a78521d8b8449c49a7033381eea107de5} 
+std\+::vector$<$int$>$ logic\+::\+Score\+::high\+Scores\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_score_8h}{Score.\+h}}\item 
+logic/src/\mbox{\hyperlink{_score_8cpp}{Score.\+cpp}}\end{DoxyCompactItemize}

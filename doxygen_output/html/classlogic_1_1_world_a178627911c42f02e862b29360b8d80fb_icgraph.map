@@ -1,0 +1,5 @@
+<map id="logic::World::isAlignedWithGrid" name="logic::World::isAlignedWithGrid">
+<area shape="rect" id="Node000001" title="Kijkt of we dicht bij het midden van een tile zitten." alt="" coords="229,5,430,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#a90df2f1328df5609a7cec7df87a6c65d" title="Kijkt of we op een kruispunt zitten." alt="" coords="5,5,181,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,19,181,21,181,16,216,19"/>
+</map>

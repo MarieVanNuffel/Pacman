@@ -1,0 +1,220 @@
+\doxysection{view\+::Ghost\+View Class Reference}
+\hypertarget{classview_1_1_ghost_view}{}\label{classview_1_1_ghost_view}\index{view::GhostView@{view::GhostView}}
+
+
+View voor de ghosts.  
+
+
+
+
+{\ttfamily \#include $<$Ghost\+View.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Ghost\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classview_1_1_ghost_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Ghost\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classview_1_1_ghost_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_ghost_view_a01f23f09aad7a359aa2bca756a4038fa}{Ghost\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{logic\+::\+Ghost\+Model}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_ghost_view_a92ccaf4fe530f48cb28e0ec3d61c3ba4}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&cam) override
+\begin{DoxyCompactList}\small\item\em Tekent de ghosts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_ghost_view_a596a4158b718206f71d4ff316b3290de}{update\+Sprite}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update van animatie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{Entity\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Basis klasse voor entit views. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}{\texorpdfstring{$\sim$}{\string~}\+Entity\+View}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classview_1_1_ghost_view_a342739bd7a613febfe7e0a7d27fcd5e3}{anim\+Timer}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classview_1_1_ghost_view_ab561cb17c3dbedd24322b0aa59879cec}{frame\+Time}} = 0.\+15
+\item 
+int \mbox{\hyperlink{classview_1_1_ghost_view_a259db8377e9b2e76784ac281439988b6}{frame\+Index}} = 0
+\item 
+int \mbox{\hyperlink{classview_1_1_ghost_view_a132a2097b23dec405278154f95a510fc}{frames}} \mbox{[}\mbox{\hyperlink{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8}{NUM\+\_\+\+FRAMES}}\mbox{]} = \{0, 16\}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{logic\+::\+Ghost\+Model}} $>$ \mbox{\hyperlink{classview_1_1_ghost_view_af99f1c647716532743ecc91d2a548314}{model}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{classview_1_1_ghost_view_aabf98937e751086d5413787ee49fbb39}{sprite}}
+\item 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{classview_1_1_ghost_view_a2919d37bdabfa9861cf172bca0c1c2ba}{texture\+Ptr}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{logic\+::\+Direction}} \mbox{\hyperlink{classview_1_1_ghost_view_afa202599e6b7af4414ce0e723f10fcba}{last\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}{logic\+::\+Direction\+::\+RIGHT}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \mbox{\hyperlink{classview_1_1_ghost_view_a7f8609cbb66bde2e7a6cf67d52a0b4a7}{FRAME\+\_\+\+SIZE}} = 16
+\item 
+static constexpr int \mbox{\hyperlink{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8}{NUM\+\_\+\+FRAMES}} = 2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ \mbox{\hyperlink{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}{model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View voor de ghosts. 
+
+\doxylink{classview_1_1_ghost_view}{Ghost\+View} tekent en animeert de ghosts op basis van hun richting, type en modus (chase, fear, eaten). 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_ghost_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_ghost_view_a01f23f09aad7a359aa2bca756a4038fa}\index{view::GhostView@{view::GhostView}!GhostView@{GhostView}}
+\index{GhostView@{GhostView}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{GhostView()}{GhostView()}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a01f23f09aad7a359aa2bca756a4038fa} 
+view\+::\+Ghost\+View\+::\+Ghost\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_ghost_model}{logic\+::\+Ghost\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Ghost\+Model \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_ghost_view_a01f23f09aad7a359aa2bca756a4038fa_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_ghost_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_ghost_view_a92ccaf4fe530f48cb28e0ec3d61c3ba4}\index{view::GhostView@{view::GhostView}!draw@{draw}}
+\index{draw@{draw}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a92ccaf4fe530f48cb28e0ec3d61c3ba4} 
+void view\+::\+Ghost\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tekent de ghosts. 
+
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}{view\+::\+Entity\+View}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_ghost_view_a92ccaf4fe530f48cb28e0ec3d61c3ba4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_ghost_view_a596a4158b718206f71d4ff316b3290de}\index{view::GhostView@{view::GhostView}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a596a4158b718206f71d4ff316b3290de} 
+void view\+::\+Ghost\+View\+::update\+Sprite (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update van animatie. 
+
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}{view\+::\+Entity\+View}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_ghost_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_ghost_view_a342739bd7a613febfe7e0a7d27fcd5e3}\index{view::GhostView@{view::GhostView}!animTimer@{animTimer}}
+\index{animTimer@{animTimer}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{animTimer}{animTimer}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a342739bd7a613febfe7e0a7d27fcd5e3} 
+double view\+::\+Ghost\+View\+::anim\+Timer = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_a7f8609cbb66bde2e7a6cf67d52a0b4a7}\index{view::GhostView@{view::GhostView}!FRAME\_SIZE@{FRAME\_SIZE}}
+\index{FRAME\_SIZE@{FRAME\_SIZE}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_SIZE}{FRAME\_SIZE}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a7f8609cbb66bde2e7a6cf67d52a0b4a7} 
+int view\+::\+Ghost\+View\+::\+FRAME\+\_\+\+SIZE = 16\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_a259db8377e9b2e76784ac281439988b6}\index{view::GhostView@{view::GhostView}!frameIndex@{frameIndex}}
+\index{frameIndex@{frameIndex}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{frameIndex}{frameIndex}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a259db8377e9b2e76784ac281439988b6} 
+int view\+::\+Ghost\+View\+::frame\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_a132a2097b23dec405278154f95a510fc}\index{view::GhostView@{view::GhostView}!frames@{frames}}
+\index{frames@{frames}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{frames}{frames}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a132a2097b23dec405278154f95a510fc} 
+int view\+::\+Ghost\+View\+::frames\mbox{[}\mbox{\hyperlink{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8}{NUM\+\_\+\+FRAMES}}\mbox{]} = \{0, 16\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_ab561cb17c3dbedd24322b0aa59879cec}\index{view::GhostView@{view::GhostView}!frameTime@{frameTime}}
+\index{frameTime@{frameTime}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{frameTime}{frameTime}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_ab561cb17c3dbedd24322b0aa59879cec} 
+double view\+::\+Ghost\+View\+::frame\+Time = 0.\+15\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_afa202599e6b7af4414ce0e723f10fcba}\index{view::GhostView@{view::GhostView}!lastDirection@{lastDirection}}
+\index{lastDirection@{lastDirection}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{lastDirection}{lastDirection}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_afa202599e6b7af4414ce0e723f10fcba} 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{logic\+::\+Direction}} view\+::\+Ghost\+View\+::last\+Direction = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}{logic\+::\+Direction\+::\+RIGHT}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_af99f1c647716532743ecc91d2a548314}\index{view::GhostView@{view::GhostView}!model@{model}}
+\index{model@{model}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_af99f1c647716532743ecc91d2a548314} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_ghost_model}{logic\+::\+Ghost\+Model}}$>$ view\+::\+Ghost\+View\+::model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8}\index{view::GhostView@{view::GhostView}!NUM\_FRAMES@{NUM\_FRAMES}}
+\index{NUM\_FRAMES@{NUM\_FRAMES}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{NUM\_FRAMES}{NUM\_FRAMES}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_ac3be7b692d8dc04cc6137bffc654d0b8} 
+int view\+::\+Ghost\+View\+::\+NUM\+\_\+\+FRAMES = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_aabf98937e751086d5413787ee49fbb39}\index{view::GhostView@{view::GhostView}!sprite@{sprite}}
+\index{sprite@{sprite}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{sprite}{sprite}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_aabf98937e751086d5413787ee49fbb39} 
+sf\+::\+Sprite view\+::\+Ghost\+View\+::sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_ghost_view_a2919d37bdabfa9861cf172bca0c1c2ba}\index{view::GhostView@{view::GhostView}!texturePtr@{texturePtr}}
+\index{texturePtr@{texturePtr}!view::GhostView@{view::GhostView}}
+\doxysubsubsection{\texorpdfstring{texturePtr}{texturePtr}}
+{\footnotesize\ttfamily \label{classview_1_1_ghost_view_a2919d37bdabfa9861cf172bca0c1c2ba} 
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ view\+::\+Ghost\+View\+::texture\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_ghost_view_8h}{Ghost\+View.\+h}}\item 
+view/src/\mbox{\hyperlink{_ghost_view_8cpp}{Ghost\+View.\+cpp}}\end{DoxyCompactItemize}

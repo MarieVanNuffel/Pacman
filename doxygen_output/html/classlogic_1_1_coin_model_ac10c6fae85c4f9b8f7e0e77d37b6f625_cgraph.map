@@ -1,0 +1,5 @@
+<map id="logic::CoinModel::reset" name="logic::CoinModel::reset">
+<area shape="rect" id="Node000001" title="Reset coin, notify obervers." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_subject.html#ada4a6d23acb1b26fb8da600ef7ceb862" title="Notify de observers." alt="" coords="209,5,349,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,16,196,19,190,19,161,21"/>
+</map>

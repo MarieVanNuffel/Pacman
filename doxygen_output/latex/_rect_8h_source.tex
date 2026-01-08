@@ -1,0 +1,31 @@
+\doxysection{Rect.\+h}
+\hypertarget{_rect_8h_source}{}\label{_rect_8h_source}\index{logic/include/logic/Rect.h@{logic/include/logic/Rect.h}}
+\mbox{\hyperlink{_rect_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 28/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMANGAME\_RECT\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMANGAME\_RECT\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlogic_1_1_rect}{Rect}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structlogic_1_1_rect_a5792f6b3702878d995fec39db4fb1a71}{x}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structlogic_1_1_rect_ad501fd9f6cd893dad90adae4832c979b}{y}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structlogic_1_1_rect_aee3ca4e7429063e3b6be706a9c5b3f45}{w}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structlogic_1_1_rect_af95264646772dc48f32b1adfa1dbc541}{h}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structlogic_1_1_rect_a57d300e138ecb47a63410f127c716137}{intersects}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structlogic_1_1_rect}{Rect}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(\mbox{\hyperlink{structlogic_1_1_rect_a5792f6b3702878d995fec39db4fb1a71}{x}}\ +\ \mbox{\hyperlink{structlogic_1_1_rect_aee3ca4e7429063e3b6be706a9c5b3f45}{w}}/2\ <\ other.\mbox{\hyperlink{structlogic_1_1_rect_a5792f6b3702878d995fec39db4fb1a71}{x}}\ -\/\ other.\mbox{\hyperlink{structlogic_1_1_rect_aee3ca4e7429063e3b6be706a9c5b3f45}{w}}/2\ ||\ other.\mbox{\hyperlink{structlogic_1_1_rect_a5792f6b3702878d995fec39db4fb1a71}{x}}\ +\ other.\mbox{\hyperlink{structlogic_1_1_rect_aee3ca4e7429063e3b6be706a9c5b3f45}{w}}/2\ <\ \mbox{\hyperlink{structlogic_1_1_rect_a5792f6b3702878d995fec39db4fb1a71}{x}}\ -\/\ \mbox{\hyperlink{structlogic_1_1_rect_aee3ca4e7429063e3b6be706a9c5b3f45}{w}}/2\ ||}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlogic_1_1_rect_ad501fd9f6cd893dad90adae4832c979b}{y}}\ +\ \mbox{\hyperlink{structlogic_1_1_rect_af95264646772dc48f32b1adfa1dbc541}{h}}/2\ <\ other.\mbox{\hyperlink{structlogic_1_1_rect_ad501fd9f6cd893dad90adae4832c979b}{y}}\ -\/\ other.\mbox{\hyperlink{structlogic_1_1_rect_af95264646772dc48f32b1adfa1dbc541}{h}}/2\ ||\ other.\mbox{\hyperlink{structlogic_1_1_rect_ad501fd9f6cd893dad90adae4832c979b}{y}}\ +\ other.\mbox{\hyperlink{structlogic_1_1_rect_af95264646772dc48f32b1adfa1dbc541}{h}}/2\ <\ \mbox{\hyperlink{structlogic_1_1_rect_ad501fd9f6cd893dad90adae4832c979b}{y}}\ -\/\ \mbox{\hyperlink{structlogic_1_1_rect_af95264646772dc48f32b1adfa1dbc541}{h}}/2);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \};}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMANGAME\_RECT\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,226 @@
+\doxysection{view\+::Fruit\+View Class Reference}
+\hypertarget{classview_1_1_fruit_view}{}\label{classview_1_1_fruit_view}\index{view::FruitView@{view::FruitView}}
+
+
+View voor het fruit.  
+
+
+
+
+{\ttfamily \#include $<$Fruit\+View.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Fruit\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{classview_1_1_fruit_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Fruit\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{classview_1_1_fruit_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_fruit_view_ae0987de3e0ccc37aafc39d2ded567ac1}{Fruit\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{logic\+::\+Fruit\+Model}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_fruit_view_a43c0223fd46979d7bc264581174356b0}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&cam) override
+\begin{DoxyCompactList}\small\item\em Tekent het fruit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_fruit_view_a879747583a951197cedeb13b070ce695}{update\+Sprite}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update sprite, maar is beweegt niet dus doet niets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_fruit_view_af37d8d770f81763af7b470fb9949ac8c}{on\+Notify}} (int event) override
+\begin{DoxyCompactList}\small\item\em Ontvangt events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{Entity\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Basis klasse voor entit views. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}{\texorpdfstring{$\sim$}{\string~}\+Entity\+View}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e}{\texorpdfstring{$\sim$}{\string~}\+Observer}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{logic\+::\+Fruit\+Model}} $>$ \mbox{\hyperlink{classview_1_1_fruit_view_a35689d8d1135e008ee81b3c455cd5556}{model}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{classview_1_1_fruit_view_ab10d89b17d13bb983e21abe9e5896583}{sprite}}
+\item 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{classview_1_1_fruit_view_a8b4bbb416775d3ce662309d526e8748d}{texture\+Ptr}}
+\item 
+double \mbox{\hyperlink{classview_1_1_fruit_view_a5aadc62cba44e16ced2fef056fce13cb}{anim\+Time}} = 0.\+0
+\item 
+bool \mbox{\hyperlink{classview_1_1_fruit_view_a2c0d1820f4ef7ebc85fd35936a96f76a}{visible}} = true
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \mbox{\hyperlink{classview_1_1_fruit_view_a89c713f926e307f17e0e6b17c4472778}{FRAME\+\_\+\+SIZE}} = 15
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ \mbox{\hyperlink{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}{model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View voor het fruit. 
+
+Tekent het fruit en reageert op events via observer. 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_fruit_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_fruit_view_ae0987de3e0ccc37aafc39d2ded567ac1}\index{view::FruitView@{view::FruitView}!FruitView@{FruitView}}
+\index{FruitView@{FruitView}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{FruitView()}{FruitView()}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_ae0987de3e0ccc37aafc39d2ded567ac1} 
+view\+::\+Fruit\+View\+::\+Fruit\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_fruit_model}{logic\+::\+Fruit\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Fruit model \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_fruit_view_ae0987de3e0ccc37aafc39d2ded567ac1_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_fruit_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_fruit_view_a43c0223fd46979d7bc264581174356b0}\index{view::FruitView@{view::FruitView}!draw@{draw}}
+\index{draw@{draw}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a43c0223fd46979d7bc264581174356b0} 
+void view\+::\+Fruit\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tekent het fruit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win} & Render\+Window \\
+\hline
+{\em cam} & \doxylink{classview_1_1_camera}{Camera} voor world to pixel conversie \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}{view\+::\+Entity\+View}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_fruit_view_a43c0223fd46979d7bc264581174356b0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_fruit_view_af37d8d770f81763af7b470fb9949ac8c}\index{view::FruitView@{view::FruitView}!onNotify@{onNotify}}
+\index{onNotify@{onNotify}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{onNotify()}{onNotify()}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_af37d8d770f81763af7b470fb9949ac8c} 
+void view\+::\+Fruit\+View\+::on\+Notify (\begin{DoxyParamCaption}\item[{int}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Ontvangt events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Event code \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd}{logic\+::\+Observer}}.
+
+\Hypertarget{classview_1_1_fruit_view_a879747583a951197cedeb13b070ce695}\index{view::FruitView@{view::FruitView}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a879747583a951197cedeb13b070ce695} 
+void view\+::\+Fruit\+View\+::update\+Sprite (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update sprite, maar is beweegt niet dus doet niets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}{view\+::\+Entity\+View}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_fruit_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_fruit_view_a5aadc62cba44e16ced2fef056fce13cb}\index{view::FruitView@{view::FruitView}!animTime@{animTime}}
+\index{animTime@{animTime}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{animTime}{animTime}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a5aadc62cba44e16ced2fef056fce13cb} 
+double view\+::\+Fruit\+View\+::anim\+Time = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_fruit_view_a89c713f926e307f17e0e6b17c4472778}\index{view::FruitView@{view::FruitView}!FRAME\_SIZE@{FRAME\_SIZE}}
+\index{FRAME\_SIZE@{FRAME\_SIZE}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_SIZE}{FRAME\_SIZE}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a89c713f926e307f17e0e6b17c4472778} 
+int view\+::\+Fruit\+View\+::\+FRAME\+\_\+\+SIZE = 15\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_fruit_view_a35689d8d1135e008ee81b3c455cd5556}\index{view::FruitView@{view::FruitView}!model@{model}}
+\index{model@{model}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a35689d8d1135e008ee81b3c455cd5556} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_fruit_model}{logic\+::\+Fruit\+Model}}$>$ view\+::\+Fruit\+View\+::model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_fruit_view_ab10d89b17d13bb983e21abe9e5896583}\index{view::FruitView@{view::FruitView}!sprite@{sprite}}
+\index{sprite@{sprite}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{sprite}{sprite}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_ab10d89b17d13bb983e21abe9e5896583} 
+sf\+::\+Sprite view\+::\+Fruit\+View\+::sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_fruit_view_a8b4bbb416775d3ce662309d526e8748d}\index{view::FruitView@{view::FruitView}!texturePtr@{texturePtr}}
+\index{texturePtr@{texturePtr}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{texturePtr}{texturePtr}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a8b4bbb416775d3ce662309d526e8748d} 
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ view\+::\+Fruit\+View\+::texture\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_fruit_view_a2c0d1820f4ef7ebc85fd35936a96f76a}\index{view::FruitView@{view::FruitView}!visible@{visible}}
+\index{visible@{visible}!view::FruitView@{view::FruitView}}
+\doxysubsubsection{\texorpdfstring{visible}{visible}}
+{\footnotesize\ttfamily \label{classview_1_1_fruit_view_a2c0d1820f4ef7ebc85fd35936a96f76a} 
+bool view\+::\+Fruit\+View\+::visible = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_fruit_view_8h}{Fruit\+View.\+h}}\item 
+view/src/\mbox{\hyperlink{_fruit_view_8cpp}{Fruit\+View.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="view::PacmanView::draw" name="view::PacmanView::draw">
+<area shape="rect" id="Node000001" title="Tekent de ghosts." alt="" coords="5,43,175,69"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_camera.html#ab451ba874f10de29d4fb15b157f630dd" title="Converteert genormalizeerde center coords naar pixels." alt="" coords="240,5,413,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,43,227,39,222,40,176,48"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_camera.html#ab67a9099042d076405a5e07c590ac3d3" title="Converteert tile coördinaten naar genormalizeerd [&#45;1, 1]." alt="" coords="223,72,430,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,64,210,70,205,71,175,69"/>
+</map>

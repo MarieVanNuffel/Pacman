@@ -1,0 +1,7 @@
+<map id="logic::World::isIntersection" name="logic::World::isIntersection">
+<area shape="rect" id="Node000001" title="Kijkt of we op een kruispunt zitten." alt="" coords="5,31,181,57"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#a6d4ae97fcab89634edd693a1403c2331" title="Geeft alle mogelijke richtingen waar een entity naar kan bewegen." alt="" coords="229,5,430,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,32,216,31,211,32,181,37"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_world.html#a178627911c42f02e862b29360b8d80fb" title="Kijkt of we dicht bij het midden van een tile zitten." alt="" coords="229,56,430,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,51,216,57,211,57,181,56"/>
+</map>

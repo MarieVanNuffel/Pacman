@@ -1,0 +1,5 @@
+<map id="logic::Stopwatch::instance" name="logic::Stopwatch::instance">
+<area shape="rect" id="Node000001" title="Verkrijg singleton instantie." alt="" coords="5,5,181,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_stopwatch.html#acfa4878fe013f7a3d9c02372d80ff985" title="Constructor, initieert starttijd." alt="" coords="229,5,417,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,16,216,19,210,19,181,21"/>
+</map>

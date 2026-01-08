@@ -1,0 +1,17 @@
+<map id="logic::GhostModel::update" name="logic::GhostModel::update">
+<area shape="rect" id="Node000001" title="Update de ghost per tick." alt="" coords="5,124,140,167"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_random.html#a2175c5108f032d690cc108a1a01093e1" title="Geeft singleton instance terug." alt="" coords="188,5,350,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,122,133,81,186,42,201,36,197,40,189,46,136,85,95,125"/>
+<area shape="rect" id="Node000004" href="$namespacelogic.html#abb4ec8dd2b66d5dc4cf9e9cb1346b0eb" title=" " alt="" coords="210,56,328,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="118,121,187,92,208,87,204,90,189,97,121,126"/>
+<area shape="rect" id="Node000005" href="$namespacelogic.html#a503b347fc77121a5b716e2585805c1a1" title=" " alt="" coords="211,107,328,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="139,134,198,128,193,131,141,139"/>
+<area shape="rect" id="Node000006" href="$classlogic_1_1_random.html#a413aea8c3ec6f339a54a4410933373b1" title="Genereert random int in [a, b]." alt="" coords="193,157,346,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="140,151,179,158,175,160,141,157"/>
+<area shape="rect" id="Node000007" href="$classlogic_1_1_ghost_model.html#a41d17323c715018cb5df19576e068b84" title="Zet de mode van de ghost." alt="" coords="202,208,336,251"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="123,165,189,194,203,201,198,202,187,198,122,170"/>
+<area shape="rect" id="Node000008" href="$classlogic_1_1_entity.html#a54aac7176a9ddc5ea15b78a4c2d6c197" title="Zet entity positie." alt="" coords="188,275,351,301"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="90,165,133,213,159,239,189,260,200,269,195,268,186,265,156,243,129,217,89,170"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_random.html#a7b4f4508c119caeadb94ad569e864015" title="Private constructor voor singleton." alt="" coords="399,5,561,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,16,386,18,381,20,352,21"/>
+</map>

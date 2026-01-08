@@ -6,19 +6,19 @@
 #include "logic/Events.h"
 
 namespace logic {
-    void CoinModel::collect() {
-        if (!collected) {
-            collected = true;
-            notify(static_cast<int>(logic::Event::COIN_COLLECTED)); // stuur event
-        }
-    }
-
-    void CoinModel::reset() {
-        collected = false;
-        notify(static_cast<int>(logic::Event::COIN_RESPAWN)); // stuur event
-    }
-
-    void CoinModel::update(double dt) {
-        // statisch, dus niet nodig
-    }
+void CoinModel::collect() {
+  if (!collected) {
+    collected = true;
+    notify(static_cast<int>(logic::Event::COIN_COLLECTED)); // stuur event
+  }
 }
+
+void CoinModel::reset() {
+  collected = false;
+  notify(static_cast<int>(logic::Event::COIN_RESPAWN)); // stuur event
+}
+
+void CoinModel::update(double dt) {
+  // statisch, dus niet nodig
+}
+} // namespace logic

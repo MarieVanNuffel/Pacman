@@ -5,99 +5,95 @@
 #ifndef PACMANGAME_SCORE_H
 #define PACMANGAME_SCORE_H
 
-
 #pragma once
 
-
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "Observer.h"
 
 namespace logic {
 
-    /**
-     * @brief Beheert score en highscores
-     *
-     * Reageert op game events via observer.
-     */
-    class Score : public Observer {
-    public:
-        /**
-         * @brief Constructor
-         *
-         * Laadt highscores.
-         */
-        Score();
+/**
+ * @brief Beheert score en highscores
+ *
+ * Reageert op game events via observer.
+ */
+class Score : public Observer {
+public:
+  /**
+   * @brief Constructor
+   *
+   * Laadt highscores.
+   */
+  Score();
 
-        // Score aanpassingen
+  // Score aanpassingen
 
-        /**
-         * @brief Verwerkt coin score afhankelijk van tijd tussen collected coins
-         * @param timeSinceLastCoin Tijd sinds vorige coin
-         */
-        void coinCollected(double timeSinceLastCoin);
+  /**
+   * @brief Verwerkt coin score afhankelijk van tijd tussen collected coins
+   * @param timeSinceLastCoin Tijd sinds vorige coin
+   */
+  void coinCollected(double timeSinceLastCoin);
 
-        /**
-         * @brief Verhoog score bij level clear
-         */
-        void levelCleared();
+  /**
+   * @brief Verhoog score bij level clear
+   */
+  void levelCleared();
 
-        /**
-         * @brief Verhoog score bij fruit
-         */
-        void fruitCollected();
+  /**
+   * @brief Verhoog score bij fruit
+   */
+  void fruitCollected();
 
-        /**
-         * @brief Verhoog score bij ghost eat
-         */
-        void ghostEaten();
+  /**
+   * @brief Verhoog score bij ghost eat
+   */
+  void ghostEaten();
 
-        /**
-         * @brief Verlaag score bij pacman death
-         */
-        void pacmanDied();
+  /**
+   * @brief Verlaag score bij pacman death
+   */
+  void pacmanDied();
 
+  // Observer
+  /**
+   * @brief Ontvangt events van entities
+   * @param event Event id
+   */
+  void onNotify(int event) override;
 
-        // Observer
-        /**
-         * @brief Ontvangt events van entities
-         * @param event Event id
-         */
-        void onNotify(int event) override;
+  // Highscores
+  /**
+   * @brief Laad highscores
+   */
+  void loadHighScores();
 
+  /**
+   * @brief Sla highscores op
+   */
+  void saveHighScores();
 
-        // Highscores
-        /**
-         * @brief Laad highscores
-         */
-        void loadHighScores();
+  // Getters
 
-        /**
-         * @brief Sla highscores op
-         */
-        void saveHighScores();
+  /**
+   * @brief Geef huidige score
+   * @return Current score
+   */
+  [[nodiscard]] int getCurrentScore() const { return currentScore; }
 
-        // Getters
+  /**
+   * @brief Geef highscores
+   * @return Vector met highscores
+   */
+  [[nodiscard]] const std::vector<int> &getHighScores() const {
+    return highScores;
+  }
 
-        /**
-         * @brief Geef huidige score
-         * @return Current score
-         */
-        [[nodiscard]] int getCurrentScore() const { return currentScore; }
+private:
+  int currentScore = 0;
+  std::vector<int> highScores;
+};
+} // namespace logic
 
-        /**
-         * @brief Geef highscores
-         * @return Vector met highscores
-         */
-        [[nodiscard]] const std::vector<int>& getHighScores() const { return highScores; }
-
-    private:
-        int currentScore = 0;
-        std::vector<int> highScores;
-    };
-}
-
-
-
-#endif //PACMANGAME_SCORE_H
+#endif // PACMANGAME_SCORE_H

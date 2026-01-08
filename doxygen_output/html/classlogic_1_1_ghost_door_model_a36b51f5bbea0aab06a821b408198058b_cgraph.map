@@ -1,0 +1,7 @@
+<map id="logic::GhostDoorModel::aboveGhostDoor" name="logic::GhostDoorModel::aboveGhostDoor">
+<area shape="rect" id="Node000001" title="Check of ghost boven de deur zit." alt="" coords="5,23,160,65"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_entity.html#aa22d1a41d16c41978abdd622c96dbca3" title="Geeft x&#45;positie terug." alt="" coords="208,5,333,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,31,195,28,190,30,161,36"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_entity.html#a9de0b62562ab971b9c103937a2af5b11" title="Geeft y&#45;positie terug." alt="" coords="208,56,333,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,52,195,59,190,59,160,57"/>
+</map>

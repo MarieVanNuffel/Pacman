@@ -1,0 +1,19 @@
+<map id="logic/include/logic/PacManModel.h" name="logic/include/logic/PacManModel.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="81,5,206,48"/>
+<area shape="rect" id="Node000002" href="$_entity_8h.html" title=" " alt="" coords="111,96,176,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,46,146,81,141,79,142,51"/>
+<area shape="rect" id="Node000004" href="$_direction_8h.html" title=" " alt="" coords="5,171,90,197"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="131,47,100,97,64,159,60,156,96,95,128,51"/>
+<area shape="rect" id="Node000006" href="$_subject_8h.html" title=" " alt="" coords="247,96,323,123"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="180,46,252,87,247,89,180,51"/>
+<area shape="rect" id="Node000003" href="$_rect_8h.html" title=" " alt="" coords="113,171,174,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,121,146,156,141,154,142,125"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="129,122,78,163,75,159,124,124"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="197,171,266,197"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="160,121,207,161,202,161,158,126"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="278,122,251,160,248,156,273,124"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="400,171,458,197"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="311,121,393,163,387,163,309,126"/>
+<area shape="rect" id="Node000008" href="$_observer_8h.html" title=" " alt="" coords="290,171,376,197"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="294,121,319,158,314,157,292,126"/>
+</map>

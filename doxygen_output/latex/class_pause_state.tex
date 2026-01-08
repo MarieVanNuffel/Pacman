@@ -1,0 +1,209 @@
+\doxysection{Pause\+State Class Reference}
+\hypertarget{class_pause_state}{}\label{class_pause_state}\index{PauseState@{PauseState}}
+
+
+{\ttfamily \#include $<$Pause\+State.\+h$>$}
+
+
+
+Inheritance diagram for Pause\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_pause_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Pause\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_pause_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_pause_state_aacd913ef628c2fa8ddca116f9025042d}{Pause\+State}} (sf\+::\+Render\+Window \&\mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm, const sf\+::\+Texture \&last\+Frame)
+\item 
+\mbox{\hyperlink{class_pause_state_ae5a3b69a608af737429665f094585183}{\texorpdfstring{$\sim$}{\string~}\+Pause\+State}} () override=default
+\item 
+void \mbox{\hyperlink{class_pause_state_ac887f1f5ac067fffb0bcd120291e1939}{update}} (float dt) override
+\item 
+void \mbox{\hyperlink{class_pause_state_a75c23f306a72b82b344007b55dea4ba4}{render}} () override
+\item 
+void \mbox{\hyperlink{class_pause_state_aa9c9561350433bd4014cd4fd7d62478f}{handle\+Input}} (sf\+::\+Event \&ev) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_state_a783d52422b544bb226e13de8ecfd6ad6}{\texorpdfstring{$\sim$}{\string~}\+State}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_pause_state_a3177e660178ca279b00ba968a5a05078}{draw\+Pause\+Screen}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Texture \mbox{\hyperlink{class_pause_state_a01c55dd4d855c910ced920a0b5b122fc}{background\+Texture}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_pause_state_ab1abc47dd774f85aa551d558eab30642}{background\+Sprite}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_pause_state_a7e699cd94bb3ffc82cf1aca16dd97248}{pause\+Overlay}}
+\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_pause_state_a31c6a39d9af48bacc85c8760d6a4f518}{blur\+Background}}
+\item 
+sf\+::\+Font \mbox{\hyperlink{class_pause_state_a000eb9e3260de9d26ecf01ef742094e7}{font}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_pause_state_ae9d6cf288fc2c31c36fabc7f50a7b7ed}{pause\+Text}}
+\item 
+float \mbox{\hyperlink{class_pause_state_a2a5d6e5dd2a326dcfab3c0396ce8e0cb}{ui\+Scale}} = 1.\+0f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_state_abb2174cacbef3c06ff9e37235f6ca52e}{State}} (sf\+::\+Render\+Window \&win, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}
+\item 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}} \& \mbox{\hyperlink{class_state_a2c50419dbdfc3618c7a8f6e7d11e7e7a}{state\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_pause_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_pause_state_aacd913ef628c2fa8ddca116f9025042d}\index{PauseState@{PauseState}!PauseState@{PauseState}}
+\index{PauseState@{PauseState}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{PauseState()}{PauseState()}}
+{\footnotesize\ttfamily \label{class_pause_state_aacd913ef628c2fa8ddca116f9025042d} 
+Pause\+State\+::\+Pause\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{\mbox{\hyperlink{class_state_manager}{State\+Manager}} \&}]{sm}{, }\item[{const sf\+::\+Texture \&}]{last\+Frame}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{class_pause_state_aacd913ef628c2fa8ddca116f9025042d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_pause_state_ae5a3b69a608af737429665f094585183}\index{PauseState@{PauseState}!````~PauseState@{\texorpdfstring{$\sim$}{\string~}PauseState}}
+\index{````~PauseState@{\texorpdfstring{$\sim$}{\string~}PauseState}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PauseState()}{\string~PauseState()}}
+{\footnotesize\ttfamily \label{class_pause_state_ae5a3b69a608af737429665f094585183} 
+Pause\+State\+::\texorpdfstring{$\sim$}{\string~}\+Pause\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_pause_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_pause_state_a3177e660178ca279b00ba968a5a05078}\index{PauseState@{PauseState}!drawPauseScreen@{drawPauseScreen}}
+\index{drawPauseScreen@{drawPauseScreen}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{drawPauseScreen()}{drawPauseScreen()}}
+{\footnotesize\ttfamily \label{class_pause_state_a3177e660178ca279b00ba968a5a05078} 
+void Pause\+State\+::draw\+Pause\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_pause_state_a3177e660178ca279b00ba968a5a05078_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_pause_state_aa9c9561350433bd4014cd4fd7d62478f}\index{PauseState@{PauseState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_pause_state_aa9c9561350433bd4014cd4fd7d62478f} 
+void Pause\+State\+::handle\+Input (\begin{DoxyParamCaption}\item[{sf\+::\+Event \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_state_af019c528ad5d846fd968f767ebcbc17b}{State}}.
+
+\Hypertarget{class_pause_state_a75c23f306a72b82b344007b55dea4ba4}\index{PauseState@{PauseState}!render@{render}}
+\index{render@{render}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_pause_state_a75c23f306a72b82b344007b55dea4ba4} 
+void Pause\+State\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_state_a71f5105bcdc39481be7684d853fe12e9}{State}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_pause_state_a75c23f306a72b82b344007b55dea4ba4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_pause_state_ac887f1f5ac067fffb0bcd120291e1939}\index{PauseState@{PauseState}!update@{update}}
+\index{update@{update}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_pause_state_ac887f1f5ac067fffb0bcd120291e1939} 
+void Pause\+State\+::update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_state_a07b507523aaffc4cf78f3dd3174a68ea}{State}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_pause_state_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_pause_state_ab1abc47dd774f85aa551d558eab30642}\index{PauseState@{PauseState}!backgroundSprite@{backgroundSprite}}
+\index{backgroundSprite@{backgroundSprite}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{backgroundSprite}{backgroundSprite}}
+{\footnotesize\ttfamily \label{class_pause_state_ab1abc47dd774f85aa551d558eab30642} 
+sf\+::\+Sprite Pause\+State\+::background\+Sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_pause_state_a01c55dd4d855c910ced920a0b5b122fc}\index{PauseState@{PauseState}!backgroundTexture@{backgroundTexture}}
+\index{backgroundTexture@{backgroundTexture}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{backgroundTexture}{backgroundTexture}}
+{\footnotesize\ttfamily \label{class_pause_state_a01c55dd4d855c910ced920a0b5b122fc} 
+sf\+::\+Texture Pause\+State\+::background\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_pause_state_a31c6a39d9af48bacc85c8760d6a4f518}\index{PauseState@{PauseState}!blurBackground@{blurBackground}}
+\index{blurBackground@{blurBackground}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{blurBackground}{blurBackground}}
+{\footnotesize\ttfamily \label{class_pause_state_a31c6a39d9af48bacc85c8760d6a4f518} 
+sf\+::\+Rectangle\+Shape Pause\+State\+::blur\+Background\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_pause_state_a000eb9e3260de9d26ecf01ef742094e7}\index{PauseState@{PauseState}!font@{font}}
+\index{font@{font}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_pause_state_a000eb9e3260de9d26ecf01ef742094e7} 
+sf\+::\+Font Pause\+State\+::font\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_pause_state_a7e699cd94bb3ffc82cf1aca16dd97248}\index{PauseState@{PauseState}!pauseOverlay@{pauseOverlay}}
+\index{pauseOverlay@{pauseOverlay}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{pauseOverlay}{pauseOverlay}}
+{\footnotesize\ttfamily \label{class_pause_state_a7e699cd94bb3ffc82cf1aca16dd97248} 
+sf\+::\+Rectangle\+Shape Pause\+State\+::pause\+Overlay\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_pause_state_ae9d6cf288fc2c31c36fabc7f50a7b7ed}\index{PauseState@{PauseState}!pauseText@{pauseText}}
+\index{pauseText@{pauseText}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{pauseText}{pauseText}}
+{\footnotesize\ttfamily \label{class_pause_state_ae9d6cf288fc2c31c36fabc7f50a7b7ed} 
+sf\+::\+Text Pause\+State\+::pause\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_pause_state_a2a5d6e5dd2a326dcfab3c0396ce8e0cb}\index{PauseState@{PauseState}!uiScale@{uiScale}}
+\index{uiScale@{uiScale}!PauseState@{PauseState}}
+\doxysubsubsection{\texorpdfstring{uiScale}{uiScale}}
+{\footnotesize\ttfamily \label{class_pause_state_a2a5d6e5dd2a326dcfab3c0396ce8e0cb} 
+float Pause\+State\+::ui\+Scale = 1.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_pause_state_8h}{Pause\+State.\+h}}\item 
+view/src/\mbox{\hyperlink{_pause_state_8cpp}{Pause\+State.\+cpp}}\end{DoxyCompactItemize}

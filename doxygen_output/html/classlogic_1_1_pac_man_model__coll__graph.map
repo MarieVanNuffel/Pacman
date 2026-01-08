@@ -1,0 +1,9 @@
+<map id="logic::PacManModel" name="logic::PacManModel">
+<area shape="rect" id="Node000001" title="Model voor de pacman entity." alt="" coords="63,619,255,923"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_entity.html" title="Basis class voor alle entities." alt="" coords="5,139,152,571"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,583,132,619,127,619,123,588"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="14,5,144,91"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,103,81,139,76,139,79,108"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_subject.html" title="Subject in het Observer&#45;patroon." alt="" coords="176,299,304,411"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="228,423,191,620,186,618,225,428"/>
+</map>

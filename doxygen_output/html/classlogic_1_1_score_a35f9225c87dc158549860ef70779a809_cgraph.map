@@ -1,0 +1,7 @@
+<map id="logic::Score::onNotify" name="logic::Score::onNotify">
+<area shape="rect" id="Node000001" title="Ontvangt events van entities." alt="" coords="5,31,153,57"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_score.html#a62502ec775216ff1caa6f8a18dd96526" title="Verhoog score bij fruit." alt="" coords="201,5,376,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,32,188,31,183,32,154,38"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_score.html#ae21918c3785f32c4f378a0fe7bbd72ba" title="Verhoog score bij ghost eat." alt="" coords="206,56,370,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="153,50,193,57,188,58,153,56"/>
+</map>

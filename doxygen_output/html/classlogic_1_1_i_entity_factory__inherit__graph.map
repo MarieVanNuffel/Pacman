@@ -1,0 +1,5 @@
+<map id="logic::IEntityFactory" name="logic::IEntityFactory">
+<area shape="rect" id="Node000001" title="Abstract factory voor entity views." alt="" coords="14,5,174,181"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_concrete_entity_factory.html" title="Concrete implementatie van IEntityFactory." alt="" coords="5,229,182,384"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,194,96,230,91,229,93,199"/>
+</map>

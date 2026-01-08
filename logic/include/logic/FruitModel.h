@@ -12,34 +12,34 @@
 
 namespace logic {
 
-    /**
-     * @brief Model voor een fruit entity
-     */
-    class FruitModel : public Entity, public Subject {
-    public:
-        FruitModel() = default;
-        ~FruitModel() override = default;
+/**
+ * @brief Model voor een fruit entity
+ */
+class FruitModel : public Entity, public Subject {
+public:
+  FruitModel() = default;
+  ~FruitModel() override = default;
 
-        /**
-         * @brief fruit als gegeten en notify observers
-         */
-        void collect();
+  /**
+   * @brief fruit als gegeten en notify observers
+   */
+  void collect();
 
-        /**
-         * @brief Update functie
-         *
-         * Fruit is statisch, dus doet niets
-         * @param dt Delta time
-         */
-        void update(double dt) override;
+  /**
+   * @brief Update functie
+   *
+   * Fruit is statisch, dus doet niets
+   * @param dt Delta time
+   */
+  void update(double dt) override;
 
-        /**
-         * @brief Reset fruit originele staat, notify observers
-         */
-        void reset();
+  /**
+   * @brief Reset fruit originele staat, notify observers
+   */
+  void reset();
 
-        bool collected = false;
-    };
-}
+  bool collected = false;
+};
+} // namespace logic
 
-#endif //PACMANGAME_FRUIT_H
+#endif // PACMANGAME_FRUIT_H

@@ -1,0 +1,280 @@
+\doxysection{view\+::Camera Class Reference}
+\hypertarget{classview_1_1_camera}{}\label{classview_1_1_camera}\index{view::Camera@{view::Camera}}
+
+
+\doxylink{classview_1_1_camera}{Camera} voor world naar pixels om te zetten.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+
+
+Collaboration diagram for view\+::Camera\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classview_1_1_camera__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_camera_a917c6017e5708394d6dcabecc6c0fae4}{Camera}} (int pixel\+Width, int pixel\+Height, int mazeW, int mazeH)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{classview_1_1_camera_a63f66f8616c1fa6068aa068242ffc4e6}{world\+To\+Pixels}} (double x, double y, double w, double h) const
+\begin{DoxyCompactList}\small\item\em Converteert world coördinaten naar pixel rectangle. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classview_1_1_camera_ab67a9099042d076405a5e07c590ac3d3}{tile\+To\+Normalized}} (double tileX, double tileY) const
+\begin{DoxyCompactList}\small\item\em Converteert tile coördinaten naar genormalizeerd \mbox{[}-\/1, 1\mbox{]}. \end{DoxyCompactList}\item 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{classview_1_1_camera_af6d275419142b6b12888f5b6a6c1448c}{normalized\+To\+Tile}} (double nx, double ny) const
+\begin{DoxyCompactList}\small\item\em Converteert genormalizeerde coords terug naar tile coördinaten. \end{DoxyCompactList}\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{classview_1_1_camera_ab451ba874f10de29d4fb15b157f630dd}{normalized\+To\+Pixels}} (double nx, double ny, double w\+Frac, double h\+Frac) const
+\begin{DoxyCompactList}\small\item\em Converteert genormalizeerde center coords naar pixels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classview_1_1_camera_a9b13e8c731bc67b9e567f84bbb56efb4}{maze\+Width}}
+\item 
+int \mbox{\hyperlink{classview_1_1_camera_a1f3927a78e521f1b8780ac78ded26a64}{maze\+Height}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classview_1_1_camera_a1e5f0b611155994aad44fa248123015c}{recompute}} ()
+\begin{DoxyCompactList}\small\item\em Herberekent cell size en offsets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classview_1_1_camera_a481198f76b759d23f40fbacc5cb21a5d}{w\+Pixels}}
+\item 
+int \mbox{\hyperlink{classview_1_1_camera_ad1dfadf605cf783f73e2342fa0dccf9c}{h\+Pixels}}
+\item 
+float \mbox{\hyperlink{classview_1_1_camera_a128394c1e74f32c9a11abda029a78d22}{cell\+Size}}
+\item 
+float \mbox{\hyperlink{classview_1_1_camera_ade3eed3735fb1dedac6459e9aae2a167}{offsetX}}
+\item 
+float \mbox{\hyperlink{classview_1_1_camera_a4be46e32a6a06ebb2d0233c0f076497f}{offsetY}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classview_1_1_camera}{Camera} voor world naar pixels om te zetten. 
+
+Zet maze-\/coördinaten om naar pixelcoördinaten en centreert de maze in het venster. 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_camera_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_camera_a917c6017e5708394d6dcabecc6c0fae4}\index{view::Camera@{view::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a917c6017e5708394d6dcabecc6c0fae4} 
+view\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{int}]{pixel\+Width}{, }\item[{int}]{pixel\+Height}{, }\item[{int}]{mazeW}{, }\item[{int}]{mazeH}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pixel\+Width} & Breedte van window in pixels \\
+\hline
+{\em pixel\+Height} & Hoogte van window in pixels \\
+\hline
+{\em mazeW} & Breedte van de maze (tiles) \\
+\hline
+{\em mazeH} & Hoogte van de maze (tiles) \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_camera_a917c6017e5708394d6dcabecc6c0fae4_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_camera_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_camera_ab451ba874f10de29d4fb15b157f630dd}\index{view::Camera@{view::Camera}!normalizedToPixels@{normalizedToPixels}}
+\index{normalizedToPixels@{normalizedToPixels}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{normalizedToPixels()}{normalizedToPixels()}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_ab451ba874f10de29d4fb15b157f630dd} 
+sf\+::\+Float\+Rect view\+::\+Camera\+::normalized\+To\+Pixels (\begin{DoxyParamCaption}\item[{double}]{nx}{, }\item[{double}]{ny}{, }\item[{double}]{w\+Frac}{, }\item[{double}]{h\+Frac}{}\end{DoxyParamCaption}) const}
+
+
+
+Converteert genormalizeerde center coords naar pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & genormalizeerde center X in \mbox{[}-\/1,1\mbox{]} \\
+\hline
+{\em ny} & genormalizeerde center Y in \mbox{[}-\/1,1\mbox{]} \\
+\hline
+{\em w\+Frac} & breedte als fractie van de totale maze breedte \\
+\hline
+{\em h\+Frac} & hoogte als fractie van de totale maze hoogte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+sf\+::\+Float\+Rect (top-\/left x,y en width,height in pixels) 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_camera_ab451ba874f10de29d4fb15b157f630dd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_camera_af6d275419142b6b12888f5b6a6c1448c}\index{view::Camera@{view::Camera}!normalizedToTile@{normalizedToTile}}
+\index{normalizedToTile@{normalizedToTile}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{normalizedToTile()}{normalizedToTile()}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_af6d275419142b6b12888f5b6a6c1448c} 
+std\+::pair$<$ double, double $>$ view\+::\+Camera\+::normalized\+To\+Tile (\begin{DoxyParamCaption}\item[{double}]{nx}{, }\item[{double}]{ny}{}\end{DoxyParamCaption}) const}
+
+
+
+Converteert genormalizeerde coords terug naar tile coördinaten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & genormalizeerde X in \mbox{[}-\/1,1\mbox{]} \\
+\hline
+{\em ny} & genormalizeerde Y in \mbox{[}-\/1,1\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair (tileX, tileY) (centered, fractional) 
+\end{DoxyReturn}
+\Hypertarget{classview_1_1_camera_a1e5f0b611155994aad44fa248123015c}\index{view::Camera@{view::Camera}!recompute@{recompute}}
+\index{recompute@{recompute}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{recompute()}{recompute()}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a1e5f0b611155994aad44fa248123015c} 
+void view\+::\+Camera\+::recompute (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Herberekent cell size en offsets. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_camera_a1e5f0b611155994aad44fa248123015c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_camera_ab67a9099042d076405a5e07c590ac3d3}\index{view::Camera@{view::Camera}!tileToNormalized@{tileToNormalized}}
+\index{tileToNormalized@{tileToNormalized}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{tileToNormalized()}{tileToNormalized()}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_ab67a9099042d076405a5e07c590ac3d3} 
+std\+::pair$<$ double, double $>$ view\+::\+Camera\+::tile\+To\+Normalized (\begin{DoxyParamCaption}\item[{double}]{tileX}{, }\item[{double}]{tileY}{}\end{DoxyParamCaption}) const}
+
+
+
+Converteert tile coördinaten naar genormalizeerd \mbox{[}-\/1, 1\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tileX} & X tile positie \\
+\hline
+{\em tileY} & Y tile positie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair (nx, ny) in \mbox{[}-\/1,1\mbox{]} 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_camera_ab67a9099042d076405a5e07c590ac3d3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_camera_a63f66f8616c1fa6068aa068242ffc4e6}\index{view::Camera@{view::Camera}!worldToPixels@{worldToPixels}}
+\index{worldToPixels@{worldToPixels}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{worldToPixels()}{worldToPixels()}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a63f66f8616c1fa6068aa068242ffc4e6} 
+sf\+::\+Float\+Rect view\+::\+Camera\+::world\+To\+Pixels (\begin{DoxyParamCaption}\item[{double}]{x}{, }\item[{double}]{y}{, }\item[{double}]{w}{, }\item[{double}]{h}{}\end{DoxyParamCaption}) const}
+
+
+
+Converteert world coördinaten naar pixel rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X-\/positie in world units \\
+\hline
+{\em y} & Y-\/positie in world units \\
+\hline
+{\em w} & Breedte in world units \\
+\hline
+{\em h} & Hoogte in world units \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SFML Rect in pixelcoördinaten 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_camera_a63f66f8616c1fa6068aa068242ffc4e6_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_camera_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_camera_a128394c1e74f32c9a11abda029a78d22}\index{view::Camera@{view::Camera}!cellSize@{cellSize}}
+\index{cellSize@{cellSize}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{cellSize}{cellSize}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a128394c1e74f32c9a11abda029a78d22} 
+float view\+::\+Camera\+::cell\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_camera_ad1dfadf605cf783f73e2342fa0dccf9c}\index{view::Camera@{view::Camera}!hPixels@{hPixels}}
+\index{hPixels@{hPixels}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{hPixels}{hPixels}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_ad1dfadf605cf783f73e2342fa0dccf9c} 
+int view\+::\+Camera\+::h\+Pixels\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_camera_a1f3927a78e521f1b8780ac78ded26a64}\index{view::Camera@{view::Camera}!mazeHeight@{mazeHeight}}
+\index{mazeHeight@{mazeHeight}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{mazeHeight}{mazeHeight}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a1f3927a78e521f1b8780ac78ded26a64} 
+int view\+::\+Camera\+::maze\+Height}
+
+\Hypertarget{classview_1_1_camera_a9b13e8c731bc67b9e567f84bbb56efb4}\index{view::Camera@{view::Camera}!mazeWidth@{mazeWidth}}
+\index{mazeWidth@{mazeWidth}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{mazeWidth}{mazeWidth}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a9b13e8c731bc67b9e567f84bbb56efb4} 
+int view\+::\+Camera\+::maze\+Width}
+
+\Hypertarget{classview_1_1_camera_ade3eed3735fb1dedac6459e9aae2a167}\index{view::Camera@{view::Camera}!offsetX@{offsetX}}
+\index{offsetX@{offsetX}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{offsetX}{offsetX}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_ade3eed3735fb1dedac6459e9aae2a167} 
+float view\+::\+Camera\+::offsetX\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_camera_a4be46e32a6a06ebb2d0233c0f076497f}\index{view::Camera@{view::Camera}!offsetY@{offsetY}}
+\index{offsetY@{offsetY}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{offsetY}{offsetY}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a4be46e32a6a06ebb2d0233c0f076497f} 
+float view\+::\+Camera\+::offsetY\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_camera_a481198f76b759d23f40fbacc5cb21a5d}\index{view::Camera@{view::Camera}!wPixels@{wPixels}}
+\index{wPixels@{wPixels}!view::Camera@{view::Camera}}
+\doxysubsubsection{\texorpdfstring{wPixels}{wPixels}}
+{\footnotesize\ttfamily \label{classview_1_1_camera_a481198f76b759d23f40fbacc5cb21a5d} 
+int view\+::\+Camera\+::w\+Pixels\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_camera_8h}{Camera.\+h}}\item 
+view/src/\mbox{\hyperlink{_camera_8cpp}{Camera.\+cpp}}\end{DoxyCompactItemize}

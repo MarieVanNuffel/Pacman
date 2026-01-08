@@ -1,0 +1,96 @@
+\doxysection{view\+::Maze\+View Class Reference}
+\hypertarget{classview_1_1_maze_view}{}\label{classview_1_1_maze_view}\index{view::MazeView@{view::MazeView}}
+
+
+View van de maze.  
+
+
+
+
+{\ttfamily \#include $<$Maze\+View.\+h$>$}
+
+
+
+Collaboration diagram for view\+::Maze\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classview_1_1_maze_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_maze_view_a521c1b616f8221351eb13173fe13bbb4}{Maze\+View}} (const \mbox{\hyperlink{classlogic_1_1_world}{logic\+::\+World}} \texorpdfstring{$\ast$}{*}w)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_maze_view_aef354f2485d361d17b2ee534624f9a46}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&cam)
+\begin{DoxyCompactList}\small\item\em Tekent de volledige maze volgens de vector dat in world is gegeven. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classlogic_1_1_world}{logic\+::\+World}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classview_1_1_maze_view_a3bdd5961ab2824fc4c3c9967cb2a5013}{world}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View van de maze. 
+
+\doxylink{classview_1_1_maze_view}{Maze\+View} tekent de maze dat in world is gegeven 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_maze_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_maze_view_a521c1b616f8221351eb13173fe13bbb4}\index{view::MazeView@{view::MazeView}!MazeView@{MazeView}}
+\index{MazeView@{MazeView}!view::MazeView@{view::MazeView}}
+\doxysubsubsection{\texorpdfstring{MazeView()}{MazeView()}}
+{\footnotesize\ttfamily \label{classview_1_1_maze_view_a521c1b616f8221351eb13173fe13bbb4} 
+view\+::\+Maze\+View\+::\+Maze\+View (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classlogic_1_1_world}{logic\+::\+World}} \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & Pointer naar de World die de maze bevat \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_maze_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_maze_view_aef354f2485d361d17b2ee534624f9a46}\index{view::MazeView@{view::MazeView}!draw@{draw}}
+\index{draw@{draw}!view::MazeView@{view::MazeView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_maze_view_aef354f2485d361d17b2ee534624f9a46} 
+void view\+::\+Maze\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{cam}{}\end{DoxyParamCaption})}
+
+
+
+Tekent de volledige maze volgens de vector dat in world is gegeven. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_maze_view_aef354f2485d361d17b2ee534624f9a46_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_maze_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_maze_view_a3bdd5961ab2824fc4c3c9967cb2a5013}\index{view::MazeView@{view::MazeView}!world@{world}}
+\index{world@{world}!view::MazeView@{view::MazeView}}
+\doxysubsubsection{\texorpdfstring{world}{world}}
+{\footnotesize\ttfamily \label{classview_1_1_maze_view_a3bdd5961ab2824fc4c3c9967cb2a5013} 
+const \mbox{\hyperlink{classlogic_1_1_world}{logic\+::\+World}}\texorpdfstring{$\ast$}{*} view\+::\+Maze\+View\+::world\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_maze_view_8h}{Maze\+View.\+h}}\item 
+view/src/\mbox{\hyperlink{_maze_view_8cpp}{Maze\+View.\+cpp}}\end{DoxyCompactItemize}

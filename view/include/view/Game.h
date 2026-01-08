@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include "view/StateManager.h"
 #include "view/LevelState.h"
+#include "view/StateManager.h"
+#include <SFML/Graphics.hpp>
 
 /**
  * @brief Hoofdklasse van het spel
@@ -18,32 +18,30 @@
  */
 class Game {
 public:
+  /**
+   * @brief Constructor
+   *
+   * Initialiseert het venster en zet de start state naar menu state.
+   */
+  Game();
 
-    /**
-     * @brief Constructor
-     *
-     * Initialiseert het venster en zet de start state naar menu state.
-     */
-    Game();
+  /**
+   * @brief Start de game loop
+   *
+   * Verwerkt input, update logica en rendert de actieve state.
+   */
+  void run();
 
-    /**
-     * @brief Start de game loop
-     *
-     * Verwerkt input, update logica en rendert de actieve state.
-     */
-    void run();
+  /**
+   * @brief Wisselt tussen fullscreen en klein window
+   */
+  void toggleFullscreen();
 
-    /**
-     * @brief Wisselt tussen fullscreen en klein window
-     */
-    void toggleFullscreen();
 private:
-    sf::RenderWindow window;
-    StateManager stateManager;
+  sf::RenderWindow window;
+  StateManager stateManager;
 
-    bool isFullscreen;
+  bool isFullscreen;
 };
 
-
-
-#endif //PACMAN_GAME_H
+#endif // PACMAN_GAME_H

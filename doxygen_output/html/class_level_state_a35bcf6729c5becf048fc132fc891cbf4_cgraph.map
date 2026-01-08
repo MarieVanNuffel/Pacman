@@ -1,0 +1,9 @@
+<map id="LevelState::render" name="LevelState::render">
+<area shape="rect" id="Node000001" title="Render maze, entities en UI." alt="" coords="5,56,133,83"/>
+<area shape="rect" id="Node000002" href="$class_level_state.html#aa0fda83d04089e649f019fc9197c3276" title="tekent entities" alt="" coords="181,5,344,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,53,197,35,192,38,124,58"/>
+<area shape="rect" id="Node000003" href="$class_level_state.html#a6e6880138537677a5b557aefa655e9cc" title="Tekent de maze." alt="" coords="187,56,338,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,67,174,69,169,70,134,72"/>
+<area shape="rect" id="Node000004" href="$class_level_state.html#a965b6328244e0f54c976c5dc09059748" title="Tekent de UI." alt="" coords="196,107,329,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="123,81,197,101,192,103,123,86"/>
+</map>

@@ -1,0 +1,224 @@
+\doxysection{State\+Manager Class Reference}
+\hypertarget{class_state_manager}{}\label{class_state_manager}\index{StateManager@{StateManager}}
+
+
+Beheert de verschillende states van het spel.  
+
+
+
+
+{\ttfamily \#include $<$State\+Manager.\+h$>$}
+
+
+
+Collaboration diagram for State\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{class_state_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_state_manager_a6ed055420aceb73c4e6d10317790df13}{State\+Manager}} (sf\+::\+Render\+Window \&win)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_state_manager_ad6bf067afa8e7a9fe75e159281315f46}{push\+State}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_state}{State}} $>$ state)
+\begin{DoxyCompactList}\small\item\em Voegt een nieuwe state toe bovenop de stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_state_manager_a1c5f8c0609e74fb2346b6b7f5930bb38}{pop\+State}} ()
+\begin{DoxyCompactList}\small\item\em Verwijdert de huidige state van de stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_state_manager_a95545a47074149d846208ae0bdcebda1}{change\+State}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_state}{State}} $>$ state)
+\begin{DoxyCompactList}\small\item\em Vervangt alle huidige states door één nieuwe state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_state_manager_aa50e98ec2045a2d33069d30586ddd020}{handle\+Input}} (sf\+::\+Event \&ev)
+\begin{DoxyCompactList}\small\item\em Geeft input door aan de actieve state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_state_manager_a36a23344f2570810b42b588a18d0e44e}{update}} (double dt)
+\begin{DoxyCompactList}\small\item\em Update de actieve state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_state_manager_a02e78818db709db59df3a46a4bb47ddf}{render}} ()
+\begin{DoxyCompactList}\small\item\em Rendert de actieve state. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{logic\+::\+Score}} $>$ \mbox{\hyperlink{class_state_manager_a0e1b54d536a1d4192d5434ec3db31749}{get\+Score}} () const
+\begin{DoxyCompactList}\small\item\em Geeft toegang tot de score. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{class_state_manager_aadf7ac7839164e798305603b4b2a8172}{window}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_state}{State}} $>$ $>$ \mbox{\hyperlink{class_state_manager_a64e7ac91bdb486cf109ea3d23c560250}{states}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{logic\+::\+Score}} $>$ \mbox{\hyperlink{class_state_manager_a3bfc37133cceac3180ec95945f53db18}{score}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Beheert de verschillende states van het spel. 
+
+De \doxylink{class_state_manager}{State\+Manager} houdt een stack bij van de states (menustate, levelstate, pausestate) De bovenste state is de actieve state.
+
+Er is 1 score zodat de score behouden blijft bij statewissels. 
+
+\label{doc-constructors}
+\Hypertarget{class_state_manager_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_state_manager_a6ed055420aceb73c4e6d10317790df13}\index{StateManager@{StateManager}!StateManager@{StateManager}}
+\index{StateManager@{StateManager}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{StateManager()}{StateManager()}}
+{\footnotesize\ttfamily \label{class_state_manager_a6ed055420aceb73c4e6d10317790df13} 
+State\+Manager\+::\+State\+Manager (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win} & Referentie naar het SFML renderwindow \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_state_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_state_manager_a95545a47074149d846208ae0bdcebda1}\index{StateManager@{StateManager}!changeState@{changeState}}
+\index{changeState@{changeState}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{changeState()}{changeState()}}
+{\footnotesize\ttfamily \label{class_state_manager_a95545a47074149d846208ae0bdcebda1} 
+void State\+Manager\+::change\+State (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_state}{State}} $>$}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Vervangt alle huidige states door één nieuwe state. 
+
+Wordt gebruikt bij de overgangen, zoals\+:
+\begin{DoxyItemize}
+\item van menu naar level
+\item van game over terug naar menu
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & De nieuwe actieve state \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_state_manager_a95545a47074149d846208ae0bdcebda1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_state_manager_a0e1b54d536a1d4192d5434ec3db31749}\index{StateManager@{StateManager}!getScore@{getScore}}
+\index{getScore@{getScore}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{getScore()}{getScore()}}
+{\footnotesize\ttfamily \label{class_state_manager_a0e1b54d536a1d4192d5434ec3db31749} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_score}{logic\+::\+Score}} $>$ State\+Manager\+::get\+Score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft toegang tot de score. 
+
+\begin{DoxyReturn}{Returns}
+std\+::shared\+\_\+ptr naar Score 
+\end{DoxyReturn}
+\Hypertarget{class_state_manager_aa50e98ec2045a2d33069d30586ddd020}\index{StateManager@{StateManager}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_state_manager_aa50e98ec2045a2d33069d30586ddd020} 
+void State\+Manager\+::handle\+Input (\begin{DoxyParamCaption}\item[{sf\+::\+Event \&}]{ev}{}\end{DoxyParamCaption})}
+
+
+
+Geeft input door aan de actieve state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ev} & SFML event \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_state_manager_a1c5f8c0609e74fb2346b6b7f5930bb38}\index{StateManager@{StateManager}!popState@{popState}}
+\index{popState@{popState}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{popState()}{popState()}}
+{\footnotesize\ttfamily \label{class_state_manager_a1c5f8c0609e74fb2346b6b7f5930bb38} 
+void State\+Manager\+::pop\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verwijdert de huidige state van de stack. 
+
+De vorige state wordt opnieuw actief als die bestaat. \Hypertarget{class_state_manager_ad6bf067afa8e7a9fe75e159281315f46}\index{StateManager@{StateManager}!pushState@{pushState}}
+\index{pushState@{pushState}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{pushState()}{pushState()}}
+{\footnotesize\ttfamily \label{class_state_manager_ad6bf067afa8e7a9fe75e159281315f46} 
+void State\+Manager\+::push\+State (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_state}{State}} $>$}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Voegt een nieuwe state toe bovenop de stack. 
+
+De huidige state blijft bestaan, maar wordt gepauzeerd.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & De nieuwe state die actief wordt \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_state_manager_ad6bf067afa8e7a9fe75e159281315f46_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_state_manager_a02e78818db709db59df3a46a4bb47ddf}\index{StateManager@{StateManager}!render@{render}}
+\index{render@{render}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_state_manager_a02e78818db709db59df3a46a4bb47ddf} 
+void State\+Manager\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Rendert de actieve state. 
+
+\Hypertarget{class_state_manager_a36a23344f2570810b42b588a18d0e44e}\index{StateManager@{StateManager}!update@{update}}
+\index{update@{update}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_state_manager_a36a23344f2570810b42b588a18d0e44e} 
+void State\+Manager\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Update de actieve state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time (tijd sinds vorige frame) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_state_manager_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_state_manager_a3bfc37133cceac3180ec95945f53db18}\index{StateManager@{StateManager}!score@{score}}
+\index{score@{score}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily \label{class_state_manager_a3bfc37133cceac3180ec95945f53db18} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_score}{logic\+::\+Score}}$>$ State\+Manager\+::score\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_state_manager_a64e7ac91bdb486cf109ea3d23c560250}\index{StateManager@{StateManager}!states@{states}}
+\index{states@{states}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{states}{states}}
+{\footnotesize\ttfamily \label{class_state_manager_a64e7ac91bdb486cf109ea3d23c560250} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_state}{State}}$>$ $>$ State\+Manager\+::states\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_state_manager_aadf7ac7839164e798305603b4b2a8172}\index{StateManager@{StateManager}!window@{window}}
+\index{window@{window}!StateManager@{StateManager}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{class_state_manager_aadf7ac7839164e798305603b4b2a8172} 
+sf\+::\+Render\+Window\& State\+Manager\+::window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_state_manager_8h}{State\+Manager.\+h}}\item 
+view/src/\mbox{\hyperlink{_state_manager_8cpp}{State\+Manager.\+cpp}}\end{DoxyCompactItemize}

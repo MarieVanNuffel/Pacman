@@ -1,0 +1,5 @@
+<map id="LevelState" name="LevelState">
+<area shape="rect" id="Node000001" title="Game state voor een level." alt="" coords="5,229,125,661"/>
+<area shape="rect" id="Node000002" href="$class_state.html" title=" " alt="" coords="14,5,117,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,194,68,230,63,229,65,199"/>
+</map>

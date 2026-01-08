@@ -12,39 +12,35 @@
 
 namespace logic {
 
-    /**
-     * @brief Model voor een coin
-     */
-    class CoinModel : public Entity, public Subject {
-    public:
-        CoinModel() = default;
-        ~CoinModel() override = default;
+/**
+ * @brief Model voor een coin
+ */
+class CoinModel : public Entity, public Subject {
+public:
+  CoinModel() = default;
+  ~CoinModel() override = default;
 
-        /**
-         * @brief Coin is opgepakt, notify observers
-         */
-        void collect();
+  /**
+   * @brief Coin is opgepakt, notify observers
+   */
+  void collect();
 
-        /**
-         * @brief Update functie
-         *
-         * Coin is statisch, dus doet niets
-         * @param dt Delta time
-         */
-        void update(double dt) override;
+  /**
+   * @brief Update functie
+   *
+   * Coin is statisch, dus doet niets
+   * @param dt Delta time
+   */
+  void update(double dt) override;
 
-        /**
-         * @brief Reset coin, notify obervers
-         */
-        void reset();
+  /**
+   * @brief Reset coin, notify obervers
+   */
+  void reset();
 
-        bool collected = false;
-    };
+  bool collected = false;
+};
 
-}
+} // namespace logic
 
-
-
-
-
-#endif //PACMANGAME_COIN_H
+#endif // PACMANGAME_COIN_H

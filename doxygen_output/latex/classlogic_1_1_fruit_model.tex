@@ -1,0 +1,194 @@
+\doxysection{logic\+::Fruit\+Model Class Reference}
+\hypertarget{classlogic_1_1_fruit_model}{}\label{classlogic_1_1_fruit_model}\index{logic::FruitModel@{logic::FruitModel}}
+
+
+Model voor een fruit entity.  
+
+
+
+
+{\ttfamily \#include $<$Fruit\+Model.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Fruit\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_fruit_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Fruit\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_fruit_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_fruit_model_a9ee6bb6c74880114c3a9b320052e2e79}{Fruit\+Model}} ()=default
+\item 
+\mbox{\hyperlink{classlogic_1_1_fruit_model_a29cf309c8388dcc657f72519255b9c8f}{\texorpdfstring{$\sim$}{\string~}\+Fruit\+Model}} () override=default
+\item 
+void \mbox{\hyperlink{classlogic_1_1_fruit_model_a60649f67dee23f273f9fc2083ad33292}{collect}} ()
+\begin{DoxyCompactList}\small\item\em fruit als gegeten en notify observers \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_fruit_model_a3f37dfb4b3403072b1061327f75fe3f9}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update functie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_fruit_model_af7407c8f37028e8c331674d4fcac2e91}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reset fruit originele staat, notify observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3}{getX}} () const
+\begin{DoxyCompactList}\small\item\em Geeft x-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11}{getY}} () const
+\begin{DoxyCompactList}\small\item\em Geeft y-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd}{getW}} () const
+\begin{DoxyCompactList}\small\item\em Geeft breedte terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a344cc207ef296314760d99817843645e}{getH}} () const
+\begin{DoxyCompactList}\small\item\em Geeft hoogte terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft huidige direction terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337}{get\+Desired\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft desired direction terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478}{set\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet huidige direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlogic_1_1_rect}{Rect}} \mbox{\hyperlink{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20}{get\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Geeft bounding box terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Geeft movement speed terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197}{set\+Position}} (double nx, double ny)
+\begin{DoxyCompactList}\small\item\em Zet entity positie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_subject}{logic\+::\+Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2}{add\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Voeg een observer toe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec}{remove\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Verwijder een observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862}{notify}} (int event)
+\begin{DoxyCompactList}\small\item\em Notify de observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classlogic_1_1_fruit_model_acca0a001238d0d39439df92aa351a6a5}{collected}} = false
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}{x}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}{y}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}} = 0.\+1
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a}{h}} = 0.\+1
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5}{direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}{desired\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}{speed}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Model voor een fruit entity. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_fruit_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_fruit_model_a9ee6bb6c74880114c3a9b320052e2e79}\index{logic::FruitModel@{logic::FruitModel}!FruitModel@{FruitModel}}
+\index{FruitModel@{FruitModel}!logic::FruitModel@{logic::FruitModel}}
+\doxysubsubsection{\texorpdfstring{FruitModel()}{FruitModel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_fruit_model_a9ee6bb6c74880114c3a9b320052e2e79} 
+logic\+::\+Fruit\+Model\+::\+Fruit\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classlogic_1_1_fruit_model_a29cf309c8388dcc657f72519255b9c8f}\index{logic::FruitModel@{logic::FruitModel}!````~FruitModel@{\texorpdfstring{$\sim$}{\string~}FruitModel}}
+\index{````~FruitModel@{\texorpdfstring{$\sim$}{\string~}FruitModel}!logic::FruitModel@{logic::FruitModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FruitModel()}{\string~FruitModel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_fruit_model_a29cf309c8388dcc657f72519255b9c8f} 
+logic\+::\+Fruit\+Model\+::\texorpdfstring{$\sim$}{\string~}\+Fruit\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_fruit_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_fruit_model_a60649f67dee23f273f9fc2083ad33292}\index{logic::FruitModel@{logic::FruitModel}!collect@{collect}}
+\index{collect@{collect}!logic::FruitModel@{logic::FruitModel}}
+\doxysubsubsection{\texorpdfstring{collect()}{collect()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_fruit_model_a60649f67dee23f273f9fc2083ad33292} 
+void logic\+::\+Fruit\+Model\+::collect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+fruit als gegeten en notify observers 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classlogic_1_1_fruit_model_a60649f67dee23f273f9fc2083ad33292_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_fruit_model_af7407c8f37028e8c331674d4fcac2e91}\index{logic::FruitModel@{logic::FruitModel}!reset@{reset}}
+\index{reset@{reset}!logic::FruitModel@{logic::FruitModel}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_fruit_model_af7407c8f37028e8c331674d4fcac2e91} 
+void logic\+::\+Fruit\+Model\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reset fruit originele staat, notify observers. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classlogic_1_1_fruit_model_af7407c8f37028e8c331674d4fcac2e91_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_fruit_model_a3f37dfb4b3403072b1061327f75fe3f9}\index{logic::FruitModel@{logic::FruitModel}!update@{update}}
+\index{update@{update}!logic::FruitModel@{logic::FruitModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_fruit_model_a3f37dfb4b3403072b1061327f75fe3f9} 
+void logic\+::\+Fruit\+Model\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update functie. 
+
+Fruit is statisch, dus doet niets 
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15}{logic\+::\+Entity}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_fruit_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_fruit_model_acca0a001238d0d39439df92aa351a6a5}\index{logic::FruitModel@{logic::FruitModel}!collected@{collected}}
+\index{collected@{collected}!logic::FruitModel@{logic::FruitModel}}
+\doxysubsubsection{\texorpdfstring{collected}{collected}}
+{\footnotesize\ttfamily \label{classlogic_1_1_fruit_model_acca0a001238d0d39439df92aa351a6a5} 
+bool logic\+::\+Fruit\+Model\+::collected = false}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_fruit_model_8h}{Fruit\+Model.\+h}}\item 
+logic/src/\mbox{\hyperlink{_fruit_model_8cpp}{Fruit\+Model.\+cpp}}\end{DoxyCompactItemize}

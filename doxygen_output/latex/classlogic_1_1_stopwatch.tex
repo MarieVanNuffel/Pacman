@@ -1,0 +1,136 @@
+\doxysection{logic\+::Stopwatch Class Reference}
+\hypertarget{classlogic_1_1_stopwatch}{}\label{classlogic_1_1_stopwatch}\index{logic::Stopwatch@{logic::Stopwatch}}
+
+
+Singleton stopwatch voor delta-\/time berekening.  
+
+
+
+
+{\ttfamily \#include $<$Stopwatch.\+h$>$}
+
+
+
+Collaboration diagram for logic\+::Stopwatch\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{classlogic_1_1_stopwatch__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_stopwatch_a541067dbe85c2ba20b1302ad48ddd378}{tick}} ()
+\begin{DoxyCompactList}\small\item\em Bereken tijd sinds laatste tick. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}{Stopwatch}} \& \mbox{\hyperlink{classlogic_1_1_stopwatch_ad6b0077eb3f00985e3337d486a3f00aa}{instance}} ()
+\begin{DoxyCompactList}\small\item\em Verkrijg singleton instantie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}{Stopwatch}} ()
+\begin{DoxyCompactList}\small\item\em Constructor, initieert starttijd. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classlogic_1_1_stopwatch_a75267b4bac83b9c01608bef92d63ae31}{last}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton stopwatch voor delta-\/time berekening. 
+
+Kan gebruikt worden om frame-\/timing bij te houden. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_stopwatch_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}\index{logic::Stopwatch@{logic::Stopwatch}!Stopwatch@{Stopwatch}}
+\index{Stopwatch@{Stopwatch}!logic::Stopwatch@{logic::Stopwatch}}
+\doxysubsubsection{\texorpdfstring{Stopwatch()}{Stopwatch()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985} 
+logic\+::\+Stopwatch\+::\+Stopwatch (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Constructor, initieert starttijd. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_stopwatch_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_stopwatch_ad6b0077eb3f00985e3337d486a3f00aa}\index{logic::Stopwatch@{logic::Stopwatch}!instance@{instance}}
+\index{instance@{instance}!logic::Stopwatch@{logic::Stopwatch}}
+\doxysubsubsection{\texorpdfstring{instance()}{instance()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_stopwatch_ad6b0077eb3f00985e3337d486a3f00aa} 
+\mbox{\hyperlink{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}{Stopwatch}} \& logic\+::\+Stopwatch\+::instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Verkrijg singleton instantie. 
+
+\begin{DoxyReturn}{Returns}
+Referentie naar \doxylink{classlogic_1_1_stopwatch}{Stopwatch} 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_stopwatch_ad6b0077eb3f00985e3337d486a3f00aa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_stopwatch_ad6b0077eb3f00985e3337d486a3f00aa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_stopwatch_a541067dbe85c2ba20b1302ad48ddd378}\index{logic::Stopwatch@{logic::Stopwatch}!tick@{tick}}
+\index{tick@{tick}!logic::Stopwatch@{logic::Stopwatch}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_stopwatch_a541067dbe85c2ba20b1302ad48ddd378} 
+double logic\+::\+Stopwatch\+::tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Bereken tijd sinds laatste tick. 
+
+\begin{DoxyReturn}{Returns}
+Delta-\/time in seconden 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_stopwatch_a541067dbe85c2ba20b1302ad48ddd378_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_stopwatch_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_stopwatch_a75267b4bac83b9c01608bef92d63ae31}\index{logic::Stopwatch@{logic::Stopwatch}!last@{last}}
+\index{last@{last}!logic::Stopwatch@{logic::Stopwatch}}
+\doxysubsubsection{\texorpdfstring{last}{last}}
+{\footnotesize\ttfamily \label{classlogic_1_1_stopwatch_a75267b4bac83b9c01608bef92d63ae31} 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point logic\+::\+Stopwatch\+::last\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_stopwatch_8h}{Stopwatch.\+h}}\item 
+logic/src/\mbox{\hyperlink{_stopwatch_8cpp}{Stopwatch.\+cpp}}\end{DoxyCompactItemize}

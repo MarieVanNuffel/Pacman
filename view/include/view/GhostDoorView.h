@@ -6,42 +6,42 @@
 #define PACMANGAME_GHOSTDOORVIEW_H
 
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "Camera.h"
 #include "EntityView.h"
+#include <SFML/Graphics.hpp>
 
 namespace logic {
-    class GhostDoorModel;
+class GhostDoorModel;
 }
 
 namespace view {
 
-    /**
-     * @brief View voor de ghostdoor
-     *
-     * Tekent de deur die de ghost box afsluit.
-     */
-    class GhostDoorView : public EntityView {
-    public:
-        /**
-         * @brief Constructor
-         * @param m GhostDoorModel
-         */
-        explicit GhostDoorView(std::shared_ptr<logic::GhostDoorModel> m);
+/**
+ * @brief View voor de ghostdoor
+ *
+ * Tekent de deur die de ghost box afsluit.
+ */
+class GhostDoorView : public EntityView {
+public:
+  /**
+   * @brief Constructor
+   * @param m GhostDoorModel
+   */
+  explicit GhostDoorView(std::shared_ptr<logic::GhostDoorModel> m);
 
-        /**
-         * @brief Tekent de ghostdoor
-         */
-        void draw(sf::RenderWindow& win, const Camera& cam) override;
+  /**
+   * @brief Tekent de ghostdoor
+   */
+  void draw(sf::RenderWindow &win, const Camera &cam) override;
 
-        /**
-         * @brief Update van sprite, maar beweegt niet dus doet niets
-         */
-        void updateSprite(double dt) override;
+  /**
+   * @brief Update van sprite, maar beweegt niet dus doet niets
+   */
+  void updateSprite(double dt) override;
 
-    private:
-        std::weak_ptr<logic::GhostDoorModel> model;
-    };
-}
+private:
+  std::weak_ptr<logic::GhostDoorModel> model;
+};
+} // namespace view
 
-#endif //PACMANGAME_GHOSTDOORVIEW_H
+#endif // PACMANGAME_GHOSTDOORVIEW_H

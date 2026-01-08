@@ -1,0 +1,21 @@
+<map id="logic::World::update" name="logic::World::update">
+<area shape="rect" id="Node000001" title="Update entities/level per tick." alt="" coords="5,107,142,133"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#aec39adc36a1e504cd9740fb1841fb502" title="Gaat naar het volgende level (moeilijker)." alt="" coords="190,5,368,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,104,136,77,189,48,222,36,218,39,191,53,139,81,97,108"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_world.html#a389aee9839cd4382ba3f21ef9cd0b728" title="Entities terug op hun spawn positie zetten." alt="" coords="416,31,596,57"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="134,104,189,92,402,57,399,61,190,97,136,109"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_world.html#a97e8589dba06ba13b74cab2465a41793" title="Controleert of een entity kan bewegen in een richting." alt="" coords="198,107,360,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,117,185,119,180,121,143,123"/>
+<area shape="rect" id="Node000008" href="$classlogic_1_1_world.html#ac1af14e723e8848cfbfac9be9ba3b5ba" title="Start de death animatie van pacman." alt="" coords="200,157,358,200"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="123,131,190,151,185,154,123,137"/>
+<area shape="rect" id="Node000009" href="$classlogic_1_1_world.html#ae981395346e050c23ef22cf45940a06c" title="Probeert een entity te verplaatsen in een richting." alt="" coords="190,224,368,251"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="89,131,133,170,161,191,191,210,206,218,200,218,188,214,158,196,130,175,88,136"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="367,26,403,32,398,33,368,31"/>
+<area shape="rect" id="Node000005" href="$classlogic_1_1_world.html#ab035c7140e1314a28bfb93e0b51861d8" title="Kijkt of een entity geblokkeerd wordt op een positie." alt="" coords="422,165,590,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="334,131,439,160,434,161,333,137"/>
+<area shape="rect" id="Node000006" href="$classlogic_1_1_world.html#a2fb0221d2018cd492b7fdd20ceb9b7fc" title="Controleert of de tile een ghostdoor is." alt="" coords="644,140,815,167"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="590,167,631,164,626,165,591,172"/>
+<area shape="rect" id="Node000007" href="$classlogic_1_1_world.html#ae8b881e77f5a8c39a1ab0e275673fb46" title="Controleert of er een muur is." alt="" coords="657,191,802,217"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="590,186,644,194,639,194,590,191"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="333,221,434,197,439,196,334,226"/>
+</map>

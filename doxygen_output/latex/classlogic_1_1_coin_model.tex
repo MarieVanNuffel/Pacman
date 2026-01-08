@@ -1,0 +1,194 @@
+\doxysection{logic\+::Coin\+Model Class Reference}
+\hypertarget{classlogic_1_1_coin_model}{}\label{classlogic_1_1_coin_model}\index{logic::CoinModel@{logic::CoinModel}}
+
+
+Model voor een coin.  
+
+
+
+
+{\ttfamily \#include $<$Coin\+Model.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Coin\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_coin_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Coin\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_coin_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_coin_model_a919f1f7add5998842d1d815781efe33e}{Coin\+Model}} ()=default
+\item 
+\mbox{\hyperlink{classlogic_1_1_coin_model_af3932ecefb5b3dabccbee204d3b506e0}{\texorpdfstring{$\sim$}{\string~}\+Coin\+Model}} () override=default
+\item 
+void \mbox{\hyperlink{classlogic_1_1_coin_model_a9a42c7c095689ff759ca474b5f23d23f}{collect}} ()
+\begin{DoxyCompactList}\small\item\em Coin is opgepakt, notify observers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_coin_model_a5ed1b3049b40420e3159faa2d5056c07}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update functie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_coin_model_ac10c6fae85c4f9b8f7e0e77d37b6f625}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reset coin, notify obervers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3}{getX}} () const
+\begin{DoxyCompactList}\small\item\em Geeft x-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11}{getY}} () const
+\begin{DoxyCompactList}\small\item\em Geeft y-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd}{getW}} () const
+\begin{DoxyCompactList}\small\item\em Geeft breedte terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a344cc207ef296314760d99817843645e}{getH}} () const
+\begin{DoxyCompactList}\small\item\em Geeft hoogte terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft huidige direction terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337}{get\+Desired\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft desired direction terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478}{set\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet huidige direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlogic_1_1_rect}{Rect}} \mbox{\hyperlink{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20}{get\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Geeft bounding box terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Geeft movement speed terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197}{set\+Position}} (double nx, double ny)
+\begin{DoxyCompactList}\small\item\em Zet entity positie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_subject}{logic\+::\+Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2}{add\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Voeg een observer toe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec}{remove\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Verwijder een observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862}{notify}} (int event)
+\begin{DoxyCompactList}\small\item\em Notify de observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classlogic_1_1_coin_model_ac5b06ad48c75ed7bcdc14ca53b7fe2a1}{collected}} = false
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}{x}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}{y}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}} = 0.\+1
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a}{h}} = 0.\+1
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5}{direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}{desired\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}{speed}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Model voor een coin. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_coin_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_coin_model_a919f1f7add5998842d1d815781efe33e}\index{logic::CoinModel@{logic::CoinModel}!CoinModel@{CoinModel}}
+\index{CoinModel@{CoinModel}!logic::CoinModel@{logic::CoinModel}}
+\doxysubsubsection{\texorpdfstring{CoinModel()}{CoinModel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_coin_model_a919f1f7add5998842d1d815781efe33e} 
+logic\+::\+Coin\+Model\+::\+Coin\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classlogic_1_1_coin_model_af3932ecefb5b3dabccbee204d3b506e0}\index{logic::CoinModel@{logic::CoinModel}!````~CoinModel@{\texorpdfstring{$\sim$}{\string~}CoinModel}}
+\index{````~CoinModel@{\texorpdfstring{$\sim$}{\string~}CoinModel}!logic::CoinModel@{logic::CoinModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CoinModel()}{\string~CoinModel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_coin_model_af3932ecefb5b3dabccbee204d3b506e0} 
+logic\+::\+Coin\+Model\+::\texorpdfstring{$\sim$}{\string~}\+Coin\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_coin_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_coin_model_a9a42c7c095689ff759ca474b5f23d23f}\index{logic::CoinModel@{logic::CoinModel}!collect@{collect}}
+\index{collect@{collect}!logic::CoinModel@{logic::CoinModel}}
+\doxysubsubsection{\texorpdfstring{collect()}{collect()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_coin_model_a9a42c7c095689ff759ca474b5f23d23f} 
+void logic\+::\+Coin\+Model\+::collect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Coin is opgepakt, notify observers. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classlogic_1_1_coin_model_a9a42c7c095689ff759ca474b5f23d23f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_coin_model_ac10c6fae85c4f9b8f7e0e77d37b6f625}\index{logic::CoinModel@{logic::CoinModel}!reset@{reset}}
+\index{reset@{reset}!logic::CoinModel@{logic::CoinModel}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_coin_model_ac10c6fae85c4f9b8f7e0e77d37b6f625} 
+void logic\+::\+Coin\+Model\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reset coin, notify obervers. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classlogic_1_1_coin_model_ac10c6fae85c4f9b8f7e0e77d37b6f625_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_coin_model_a5ed1b3049b40420e3159faa2d5056c07}\index{logic::CoinModel@{logic::CoinModel}!update@{update}}
+\index{update@{update}!logic::CoinModel@{logic::CoinModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_coin_model_a5ed1b3049b40420e3159faa2d5056c07} 
+void logic\+::\+Coin\+Model\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update functie. 
+
+Coin is statisch, dus doet niets 
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15}{logic\+::\+Entity}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_coin_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_coin_model_ac5b06ad48c75ed7bcdc14ca53b7fe2a1}\index{logic::CoinModel@{logic::CoinModel}!collected@{collected}}
+\index{collected@{collected}!logic::CoinModel@{logic::CoinModel}}
+\doxysubsubsection{\texorpdfstring{collected}{collected}}
+{\footnotesize\ttfamily \label{classlogic_1_1_coin_model_ac5b06ad48c75ed7bcdc14ca53b7fe2a1} 
+bool logic\+::\+Coin\+Model\+::collected = false}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_coin_model_8h}{Coin\+Model.\+h}}\item 
+logic/src/\mbox{\hyperlink{_coin_model_8cpp}{Coin\+Model.\+cpp}}\end{DoxyCompactItemize}

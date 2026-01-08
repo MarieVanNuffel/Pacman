@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classview_1_1_entity_view.html" title=" " alt="" coords="5,157,125,184"/>
+<area shape="rect" id="Node000001" href="$classview_1_1_coin_view.html" title="View voor coin entity." alt="" coords="191,56,303,83"/>
+<area shape="poly" id="edge17_Node000000_Node000001" title=" " alt="" coords="92,145,129,118,171,92,201,82,197,85,174,97,132,123,96,149"/>
+<area shape="rect" id="Node000004" href="$classview_1_1_fruit_view.html" title="View voor het fruit." alt="" coords="191,107,302,133"/>
+<area shape="poly" id="edge18_Node000000_Node000004" title=" " alt="" coords="129,150,198,132,194,136,131,155"/>
+<area shape="rect" id="Node000006" href="$classview_1_1_ghost_door_view.html" title="View voor de ghostdoor." alt="" coords="173,208,321,235"/>
+<area shape="poly" id="edge19_Node000000_Node000006" title=" " alt="" coords="130,186,199,206,194,208,130,191"/>
+<area shape="rect" id="Node000007" href="$classview_1_1_ghost_view.html" title="View voor de ghosts." alt="" coords="187,259,307,285"/>
+<area shape="poly" id="edge20_Node000000_Node000007" title=" " alt="" coords="95,191,132,219,174,244,202,258,197,258,171,249,129,223,94,197"/>
+<area shape="rect" id="Node000005" href="$classview_1_1_pacman_view.html" title="View voor de ghosts." alt="" coords="180,157,314,184"/>
+<area shape="poly" id="edge21_Node000000_Node000005" title=" " alt="" coords="140,168,182,170,177,172,141,173"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_observer.html" title="Observer interface." alt="" coords="10,81,120,108"/>
+<area shape="poly" id="edge23_Node000002_Node000001" title=" " alt="" coords="134,83,193,75,188,79,136,87"/>
+<area shape="poly" id="edge24_Node000002_Node000004" title=" " alt="" coords="135,102,193,111,188,114,136,107"/>
+<area shape="poly" id="edge25_Node000002_Node000005" title=" " alt="" coords="107,113,174,143,205,156,200,157,172,148,107,118"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_score.html" title="Beheert score en highscores." alt="" coords="202,5,292,32"/>
+<area shape="poly" id="edge22_Node000002_Node000003" title=" " alt="" coords="105,72,172,42,205,31,201,34,174,46,109,76"/>
+</map>

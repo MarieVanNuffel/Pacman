@@ -1,0 +1,5 @@
+<map id="view::GhostDoorView" name="view::GhostDoorView">
+<area shape="rect" id="Node000001" title="View voor de ghostdoor." alt="" coords="5,187,143,299"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_entity_view.html" title=" " alt="" coords="20,5,128,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,151,77,187,72,186,73,156"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="LevelState" name="LevelState">
+<area shape="rect" id="Node000001" title="Game state voor een level." alt="" coords="75,715,195,1147"/>
+<area shape="rect" id="Node000002" href="$class_state.html" title=" " alt="" coords="12,413,111,568"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,580,102,715,97,715,77,585"/>
+<area shape="rect" id="Node000003" href="$class_state_manager.html" title="Beheert de verschillende states van het spel." alt="" coords="5,5,118,267"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,264,64,396,59,396,62,269"/>
+<area shape="rect" id="Node000004" href="$classview_1_1_camera.html" title="Camera voor world naar pixels om te zetten." alt="" coords="136,339,281,643"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,640,177,699,171,698,183,645"/>
+</map>

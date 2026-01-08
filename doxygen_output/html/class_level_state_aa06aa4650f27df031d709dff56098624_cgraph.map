@@ -1,0 +1,5 @@
+<map id="LevelState::update" name="LevelState::update">
+<area shape="rect" id="Node000001" title="Update game logica en animaties." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="Node000002" href="$class_level_state.html#a8baa837f5de28a41bab5b2cd2235701e" title="Update de UI." alt="" coords="184,5,328,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,16,171,18,165,19,136,21"/>
+</map>

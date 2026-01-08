@@ -1,0 +1,59 @@
+\chapter{Pacman }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Pacman@{Pacman}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{\texorpdfstring{Marie Van Nuffel}{Marie Van Nuffel}}\label{md__r_e_a_d_m_e_autotoc_md1}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{\texorpdfstring{Structuur\+:}{Structuur\+:}}\label{md__r_e_a_d_m_e_autotoc_md2}
+logic/ ~\newline
+
+\begin{DoxyItemize}
+\item \doxylink{_world_8h}{World.\+h} – centraal voor game logic en interacties
+\item \doxylink{_entity_8h}{Entity.\+h} – abstracte basisklasse voor alle entiteiten
+\item \doxylink{_pac_man_model_8h}{Pac\+Man\+Model.\+h}, \doxylink{_ghost_model_8h}{Ghost\+Model.\+h}, \doxylink{_coin_model_8h}{Coin\+Model.\+h}, \doxylink{_fruit_model_8h}{Fruit\+Model.\+h} – entity models
+\item \doxylink{_direction_8h}{Direction.\+h} – bewegingsrichting
+\item \doxylink{_subject_8h}{Subject.\+h} / \doxylink{_observer_8h}{Observer.\+h} – Observer pattern
+\item \doxylink{_score_8h}{Score.\+h} – scoreberekening \& highscores
+\item \doxylink{_stopwatch_8h}{Stopwatch.\+h} – delta\+Time (Singleton)
+\item \doxylink{_random_8h}{Random.\+h} – random generator (Singleton)
+\item view/ \# SFML rendering \& states
+\item \doxylink{_game_8h}{Game.\+h} – setup van window, main loop
+\item \doxylink{_state_manager_8h}{State\+Manager.\+h} – stak van States
+\item \doxylink{_menu_state_8h}{Menu\+State.\+h}, \doxylink{_level_state_8h}{Level\+State.\+h}, \doxylink{_pause_state_8h}{Pause\+State.\+h} – concrete states
+\item \doxylink{_entity_view_8h}{Entity\+View.\+h} – abstracte view
+\item \doxylink{_pacman_view_8h}{Pac\+Man\+View.\+h}, \doxylink{_ghost_view_8h}{Ghost\+View.\+h}, \doxylink{_coin_view_8h}{Coin\+View.\+h}, \doxylink{_fruit_view_8h}{Fruit\+View.\+h} – entity rendering
+\item \doxylink{_maze_view_8h}{Maze\+View.\+h} – maze rendering
+\item \doxylink{_camera_8h}{Camera.\+h} – world naar pixel projectie
+\item \doxylink{_concrete_entity_factory_8h}{Concrete\+Entity\+Factory.\+h} – koppelt logic aan views
+\item \doxylink{_resource_8h}{Resource.\+h} – texture caching
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{MVC (Model-\/\+View-\/\+Controller)}{MVC (Model-\/\+View-\/\+Controller)}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Component  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Rol  \\
+{\bfseries{Model}}  &Bevat eigenschappen van entiteiten (positie, richting, snelheid)  \\
+{\bfseries{View}}  &SFML rendering \& animaties  \\
+{\bfseries{Controller}}  &{\ttfamily World} coördineert interacties en game logica/regels  \\
+\end{DoxyTable}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{Wereldcoördinaten en Camera}{Wereldcoördinaten en Camera}}\label{md__r_e_a_d_m_e_autotoc_md4}
+In de game hou ik posities bij in tegels (tile‑coords). De logica werkt dus met waarden zoals (x + 0.\+5, y + 0.\+5) voor het midden van een tegel, dus geen pixels en geen SFML. De Camera in de view zet die tile‑coords om naar pixels zodat het op het scherm getekend kan worden. Technisch doet de Camera dat via een tussenstap naar een genormaliseerd coördinatenstelsel (\mbox{[}-\/1,1\mbox{]}) en projecteert dat vervolgens naar het deel van het venster waar de maze staat (met centering en schaal). Daardoor blijft alles er goed uitzien op verschillende resoluties, en kun je de logica zonder SFML compileren. De logic blijft dus grafisch onafhankelijk en de Camera regelt de vertaling naar schermpixels.\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{\texorpdfstring{Design patterns}{Design patterns}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Design pattern  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Toepassing  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Doel  \\
+{\bfseries{Model-\/\+View-\/\+Controller}}  &World (Controller), Models en Views  &Scheiding tussen logica en representatie  \\
+{\bfseries{Observer}}  &Models → Views \& Score  &Automatische updates bij state veranderingen (events)  \\
+{\bfseries{Abstract Factory}}  &Concrete\+Entity\+Factory  &Aanmaken van entiteiten zonder afhankelijkheid van SFML  \\
+{\bfseries{Singleton}}  &Stopwatch, Random  &Eén instantie voor timing en randomisatie  \\
+{\bfseries{\doxylink{class_state}{State}}}  &\doxylink{class_state_manager}{State\+Manager} + \doxylink{class_menu_state}{Menu\+State} / \doxylink{class_level_state}{Level\+State}  &Makkelijke state wisselingen met state stack  \\
+\end{DoxyTable}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{\texorpdfstring{State Systeem}{State Systeem}}\label{md__r_e_a_d_m_e_autotoc_md6}
+Het spel maakt gebruik van een state stack om verschillende speltoestanden te beheren zoals\+:
+\begin{DoxyItemize}
+\item \doxylink{class_menu_state}{Menu\+State}
+\item \doxylink{class_level_state}{Level\+State}
+\item \doxylink{class_pause_state}{Pause\+State} De \doxylink{class_state_manager}{State\+Manager} beheert deze stack, waarbij enkel de bovenste state actief is. Hierdoor kan bijvoorbeeld een pauzescherm bovenop een lopend level geplaatst worden zonder de onderliggende state te vernietigen.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{Tijd en score}{Tijd en score}}\label{md__r_e_a_d_m_e_autotoc_md7}
+
+\begin{DoxyItemize}
+\item Stopwatch berekent delta\+Time, waardoor beweging en animaties framerate onafhankelijk zijn.
+\item Score ontvangt events via het observer pattern en berekent dynamisch de score, inclusief tijdsbonussen en levelbonussen.
+\item Highscores worden opgeslagen in een bestand. 
+\end{DoxyItemize}

@@ -1,0 +1,191 @@
+\doxysection{view\+::Coin\+View Class Reference}
+\hypertarget{classview_1_1_coin_view}{}\label{classview_1_1_coin_view}\index{view::CoinView@{view::CoinView}}
+
+
+View voor coin entity.  
+
+
+
+
+{\ttfamily \#include $<$Coin\+View.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Coin\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{classview_1_1_coin_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Coin\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{classview_1_1_coin_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_coin_view_a2093728889116f8b50aa1594be7b7376}{Coin\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{logic\+::\+Coin\+Model}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_coin_view_a581e35be97b910a4ac4a00b1111625ac}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&cam) override
+\begin{DoxyCompactList}\small\item\em Teken de coin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_coin_view_a05b131e55e5609ab7ae4e20c8d72460f}{update\+Sprite}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update sprite per frame, maar statisch dus doet niets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_coin_view_a827f188acc6a8a051b1d7a4eb88c0403}{on\+Notify}} (int event) override
+\begin{DoxyCompactList}\small\item\em Ontvangt events en past view aan. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{Entity\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Basis klasse voor entit views. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}{\texorpdfstring{$\sim$}{\string~}\+Entity\+View}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e}{\texorpdfstring{$\sim$}{\string~}\+Observer}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{logic\+::\+Coin\+Model}} $>$ \mbox{\hyperlink{classview_1_1_coin_view_afeaf02e40b7efec754a91ea184a283cf}{model}}
+\item 
+bool \mbox{\hyperlink{classview_1_1_coin_view_af485963410d2a978738a2ff64f7910ad}{visible}} = true
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ \mbox{\hyperlink{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}{model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View voor coin entity. 
+
+Tekent een coin en reageert op coin events via observer. 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_coin_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_coin_view_a2093728889116f8b50aa1594be7b7376}\index{view::CoinView@{view::CoinView}!CoinView@{CoinView}}
+\index{CoinView@{CoinView}!view::CoinView@{view::CoinView}}
+\doxysubsubsection{\texorpdfstring{CoinView()}{CoinView()}}
+{\footnotesize\ttfamily \label{classview_1_1_coin_view_a2093728889116f8b50aa1594be7b7376} 
+view\+::\+Coin\+View\+::\+Coin\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_coin_model}{logic\+::\+Coin\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Coin model \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_coin_view_a2093728889116f8b50aa1594be7b7376_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_coin_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_coin_view_a581e35be97b910a4ac4a00b1111625ac}\index{view::CoinView@{view::CoinView}!draw@{draw}}
+\index{draw@{draw}!view::CoinView@{view::CoinView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_coin_view_a581e35be97b910a4ac4a00b1111625ac} 
+void view\+::\+Coin\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Teken de coin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win} & Render\+Window \\
+\hline
+{\em cam} & \doxylink{classview_1_1_camera}{Camera} voor world to pixel conversie \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}{view\+::\+Entity\+View}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_coin_view_a581e35be97b910a4ac4a00b1111625ac_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_coin_view_a827f188acc6a8a051b1d7a4eb88c0403}\index{view::CoinView@{view::CoinView}!onNotify@{onNotify}}
+\index{onNotify@{onNotify}!view::CoinView@{view::CoinView}}
+\doxysubsubsection{\texorpdfstring{onNotify()}{onNotify()}}
+{\footnotesize\ttfamily \label{classview_1_1_coin_view_a827f188acc6a8a051b1d7a4eb88c0403} 
+void view\+::\+Coin\+View\+::on\+Notify (\begin{DoxyParamCaption}\item[{int}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Ontvangt events en past view aan. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Event id \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd}{logic\+::\+Observer}}.
+
+\Hypertarget{classview_1_1_coin_view_a05b131e55e5609ab7ae4e20c8d72460f}\index{view::CoinView@{view::CoinView}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!view::CoinView@{view::CoinView}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily \label{classview_1_1_coin_view_a05b131e55e5609ab7ae4e20c8d72460f} 
+void view\+::\+Coin\+View\+::update\+Sprite (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update sprite per frame, maar statisch dus doet niets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}{view\+::\+Entity\+View}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_coin_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_coin_view_afeaf02e40b7efec754a91ea184a283cf}\index{view::CoinView@{view::CoinView}!model@{model}}
+\index{model@{model}!view::CoinView@{view::CoinView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classview_1_1_coin_view_afeaf02e40b7efec754a91ea184a283cf} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_coin_model}{logic\+::\+Coin\+Model}}$>$ view\+::\+Coin\+View\+::model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_coin_view_af485963410d2a978738a2ff64f7910ad}\index{view::CoinView@{view::CoinView}!visible@{visible}}
+\index{visible@{visible}!view::CoinView@{view::CoinView}}
+\doxysubsubsection{\texorpdfstring{visible}{visible}}
+{\footnotesize\ttfamily \label{classview_1_1_coin_view_af485963410d2a978738a2ff64f7910ad} 
+bool view\+::\+Coin\+View\+::visible = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_coin_view_8h}{Coin\+View.\+h}}\item 
+view/src/\mbox{\hyperlink{_coin_view_8cpp}{Coin\+View.\+cpp}}\end{DoxyCompactItemize}

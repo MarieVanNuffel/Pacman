@@ -1,0 +1,584 @@
+\doxysection{logic\+::Ghost\+Model Class Reference}
+\hypertarget{classlogic_1_1_ghost_model}{}\label{classlogic_1_1_ghost_model}\index{logic::GhostModel@{logic::GhostModel}}
+
+
+Model voor een ghost met AI.  
+
+
+
+
+{\ttfamily \#include $<$Ghost\+Model.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Ghost\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_ghost_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Ghost\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_ghost_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}} \{ \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da5706de961fb376d701be6e7762d8b09c}{Waiting}}
+, \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4daeaff692e84900d6b0999355abb0f3e43}{Chase}}
+, \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da85caab9f87aaab2166693ab8a1aeaa97}{Fear}}
+, \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da870f5974abdb800a274349808b210d34}{Eaten}}
+ \}
+\begin{DoxyCompactList}\small\item\em Mogelijke modes van ghosts. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}} \{ \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea0da92400f9e52c66e84326338a181039}{Locked\+Random}}
+, \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea30dcc60dcd7a4846518a375905673d43}{Ahead\+Of\+Pacman1}}
+, \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eab13dc54c04f722486a37a79c9fd74171}{Ahead\+Of\+Pacman2}}
+, \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eac2917cd64cb54cb8fa3f7d4d540fb68c}{Direct\+Chase}}
+ \}
+\begin{DoxyCompactList}\small\item\em Verschillende AI types per ghost. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_a37de0fd88446de413c82a141578a6adc}{Ghost\+Model}} (\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}} t)
+\begin{DoxyCompactList}\small\item\em Maakt een ghost met een bepaald AI type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a7f0c07a340ffee28c75edbcc58488417}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update de ghost per tick. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}} \mbox{\hyperlink{classlogic_1_1_ghost_model_a159f2a518e5a8b10b93c77137eba95d3}{get\+Mode}} () const
+\begin{DoxyCompactList}\small\item\em Geeft het ghost type terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}} \mbox{\hyperlink{classlogic_1_1_ghost_model_a6d0ab72eddfc6b913d65ee0a7ca89960}{get\+Ghost\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Geeft het ghost type terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a72932a6468683fb4800989bbf0d5179c}{get\+StartX}} () const
+\begin{DoxyCompactList}\small\item\em Geeft de start X-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a759c748f658db5de217ad0d040c5a684}{get\+StartY}} () const
+\begin{DoxyCompactList}\small\item\em Geeft de start Y-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a649ecf2b30ea8ca8fa1040cc7de83c1b}{get\+Fear\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em Geeft de fear duration terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a1c48a29ca28b0c0e74a7827392a523ef}{get\+Chase\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Geeft de chase snelheid terug. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_ghost_model_af7de79e30045edfb5d55b8d1d18860db}{is\+Frozen}} () const
+\begin{DoxyCompactList}\small\item\em Geeft terug of de ghost bevroren is. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a3e130680214d21ace265c878ae7d1bab}{set\+World}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_world}{World}} $>$ \&\mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}})
+\begin{DoxyCompactList}\small\item\em Zet een referentie naar de world. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a41d17323c715018cb5df19576e068b84}{set\+Mode}} (\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}} m)
+\begin{DoxyCompactList}\small\item\em Zet de mode van de ghost. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a03cf8ec3232070246dd0aad554157f34}{set\+Speed}} (double s)
+\begin{DoxyCompactList}\small\item\em Zet de huidige snelheid. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a2547d0acbdd437478cacdb49297e2ec3}{set\+Fear\+Duration}} (double d)
+\begin{DoxyCompactList}\small\item\em Zet de fear duration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a2d8b84fb345396229c8104043a5afd3d}{set\+Chase\+Speed}} (double d)
+\begin{DoxyCompactList}\small\item\em Zet de chase snelheid. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a0f8175dd147faed474125edaaaf47cc3}{set\+Start\+Position}} (double sx, double sy)
+\begin{DoxyCompactList}\small\item\em Zet de startpositie van de ghost. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_a75d00957493ffe46818be9fe2337aafb}{set\+Frozen}} (bool f)
+\begin{DoxyCompactList}\small\item\em Zet of de ghost bevroren is. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_ghost_model_afebe4e481e99459f06b6b76c21a76c40}{set\+Release\+Timer}} (double dt)
+\begin{DoxyCompactList}\small\item\em Zet de release timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3}{getX}} () const
+\begin{DoxyCompactList}\small\item\em Geeft x-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11}{getY}} () const
+\begin{DoxyCompactList}\small\item\em Geeft y-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd}{getW}} () const
+\begin{DoxyCompactList}\small\item\em Geeft breedte terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a344cc207ef296314760d99817843645e}{getH}} () const
+\begin{DoxyCompactList}\small\item\em Geeft hoogte terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft huidige direction terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337}{get\+Desired\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft desired direction terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478}{set\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet huidige direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlogic_1_1_rect}{Rect}} \mbox{\hyperlink{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20}{get\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Geeft bounding box terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Geeft movement speed terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197}{set\+Position}} (double nx, double ny)
+\begin{DoxyCompactList}\small\item\em Zet entity positie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_subject}{logic\+::\+Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2}{add\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Voeg een observer toe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec}{remove\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Verwijder een observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862}{notify}} (int event)
+\begin{DoxyCompactList}\small\item\em Notify de observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}} \mbox{\hyperlink{classlogic_1_1_ghost_model_a4a8ef4c9881eaa3cced4f6ec9264e427}{type}}
+\item 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}} \mbox{\hyperlink{classlogic_1_1_ghost_model_a2e5c495972920a6806eb43282f925757}{mode}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_ab0c10b8ebb638f345b02e113b5887d06}{chase\+Speed}}
+\item 
+bool \mbox{\hyperlink{classlogic_1_1_ghost_model_aeac543153e095498799204cf19cbc6f5}{frozen}} = false
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_ab2ee188b4710a6145fd53fb089dd2b05}{startX}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_af3f9c8729367073cfcf780bbfb7d4eb6}{startY}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a2c6e8dc0361c32c710ffc71b115dcb05}{release\+Timer}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a2488db3b69c867e9de989c1e0ce36cf8}{decision\+Timer}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a06df448eee37f3dc405b706f191b3f63}{decision\+Cooldown}} = 0.\+12
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a2b4261252b6935733e63b67bad7b1606}{fear\+Timer}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_ghost_model_a1fbc4aa48dc5046e55d5b3c2a3fd74c8}{fear\+Duration}} = 6.\+0
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_world}{World}} $>$ \mbox{\hyperlink{classlogic_1_1_ghost_model_a460b69121723fbd399811c20987c0bfe}{world\+Ref}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}{x}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}{y}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}} = 0.\+1
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a}{h}} = 0.\+1
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5}{direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}{desired\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}{speed}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Model voor een ghost met AI. 
+
+Behaviors\+: Waiting, Chase, Fear, Eaten. Ghost heeft pointer naar \doxylink{classlogic_1_1_world}{World} (world\+Ref) om helpers te gebruiken. 
+
+\label{doc-enum-members}
+\Hypertarget{classlogic_1_1_ghost_model_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}\index{logic::GhostModel@{logic::GhostModel}!GhostType@{GhostType}}
+\index{GhostType@{GhostType}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{GhostType}{GhostType}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e} 
+enum class \mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{logic\+::\+Ghost\+Model\+::\+Ghost\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Verschillende AI types per ghost. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LockedRandom@{LockedRandom}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!LockedRandom@{LockedRandom}}}\Hypertarget{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea0da92400f9e52c66e84326338a181039}\label{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea0da92400f9e52c66e84326338a181039} 
+Locked\+Random&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AheadOfPacman1@{AheadOfPacman1}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!AheadOfPacman1@{AheadOfPacman1}}}\Hypertarget{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea30dcc60dcd7a4846518a375905673d43}\label{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172ea30dcc60dcd7a4846518a375905673d43} 
+Ahead\+Of\+Pacman1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AheadOfPacman2@{AheadOfPacman2}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!AheadOfPacman2@{AheadOfPacman2}}}\Hypertarget{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eab13dc54c04f722486a37a79c9fd74171}\label{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eab13dc54c04f722486a37a79c9fd74171} 
+Ahead\+Of\+Pacman2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DirectChase@{DirectChase}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!DirectChase@{DirectChase}}}\Hypertarget{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eac2917cd64cb54cb8fa3f7d4d540fb68c}\label{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172eac2917cd64cb54cb8fa3f7d4d540fb68c} 
+Direct\+Chase&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}\index{logic::GhostModel@{logic::GhostModel}!Mode@{Mode}}
+\index{Mode@{Mode}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{Mode}{Mode}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d} 
+enum class \mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{logic\+::\+Ghost\+Model\+::\+Mode}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Mogelijke modes van ghosts. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Waiting@{Waiting}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!Waiting@{Waiting}}}\Hypertarget{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da5706de961fb376d701be6e7762d8b09c}\label{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da5706de961fb376d701be6e7762d8b09c} 
+Waiting&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Chase@{Chase}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!Chase@{Chase}}}\Hypertarget{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4daeaff692e84900d6b0999355abb0f3e43}\label{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4daeaff692e84900d6b0999355abb0f3e43} 
+Chase&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Fear@{Fear}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!Fear@{Fear}}}\Hypertarget{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da85caab9f87aaab2166693ab8a1aeaa97}\label{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da85caab9f87aaab2166693ab8a1aeaa97} 
+Fear&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Eaten@{Eaten}!logic::GhostModel@{logic::GhostModel}}\index{logic::GhostModel@{logic::GhostModel}!Eaten@{Eaten}}}\Hypertarget{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da870f5974abdb800a274349808b210d34}\label{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4da870f5974abdb800a274349808b210d34} 
+Eaten&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_ghost_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_ghost_model_a37de0fd88446de413c82a141578a6adc}\index{logic::GhostModel@{logic::GhostModel}!GhostModel@{GhostModel}}
+\index{GhostModel@{GhostModel}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{GhostModel()}{GhostModel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a37de0fd88446de413c82a141578a6adc} 
+logic\+::\+Ghost\+Model\+::\+Ghost\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}}}]{t}{}\end{DoxyParamCaption})}
+
+
+
+Maakt een ghost met een bepaald AI type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Type van de ghost AI. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_ghost_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_ghost_model_a1c48a29ca28b0c0e74a7827392a523ef}\index{logic::GhostModel@{logic::GhostModel}!getChaseSpeed@{getChaseSpeed}}
+\index{getChaseSpeed@{getChaseSpeed}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{getChaseSpeed()}{getChaseSpeed()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a1c48a29ca28b0c0e74a7827392a523ef} 
+double logic\+::\+Ghost\+Model\+::get\+Chase\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft de chase snelheid terug. 
+
+\begin{DoxyReturn}{Returns}
+Snelheid tijdens chase mode. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_a649ecf2b30ea8ca8fa1040cc7de83c1b}\index{logic::GhostModel@{logic::GhostModel}!getFearDuration@{getFearDuration}}
+\index{getFearDuration@{getFearDuration}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{getFearDuration()}{getFearDuration()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a649ecf2b30ea8ca8fa1040cc7de83c1b} 
+double logic\+::\+Ghost\+Model\+::get\+Fear\+Duration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft de fear duration terug. 
+
+\begin{DoxyReturn}{Returns}
+Duur van fear mode in seconden. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_a6d0ab72eddfc6b913d65ee0a7ca89960}\index{logic::GhostModel@{logic::GhostModel}!getGhostType@{getGhostType}}
+\index{getGhostType@{getGhostType}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{getGhostType()}{getGhostType()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a6d0ab72eddfc6b913d65ee0a7ca89960} 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}} logic\+::\+Ghost\+Model\+::get\+Ghost\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft het ghost type terug. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type} van de ghost. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_a159f2a518e5a8b10b93c77137eba95d3}\index{logic::GhostModel@{logic::GhostModel}!getMode@{getMode}}
+\index{getMode@{getMode}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{getMode()}{getMode()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a159f2a518e5a8b10b93c77137eba95d3} 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}} logic\+::\+Ghost\+Model\+::get\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft het ghost type terug. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type} van de ghost. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_a72932a6468683fb4800989bbf0d5179c}\index{logic::GhostModel@{logic::GhostModel}!getStartX@{getStartX}}
+\index{getStartX@{getStartX}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{getStartX()}{getStartX()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a72932a6468683fb4800989bbf0d5179c} 
+double logic\+::\+Ghost\+Model\+::get\+StartX (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft de start X-\/positie terug. 
+
+\begin{DoxyReturn}{Returns}
+Start X-\/positie. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_a759c748f658db5de217ad0d040c5a684}\index{logic::GhostModel@{logic::GhostModel}!getStartY@{getStartY}}
+\index{getStartY@{getStartY}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{getStartY()}{getStartY()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a759c748f658db5de217ad0d040c5a684} 
+double logic\+::\+Ghost\+Model\+::get\+StartY (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft de start Y-\/positie terug. 
+
+\begin{DoxyReturn}{Returns}
+Start Y-\/positie. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_af7de79e30045edfb5d55b8d1d18860db}\index{logic::GhostModel@{logic::GhostModel}!isFrozen@{isFrozen}}
+\index{isFrozen@{isFrozen}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{isFrozen()}{isFrozen()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_af7de79e30045edfb5d55b8d1d18860db} 
+bool logic\+::\+Ghost\+Model\+::is\+Frozen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft terug of de ghost bevroren is. 
+
+\begin{DoxyReturn}{Returns}
+True als de ghost frozen is. 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_ghost_model_a2d8b84fb345396229c8104043a5afd3d}\index{logic::GhostModel@{logic::GhostModel}!setChaseSpeed@{setChaseSpeed}}
+\index{setChaseSpeed@{setChaseSpeed}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setChaseSpeed()}{setChaseSpeed()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a2d8b84fb345396229c8104043a5afd3d} 
+void logic\+::\+Ghost\+Model\+::set\+Chase\+Speed (\begin{DoxyParamCaption}\item[{double}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet de chase snelheid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Nieuwe chase snelheid. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a2547d0acbdd437478cacdb49297e2ec3}\index{logic::GhostModel@{logic::GhostModel}!setFearDuration@{setFearDuration}}
+\index{setFearDuration@{setFearDuration}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setFearDuration()}{setFearDuration()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a2547d0acbdd437478cacdb49297e2ec3} 
+void logic\+::\+Ghost\+Model\+::set\+Fear\+Duration (\begin{DoxyParamCaption}\item[{double}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet de fear duration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Duur in seconden. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a75d00957493ffe46818be9fe2337aafb}\index{logic::GhostModel@{logic::GhostModel}!setFrozen@{setFrozen}}
+\index{setFrozen@{setFrozen}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setFrozen()}{setFrozen()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a75d00957493ffe46818be9fe2337aafb} 
+void logic\+::\+Ghost\+Model\+::set\+Frozen (\begin{DoxyParamCaption}\item[{bool}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet of de ghost bevroren is. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & True om te bevriezen. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a41d17323c715018cb5df19576e068b84}\index{logic::GhostModel@{logic::GhostModel}!setMode@{setMode}}
+\index{setMode@{setMode}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setMode()}{setMode()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a41d17323c715018cb5df19576e068b84} 
+void logic\+::\+Ghost\+Model\+::set\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}}}]{m}{}\end{DoxyParamCaption})}
+
+
+
+Zet de mode van de ghost. 
+
+Past snelheid en timers aan indien nodig.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Nieuwe mode. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{classlogic_1_1_ghost_model_a41d17323c715018cb5df19576e068b84_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_ghost_model_afebe4e481e99459f06b6b76c21a76c40}\index{logic::GhostModel@{logic::GhostModel}!setReleaseTimer@{setReleaseTimer}}
+\index{setReleaseTimer@{setReleaseTimer}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setReleaseTimer()}{setReleaseTimer()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_afebe4e481e99459f06b6b76c21a76c40} 
+void logic\+::\+Ghost\+Model\+::set\+Release\+Timer (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet de release timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Tijd sinds start. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a03cf8ec3232070246dd0aad554157f34}\index{logic::GhostModel@{logic::GhostModel}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a03cf8ec3232070246dd0aad554157f34} 
+void logic\+::\+Ghost\+Model\+::set\+Speed (\begin{DoxyParamCaption}\item[{double}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet de huidige snelheid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Nieuwe snelheid. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a0f8175dd147faed474125edaaaf47cc3}\index{logic::GhostModel@{logic::GhostModel}!setStartPosition@{setStartPosition}}
+\index{setStartPosition@{setStartPosition}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setStartPosition()}{setStartPosition()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a0f8175dd147faed474125edaaaf47cc3} 
+void logic\+::\+Ghost\+Model\+::set\+Start\+Position (\begin{DoxyParamCaption}\item[{double}]{sx}{, }\item[{double}]{sy}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet de startpositie van de ghost. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sx} & Start X-\/positie. \\
+\hline
+{\em sy} & Start Y-\/positie. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a3e130680214d21ace265c878ae7d1bab}\index{logic::GhostModel@{logic::GhostModel}!setWorld@{setWorld}}
+\index{setWorld@{setWorld}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{setWorld()}{setWorld()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a3e130680214d21ace265c878ae7d1bab} 
+void logic\+::\+Ghost\+Model\+::set\+World (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_world}{World}} $>$ \&}]{w}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet een referentie naar de world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & Pointer naar \doxylink{classlogic_1_1_world}{World}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_ghost_model_a7f0c07a340ffee28c75edbcc58488417}\index{logic::GhostModel@{logic::GhostModel}!update@{update}}
+\index{update@{update}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a7f0c07a340ffee28c75edbcc58488417} 
+void logic\+::\+Ghost\+Model\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update de ghost per tick. 
+
+Verwerkt AI beslissingen, movement en state transitions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time in seconden. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15}{logic\+::\+Entity}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classlogic_1_1_ghost_model_a7f0c07a340ffee28c75edbcc58488417_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_ghost_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_ghost_model_ab0c10b8ebb638f345b02e113b5887d06}\index{logic::GhostModel@{logic::GhostModel}!chaseSpeed@{chaseSpeed}}
+\index{chaseSpeed@{chaseSpeed}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{chaseSpeed}{chaseSpeed}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_ab0c10b8ebb638f345b02e113b5887d06} 
+double logic\+::\+Ghost\+Model\+::chase\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a06df448eee37f3dc405b706f191b3f63}\index{logic::GhostModel@{logic::GhostModel}!decisionCooldown@{decisionCooldown}}
+\index{decisionCooldown@{decisionCooldown}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{decisionCooldown}{decisionCooldown}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a06df448eee37f3dc405b706f191b3f63} 
+double logic\+::\+Ghost\+Model\+::decision\+Cooldown = 0.\+12\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a2488db3b69c867e9de989c1e0ce36cf8}\index{logic::GhostModel@{logic::GhostModel}!decisionTimer@{decisionTimer}}
+\index{decisionTimer@{decisionTimer}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{decisionTimer}{decisionTimer}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a2488db3b69c867e9de989c1e0ce36cf8} 
+double logic\+::\+Ghost\+Model\+::decision\+Timer = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a1fbc4aa48dc5046e55d5b3c2a3fd74c8}\index{logic::GhostModel@{logic::GhostModel}!fearDuration@{fearDuration}}
+\index{fearDuration@{fearDuration}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{fearDuration}{fearDuration}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a1fbc4aa48dc5046e55d5b3c2a3fd74c8} 
+double logic\+::\+Ghost\+Model\+::fear\+Duration = 6.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a2b4261252b6935733e63b67bad7b1606}\index{logic::GhostModel@{logic::GhostModel}!fearTimer@{fearTimer}}
+\index{fearTimer@{fearTimer}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{fearTimer}{fearTimer}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a2b4261252b6935733e63b67bad7b1606} 
+double logic\+::\+Ghost\+Model\+::fear\+Timer = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_aeac543153e095498799204cf19cbc6f5}\index{logic::GhostModel@{logic::GhostModel}!frozen@{frozen}}
+\index{frozen@{frozen}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{frozen}{frozen}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_aeac543153e095498799204cf19cbc6f5} 
+bool logic\+::\+Ghost\+Model\+::frozen = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a2e5c495972920a6806eb43282f925757}\index{logic::GhostModel@{logic::GhostModel}!mode@{mode}}
+\index{mode@{mode}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a2e5c495972920a6806eb43282f925757} 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_aa30135f88fabf78373f93b9cc9da0e4d}{Mode}} logic\+::\+Ghost\+Model\+::mode\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a2c6e8dc0361c32c710ffc71b115dcb05}\index{logic::GhostModel@{logic::GhostModel}!releaseTimer@{releaseTimer}}
+\index{releaseTimer@{releaseTimer}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{releaseTimer}{releaseTimer}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a2c6e8dc0361c32c710ffc71b115dcb05} 
+double logic\+::\+Ghost\+Model\+::release\+Timer = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_ab2ee188b4710a6145fd53fb089dd2b05}\index{logic::GhostModel@{logic::GhostModel}!startX@{startX}}
+\index{startX@{startX}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{startX}{startX}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_ab2ee188b4710a6145fd53fb089dd2b05} 
+double logic\+::\+Ghost\+Model\+::startX = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_af3f9c8729367073cfcf780bbfb7d4eb6}\index{logic::GhostModel@{logic::GhostModel}!startY@{startY}}
+\index{startY@{startY}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{startY}{startY}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_af3f9c8729367073cfcf780bbfb7d4eb6} 
+double logic\+::\+Ghost\+Model\+::startY = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a4a8ef4c9881eaa3cced4f6ec9264e427}\index{logic::GhostModel@{logic::GhostModel}!type@{type}}
+\index{type@{type}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a4a8ef4c9881eaa3cced4f6ec9264e427} 
+\mbox{\hyperlink{classlogic_1_1_ghost_model_a822dba2993064db30e0da611893a172e}{Ghost\+Type}} logic\+::\+Ghost\+Model\+::type\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_ghost_model_a460b69121723fbd399811c20987c0bfe}\index{logic::GhostModel@{logic::GhostModel}!worldRef@{worldRef}}
+\index{worldRef@{worldRef}!logic::GhostModel@{logic::GhostModel}}
+\doxysubsubsection{\texorpdfstring{worldRef}{worldRef}}
+{\footnotesize\ttfamily \label{classlogic_1_1_ghost_model_a460b69121723fbd399811c20987c0bfe} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_world}{World}}$>$ logic\+::\+Ghost\+Model\+::world\+Ref\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_ghost_model_8h}{Ghost\+Model.\+h}}\item 
+logic/src/\mbox{\hyperlink{_ghost_model_8cpp}{Ghost\+Model.\+cpp}}\end{DoxyCompactItemize}

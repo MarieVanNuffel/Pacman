@@ -1,0 +1,33 @@
+\doxysection{Stopwatch.\+h}
+\hypertarget{_stopwatch_8h_source}{}\label{_stopwatch_8h_source}\index{logic/include/logic/Stopwatch.h@{logic/include/logic/Stopwatch.h}}
+\mbox{\hyperlink{_stopwatch_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 27/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMAN\_STOPWATCH\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMAN\_STOPWATCH\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}{Stopwatch}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}{Stopwatch}}\&\ \mbox{\hyperlink{classlogic_1_1_stopwatch_ad6b0077eb3f00985e3337d486a3f00aa}{instance}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_stopwatch_a541067dbe85c2ba20b1302ad48ddd378}{tick}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_stopwatch_acfa4878fe013f7a3d9c02372d80ff985}{Stopwatch}}();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::chrono::steady\_clock::time\_point\ \mbox{\hyperlink{classlogic_1_1_stopwatch_a75267b4bac83b9c01608bef92d63ae31}{last}};}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PACMAN\_STOPWATCH\_H}}
+
+\end{DoxyCode}

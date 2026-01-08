@@ -1,0 +1,133 @@
+\doxysection{Game Class Reference}
+\hypertarget{class_game}{}\label{class_game}\index{Game@{Game}}
+
+
+Hoofdklasse van het spel.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+
+
+Collaboration diagram for Game\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_game__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}} ()
+\begin{DoxyCompactList}\small\item\em Start de game loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ad6a42bcb250035a9d580718b8a677efd}{toggle\+Fullscreen}} ()
+\begin{DoxyCompactList}\small\item\em Wisselt tussen fullscreen en klein window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \mbox{\hyperlink{class_game_a223de215aeb661cd423ac145756cc730}{window}}
+\item 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}} \mbox{\hyperlink{class_game_a58f1d5fe1dd35386a6d599f7b8c990a1}{state\+Manager}}
+\item 
+bool \mbox{\hyperlink{class_game_a393f4c1e50ff13f0bb595d245e0b5910}{is\+Fullscreen}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hoofdklasse van het spel. 
+
+Beheert SFML, de game loop en de state manager. 
+
+\label{doc-constructors}
+\Hypertarget{class_game_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_ad59df6562a58a614fda24622d3715b65}\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily \label{class_game_ad59df6562a58a614fda24622d3715b65} 
+Game\+::\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+Initialiseert het venster en zet de start state naar menu state. 
+
+\label{doc-func-members}
+\Hypertarget{class_game_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}\index{Game@{Game}!run@{run}}
+\index{run@{run}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa} 
+void Game\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Start de game loop. 
+
+Verwerkt input, update logica en rendert de actieve state. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_ad6a42bcb250035a9d580718b8a677efd}\index{Game@{Game}!toggleFullscreen@{toggleFullscreen}}
+\index{toggleFullscreen@{toggleFullscreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{toggleFullscreen()}{toggleFullscreen()}}
+{\footnotesize\ttfamily \label{class_game_ad6a42bcb250035a9d580718b8a677efd} 
+void Game\+::toggle\+Fullscreen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Wisselt tussen fullscreen en klein window. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_ad6a42bcb250035a9d580718b8a677efd_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_game_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_a393f4c1e50ff13f0bb595d245e0b5910}\index{Game@{Game}!isFullscreen@{isFullscreen}}
+\index{isFullscreen@{isFullscreen}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{isFullscreen}{isFullscreen}}
+{\footnotesize\ttfamily \label{class_game_a393f4c1e50ff13f0bb595d245e0b5910} 
+bool Game\+::is\+Fullscreen\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a58f1d5fe1dd35386a6d599f7b8c990a1}\index{Game@{Game}!stateManager@{stateManager}}
+\index{stateManager@{stateManager}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{stateManager}{stateManager}}
+{\footnotesize\ttfamily \label{class_game_a58f1d5fe1dd35386a6d599f7b8c990a1} 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}} Game\+::state\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a223de215aeb661cd423ac145756cc730}\index{Game@{Game}!window@{window}}
+\index{window@{window}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{class_game_a223de215aeb661cd423ac145756cc730} 
+sf\+::\+Render\+Window Game\+::window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+view/src/\mbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}

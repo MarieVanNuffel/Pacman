@@ -1,0 +1,406 @@
+\doxysection{Level\+State Class Reference}
+\hypertarget{class_level_state}{}\label{class_level_state}\index{LevelState@{LevelState}}
+
+
+\doxylink{class_game}{Game} state voor een level.  
+
+
+
+
+{\ttfamily \#include $<$Level\+State.\+h$>$}
+
+
+
+Inheritance diagram for Level\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_level_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Level\+State\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_level_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_level_state_a68b13883debde1294705796af8d704b2}{Level\+State}} (sf\+::\+Render\+Window \&\mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_level_state_a6c6620b9b330a4675f529ec483257289}{handle\+Input}} (sf\+::\+Event \&ev) override
+\begin{DoxyCompactList}\small\item\em Verwerkt input events (keyboard). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_level_state_aa06aa4650f27df031d709dff56098624}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update game logica en animaties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_level_state_a35bcf6729c5becf048fc132fc891cbf4}{render}} () override
+\begin{DoxyCompactList}\small\item\em Render maze, entities en UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_state_a783d52422b544bb226e13de8ecfd6ad6}{\texorpdfstring{$\sim$}{\string~}\+State}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_level_state_a6e6880138537677a5b557aefa655e9cc}{draw\+Maze}} ()
+\begin{DoxyCompactList}\small\item\em Tekent de maze. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_level_state_aa0fda83d04089e649f019fc9197c3276}{draw\+Entities}} ()
+\begin{DoxyCompactList}\small\item\em tekent entities \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_level_state_a965b6328244e0f54c976c5dc09059748}{draw\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Tekent de UI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_level_state_a8baa837f5de28a41bab5b2cd2235701e}{update\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Update de UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_world}{logic\+::\+World}} $>$ \mbox{\hyperlink{class_level_state_a413158bca9ef6a68a667c6f4c8179140}{world}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_concrete_entity_factory}{view\+::\+Concrete\+Entity\+Factory}} $>$ \mbox{\hyperlink{class_level_state_a9112c151a7162c8c1a32e94e213d4274}{factory}}
+\item 
+\mbox{\hyperlink{classview_1_1_camera}{view\+::\+Camera}} \mbox{\hyperlink{class_level_state_a4b0bf47fcc65adbe698c581187106b4c}{camera}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_maze_view}{view\+::\+Maze\+View}} $>$ \mbox{\hyperlink{class_level_state_a0704beff576c84b7f6a910fa6a1ff9dc}{maze\+View}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}} $>$ \mbox{\hyperlink{class_level_state_ad7d51dccfac89a34f328d555554687c1}{pacman\+View}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}} $>$ $>$ \mbox{\hyperlink{class_level_state_ae408d5c57c9b48fd42ff3f0f94137eaf}{ghost\+Views}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}} $>$ $>$ \mbox{\hyperlink{class_level_state_ae623c1bdab4a062061233bdd285750b7}{coin\+Views}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}} $>$ $>$ \mbox{\hyperlink{class_level_state_aa5ffd958cc8c9ee579da50de1cf8134c}{fruit\+Views}}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}} $>$ $>$ \mbox{\hyperlink{class_level_state_ae307d7d276e7d889ffb0bbd859610136}{ghost\+Door\+Views}}
+\item 
+float \mbox{\hyperlink{class_level_state_a66c9df7f183731f3747a1d1e0bc8905e}{tileW}} \{\}
+\item 
+float \mbox{\hyperlink{class_level_state_aa7e0c11ad889bbceab680ea57f9d48b2}{tileH}} \{\}
+\item 
+sf\+::\+Font \mbox{\hyperlink{class_level_state_ad722a359caa45cd29ad50fcf78314366}{font}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_level_state_aadc8b92017201e25bd3312b647910ec8}{score\+Text}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_level_state_aeda43a32d7e53fb680fe2462b8056d4c}{lives\+Text}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_level_state_a5c455deeb8a01cb5cc79712fd2f1416b}{life\+Sprite}}
+\item 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{class_level_state_a974fe4c780e1e4847c459593a670e932}{life\+Texture\+Ptr}}
+\item 
+sf\+::\+Texture \mbox{\hyperlink{class_level_state_abb845c3eb649ac09546d32a2049b6f13}{last\+Frame\+Texture}}
+\item 
+const float \mbox{\hyperlink{class_level_state_a443b9c6e536bfddbae474687a0738542}{BASE\+\_\+\+WIDTH}} = 800.f
+\item 
+const float \mbox{\hyperlink{class_level_state_ab6a9ee6f75a7f97a869738ee29290f48}{BASE\+\_\+\+HEIGHT}} = 600.f
+\item 
+float \mbox{\hyperlink{class_level_state_aa2caafef6ffb030a1e4ebafffaeaacba}{ui\+Scale}} = 1.f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_state_abb2174cacbef3c06ff9e37235f6ca52e}{State}} (sf\+::\+Render\+Window \&win, \mbox{\hyperlink{class_state_manager}{State\+Manager}} \&sm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Render\+Window \& \mbox{\hyperlink{class_state_a897c8f448ef6e27108c47447334a8860}{window}}
+\item 
+\mbox{\hyperlink{class_state_manager}{State\+Manager}} \& \mbox{\hyperlink{class_state_a2c50419dbdfc3618c7a8f6e7d11e7e7a}{state\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_game}{Game} state voor een level. 
+
+\doxylink{class_level_state}{Level\+State} beheert de spel-\/logica, rendering en input tijdens het spelen. Het verbindt world met de verschillende views en UI-\/elementen. 
+
+\label{doc-constructors}
+\Hypertarget{class_level_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_level_state_a68b13883debde1294705796af8d704b2}\index{LevelState@{LevelState}!LevelState@{LevelState}}
+\index{LevelState@{LevelState}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{LevelState()}{LevelState()}}
+{\footnotesize\ttfamily \label{class_level_state_a68b13883debde1294705796af8d704b2} 
+Level\+State\+::\+Level\+State (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{\mbox{\hyperlink{class_state_manager}{State\+Manager}} \&}]{sm}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & Referentie naar het SFML window \\
+\hline
+{\em sm} & \doxylink{class_state_manager}{State\+Manager} voor state-\/overgangen \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_level_state_a68b13883debde1294705796af8d704b2_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_level_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_level_state_aa0fda83d04089e649f019fc9197c3276}\index{LevelState@{LevelState}!drawEntities@{drawEntities}}
+\index{drawEntities@{drawEntities}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{drawEntities()}{drawEntities()}}
+{\footnotesize\ttfamily \label{class_level_state_aa0fda83d04089e649f019fc9197c3276} 
+void Level\+State\+::draw\+Entities (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+tekent entities 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{class_level_state_aa0fda83d04089e649f019fc9197c3276_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_level_state_a6e6880138537677a5b557aefa655e9cc}\index{LevelState@{LevelState}!drawMaze@{drawMaze}}
+\index{drawMaze@{drawMaze}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{drawMaze()}{drawMaze()}}
+{\footnotesize\ttfamily \label{class_level_state_a6e6880138537677a5b557aefa655e9cc} 
+void Level\+State\+::draw\+Maze (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tekent de maze. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{class_level_state_a6e6880138537677a5b557aefa655e9cc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_level_state_a965b6328244e0f54c976c5dc09059748}\index{LevelState@{LevelState}!drawUI@{drawUI}}
+\index{drawUI@{drawUI}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{drawUI()}{drawUI()}}
+{\footnotesize\ttfamily \label{class_level_state_a965b6328244e0f54c976c5dc09059748} 
+void Level\+State\+::draw\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tekent de UI. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{class_level_state_a965b6328244e0f54c976c5dc09059748_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_level_state_a6c6620b9b330a4675f529ec483257289}\index{LevelState@{LevelState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_level_state_a6c6620b9b330a4675f529ec483257289} 
+void Level\+State\+::handle\+Input (\begin{DoxyParamCaption}\item[{sf\+::\+Event \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Verwerkt input events (keyboard). 
+
+
+
+Implements \mbox{\hyperlink{class_state_af019c528ad5d846fd968f767ebcbc17b}{State}}.
+
+\Hypertarget{class_level_state_a35bcf6729c5becf048fc132fc891cbf4}\index{LevelState@{LevelState}!render@{render}}
+\index{render@{render}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_level_state_a35bcf6729c5becf048fc132fc891cbf4} 
+void Level\+State\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render maze, entities en UI. 
+
+
+
+Implements \mbox{\hyperlink{class_state_a71f5105bcdc39481be7684d853fe12e9}{State}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{class_level_state_a35bcf6729c5becf048fc132fc891cbf4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_level_state_aa06aa4650f27df031d709dff56098624}\index{LevelState@{LevelState}!update@{update}}
+\index{update@{update}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_level_state_aa06aa4650f27df031d709dff56098624} 
+void Level\+State\+::update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update game logica en animaties. 
+
+
+
+Implements \mbox{\hyperlink{class_state_a07b507523aaffc4cf78f3dd3174a68ea}{State}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_level_state_aa06aa4650f27df031d709dff56098624_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_level_state_a8baa837f5de28a41bab5b2cd2235701e}\index{LevelState@{LevelState}!updateUI@{updateUI}}
+\index{updateUI@{updateUI}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{updateUI()}{updateUI()}}
+{\footnotesize\ttfamily \label{class_level_state_a8baa837f5de28a41bab5b2cd2235701e} 
+void Level\+State\+::update\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Update de UI. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{class_level_state_a8baa837f5de28a41bab5b2cd2235701e_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_level_state_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_level_state_ab6a9ee6f75a7f97a869738ee29290f48}\index{LevelState@{LevelState}!BASE\_HEIGHT@{BASE\_HEIGHT}}
+\index{BASE\_HEIGHT@{BASE\_HEIGHT}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{BASE\_HEIGHT}{BASE\_HEIGHT}}
+{\footnotesize\ttfamily \label{class_level_state_ab6a9ee6f75a7f97a869738ee29290f48} 
+const float Level\+State\+::\+BASE\+\_\+\+HEIGHT = 600.f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a443b9c6e536bfddbae474687a0738542}\index{LevelState@{LevelState}!BASE\_WIDTH@{BASE\_WIDTH}}
+\index{BASE\_WIDTH@{BASE\_WIDTH}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{BASE\_WIDTH}{BASE\_WIDTH}}
+{\footnotesize\ttfamily \label{class_level_state_a443b9c6e536bfddbae474687a0738542} 
+const float Level\+State\+::\+BASE\+\_\+\+WIDTH = 800.f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a4b0bf47fcc65adbe698c581187106b4c}\index{LevelState@{LevelState}!camera@{camera}}
+\index{camera@{camera}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{camera}{camera}}
+{\footnotesize\ttfamily \label{class_level_state_a4b0bf47fcc65adbe698c581187106b4c} 
+\mbox{\hyperlink{classview_1_1_camera}{view\+::\+Camera}} Level\+State\+::camera\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_ae623c1bdab4a062061233bdd285750b7}\index{LevelState@{LevelState}!coinViews@{coinViews}}
+\index{coinViews@{coinViews}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{coinViews}{coinViews}}
+{\footnotesize\ttfamily \label{class_level_state_ae623c1bdab4a062061233bdd285750b7} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}$>$ $>$ Level\+State\+::coin\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a9112c151a7162c8c1a32e94e213d4274}\index{LevelState@{LevelState}!factory@{factory}}
+\index{factory@{factory}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{factory}{factory}}
+{\footnotesize\ttfamily \label{class_level_state_a9112c151a7162c8c1a32e94e213d4274} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_concrete_entity_factory}{view\+::\+Concrete\+Entity\+Factory}}$>$ Level\+State\+::factory\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_ad722a359caa45cd29ad50fcf78314366}\index{LevelState@{LevelState}!font@{font}}
+\index{font@{font}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_level_state_ad722a359caa45cd29ad50fcf78314366} 
+sf\+::\+Font Level\+State\+::font\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_aa5ffd958cc8c9ee579da50de1cf8134c}\index{LevelState@{LevelState}!fruitViews@{fruitViews}}
+\index{fruitViews@{fruitViews}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{fruitViews}{fruitViews}}
+{\footnotesize\ttfamily \label{class_level_state_aa5ffd958cc8c9ee579da50de1cf8134c} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}$>$ $>$ Level\+State\+::fruit\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_ae307d7d276e7d889ffb0bbd859610136}\index{LevelState@{LevelState}!ghostDoorViews@{ghostDoorViews}}
+\index{ghostDoorViews@{ghostDoorViews}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{ghostDoorViews}{ghostDoorViews}}
+{\footnotesize\ttfamily \label{class_level_state_ae307d7d276e7d889ffb0bbd859610136} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}$>$ $>$ Level\+State\+::ghost\+Door\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_ae408d5c57c9b48fd42ff3f0f94137eaf}\index{LevelState@{LevelState}!ghostViews@{ghostViews}}
+\index{ghostViews@{ghostViews}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{ghostViews}{ghostViews}}
+{\footnotesize\ttfamily \label{class_level_state_ae408d5c57c9b48fd42ff3f0f94137eaf} 
+std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}$>$ $>$ Level\+State\+::ghost\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_abb845c3eb649ac09546d32a2049b6f13}\index{LevelState@{LevelState}!lastFrameTexture@{lastFrameTexture}}
+\index{lastFrameTexture@{lastFrameTexture}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{lastFrameTexture}{lastFrameTexture}}
+{\footnotesize\ttfamily \label{class_level_state_abb845c3eb649ac09546d32a2049b6f13} 
+sf\+::\+Texture Level\+State\+::last\+Frame\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a5c455deeb8a01cb5cc79712fd2f1416b}\index{LevelState@{LevelState}!lifeSprite@{lifeSprite}}
+\index{lifeSprite@{lifeSprite}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{lifeSprite}{lifeSprite}}
+{\footnotesize\ttfamily \label{class_level_state_a5c455deeb8a01cb5cc79712fd2f1416b} 
+sf\+::\+Sprite Level\+State\+::life\+Sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a974fe4c780e1e4847c459593a670e932}\index{LevelState@{LevelState}!lifeTexturePtr@{lifeTexturePtr}}
+\index{lifeTexturePtr@{lifeTexturePtr}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{lifeTexturePtr}{lifeTexturePtr}}
+{\footnotesize\ttfamily \label{class_level_state_a974fe4c780e1e4847c459593a670e932} 
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ Level\+State\+::life\+Texture\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_aeda43a32d7e53fb680fe2462b8056d4c}\index{LevelState@{LevelState}!livesText@{livesText}}
+\index{livesText@{livesText}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{livesText}{livesText}}
+{\footnotesize\ttfamily \label{class_level_state_aeda43a32d7e53fb680fe2462b8056d4c} 
+sf\+::\+Text Level\+State\+::lives\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a0704beff576c84b7f6a910fa6a1ff9dc}\index{LevelState@{LevelState}!mazeView@{mazeView}}
+\index{mazeView@{mazeView}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{mazeView}{mazeView}}
+{\footnotesize\ttfamily \label{class_level_state_a0704beff576c84b7f6a910fa6a1ff9dc} 
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_maze_view}{view\+::\+Maze\+View}}$>$ Level\+State\+::maze\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_ad7d51dccfac89a34f328d555554687c1}\index{LevelState@{LevelState}!pacmanView@{pacmanView}}
+\index{pacmanView@{pacmanView}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{pacmanView}{pacmanView}}
+{\footnotesize\ttfamily \label{class_level_state_ad7d51dccfac89a34f328d555554687c1} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}$>$ Level\+State\+::pacman\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_aadc8b92017201e25bd3312b647910ec8}\index{LevelState@{LevelState}!scoreText@{scoreText}}
+\index{scoreText@{scoreText}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{scoreText}{scoreText}}
+{\footnotesize\ttfamily \label{class_level_state_aadc8b92017201e25bd3312b647910ec8} 
+sf\+::\+Text Level\+State\+::score\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_aa7e0c11ad889bbceab680ea57f9d48b2}\index{LevelState@{LevelState}!tileH@{tileH}}
+\index{tileH@{tileH}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{tileH}{tileH}}
+{\footnotesize\ttfamily \label{class_level_state_aa7e0c11ad889bbceab680ea57f9d48b2} 
+float Level\+State\+::tileH \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a66c9df7f183731f3747a1d1e0bc8905e}\index{LevelState@{LevelState}!tileW@{tileW}}
+\index{tileW@{tileW}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{tileW}{tileW}}
+{\footnotesize\ttfamily \label{class_level_state_a66c9df7f183731f3747a1d1e0bc8905e} 
+float Level\+State\+::tileW \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_aa2caafef6ffb030a1e4ebafffaeaacba}\index{LevelState@{LevelState}!uiScale@{uiScale}}
+\index{uiScale@{uiScale}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{uiScale}{uiScale}}
+{\footnotesize\ttfamily \label{class_level_state_aa2caafef6ffb030a1e4ebafffaeaacba} 
+float Level\+State\+::ui\+Scale = 1.f\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_state_a413158bca9ef6a68a667c6f4c8179140}\index{LevelState@{LevelState}!world@{world}}
+\index{world@{world}!LevelState@{LevelState}}
+\doxysubsubsection{\texorpdfstring{world}{world}}
+{\footnotesize\ttfamily \label{class_level_state_a413158bca9ef6a68a667c6f4c8179140} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_world}{logic\+::\+World}}$>$ Level\+State\+::world\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_level_state_8h}{Level\+State.\+h}}\item 
+view/src/\mbox{\hyperlink{_level_state_8cpp}{Level\+State.\+cpp}}\end{DoxyCompactItemize}

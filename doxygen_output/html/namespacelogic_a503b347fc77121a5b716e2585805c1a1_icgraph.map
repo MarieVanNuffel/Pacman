@@ -1,0 +1,5 @@
+<map id="logic::manhattan" name="logic::manhattan">
+<area shape="rect" id="Node000001" title=" " alt="" coords="188,13,305,40"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_ghost_model.html#a7f0c07a340ffee28c75edbcc58488417" title="Update de ghost per tick." alt="" coords="5,5,140,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,27,140,29,140,24,174,26"/>
+</map>

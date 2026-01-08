@@ -5,11 +5,10 @@
 #ifndef PACMANGAME_DIRECTION_H
 #define PACMANGAME_DIRECTION_H
 
-
 #pragma once
 
 namespace logic {
-    enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };
+enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };
 }
 
-#endif //PACMANGAME_DIRECTION_H
+#endif // PACMANGAME_DIRECTION_H

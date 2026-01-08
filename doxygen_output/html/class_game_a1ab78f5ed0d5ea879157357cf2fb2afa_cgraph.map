@@ -1,0 +1,11 @@
+<map id="Game::run" name="Game::run">
+<area shape="rect" id="Node000001" title="Start de game loop." alt="" coords="5,56,88,83"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_stopwatch.html#ad6b0077eb3f00985e3337d486a3f00aa" title="Verkrijg singleton instantie." alt="" coords="136,5,311,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,55,162,35,158,39,89,60"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_stopwatch.html#a541067dbe85c2ba20b1302ad48ddd378" title="Bereken tijd sinds laatste tick." alt="" coords="150,56,297,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="88,67,136,68,131,71,89,72"/>
+<area shape="rect" id="Node000005" href="$class_game.html#ad6a42bcb250035a9d580718b8a677efd" title="Wisselt tussen fullscreen en klein window." alt="" coords="144,107,303,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="89,78,162,101,158,103,88,84"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_stopwatch.html#acfa4878fe013f7a3d9c02372d80ff985" title="Constructor, initieert starttijd." alt="" coords="359,5,547,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="311,16,346,18,341,19,312,21"/>
+</map>

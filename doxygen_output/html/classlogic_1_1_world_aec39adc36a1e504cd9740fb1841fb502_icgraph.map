@@ -1,0 +1,5 @@
+<map id="logic::World::advanceLevel" name="logic::World::advanceLevel">
+<area shape="rect" id="Node000001" title="Gaat naar het volgende level (moeilijker)." alt="" coords="190,5,367,32"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#affdadc66a5af7d6d315d11a4c8623ed3" title="Update entities/level per tick." alt="" coords="5,5,142,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,19,142,21,142,16,177,18"/>
+</map>

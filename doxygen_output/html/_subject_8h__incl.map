@@ -1,0 +1,9 @@
+<map id="logic/include/logic/Subject.h" name="logic/include/logic/Subject.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="64,5,188,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,74,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,48,66,87,62,83,101,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="98,96,155,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="128,47,129,81,124,79,124,51"/>
+<area shape="rect" id="Node000004" href="$_observer_8h.html" title=" " alt="" coords="180,96,265,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,46,198,85,193,86,150,51"/>
+</map>

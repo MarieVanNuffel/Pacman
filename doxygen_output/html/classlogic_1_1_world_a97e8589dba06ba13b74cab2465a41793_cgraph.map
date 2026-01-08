@@ -1,0 +1,9 @@
+<map id="logic::World::canMoveIn" name="logic::World::canMoveIn">
+<area shape="rect" id="Node000001" title="Controleert of een entity kan bewegen in een richting." alt="" coords="5,31,167,57"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#ab035c7140e1314a28bfb93e0b51861d8" title="Kijkt of een entity geblokkeerd wordt op een positie." alt="" coords="215,31,382,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,41,202,44,197,44,167,47"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_world.html#a2fb0221d2018cd492b7fdd20ceb9b7fc" title="Controleert of de tile een ghostdoor is." alt="" coords="430,5,600,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="382,32,417,30,412,31,383,37"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_world.html#ae8b881e77f5a8c39a1ab0e275673fb46" title="Controleert of er een muur is." alt="" coords="442,56,588,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="383,51,430,59,424,59,382,56"/>
+</map>

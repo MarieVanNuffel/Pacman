@@ -6,33 +6,36 @@
 #include <algorithm>
 
 namespace logic {
-    void Subject::addObserver(std::shared_ptr<Observer> o) {
-        if (!o) return;
-        // voorkom dubbele registratie
-        for (auto &w : observers) {
-            if (auto s = w.lock()) {
-                if (s == o) return;
-            }
-        }
-        observers.emplace_back(o);
+void Subject::addObserver(std::shared_ptr<Observer> o) {
+  if (!o)
+    return;
+  // voorkom dubbele registratie
+  for (auto &w : observers) {
+    if (auto s = w.lock()) {
+      if (s == o)
+        return;
     }
-
-    void Subject::removeObserver(std::shared_ptr<Observer> o) {
-        observers.erase(std::remove_if(observers.begin(), observers.end(),
-            [&](const std::weak_ptr<Observer>& w) {
-                auto s = w.lock();
-                return (!s) || (o && s == o);
-            }), observers.end());
-    }
-
-    void Subject::notify(int event) {
-        for (auto it = observers.begin(); it != observers.end(); ) {
-            if (auto s = it->lock()) {
-                s->onNotify(event);
-                ++it;
-            } else {
-                it = observers.erase(it); // verwijder verlopen observers
-            }
-        }
-    }
+  }
+  observers.emplace_back(o);
 }
+
+void Subject::removeObserver(std::shared_ptr<Observer> o) {
+  observers.erase(std::remove_if(observers.begin(), observers.end(),
+                                 [&](const std::weak_ptr<Observer> &w) {
+                                   auto s = w.lock();
+                                   return (!s) || (o && s == o);
+                                 }),
+                  observers.end());
+}
+
+void Subject::notify(int event) {
+  for (auto it = observers.begin(); it != observers.end();) {
+    if (auto s = it->lock()) {
+      s->onNotify(event);
+      ++it;
+    } else {
+      it = observers.erase(it); // verwijder verlopen observers
+    }
+  }
+}
+} // namespace logic

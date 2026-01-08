@@ -1,0 +1,5 @@
+<map id="LevelState::drawPauseScreen" name="LevelState::drawPauseScreen">
+<area shape="rect" id="Node000001" title=" " alt="" coords="181,5,378,32"/>
+<area shape="rect" id="Node000002" href="$class_level_state.html#a35bcf6729c5becf048fc132fc891cbf4" title=" " alt="" coords="5,5,133,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,19,133,21,133,16,168,18"/>
+</map>

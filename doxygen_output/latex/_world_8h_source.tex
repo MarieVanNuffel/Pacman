@@ -1,0 +1,109 @@
+\doxysection{World.\+h}
+\hypertarget{_world_8h_source}{}\label{_world_8h_source}\index{logic/include/logic/World.h@{logic/include/logic/World.h}}
+\mbox{\hyperlink{_world_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 27/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ pacman\_WORLD\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ pacman\_WORLD\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pac_man_model_8h}{PacManModel.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ghost_model_8h}{GhostModel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_coin_model_8h}{CoinModel.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_fruit_model_8h}{FruitModel.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_ghost_door_model_8h}{GhostDoorModel.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_entity_factory_8h}{IEntityFactory.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_score_8h}{Score.h}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacelogic}{logic}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogic_1_1_world_a55b904f4995b50be200162cb09523fbc}{World}}\ :\ \textcolor{keyword}{public}\ std::enable\_shared\_from\_this<World>\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::shared\_ptr<IEntityFactory>\ \mbox{\hyperlink{classlogic_1_1_world_a6a4e8e220b5d1ee672706176a2ea4e07}{factory}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::shared\_ptr<PacManModel>\ \mbox{\hyperlink{classlogic_1_1_world_a3a252a2443735c05663e22d8a7cd6b66}{pacman}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::vector<std::shared\_ptr<GhostModel>>\ \mbox{\hyperlink{classlogic_1_1_world_a92e43ac20e041ffdded801789909ddee}{ghosts}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::vector<std::shared\_ptr<CoinModel>>\ \mbox{\hyperlink{classlogic_1_1_world_aa434094b767bbbd5648f141439c46c8b}{coins}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::vector<std::shared\_ptr<FruitModel>>\ \mbox{\hyperlink{classlogic_1_1_world_aa06b30f06ba8f7a7024d4718c932f2c6}{fruits}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::vector<std::shared\_ptr<GhostDoorModel>>\ \mbox{\hyperlink{classlogic_1_1_world_a1e637058febbf822beced94d85a18f44}{ghostDoors}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ std::shared\_ptr<Score>\ \mbox{\hyperlink{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01}{score}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ std::vector<std::vector<int>>\ \mbox{\hyperlink{classlogic_1_1_world_a7918253283da5618aefd2c5af449101c}{maze}};\ \textcolor{comment}{//\ 2D\ grid,\ 0\ =\ empty,\ 1\ =\ wall,\ 2\ =\ coin,\ 3\ =\ fruit,\ 4\ =\ pacman,\ 5\ =\ ghost}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlogic_1_1_world_a3f557389e11dfe7864dd00a4ab3f283a}{mazeHeight}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlogic_1_1_world_a0df0bb743860541592b96d219fd3c047}{mazeWidth}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Timer\ voor\ score\ en\ Level}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_world_aeaa54e51733073af90e8e84151a3dbfd}{timeSinceLastCoin}}\ =\ 0.0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlogic_1_1_world_a1d82f7a4bbd9f3c543c6353c6a846ad0}{currentLevel}}\ =\ 1;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ pacman\ death\ animatie}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_a8c91cf02c80477774f4b71afe6d98b24}{deathAnimation}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_world_a0500aa95c8ce5860de2684da381ce36c}{deathTimer}}\ =\ 0.0;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classlogic_1_1_world_a7e0e38f597983df2262fb0d2301c4dfe}{deathDuration}}\ =\ 0.0;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlogic_1_1_world_a55b904f4995b50be200162cb09523fbc}{World}}(std::shared\_ptr<IEntityFactory>\ \mbox{\hyperlink{classlogic_1_1_world_a6a4e8e220b5d1ee672706176a2ea4e07}{factory}},\ std::shared\_ptr<Score>\ \mbox{\hyperlink{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01}{score}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getters\ Entities}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::shared\_ptr<PacManModel>\ \mbox{\hyperlink{classlogic_1_1_world_a622deb0b19a6cd976032d0a36d70d6e1}{getPacman}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_a3a252a2443735c05663e22d8a7cd6b66}{pacman}};\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::vector<std::shared\_ptr<GhostModel>>\&\ \mbox{\hyperlink{classlogic_1_1_world_a782adc0b66a35007be978f1046361921}{getGhosts}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_a92e43ac20e041ffdded801789909ddee}{ghosts}};\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::vector<std::vector<int>>\&\ \mbox{\hyperlink{classlogic_1_1_world_aa752b08b8d111b72510306c009b0e408}{getMaze}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_a7918253283da5618aefd2c5af449101c}{maze}};\ \};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::vector<std::shared\_ptr<CoinModel>>\ \mbox{\hyperlink{classlogic_1_1_world_aa0f263f53c43be46ce7e1164f3ced25b}{getCoins}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_aa434094b767bbbd5648f141439c46c8b}{coins}};\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::vector<std::shared\_ptr<FruitModel>>\ \mbox{\hyperlink{classlogic_1_1_world_ae0a8dc7849998b999eb5091158740449}{getFruits}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_aa06b30f06ba8f7a7024d4718c932f2c6}{fruits}};\ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::vector<std::shared\_ptr<GhostDoorModel>>\ \mbox{\hyperlink{classlogic_1_1_world_ac0252a215a8619e788c99081a3701d04}{getGhostDoors}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_a1e637058febbf822beced94d85a18f44}{ghostDoors}};\ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::shared\_ptr<Score>\ \mbox{\hyperlink{classlogic_1_1_world_a15fc414a1ced5e78eb52fb5dd9d58c6a}{getScore}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classlogic_1_1_world_a5a5990b3060cd7d4acce693f7e9bab01}{score}};\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Functies\ voor\ levels}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_ac69f318edab024f81a02c944cfae2068}{spawnEntitiesForLevel}}();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_aec39adc36a1e504cd9740fb1841fb502}{advanceLevel}}();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_a389aee9839cd4382ba3f21ef9cd0b728}{resetPositions}}();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_ac1af14e723e8848cfbfac9be9ba3b5ba}{startDeathAnimatie}}();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_affdadc66a5af7d6d315d11a4c8623ed3}{update}}(\textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Collision\ Helpers}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_ae8b881e77f5a8c39a1ab0e275673fb46}{isWallAt}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_ab035c7140e1314a28bfb93e0b51861d8}{isBlockedAt}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y,\ \textcolor{keywordtype}{double}\ radius,\ \textcolor{keywordtype}{bool}\ disallowDoor)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_a2fb0221d2018cd492b7fdd20ceb9b7fc}{isGhostDoor}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Grid\ helpers}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_a178627911c42f02e862b29360b8d80fb}{isAlignedWithGrid}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_a90df2f1328df5609a7cec7df87a6c65d}{isIntersection}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ std::vector<Direction>\ \mbox{\hyperlink{classlogic_1_1_world_a6d4ae97fcab89634edd693a1403c2331}{getFreeDirections}}(\textcolor{keywordtype}{double}\ worldX,\ \textcolor{keywordtype}{double}\ worldY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ std::pair<double,double>\ \mbox{\hyperlink{classlogic_1_1_world_a02ea944c00492b8898630757bada7836}{predictStep}}(\textcolor{keywordtype}{double}\ worldX,\ \textcolor{keywordtype}{double}\ worldY,\ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ dir)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Movement\ Helpers}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_ae981395346e050c23ef22cf45940a06c}{tryMoveEntity}}(std::shared\_ptr<Entity>\ e,\ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ dir,\ \textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogic_1_1_world_a03e703d58c62b2fd7a7d1a32adc727f1}{tryMoveGhost}}(std::shared\_ptr<Entity>\ e,\ \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ dir,\ \textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_a97e8589dba06ba13b74cab2465a41793}{canMoveIn}}(\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ dir,\ \textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogic_1_1_world_a2fadfbc973cfb98bd4f7d77a33f84bab}{canGhostMove}}(\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}\ dir,\ \textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pathfinding\ voor\ breadth\ first}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ std::vector<Direction>\ \mbox{\hyperlink{classlogic_1_1_world_a9bb3a6a108dcd8579c7ac3e417c7633a}{findPath}}(\textcolor{keywordtype}{int}\ sx,\ \textcolor{keywordtype}{int}\ sy,\ \textcolor{keywordtype}{int}\ tx,\ \textcolor{keywordtype}{int}\ ty,\ \textcolor{keywordtype}{bool}\ allowDoor\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00297\ \ \ \ \ \};}
+\DoxyCodeLine{00298\ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//pacman\_WORLD\_H}}
+
+\end{DoxyCode}

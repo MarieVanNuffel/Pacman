@@ -1,0 +1,16 @@
+<map id="logic::World::isGhostDoor" name="logic::World::isGhostDoor">
+<area shape="rect" id="Node000001" title="Controleert of de tile een ghostdoor is." alt="" coords="638,81,809,108"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_world.html#ab035c7140e1314a28bfb93e0b51861d8" title="Kijkt of een entity geblokkeerd wordt op een positie." alt="" coords="423,81,590,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="620,95,591,97,591,92,626,94"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_world.html#a2fadfbc973cfb98bd4f7d77a33f84bab" title="Controleert of een ghost kan bewegen in een richting." alt="" coords="190,5,375,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="456,75,374,47,338,35,338,30,376,41,461,75"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_world.html#a97e8589dba06ba13b74cab2465a41793" title="Controleert of een entity kan bewegen in een richting." alt="" coords="202,56,363,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="405,84,363,81,363,76,410,83"/>
+<area shape="rect" id="Node000006" href="$classlogic_1_1_world.html#ae981395346e050c23ef22cf45940a06c" title="Probeert een entity te verplaatsen in een richting." alt="" coords="193,107,372,133"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="405,106,372,113,371,107,410,105"/>
+<area shape="rect" id="Node000007" href="$classlogic_1_1_world.html#a03e703d58c62b2fd7a7d1a32adc727f1" title="Probeert een ghost te verplaatsen in een richting." alt="" coords="193,157,372,184"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="461,114,376,148,338,159,337,154,374,143,456,115"/>
+<area shape="rect" id="Node000005" href="$classlogic_1_1_world.html#affdadc66a5af7d6d315d11a4c8623ed3" title="Update entities/level per tick." alt="" coords="5,81,142,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="184,82,143,89,142,84,189,80"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="176,108,142,106,142,100,181,107"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="PauseState::drawPauseScreen" name="PauseState::drawPauseScreen">
+<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,390,32"/>
+<area shape="rect" id="Node000002" href="$class_pause_state.html#a75c23f306a72b82b344007b55dea4ba4" title=" " alt="" coords="5,5,139,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,19,139,21,139,16,174,18"/>
+</map>

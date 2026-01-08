@@ -6,25 +6,24 @@
 #include <chrono>
 
 namespace logic {
-    Random::Random() {
-        rng.seed(static_cast<unsigned>(std::chrono::steady_clock::now().time_since_epoch().count()));
-    }
-
-
-    Random&Random::instance() {
-        static Random r;
-        return r;
-    }
-
-
-    int Random::nextInt(int a, int b) {
-        std::uniform_int_distribution<int> dist(a, b); // random int tussen a en b
-        return dist(rng);
-    }
-
-
-    double Random::nextDouble(double a, double b) {
-        std::uniform_real_distribution<double> dist(a, b); // random double tussen a en b
-        return dist(rng);
-    }
+Random::Random() {
+  rng.seed(static_cast<unsigned>(
+      std::chrono::steady_clock::now().time_since_epoch().count()));
 }
+
+Random &Random::instance() {
+  static Random r;
+  return r;
+}
+
+int Random::nextInt(int a, int b) {
+  std::uniform_int_distribution<int> dist(a, b); // random int tussen a en b
+  return dist(rng);
+}
+
+double Random::nextDouble(double a, double b) {
+  std::uniform_real_distribution<double> dist(a,
+                                              b); // random double tussen a en b
+  return dist(rng);
+}
+} // namespace logic

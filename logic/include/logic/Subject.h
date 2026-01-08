@@ -7,49 +7,46 @@
 
 #pragma once
 
+#include "Observer.h"
 #include <memory>
 #include <vector>
-#include "Observer.h"
 
 namespace logic {
 
-    /**
-     * @brief Subject in het Observer-patroon
-     *
-     * Beheert een lijst van observers en notify bij events.
-     * (Observers worden opgeslagen als weak_ptr om dangling pointers te vermijden.)
-     */
-    class Subject {
-    public:
+/**
+ * @brief Subject in het Observer-patroon
+ *
+ * Beheert een lijst van observers en notify bij events.
+ * (Observers worden opgeslagen als weak_ptr om dangling pointers te vermijden.)
+ */
+class Subject {
+public:
+  /**
+   * @brief Voeg een observer toe
+   * @param o Shared pointer naar de observer die toegevoegd wordt.
+   *
+   */
+  void addObserver(std::shared_ptr<Observer> o);
 
-        /**
-         * @brief Voeg een observer toe
-         * @param o Shared pointer naar de observer die toegevoegd wordt.
-         *
-         */
-        void addObserver(std::shared_ptr<Observer> o);
+  /**
+   * @brief Verwijder een observer
+   * @param o Shared pointer naar de observer die verwijderd wordt.
+   *
+   * Verwijdert ook verlopen weak_ptrs.
+   */
+  void removeObserver(std::shared_ptr<Observer> o);
 
-        /**
-         * @brief Verwijder een observer
-         * @param o Shared pointer naar de observer die verwijderd wordt.
-         *
-         * Verwijdert ook verlopen weak_ptrs.
-         */
-        void removeObserver(std::shared_ptr<Observer> o);
+  /**
+   * @brief Notify de observers
+   * @param event Event code die wordt doorgegeven aan observers
+   *
+   * Verwijdert automatisch verlopen observers.
+   */
+  void notify(int event);
 
-        /**
-         * @brief Notify de observers
-         * @param event Event code die wordt doorgegeven aan observers
-         *
-         * Verwijdert automatisch verlopen observers.
-         */
-        void notify(int event);
+private:
+  std::vector<std::weak_ptr<Observer>> observers;
+};
+} // namespace logic
 
-    private:
-        std::vector<std::weak_ptr<Observer>> observers;
-    };
-}
-
-
-
-#endif //PACMANGAME_SUBJECT_H
+#endif // PACMANGAME_SUBJECT_H

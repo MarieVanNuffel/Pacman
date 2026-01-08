@@ -1,0 +1,325 @@
+\doxysection{view\+::Pacman\+View Class Reference}
+\hypertarget{classview_1_1_pacman_view}{}\label{classview_1_1_pacman_view}\index{view::PacmanView@{view::PacmanView}}
+
+
+View voor de ghosts.  
+
+
+
+
+{\ttfamily \#include $<$Pacman\+View.\+h$>$}
+
+
+
+Inheritance diagram for view\+::Pacman\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classview_1_1_pacman_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for view\+::Pacman\+View\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classview_1_1_pacman_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_pacman_view_aa1a908846665a70fdf8c82ece0c8ba2b}{Pacman\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{logic\+::\+Pac\+Man\+Model}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_pacman_view_ae0fee0dd4cc7428765572898bc36b635}{draw}} (sf\+::\+Render\+Window \&win, const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&cam) override
+\begin{DoxyCompactList}\small\item\em Tekent de ghosts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_pacman_view_a0dcb94819973c00682fbfd8b68a964d7}{update\+Sprite}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update van animatie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_pacman_view_a35ea5c6c2a5815abd9cb450b070726c7}{start\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Start de death animatie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_pacman_view_a0e0156b38055ec5d2c964a2b3be6b6e3}{stop\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Stopt de death animatie. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classview_1_1_pacman_view_a864518a362e411112ddfce88f81bd995}{get\+Death\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em Geeft de duur van de death animatie terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classview_1_1_pacman_view_a68aaec4362bc2ecfa86c439ac0ab8e19}{on\+Notify}} (int event) override
+\begin{DoxyCompactList}\small\item\em Ontvangt events van de observer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classview_1_1_entity_view_a7196700bcd86a228913a4b6e51a30066}{Entity\+View}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ m)
+\begin{DoxyCompactList}\small\item\em Basis klasse voor entit views. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classview_1_1_entity_view_aa856c794d4463dfbf7e40b645990c135}{\texorpdfstring{$\sim$}{\string~}\+Entity\+View}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_observer}{logic\+::\+Observer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_observer_a9ffb621699cd68a8e165297d145f593e}{\texorpdfstring{$\sim$}{\string~}\+Observer}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classview_1_1_pacman_view_a0c3c186c5769bc44c8f5ee1be0382b04}{anim\+Timer}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classview_1_1_pacman_view_aa0646f1867572dd7eee984d12aadd169}{frame\+Time}} = 0.\+15
+\item 
+int \mbox{\hyperlink{classview_1_1_pacman_view_a7e29e8755ae155156ea42275989944c1}{frame\+Index}} = 0
+\item 
+int \mbox{\hyperlink{classview_1_1_pacman_view_a94caed92ce84711bbe057358c0d520bc}{frames}} \mbox{[}\mbox{\hyperlink{classview_1_1_pacman_view_a5773dde11fb201006e1d47d9f949a98b}{NUM\+\_\+\+FRAMES}}\mbox{]} = \{0, 15\}
+\item 
+bool \mbox{\hyperlink{classview_1_1_pacman_view_a65d7dc03836a2dd47f24c7576541dd0c}{death\+Playing}} = false
+\item 
+int \mbox{\hyperlink{classview_1_1_pacman_view_a1929509540697b5c9ba1965e5e80cbaf}{death\+Frame\+Index}} = 0
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{logic\+::\+Pac\+Man\+Model}} $>$ \mbox{\hyperlink{classview_1_1_pacman_view_a35d5dd77d36ecc977d4dfca1e8e09005}{model}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{classview_1_1_pacman_view_a9f5a0f4cd176f7cd33bd8db6a27c4994}{sprite}}
+\item 
+std\+::shared\+\_\+ptr$<$ sf\+::\+Texture $>$ \mbox{\hyperlink{classview_1_1_pacman_view_ae721ee784b3ffab92ba40c7332b2c441}{texture\+Ptr}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{logic\+::\+Direction}} \mbox{\hyperlink{classview_1_1_pacman_view_a3e782b7c55c234bf8d71a8c54c8cac4e}{last\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}{logic\+::\+Direction\+::\+RIGHT}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \mbox{\hyperlink{classview_1_1_pacman_view_acb389984c92ff079183454feb5b016cf}{FRAME\+\_\+\+SIZE}} = 15
+\item 
+static constexpr int \mbox{\hyperlink{classview_1_1_pacman_view_a5773dde11fb201006e1d47d9f949a98b}{NUM\+\_\+\+FRAMES}} = 2
+\item 
+static constexpr int \mbox{\hyperlink{classview_1_1_pacman_view_a0cf5954005c6c8cb54baa3cb54c5cd4c}{NUM\+\_\+\+DEATH\+\_\+\+FRAMES}} = 12
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classview_1_1_entity_view}{view\+::\+Entity\+View}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}} $>$ \mbox{\hyperlink{classview_1_1_entity_view_ab40155b8a4d66fe17546a9817800557f}{model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View voor de ghosts. 
+
+Pacmanview tekent pacman in de juiste richting met zijn bijbehorende animaties. 
+
+\label{doc-constructors}
+\Hypertarget{classview_1_1_pacman_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classview_1_1_pacman_view_aa1a908846665a70fdf8c82ece0c8ba2b}\index{view::PacmanView@{view::PacmanView}!PacmanView@{PacmanView}}
+\index{PacmanView@{PacmanView}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{PacmanView()}{PacmanView()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_aa1a908846665a70fdf8c82ece0c8ba2b} 
+view\+::\+Pacman\+View\+::\+Pacman\+View (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_pac_man_model}{logic\+::\+Pac\+Man\+Model}} $>$}]{m}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Pacman\+Model \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_pacman_view_aa1a908846665a70fdf8c82ece0c8ba2b_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{classview_1_1_pacman_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classview_1_1_pacman_view_ae0fee0dd4cc7428765572898bc36b635}\index{view::PacmanView@{view::PacmanView}!draw@{draw}}
+\index{draw@{draw}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_ae0fee0dd4cc7428765572898bc36b635} 
+void view\+::\+Pacman\+View\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{win}{, }\item[{const \mbox{\hyperlink{classview_1_1_camera}{Camera}} \&}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tekent de ghosts. 
+
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a39b5e7d645eb71c005a4032a78729db7}{view\+::\+Entity\+View}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_pacman_view_ae0fee0dd4cc7428765572898bc36b635_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_pacman_view_a864518a362e411112ddfce88f81bd995}\index{view::PacmanView@{view::PacmanView}!getDeathDuration@{getDeathDuration}}
+\index{getDeathDuration@{getDeathDuration}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{getDeathDuration()}{getDeathDuration()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a864518a362e411112ddfce88f81bd995} 
+double view\+::\+Pacman\+View\+::get\+Death\+Duration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Geeft de duur van de death animatie terug. 
+
+\begin{DoxyReturn}{Returns}
+double duratie van de animatie. 
+\end{DoxyReturn}
+\Hypertarget{classview_1_1_pacman_view_a68aaec4362bc2ecfa86c439ac0ab8e19}\index{view::PacmanView@{view::PacmanView}!onNotify@{onNotify}}
+\index{onNotify@{onNotify}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{onNotify()}{onNotify()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a68aaec4362bc2ecfa86c439ac0ab8e19} 
+void view\+::\+Pacman\+View\+::on\+Notify (\begin{DoxyParamCaption}\item[{int}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Ontvangt events van de observer. 
+
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_observer_a5cc2c82ccf50bd556d754faf854599dd}{logic\+::\+Observer}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_pacman_view_a68aaec4362bc2ecfa86c439ac0ab8e19_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_pacman_view_a35ea5c6c2a5815abd9cb450b070726c7}\index{view::PacmanView@{view::PacmanView}!startDeath@{startDeath}}
+\index{startDeath@{startDeath}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{startDeath()}{startDeath()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a35ea5c6c2a5815abd9cb450b070726c7} 
+void view\+::\+Pacman\+View\+::start\+Death (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Start de death animatie. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_pacman_view_a35ea5c6c2a5815abd9cb450b070726c7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_pacman_view_a0e0156b38055ec5d2c964a2b3be6b6e3}\index{view::PacmanView@{view::PacmanView}!stopDeath@{stopDeath}}
+\index{stopDeath@{stopDeath}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{stopDeath()}{stopDeath()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a0e0156b38055ec5d2c964a2b3be6b6e3} 
+void view\+::\+Pacman\+View\+::stop\+Death (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Stopt de death animatie. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classview_1_1_pacman_view_a0e0156b38055ec5d2c964a2b3be6b6e3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classview_1_1_pacman_view_a0dcb94819973c00682fbfd8b68a964d7}\index{view::PacmanView@{view::PacmanView}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a0dcb94819973c00682fbfd8b68a964d7} 
+void view\+::\+Pacman\+View\+::update\+Sprite (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update van animatie. 
+
+
+
+Implements \mbox{\hyperlink{classview_1_1_entity_view_a105cec392eed5946480ba74735b7292a}{view\+::\+Entity\+View}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classview_1_1_pacman_view_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classview_1_1_pacman_view_a0c3c186c5769bc44c8f5ee1be0382b04}\index{view::PacmanView@{view::PacmanView}!animTimer@{animTimer}}
+\index{animTimer@{animTimer}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{animTimer}{animTimer}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a0c3c186c5769bc44c8f5ee1be0382b04} 
+double view\+::\+Pacman\+View\+::anim\+Timer = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a1929509540697b5c9ba1965e5e80cbaf}\index{view::PacmanView@{view::PacmanView}!deathFrameIndex@{deathFrameIndex}}
+\index{deathFrameIndex@{deathFrameIndex}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{deathFrameIndex}{deathFrameIndex}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a1929509540697b5c9ba1965e5e80cbaf} 
+int view\+::\+Pacman\+View\+::death\+Frame\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a65d7dc03836a2dd47f24c7576541dd0c}\index{view::PacmanView@{view::PacmanView}!deathPlaying@{deathPlaying}}
+\index{deathPlaying@{deathPlaying}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{deathPlaying}{deathPlaying}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a65d7dc03836a2dd47f24c7576541dd0c} 
+bool view\+::\+Pacman\+View\+::death\+Playing = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_acb389984c92ff079183454feb5b016cf}\index{view::PacmanView@{view::PacmanView}!FRAME\_SIZE@{FRAME\_SIZE}}
+\index{FRAME\_SIZE@{FRAME\_SIZE}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_SIZE}{FRAME\_SIZE}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_acb389984c92ff079183454feb5b016cf} 
+int view\+::\+Pacman\+View\+::\+FRAME\+\_\+\+SIZE = 15\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a7e29e8755ae155156ea42275989944c1}\index{view::PacmanView@{view::PacmanView}!frameIndex@{frameIndex}}
+\index{frameIndex@{frameIndex}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{frameIndex}{frameIndex}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a7e29e8755ae155156ea42275989944c1} 
+int view\+::\+Pacman\+View\+::frame\+Index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a94caed92ce84711bbe057358c0d520bc}\index{view::PacmanView@{view::PacmanView}!frames@{frames}}
+\index{frames@{frames}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{frames}{frames}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a94caed92ce84711bbe057358c0d520bc} 
+int view\+::\+Pacman\+View\+::frames\mbox{[}\mbox{\hyperlink{classview_1_1_pacman_view_a5773dde11fb201006e1d47d9f949a98b}{NUM\+\_\+\+FRAMES}}\mbox{]} = \{0, 15\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_aa0646f1867572dd7eee984d12aadd169}\index{view::PacmanView@{view::PacmanView}!frameTime@{frameTime}}
+\index{frameTime@{frameTime}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{frameTime}{frameTime}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_aa0646f1867572dd7eee984d12aadd169} 
+double view\+::\+Pacman\+View\+::frame\+Time = 0.\+15\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a3e782b7c55c234bf8d71a8c54c8cac4e}\index{view::PacmanView@{view::PacmanView}!lastDirection@{lastDirection}}
+\index{lastDirection@{lastDirection}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{lastDirection}{lastDirection}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a3e782b7c55c234bf8d71a8c54c8cac4e} 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{logic\+::\+Direction}} view\+::\+Pacman\+View\+::last\+Direction = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52a21507b40c80068eda19865706fdc2403}{logic\+::\+Direction\+::\+RIGHT}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a35d5dd77d36ecc977d4dfca1e8e09005}\index{view::PacmanView@{view::PacmanView}!model@{model}}
+\index{model@{model}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a35d5dd77d36ecc977d4dfca1e8e09005} 
+std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classlogic_1_1_pac_man_model}{logic\+::\+Pac\+Man\+Model}}$>$ view\+::\+Pacman\+View\+::model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a0cf5954005c6c8cb54baa3cb54c5cd4c}\index{view::PacmanView@{view::PacmanView}!NUM\_DEATH\_FRAMES@{NUM\_DEATH\_FRAMES}}
+\index{NUM\_DEATH\_FRAMES@{NUM\_DEATH\_FRAMES}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{NUM\_DEATH\_FRAMES}{NUM\_DEATH\_FRAMES}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a0cf5954005c6c8cb54baa3cb54c5cd4c} 
+int view\+::\+Pacman\+View\+::\+NUM\+\_\+\+DEATH\+\_\+\+FRAMES = 12\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a5773dde11fb201006e1d47d9f949a98b}\index{view::PacmanView@{view::PacmanView}!NUM\_FRAMES@{NUM\_FRAMES}}
+\index{NUM\_FRAMES@{NUM\_FRAMES}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{NUM\_FRAMES}{NUM\_FRAMES}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a5773dde11fb201006e1d47d9f949a98b} 
+int view\+::\+Pacman\+View\+::\+NUM\+\_\+\+FRAMES = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_a9f5a0f4cd176f7cd33bd8db6a27c4994}\index{view::PacmanView@{view::PacmanView}!sprite@{sprite}}
+\index{sprite@{sprite}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{sprite}{sprite}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_a9f5a0f4cd176f7cd33bd8db6a27c4994} 
+sf\+::\+Sprite view\+::\+Pacman\+View\+::sprite\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classview_1_1_pacman_view_ae721ee784b3ffab92ba40c7332b2c441}\index{view::PacmanView@{view::PacmanView}!texturePtr@{texturePtr}}
+\index{texturePtr@{texturePtr}!view::PacmanView@{view::PacmanView}}
+\doxysubsubsection{\texorpdfstring{texturePtr}{texturePtr}}
+{\footnotesize\ttfamily \label{classview_1_1_pacman_view_ae721ee784b3ffab92ba40c7332b2c441} 
+std\+::shared\+\_\+ptr$<$sf\+::\+Texture$>$ view\+::\+Pacman\+View\+::texture\+Ptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+view/include/view/\mbox{\hyperlink{_pacman_view_8h}{Pacman\+View.\+h}}\item 
+view/src/\mbox{\hyperlink{_pacman_view_8cpp}{Pacman\+View.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="view::FruitView" name="view::FruitView">
+<area shape="rect" id="Node000001" title="View voor het fruit." alt="" coords="70,187,178,427"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_entity_view.html" title=" " alt="" coords="5,5,114,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,150,94,187,88,187,81,156"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_observer.html" title="Observer interface." alt="" coords="138,27,237,117"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,129,159,188,154,186,171,134"/>
+</map>

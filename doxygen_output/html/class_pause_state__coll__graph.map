@@ -1,0 +1,7 @@
+<map id="PauseState" name="PauseState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,543,143,847"/>
+<area shape="rect" id="Node000002" href="$class_state.html" title=" " alt="" coords="25,339,124,493"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,505,77,543,72,543,74,511"/>
+<area shape="rect" id="Node000003" href="$class_state_manager.html" title="Beheert de verschillende states van het spel." alt="" coords="18,5,131,267"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="75,264,77,322,72,321,74,269"/>
+</map>

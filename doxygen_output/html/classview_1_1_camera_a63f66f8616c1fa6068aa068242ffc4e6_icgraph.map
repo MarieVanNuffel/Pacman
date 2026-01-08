@@ -1,0 +1,5 @@
+<map id="view::Camera::worldToPixels" name="view::Camera::worldToPixels">
+<area shape="rect" id="Node000001" title="Converteert world coördinaten naar pixel rectangle." alt="" coords="202,13,393,40"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_ghost_door_view.html#a99a6c7038d35e6a6af2d553ec7eccc9e" title="Tekent de ghostdoor." alt="" coords="5,5,154,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,27,154,29,154,24,189,26"/>
+</map>

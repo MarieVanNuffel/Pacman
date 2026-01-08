@@ -1,0 +1,9 @@
+<map id="logic::CoinModel" name="logic::CoinModel">
+<area shape="rect" id="Node000001" title="Model voor een coin." alt="" coords="105,619,213,773"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_entity.html" title="Basis class voor alle entities." alt="" coords="5,139,152,571"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,583,144,619,138,619,132,588"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="14,5,144,91"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,103,81,139,76,139,79,108"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_subject.html" title="Subject in het Observer&#45;patroon." alt="" coords="176,299,304,411"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="226,424,180,620,175,618,221,427"/>
+</map>

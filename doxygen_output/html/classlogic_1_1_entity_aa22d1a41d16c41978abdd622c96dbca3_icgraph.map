@@ -1,0 +1,9 @@
+<map id="logic::Entity::getX" name="logic::Entity::getX">
+<area shape="rect" id="Node000001" title="Geeft x&#45;positie terug." alt="" coords="208,80,333,107"/>
+<area shape="rect" id="Node000002" href="$classlogic_1_1_ghost_door_model.html#a36b51f5bbea0aab06a821b408198058b" title="Check of ghost boven de deur zit." alt="" coords="5,5,160,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,75,145,51,145,46,219,73"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_ghost_door_model.html#a989ef76d3afa781ab47f9b14c322182b" title="Check of ghost door de deur mag passeren." alt="" coords="5,72,160,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,94,161,96,160,91,195,93"/>
+<area shape="rect" id="Node000004" href="$classlogic_1_1_ghost_door_model.html#a12d0e0b5aa97feb879b0eb2096e1d4a1" title="Check of ghost in de deur zone zit." alt="" coords="5,139,160,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="219,112,146,141,144,136,214,113"/>
+</map>

@@ -1,0 +1,299 @@
+\doxysection{logic\+::Pac\+Man\+Model Class Reference}
+\hypertarget{classlogic_1_1_pac_man_model}{}\label{classlogic_1_1_pac_man_model}\index{logic::PacManModel@{logic::PacManModel}}
+
+
+Model voor de pacman entity.  
+
+
+
+
+{\ttfamily \#include $<$Pac\+Man\+Model.\+h$>$}
+
+
+
+Inheritance diagram for logic\+::Pac\+Man\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_pac_man_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for logic\+::Pac\+Man\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classlogic_1_1_pac_man_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogic_1_1_pac_man_model_a1fdb20542b45cde772f5a01163a580ab}{Pac\+Man\+Model}} ()
+\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a400307e133a3eb69481c7a7c3469d9a9}{set\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet huidige movement direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a0581229e6b9aaf05fc0c457674de879a}{set\+Desired\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet Desired direction. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classlogic_1_1_pac_man_model_a200bcf27666dd9f675e18093f828cbdd}{get\+Lives}} () const
+\begin{DoxyCompactList}\small\item\em Geeft aantal levens terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_pac_man_model_a599a0eba014dbbc658a9ec0d4f9f6db3}{get\+Death\+Animation\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em Geeft duur van death animatie terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a9e7c510ecf723049d591fff47648239a}{lose\+Life}} ()
+\begin{DoxyCompactList}\small\item\em Verlaag lives met 1. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogic_1_1_pac_man_model_a846654b59912903dcca52b2549fbf262}{is\+Game\+Over}} () const
+\begin{DoxyCompactList}\small\item\em Check of game over is. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a827d681a6aa5fe207d4b870b5986f214}{die}} ()
+\begin{DoxyCompactList}\small\item\em Notify observers dat pacman doodgaat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a32680fb42d83354919bfd5fcaa5c7992}{revive}} ()
+\begin{DoxyCompactList}\small\item\em Notify observers dat pacman opnieuw leeft. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a9d4f6bf4a66f7fe5bb08d59a88258092}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reset pacman naar start state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_pac_man_model_a03a94e545c04994a0bbecd44ca14b830}{update}} (double dt) override
+\begin{DoxyCompactList}\small\item\em Update functie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classlogic_1_1_entity_a0340314617cce8e47c8548011c8b8e8e}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aa22d1a41d16c41978abdd622c96dbca3}{getX}} () const
+\begin{DoxyCompactList}\small\item\em Geeft x-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a9de0b62562ab971b9c103937a2af5b11}{getY}} () const
+\begin{DoxyCompactList}\small\item\em Geeft y-\/positie terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_af85d92f4c2cb4aa37614a2b7554a6fcd}{getW}} () const
+\begin{DoxyCompactList}\small\item\em Geeft breedte terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a344cc207ef296314760d99817843645e}{getH}} () const
+\begin{DoxyCompactList}\small\item\em Geeft hoogte terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a3c92f5708e864cbaebe0b9632cf2f19b}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft huidige direction terug. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a14e2a363fa023799b782650cce00e337}{get\+Desired\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Geeft desired direction terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_abf1a1d8b63703f28c1ca23fb607b9478}{set\+Direction}} (\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} d)
+\begin{DoxyCompactList}\small\item\em Zet huidige direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlogic_1_1_rect}{Rect}} \mbox{\hyperlink{classlogic_1_1_entity_aa6b11a929d92b29c244522d72cfabc20}{get\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Geeft bounding box terug. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a452c1cdbe126c1511bf8c1983fa69096}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Geeft movement speed terug. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_entity_a54aac7176a9ddc5ea15b78a4c2d6c197}{set\+Position}} (double nx, double ny)
+\begin{DoxyCompactList}\small\item\em Zet entity positie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classlogic_1_1_subject}{logic\+::\+Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_a8685c7532f23c89b7891da4440b416f2}{add\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Voeg een observer toe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_affd46e40717e279436774a45f4719fec}{remove\+Observer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classlogic_1_1_observer}{Observer}} $>$ o)
+\begin{DoxyCompactList}\small\item\em Verwijder een observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogic_1_1_subject_ada4a6d23acb1b26fb8da600ef7ceb862}{notify}} (int event)
+\begin{DoxyCompactList}\small\item\em Notify de observers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff}{lives}} = 3
+\item 
+double \mbox{\hyperlink{classlogic_1_1_pac_man_model_a3473f24a53a4b3af226a96abb8b83517}{death\+Animation\+Duration}} = 12 \texorpdfstring{$\ast$}{*} 0.\+15
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classlogic_1_1_entity}{logic\+::\+Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a94233f6dffba2efd7a33ce944da0f2df}{x}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_aea1af9cb8390e51dd31c839bdf0c28af}{y}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_a4212709c8c9d1eaa051150653328beeb}{w}} = 0.\+1
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac7d8dcaa5218ef7a3510e425f133c44a}{h}} = 0.\+1
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_aac995a558c7461eb9f57b3244e6bb8a5}{direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}} \mbox{\hyperlink{classlogic_1_1_entity_a966330f7250730c60ab2472282a6234c}{desired\+Direction}} = \mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52ab50339a10e1de285ac99d4c3990b8693}{Direction\+::\+NONE}}
+\item 
+double \mbox{\hyperlink{classlogic_1_1_entity_ac3eeeb1ecbd55e3c8f6a52b061f9fbf4}{speed}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Model voor de pacman entity. 
+
+Houdt lives bij, direction en death animatie timing. Movement gebeurt in \doxylink{classlogic_1_1_world}{World}. 
+
+\label{doc-constructors}
+\Hypertarget{classlogic_1_1_pac_man_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlogic_1_1_pac_man_model_a1fdb20542b45cde772f5a01163a580ab}\index{logic::PacManModel@{logic::PacManModel}!PacManModel@{PacManModel}}
+\index{PacManModel@{PacManModel}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{PacManModel()}{PacManModel()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a1fdb20542b45cde772f5a01163a580ab} 
+logic\+::\+Pac\+Man\+Model\+::\+Pac\+Man\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlogic_1_1_pac_man_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlogic_1_1_pac_man_model_a827d681a6aa5fe207d4b870b5986f214}\index{logic::PacManModel@{logic::PacManModel}!die@{die}}
+\index{die@{die}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{die()}{die()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a827d681a6aa5fe207d4b870b5986f214} 
+void logic\+::\+Pac\+Man\+Model\+::die (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Notify observers dat pacman doodgaat. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classlogic_1_1_pac_man_model_a827d681a6aa5fe207d4b870b5986f214_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_pac_man_model_a599a0eba014dbbc658a9ec0d4f9f6db3}\index{logic::PacManModel@{logic::PacManModel}!getDeathAnimationDuration@{getDeathAnimationDuration}}
+\index{getDeathAnimationDuration@{getDeathAnimationDuration}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{getDeathAnimationDuration()}{getDeathAnimationDuration()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a599a0eba014dbbc658a9ec0d4f9f6db3} 
+double logic\+::\+Pac\+Man\+Model\+::get\+Death\+Animation\+Duration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft duur van death animatie terug. 
+
+\begin{DoxyReturn}{Returns}
+Death animation duration 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_pac_man_model_a200bcf27666dd9f675e18093f828cbdd}\index{logic::PacManModel@{logic::PacManModel}!getLives@{getLives}}
+\index{getLives@{getLives}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{getLives()}{getLives()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a200bcf27666dd9f675e18093f828cbdd} 
+int logic\+::\+Pac\+Man\+Model\+::get\+Lives (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+
+
+Geeft aantal levens terug. 
+
+\begin{DoxyReturn}{Returns}
+Aantal lives 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_pac_man_model_a846654b59912903dcca52b2549fbf262}\index{logic::PacManModel@{logic::PacManModel}!isGameOver@{isGameOver}}
+\index{isGameOver@{isGameOver}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{isGameOver()}{isGameOver()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a846654b59912903dcca52b2549fbf262} 
+bool logic\+::\+Pac\+Man\+Model\+::is\+Game\+Over (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check of game over is. 
+
+\begin{DoxyReturn}{Returns}
+true als lives \texorpdfstring{$<$}{<}= 0 
+\end{DoxyReturn}
+\Hypertarget{classlogic_1_1_pac_man_model_a9e7c510ecf723049d591fff47648239a}\index{logic::PacManModel@{logic::PacManModel}!loseLife@{loseLife}}
+\index{loseLife@{loseLife}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{loseLife()}{loseLife()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a9e7c510ecf723049d591fff47648239a} 
+void logic\+::\+Pac\+Man\+Model\+::lose\+Life (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verlaag lives met 1. 
+
+\Hypertarget{classlogic_1_1_pac_man_model_a9d4f6bf4a66f7fe5bb08d59a88258092}\index{logic::PacManModel@{logic::PacManModel}!reset@{reset}}
+\index{reset@{reset}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a9d4f6bf4a66f7fe5bb08d59a88258092} 
+void logic\+::\+Pac\+Man\+Model\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reset pacman naar start state. 
+
+\Hypertarget{classlogic_1_1_pac_man_model_a32680fb42d83354919bfd5fcaa5c7992}\index{logic::PacManModel@{logic::PacManModel}!revive@{revive}}
+\index{revive@{revive}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{revive()}{revive()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a32680fb42d83354919bfd5fcaa5c7992} 
+void logic\+::\+Pac\+Man\+Model\+::revive (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Notify observers dat pacman opnieuw leeft. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classlogic_1_1_pac_man_model_a32680fb42d83354919bfd5fcaa5c7992_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classlogic_1_1_pac_man_model_a0581229e6b9aaf05fc0c457674de879a}\index{logic::PacManModel@{logic::PacManModel}!setDesiredDirection@{setDesiredDirection}}
+\index{setDesiredDirection@{setDesiredDirection}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{setDesiredDirection()}{setDesiredDirection()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a0581229e6b9aaf05fc0c457674de879a} 
+void logic\+::\+Pac\+Man\+Model\+::set\+Desired\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zet Desired direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Desired direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_pac_man_model_a400307e133a3eb69481c7a7c3469d9a9}\index{logic::PacManModel@{logic::PacManModel}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a400307e133a3eb69481c7a7c3469d9a9} 
+void logic\+::\+Pac\+Man\+Model\+::set\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacelogic_a5ee5130fbbf0b7c9c16c7375e2510c52}{Direction}}}]{d}{}\end{DoxyParamCaption})}
+
+
+
+Zet huidige movement direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Nieuwe direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogic_1_1_pac_man_model_a03a94e545c04994a0bbecd44ca14b830}\index{logic::PacManModel@{logic::PacManModel}!update@{update}}
+\index{update@{update}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a03a94e545c04994a0bbecd44ca14b830} 
+void logic\+::\+Pac\+Man\+Model\+::update (\begin{DoxyParamCaption}\item[{double}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update functie. 
+
+Movement gebeurt in \doxylink{classlogic_1_1_world}{World}. 
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classlogic_1_1_entity_a5149eae4a7ec2fc9d5f81c6b91fa2e15}{logic\+::\+Entity}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classlogic_1_1_pac_man_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlogic_1_1_pac_man_model_a3473f24a53a4b3af226a96abb8b83517}\index{logic::PacManModel@{logic::PacManModel}!deathAnimationDuration@{deathAnimationDuration}}
+\index{deathAnimationDuration@{deathAnimationDuration}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{deathAnimationDuration}{deathAnimationDuration}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_a3473f24a53a4b3af226a96abb8b83517} 
+double logic\+::\+Pac\+Man\+Model\+::death\+Animation\+Duration = 12 \texorpdfstring{$\ast$}{*} 0.\+15\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff}\index{logic::PacManModel@{logic::PacManModel}!lives@{lives}}
+\index{lives@{lives}!logic::PacManModel@{logic::PacManModel}}
+\doxysubsubsection{\texorpdfstring{lives}{lives}}
+{\footnotesize\ttfamily \label{classlogic_1_1_pac_man_model_abaf303d45788e3f2ecad1746509656ff} 
+int logic\+::\+Pac\+Man\+Model\+::lives = 3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+logic/include/logic/\mbox{\hyperlink{_pac_man_model_8h}{Pac\+Man\+Model.\+h}}\item 
+logic/src/\mbox{\hyperlink{_pac_man_model_8cpp}{Pac\+Man\+Model.\+cpp}}\end{DoxyCompactItemize}

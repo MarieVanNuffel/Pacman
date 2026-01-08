@@ -1,0 +1,7 @@
+<map id="view::PacmanView" name="view::PacmanView">
+<area shape="rect" id="Node000001" title="View voor de ghosts." alt="" coords="39,187,209,640"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_entity_view.html" title=" " alt="" coords="5,5,114,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,151,84,187,78,187,75,156"/>
+<area shape="rect" id="Node000003" href="$classlogic_1_1_observer.html" title="Observer interface." alt="" coords="138,27,237,117"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,129,169,187,164,186,176,135"/>
+</map>

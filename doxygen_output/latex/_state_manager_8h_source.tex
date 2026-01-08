@@ -1,0 +1,45 @@
+\doxysection{State\+Manager.\+h}
+\hypertarget{_state_manager_8h_source}{}\label{_state_manager_8h_source}\index{view/include/view/StateManager.h@{view/include/view/StateManager.h}}
+\mbox{\hyperlink{_state_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Marie\ Van\ Nuffel\ on\ 27/11/2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PACMAN\_STATEMANAGER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PACMAN\_STATEMANAGER\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_score_8h}{logic/Score.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_state}{State}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_state_manager_a6ed055420aceb73c4e6d10317790df13}{StateManager}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_state_manager_a6ed055420aceb73c4e6d10317790df13}{StateManager}}(sf::RenderWindow\&\ win);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_state_manager_ad6bf067afa8e7a9fe75e159281315f46}{pushState}}(std::shared\_ptr<State>\ state);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_state_manager_a1c5f8c0609e74fb2346b6b7f5930bb38}{popState}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_state_manager_a95545a47074149d846208ae0bdcebda1}{changeState}}(std::shared\_ptr<State>\ state);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_state_manager_aa50e98ec2045a2d33069d30586ddd020}{handleInput}}(sf::Event\&\ ev);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_state_manager_a36a23344f2570810b42b588a18d0e44e}{update}}(\textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_state_manager_a02e78818db709db59df3a46a4bb47ddf}{render}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \ \ [[nodiscard]]\ std::shared\_ptr<logic::Score>\ \mbox{\hyperlink{class_state_manager_a0e1b54d536a1d4192d5434ec3db31749}{getScore}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_state_manager_a3bfc37133cceac3180ec95945f53db18}{score}};\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \ \ sf::RenderWindow\&\ \mbox{\hyperlink{class_state_manager_aadf7ac7839164e798305603b4b2a8172}{window}};}
+\DoxyCodeLine{00086\ \ \ \ \ std::vector<std::shared\_ptr<State>>\ \mbox{\hyperlink{class_state_manager_a64e7ac91bdb486cf109ea3d23c560250}{states}};}
+\DoxyCodeLine{00087\ \ \ \ \ std::shared\_ptr<logic::Score>\ \mbox{\hyperlink{class_state_manager_a3bfc37133cceac3180ec95945f53db18}{score}};}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

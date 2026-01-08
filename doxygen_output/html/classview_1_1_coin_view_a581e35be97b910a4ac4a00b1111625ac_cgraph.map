@@ -1,0 +1,7 @@
+<map id="view::CoinView::draw" name="view::CoinView::draw">
+<area shape="rect" id="Node000001" title="Teken de coin." alt="" coords="5,43,154,69"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_camera.html#ab451ba874f10de29d4fb15b157f630dd" title="Converteert genormalizeerde center coords naar pixels." alt="" coords="219,5,392,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,44,206,39,201,41,154,49"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_camera.html#ab67a9099042d076405a5e07c590ac3d3" title="Converteert tile coördinaten naar genormalizeerd [&#45;1, 1]." alt="" coords="202,72,409,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,63,189,70,184,70,154,68"/>
+</map>
