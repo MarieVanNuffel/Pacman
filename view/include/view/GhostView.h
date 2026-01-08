@@ -28,7 +28,7 @@ public:
    * @brief Constructor
    * @param m GhostModel
    */
-  explicit GhostView(std::shared_ptr<logic::GhostModel> m);
+  explicit GhostView(const std::shared_ptr<logic::GhostModel> &m);
 
   /**
    * @brief Tekent de ghosts

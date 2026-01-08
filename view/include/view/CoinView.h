@@ -27,7 +27,7 @@ public:
    * @brief Constructor
    * @param m Coin model
    */
-  explicit CoinView(std::shared_ptr<logic::CoinModel> m);
+  explicit CoinView(const std::shared_ptr<logic::CoinModel> &m);
 
   /**
    * @brief Teken de coin

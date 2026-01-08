@@ -8,7 +8,7 @@
 #include <iostream>
 
 namespace view {
-GhostView::GhostView(std::shared_ptr<logic::GhostModel> m)
+GhostView::GhostView(const std::shared_ptr<logic::GhostModel> &m)
     : EntityView(m), model(m) {
   texturePtr = view::Resource::loadTexture("view/assets/pacman.png");
   if (texturePtr)

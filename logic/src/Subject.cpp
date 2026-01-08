@@ -19,7 +19,7 @@ void Subject::addObserver(std::shared_ptr<Observer> o) {
   observers.emplace_back(o);
 }
 
-void Subject::removeObserver(std::shared_ptr<Observer> o) {
+void Subject::removeObserver(const std::shared_ptr<Observer> &o) {
   observers.erase(std::remove_if(observers.begin(), observers.end(),
                                  [&](const std::weak_ptr<Observer> &w) {
                                    auto s = w.lock();

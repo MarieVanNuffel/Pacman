@@ -34,7 +34,7 @@ public:
    *
    * Verwijdert ook verlopen weak_ptrs.
    */
-  void removeObserver(std::shared_ptr<Observer> o);
+  void removeObserver(const std::shared_ptr<Observer> &o);
 
   /**
    * @brief Notify de observers

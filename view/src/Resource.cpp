@@ -4,6 +4,9 @@
 
 #include "../include/view/Resource.h"
 
+#include <mutex>
+#include <unordered_map>
+
 namespace view {
 
 std::shared_ptr<sf::Texture> Resource::loadTexture(const std::string &path) {

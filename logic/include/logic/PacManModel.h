@@ -4,12 +4,12 @@
 
 #ifndef PACMANGAME_PACMANMODEL_H
 #define PACMANGAME_PACMANMODEL_H
-#include "Entity.h"
+
 
 #pragma once
 
-#include "Direction.h"
 #include "Entity.h"
+#include "Direction.h"
 #include "Subject.h"
 
 namespace logic {
@@ -33,7 +33,7 @@ public:
    * @brief Zet huidige movement direction
    * @param d Nieuwe direction
    */
-  void setDirection(Direction d);
+  void setDirection(Direction d) override;
 
   /**
    * @brief Zet Desired direction

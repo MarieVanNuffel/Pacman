@@ -56,7 +56,7 @@ private:
   double deathDuration = 0.0;
 
 public:
-  World(std::shared_ptr<IEntityFactory> factory, std::shared_ptr<Score> score);
+  World(const std::shared_ptr<IEntityFactory> &factory_, const std::shared_ptr<Score> &score);
 
   // Getters Entities
 
@@ -137,7 +137,7 @@ public:
    * Overloopt alle entities en zet ze terug op hun spawn positie en
    * startrichting.
    */
-  void resetPositions();
+  void resetPositions() const;
 
   /**
    * @brief Start de death animatie van pacman.
@@ -216,7 +216,7 @@ public:
    * @param y Y-positie in wereldcoördinaten.
    * @return True als we uitgelijnd zijn met de grid, anders false
    */
-  bool isAlignedWithGrid(double x, double y) const;
+  static bool isAlignedWithGrid(double x, double y);
 
   /**
    * @brief Kijkt of we op een kruispunt zitten
@@ -252,8 +252,8 @@ public:
    * @param dir Richting waarin bewogen wordt.
    * @return De voorspelde positie.
    */
-  std::pair<double, double> predictStep(double worldX, double worldY,
-                                        Direction dir) const;
+  static std::pair<double, double> predictStep(double worldX, double worldY,
+                                               Direction dir);
 
   // Movement Helpers
 
@@ -266,7 +266,7 @@ public:
    * @param dir Richting waarin bewogen wordt.
    * @param dt Delta time sinds de vorige update.
    */
-  void tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt);
+  void tryMoveEntity(const std::shared_ptr<Entity> &e, Direction dir, double dt) const;
 
   /**
    * @brief Probeert een ghost te verplaatsen in een richting.
@@ -278,7 +278,7 @@ public:
    * @param dir Richting waarin bewogen wordt.
    * @param dt Delta time sinds de vorige update.
    */
-  void tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt);
+  void tryMoveGhost(const std::shared_ptr<Entity> &e, Direction dir, double dt) const;
 
   /**
    * @brief Controleert of een entity kan bewegen in een richting.

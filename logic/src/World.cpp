@@ -10,8 +10,8 @@
 #include <queue>
 
 namespace logic {
-World::World(std::shared_ptr<IEntityFactory> factory_,
-             std::shared_ptr<Score> score_)
+World::World(const std::shared_ptr<IEntityFactory> &factory_,
+             const std::shared_ptr<Score> &score_)
     : factory(factory_), score(score_) {
   maze = {{{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
            {1, 3, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1},
@@ -142,7 +142,7 @@ void World::advanceLevel() {
   }
 }
 
-void World::resetPositions() {
+void World::resetPositions() const {
   // Reset pacman
   for (size_t y = 0; y < maze.size(); ++y) {
     for (size_t x = 0; x < maze[y].size(); ++x) {
@@ -389,8 +389,8 @@ bool World::isGhostDoor(double x, double y) const {
 }
 
 // Grid helpers
-bool World::isAlignedWithGrid(double x, double y) const {
-  const double epsilon = 0.1; // marge
+bool World::isAlignedWithGrid(double x, double y) {
+  constexpr double epsilon = 0.1; // marge
 
   double fractX = x - std::floor(x);
   double fractY = y - std::floor(y);
@@ -432,9 +432,9 @@ std::vector<Direction> World::getFreeDirections(double x, double y) const {
 }
 
 std::pair<double, double> World::predictStep(double x, double y,
-                                             Direction d) const {
+                                             Direction d) {
   double nx = x, ny = y;
-  const double STEP = 0.5;
+  constexpr double STEP = 0.5;
 
   switch (d) { // afhankelijk van de richting, pas het x of y coördinaat aan met
                // + of -
@@ -457,7 +457,7 @@ std::pair<double, double> World::predictStep(double x, double y,
 }
 
 // Movement helpers
-void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
+void World::tryMoveEntity(const std::shared_ptr<Entity> &e, Direction dir, double dt) const {
   if (!e || dir == Direction::NONE)
     return;
 
@@ -482,7 +482,7 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
     break;
   }
 
-  const double radius = 0.49; // collision radius
+  constexpr double radius = 0.49; // collision radius
 
   if (isBlockedAt(nx, ny, radius,
                   /*disallowDoor=*/true)) { // mag niet door ghostdoor
@@ -491,7 +491,7 @@ void World::tryMoveEntity(std::shared_ptr<Entity> e, Direction dir, double dt) {
   e->setPosition(nx, ny);
 }
 
-void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
+void World::tryMoveGhost(const std::shared_ptr<Entity> &e, Direction dir, double dt) const {
   if (!e || dir == Direction::NONE)
     return;
 
@@ -515,7 +515,7 @@ void World::tryMoveGhost(std::shared_ptr<Entity> e, Direction dir, double dt) {
     break;
   }
 
-  const double radius = 0.35; // ghosts hebben een kleinere radius
+  constexpr double radius = 0.35; // ghosts hebben een kleinere radius
 
   if (isBlockedAt(nx, ny, radius,
                   /*disallowDoor=*/false)) { // mag door ghostdoor
@@ -549,7 +549,7 @@ bool World::canMoveIn(Direction dir, double x, double y) const {
     break;
   }
 
-  const double radius = 0.49; // pacman radius
+  constexpr double radius = 0.49; // pacman radius
   return !isBlockedAt(nx, ny, radius,
                       /*disallowDoor=*/true); // niet door ghostdoor
 }
@@ -578,7 +578,7 @@ bool World::canGhostMove(Direction dir, double x, double y) const {
     break;
   }
 
-  const double radius = 0.35;
+  constexpr double radius = 0.35;
   return !isBlockedAt(nx, ny, radius,
                       /*disallowDoor=*/false); // mag door ghostdoor
 }
@@ -629,8 +629,6 @@ std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty,
   vis[sy][sx] = true;
 
   // Richtingen (up, down, left, right)
-  const int dx[4] = {0, 0, -1, 1};
-  const int dy[4] = {-1, 1, 0, 0};
 
   bool found = false;
 
@@ -646,6 +644,8 @@ std::vector<Direction> World::findPath(int sx, int sy, int tx, int ty,
 
     // Overloop alle 4 richtingen
     for (int i = 0; i < 4; ++i) {
+      constexpr int dy[4] = {-1, 1, 0, 0};
+      constexpr int dx[4] = {0, 0, -1, 1};
       int nx = cx + dx[i];
       int ny = cy + dy[i];
 

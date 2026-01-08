@@ -23,17 +23,17 @@ void StateManager::changeState(std::shared_ptr<State> state) {
   pushState(std::move(state));
 }
 
-void StateManager::handleInput(sf::Event &ev) {
+void StateManager::handleInput(sf::Event &ev) const {
   if (!states.empty())
     states.back()->handleInput(ev);
 }
 
-void StateManager::update(double dt) {
+void StateManager::update(double dt) const {
   if (!states.empty())
     states.back()->update(dt);
 }
 
-void StateManager::render() {
+void StateManager::render() const {
   if (!states.empty())
     states.back()->render();
 }

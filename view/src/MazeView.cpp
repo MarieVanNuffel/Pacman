@@ -6,7 +6,7 @@
 namespace view {
 MazeView::MazeView(const logic::World *w) : world(w) {}
 
-void MazeView::draw(sf::RenderWindow &win, const Camera &cam) {
+void MazeView::draw(sf::RenderWindow &win, const Camera &cam) const {
   const auto &maze = world->getMaze(); // vector met getallen
   int H = maze.size();
   int W = maze[0].size();

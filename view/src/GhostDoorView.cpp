@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 namespace view {
-GhostDoorView::GhostDoorView(std::shared_ptr<logic::GhostDoorModel> m)
+GhostDoorView::GhostDoorView(const std::shared_ptr<logic::GhostDoorModel> &m)
     : EntityView(m), model(m) {}
 
 void GhostDoorView::draw(sf::RenderWindow &win, const Camera &cam) {

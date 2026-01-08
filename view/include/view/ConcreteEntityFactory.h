@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include "GhostDoorView.h"
 #include "GhostView.h"
 #include "PacmanView.h"
 #include "logic/IEntityFactory.h"

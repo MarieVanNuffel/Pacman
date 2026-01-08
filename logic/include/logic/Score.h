@@ -7,9 +7,7 @@
 
 #pragma once
 
-#include <string>
 #include <vector>
-
 #include "Observer.h"
 
 namespace logic {

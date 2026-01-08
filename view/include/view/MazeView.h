@@ -29,7 +29,7 @@ public:
   /**
    * @brief Tekent de volledige maze volgens de vector dat in world is gegeven
    */
-  void draw(sf::RenderWindow &win, const Camera &cam);
+  void draw(sf::RenderWindow &win, const Camera &cam) const;
 
 private:
   const logic::World *world;

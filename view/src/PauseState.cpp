@@ -50,8 +50,8 @@ void PauseState::handleInput(sf::Event &ev) {
 }
 
 void PauseState::render() {
-  const float BASE_WIDTH = 800.0f;
-  const float BASE_HEIGHT = 600.0f;
+  constexpr float BASE_WIDTH = 800.0f;
+  constexpr float BASE_HEIGHT = 600.0f;
   float scaleX = window.getSize().x / BASE_WIDTH;
   float scaleY = window.getSize().y / BASE_HEIGHT;
   uiScale = std::min(scaleX, scaleY);

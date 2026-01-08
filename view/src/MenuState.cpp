@@ -81,6 +81,7 @@ MenuState::MenuState(sf::RenderWindow &win, StateManager &sm) : State(win, sm) {
     case 3:
       rectTop = 112;
       break; // oranje
+    default: rectTop = 64;
     }
 
     // sprite instellen
@@ -139,8 +140,8 @@ void MenuState::update(float dt) {
       frameTimer = 0.0f;
       currentFrame = (currentFrame + 1) % 2;
 
-      int frameX = currentFrame * 16;
-      pacmanSprite.setTextureRect(sf::IntRect(frameX, 0, 15, 15));
+      int pacmanFrameX = currentFrame * 16;
+      pacmanSprite.setTextureRect(sf::IntRect(pacmanFrameX, 0, 15, 15));
 
       // update de ghost anmimaties
       for (auto &ghost : ghostSprites) {

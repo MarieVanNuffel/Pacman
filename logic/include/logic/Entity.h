@@ -80,7 +80,7 @@ public:
    * @brief Zet huidige direction
    * @param d Nieuwe direction
    */
-  void setDirection(Direction d) { direction = d; }
+  virtual void setDirection(Direction d) { direction = d; }
 
   /**
    * @brief Geeft bounding box terug

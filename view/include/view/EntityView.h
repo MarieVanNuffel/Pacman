@@ -23,7 +23,7 @@ public:
    *
    * Verbindt een logic Entity met rendering.
    */
-  explicit EntityView(std::shared_ptr<logic::Entity> m) : model(m) {}
+  explicit EntityView(const std::shared_ptr<logic::Entity> &m) : model(m) {}
   virtual ~EntityView() = default;
 
   /**
@@ -31,7 +31,7 @@ public:
    * @param win RenderWindow
    * @param cam Camera voor world to pixel conversie
    */
-  virtual void draw(sf::RenderWindow &win, const Camera &) = 0;
+  virtual void draw(sf::RenderWindow &win, const Camera &cam) = 0;
 
   /**
    * @brief Update sprite per frame

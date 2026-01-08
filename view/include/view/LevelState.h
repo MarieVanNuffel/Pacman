@@ -78,12 +78,12 @@ private:
   /**
    * @brief Tekent de maze
    */
-  void drawMaze();
+  void drawMaze() const;
 
   /**
    * @brief tekent entities
    */
-  void drawEntities();
+  void drawEntities() const;
 
   /**
    * @brief Tekent de UI

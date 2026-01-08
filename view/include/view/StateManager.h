@@ -60,19 +60,19 @@ public:
    *
    * @param ev SFML event
    */
-  void handleInput(sf::Event &ev);
+  void handleInput(sf::Event &ev) const;
 
   /**
    * @brief Update de actieve state.
    *
    * @param dt Delta time (tijd sinds vorige frame)
    */
-  void update(double dt);
+  void update(double dt) const;
 
   /**
    * @brief Rendert de actieve state.
    */
-  void render();
+  void render() const;
 
   /**
    * @brief Geeft toegang tot de score.

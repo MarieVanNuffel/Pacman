@@ -11,7 +11,7 @@
 #include <iostream>
 
 namespace view {
-FruitView::FruitView(std::shared_ptr<logic::FruitModel> m)
+FruitView::FruitView(const std::shared_ptr<logic::FruitModel> &m)
     : EntityView(m), model(m) {
   texturePtr =
       view::Resource::loadTexture("view/assets/pacman.png"); // spritesheet

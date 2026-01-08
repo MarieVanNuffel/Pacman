@@ -5,9 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
-#include <mutex>
 #include <string>
-#include <unordered_map>
 
 namespace view {
 

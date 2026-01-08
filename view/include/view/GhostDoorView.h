@@ -27,7 +27,7 @@ public:
    * @brief Constructor
    * @param m GhostDoorModel
    */
-  explicit GhostDoorView(std::shared_ptr<logic::GhostDoorModel> m);
+  explicit GhostDoorView(const std::shared_ptr<logic::GhostDoorModel> &m);
 
   /**
    * @brief Tekent de ghostdoor

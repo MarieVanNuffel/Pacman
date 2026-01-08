@@ -5,6 +5,7 @@
 #include "view/ConcreteEntityFactory.h"
 #include "view/CoinView.h"
 #include "view/FruitView.h"
+#include "view/GhostDoorView.h"
 
 namespace view {
 // Pacman

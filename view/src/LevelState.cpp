@@ -176,9 +176,9 @@ void LevelState::drawUI() {
   }
 }
 
-void LevelState::drawMaze() { mazeView->draw(window, camera); }
+void LevelState::drawMaze() const { mazeView->draw(window, camera); }
 
-void LevelState::drawEntities() {
+void LevelState::drawEntities() const {
   // pacman
   pacmanView->draw(window, camera);
 

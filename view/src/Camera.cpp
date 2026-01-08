@@ -6,17 +6,17 @@
 
 namespace view {
 Camera::Camera(int pixelW, int pixelH, int mazeW, int mazeH)
-    : wPixels(pixelW), hPixels(pixelH), mazeWidth(mazeW), mazeHeight(mazeH) {
+    : mazeWidth(mazeW), mazeHeight(mazeH), wPixels(pixelW), hPixels(pixelH) {
   recompute();
 }
 
 sf::FloatRect Camera::worldToPixels(double x, double y, double w,
                                     double h) const {
   // converteren naar pixels + naar midden verschuiven
-  float px = offsetX + float(x) * cellSize;
-  float py = offsetY + float(y) * cellSize;
-  float pw = float(w) * cellSize;
-  float ph = float(h) * cellSize;
+  float px = offsetX + static_cast<float>(x) * cellSize;
+  float py = offsetY + static_cast<float>(y) * cellSize;
+  float pw = static_cast<float>(w) * cellSize;
+  float ph = static_cast<float>(h) * cellSize;
 
   return {px, py, pw, ph};
 }
@@ -58,8 +58,8 @@ sf::FloatRect Camera::normalizedToPixels(double nx, double ny, double wFrac,
 
 void Camera::recompute() {
   // berekent cellsize per as
-  float cellW = float(wPixels) / std::max(1, mazeWidth);  // horizontaal
-  float cellH = float(hPixels) / std::max(1, mazeHeight); // verticaal
+  float cellW = static_cast<float>(wPixels) / std::max(1, mazeWidth);  // horizontaal
+  float cellH = static_cast<float>(hPixels) / std::max(1, mazeHeight); // verticaal
 
   cellSize = std::min(cellW, cellH); // kleinste nemen
 

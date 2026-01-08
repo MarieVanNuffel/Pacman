@@ -25,7 +25,7 @@ public:
    * @brief Constructor
    * @param m Fruit model
    */
-  explicit FruitView(std::shared_ptr<logic::FruitModel> m);
+  explicit FruitView(const std::shared_ptr<logic::FruitModel> &m);
 
   /**
    * @brief Tekent het fruit
